@@ -1,0 +1,88 @@
+---
+#layout: layouts/base.njk
+templateClass: tmpl-post
+---
+{% extends "layouts/base.njk" %}
+
+{% set postAuthor = metadata.authors[author] %}
+
+{% block extraArticleHeader %}
+   <aside class="w-full">
+      <div class="flex items-center">
+        <img class="avatar" src="{{ postAuthor.avatarUrl }}">
+        <span style="margin-left: 12px;"><a href="/posts/{{ author }}">{{ postAuthor.name }}</a> 於 {{ date | htmlDateString }} 發布</span>
+      </div>
+      <div style="text-align: left;">
+      {% for tag in tags %}
+        {% if tag !== "posts" %}
+          {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+          <a href="{{ tagUrl | url }}" class="post-tag">#{{ tag }}</a>
+        {% endif %}
+        
+      {% endfor %}
+      </div>
+   </aside>
+{% endblock %}
+
+
+{% set shareUrl = metadata.url + page.url %}
+
+{% block article %}
+
+{{ content | safe }}
+
+<hr>
+<p>
+  <h3>關於作者</h3>
+  <div class="flex items-center">
+    <img class="avatar avatar-large" src="{{ postAuthor.avatarUrl }}">
+    <h3 style="margin-left: 12px;"><a href="/posts/{{ author }}">{{ postAuthor.name }}</a></h3>
+  </div>
+  <p>{{ postAuthor.intro | safe }}</p>
+</p>
+
+<p>
+  <a href="{{ shareUrl | safe }}" on-click="share">分享文章</a>
+</p>
+
+<script
+  src="https://utteranc.es/client.js"
+  repo="Cymetrics/blog"
+  issue-term="title"
+  label="utterancex"
+  theme="github-light"
+  crossorigin="anonymous"
+  async>
+</script>
+
+<share-widget>
+  <button on-click="share" aria-label="Share" href="{{ shareUrl | safe }}">
+    <div></div>
+  </button>
+</share-widget>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ title }}",
+  "image": [],
+  "author": "{{ postAuthor.name }}", 
+  "genre": "{{ metadata.genre }}", 
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ metadata.publisher.name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ '/img/favicon/favicon-192x192.png' | addHash }}"
+    }
+  },
+  "url": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
+  "mainEntityOfPage": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
+  "datePublished": "{{ page.date | htmlDateString }}",
+  "dateModified": "{{ page.inputPath | lastModifiedDate  | htmlDateString }}",
+  "description": "{{ content | striptags | truncate(140) }}"
+}
+</script>
+
+{% endblock %}

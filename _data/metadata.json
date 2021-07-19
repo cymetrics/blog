@@ -1,0 +1,33 @@
+{
+  "title": "Cymetrics Tech Blog",
+  "url": "https://blog.cymetrics.io",
+  "domain": "cymetrics.io",
+  "description": "Cymetrics 技術部落格",
+  "genre": "Insert a schema.org genre",
+  "googleAnalyticsId": "",
+  "sendWebVitals": false,
+  "feed": {
+    "subtitle": "Cymetrics 技術部落格",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "id": "https://blog.cymetrics.io"
+  },
+  "jsonfeed": {
+    "path": "/feed/feed.json",
+    "url": "https://blog.cymetrics.io/feed/feed.json"
+  },
+  "author": {
+    "name": "Cymetrics 技術部落格",
+    "twitterHandle": ""
+  },
+  "authors": {
+    "huli": {
+      "name": "huli",
+      "intro": "test",
+      "avatarUrl": "/img/authors/huli_logo.jpg"
+    }
+  },
+  "publisher": {
+    "name": "Cymetrics 技術部落格"
+  }
+}

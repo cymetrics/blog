@@ -1,0 +1,15 @@
+---
+permalink: /tags/
+layout: layouts/home.njk
+title: Tags
+eleventyNavigation:
+  key: Tags
+  order: 2
+---
+
+{% for tag in collections.tagList %}
+  {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+  <h2><a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a></h2>
+  {% set postslist = collections[tag] %}
+  {% include "postslist.njk" %}
+{% endfor %}

@@ -1,0 +1,21 @@
+{% for post in postslist | reverse %}
+  {% set author = metadata.authors[post.data.author] %}
+<article class="post">
+  <div class="post-body">
+    <a href="{{ post.url | url }}"><h3 class="post-title">{{ post.data.title | safe }}</h3></a>
+    {% summary post=post.templateContent %}
+    <div class="post-info">
+        <a href="/posts/{{ author.name }}" class="author-link">
+          <img src="{{ author.avatarUrl}}" class="avatar-small" />
+          <span class="post-author">{{ author.name }}</span>
+        </a>on<time class="f-monospace post-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | htmlDateString }}</time>
+    </div>
+  </div>
+  {% if post.data.image %}
+  <div class="post-cover">
+    <a href="{{ post.url | url }}"><img src="{{ post.data.image | absoluteUrl(metadata.url) }}" class="post-cover-img" /></a>
+  </div>
+  {% endif %}
+</article>
+<hr class="divider">
+{% endfor %}

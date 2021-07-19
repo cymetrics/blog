@@ -1,0 +1,20 @@
+---
+title: Cymetrics 技術部落格
+layout: layouts/home.njk
+description: 分享資訊安全與技術開發相關內容
+image: https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg
+date: Last Modified
+---
+
+<section class="intro">
+<p>
+  Cymetrics 技術部落格
+</p>
+<p>
+  部落格的主題以 web 前後端主題居多，但其實只要是跟技術有關的主題都有可能出現。
+</p>
+</section>
+<section class="posts">
+  {% set postslist = collections.posts %}
+  {% include "home-postslist.njk" %}
+</section>

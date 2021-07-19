@@ -1,0 +1,22 @@
+---
+#layout: layouts/base.njk
+templateClass: tmpl-about
+---
+{% extends "layouts/base.njk" %}
+
+{% set postAuthor = metadata.authors[author] %}
+
+{% block article %}
+
+{{ content | safe }}
+
+{% for key, author in metadata.authors %}
+  <div class="flex items-center">
+    <img class="avatar avatar-large" src="{{ author.avatarUrl }}">
+    <h4 style="margin-left: 12px;"><a href="/posts/{{ key }}">{{ author.name }}</a></h4>
+  </div>
+  
+  <p>{{ author.intro | safe }}</p>
+{% endfor %}
+
+{% endblock %}
