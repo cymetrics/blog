@@ -3,10 +3,10 @@
 	<title>Cymetrics Tech Blog</title>
 	<subtitle>Cymetrics 技術部落格</subtitle>
 	
-	<link href="https://blog.cymetrics.io/feed/feed.xml" rel="self"/>
-	<link href="https://blog.cymetrics.io"/>
+	<link href="https://cymetrics.github.io/feed/feed.xml" rel="self"/>
+	<link href="https://cymetrics.github.io/blog"/>
 	<updated>2021-07-09T08:00:00+08:00</updated>
-	<id>https://blog.cymetrics.io</id>
+	<id>https://cymetrics.github.io/blog</id>
 	<author>
 		<name>Cymetrics 技術部落格</name>
 		<email></email>
@@ -14,9 +14,9 @@
 	
 	<entry>
 		<title>用 Paged.js 做出適合印成 PDF 的 HTML 網頁</title>
-		<link href="https://blog.cymetrics.io/posts/huli/paged-js-to-pdf/"/>
+		<link href="https://cymetrics.github.io/posts/huli/paged-js-to-pdf/"/>
 		<updated>2018-09-30T08:00:00+08:00</updated>
-		<id>https://blog.cymetrics.io/posts/huli/paged-js-to-pdf/</id>
+		<id>https://cymetrics.github.io/posts/huli/paged-js-to-pdf/</id>
 		<content type="html">
 		  &lt;!-- summary --&gt;
 &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
@@ -127,9 +127,9 @@
 	
 	<entry>
 		<title>為什麼忘記密碼時只能重設，不把舊密碼告訴我？</title>
-		<link href="https://blog.cymetrics.io/posts/huli/why-only-reset-password-not-retrieve-password/"/>
+		<link href="https://cymetrics.github.io/posts/huli/why-only-reset-password-not-retrieve-password/"/>
 		<updated>2021-07-09T08:00:00+08:00</updated>
-		<id>https://blog.cymetrics.io/posts/huli/why-only-reset-password-not-retrieve-password/</id>
+		<id>https://cymetrics.github.io/posts/huli/why-only-reset-password-not-retrieve-password/</id>
 		<content type="html">
 		  &lt;p&gt;某天小明在整理他的我的最愛（到底誰的），發現了一個以前很常逛，但已經將近半年多沒去的一個論壇。小明想回去看看那邊變得怎麼樣了，於是點進去那個論壇，輸入了帳號密碼，得到了密碼錯誤的回覆。&lt;/p&gt;
 &lt;p&gt;嘗試了幾次之後，系統提示小明可以使用「忘記密碼」的功能，所以小明填了自己的 email 之後去信箱收信，發現系統傳來一個「重設密碼」的連結。雖然說最後小明成功利用重新設定的密碼登入，但有個問題讓他百思不得其解：&lt;/p&gt;
@@ -141,14 +141,14 @@
 &lt;p&gt;先提醒一下，雖然說前半段看起來可能跟文章主題無關，但好酒沉甕底，我保證最後會把這些東西關聯起來。&lt;/p&gt;
 &lt;h2 id=&quot;%E8%A2%AB%E5%81%B7%E8%B5%B0%E7%9A%84%E8%B3%87%E6%96%99%E5%BA%AB&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%A2%AB%E5%81%B7%E8%B5%B0%E7%9A%84%E8%B3%87%E6%96%99%E5%BA%AB&quot;&gt;#&lt;/a&gt; 被偷走的資料庫&lt;/h2&gt;
 &lt;p&gt;大家應該很常看到新聞說哪個網站的資料又被偷走了，顧客個資全部都外洩出去。例如說&lt;a href=&quot;https://tw.news.yahoo.com/%E5%80%8B%E8%B3%87%E9%81%AD%E6%B4%A9-%E9%BA%A5%E7%95%B6%E5%8B%9E%E8%81%B2%E6%98%8E-%E4%B8%8D%E5%90%AB%E4%BB%98%E6%AC%BE%E8%B3%87%E6%96%99-103012207.html&quot;&gt;麥當勞&lt;/a&gt;在近期就發生了類似的事件：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://blog.cymetrics.io/img/posts/huli/reset-password/p1.png&quot; alt=&quot;麥當勞資料外洩的通知信&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cymetrics.github.io/img/posts/huli/reset-password/p1.png&quot; alt=&quot;麥當勞資料外洩的通知信&quot;&gt;&lt;/p&gt;
 &lt;p&gt;這邊我想帶大家探討的兩個問題是：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;資料真的這麼容易外洩嗎？&lt;/li&gt;
 &lt;li&gt;資料外洩之後，可能造成什麼後果？&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;我們先來看第一個問題，有很多安全性的漏洞可以造成資料外洩，而有些漏洞的攻擊方式，比你想的還簡單一百倍。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://blog.cymetrics.io/img/posts/huli/reset-password/p2.jpeg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cymetrics.github.io/img/posts/huli/reset-password/p2.jpeg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
 &lt;p&gt;你想像中的駭客可能像上面那樣，打著一大堆不知道在幹嘛的指令，畫面上出現很多黑底白字或是綠字的畫面，完全搞不懂在幹嘛，但是做著做著網站就被打下來了。&lt;/p&gt;
 &lt;p&gt;而事實上有些漏洞，可能在網址列上面改幾個字就攻擊成功了，就算你不懂任何程式也做得到。&lt;/p&gt;
 &lt;p&gt;舉例來說好了，假設今天有個購物網站，你買了一些東西之後送出訂單，訂單成立後跳轉到訂單頁面，上面有著一大堆你的個資，例如說：姓名、收貨地址、聯絡電話以及 Email 等等。&lt;/p&gt;

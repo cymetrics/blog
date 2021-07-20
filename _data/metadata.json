@@ -1,7 +1,7 @@
 {
   "title": "Cymetrics Tech Blog",
-  "url": "https://cymetrics.github.io/blog",
-  "domain": "cymetrics.github.io",
+  "url": "https://tech-blog.cymetrics.io",
+  "domain": "cymetrics.io",
   "description": "Cymetrics 技術部落格",
   "genre": "Insert a schema.org genre",
   "googleAnalyticsId": "",
@@ -10,11 +10,11 @@
     "subtitle": "Cymetrics 技術部落格",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://cymetrics.github.io/blog"
+    "id": "https://tech-blog.cymetrics.io"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://cymetrics.github.io/blog/feed/feed.json"
+    "url": "https://tech-blog.cymetrics.io/feed/feed.json"
   },
   "author": {
     "name": "Cymetrics 技術部落格",
