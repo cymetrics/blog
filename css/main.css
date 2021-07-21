@@ -1,10 +1,15 @@
 /* Color customization */
 :root {
-  --primary: #00bcb2;
-  --primary-dark: #ffd349;
+  --primary-color: #00bcb2;
+  --primary-dark-color: #ffd349;
   --fgColor: #222;
   --bgColor: #eee;
+  --primary: var(--primary-color);
+  --primary-dark: var(--primary-dark-color);
+  --fg: var(--fgColor);
+  --bg: var(--bgColor);
   --progressColor: #ffd349;
+  --paginationCurrentColor: #dddcd8;
 }
 
 .test-dead-code-elimination-sentinel {
@@ -675,7 +680,6 @@ h6 {
   font-family: var(--font-family);
 }
 a {
-  color: #f9c412;
   text-decoration: none;
 }
 a:hover {
@@ -865,8 +869,8 @@ video {
 }
 body {
   font-family: var(--font-family);
-  background: var(--bgColor);
-  color: var(--fgColor);
+  background: var(--bg);
+  color: var(--fg);
 }
 section {
   margin-left: auto;
@@ -899,7 +903,7 @@ header label {
 }
 header {
   padding: 4.5em 1.5em 3em;
-  width: 50.5em;
+  width: 42.5em;
   margin: 0 auto;
   text-align: center;
   max-width: 100%;
@@ -974,7 +978,7 @@ footer p {
 article {
   max-width: 100%;
   padding: 1.5em;
-  width: 50.5em;
+  width: 42.5em;
   margin: 0 auto;
   word-break: break-word;
 }
@@ -1324,15 +1328,17 @@ nav a:hover {
   margin-right: 1em;
 }
 body.dark {
-    background: var(--fgColor);
-    color: var(--bgColor);
-    --primary: var(--primary-dark);
+    --fg: var(--bgColor);
+    --bg: var(--fgColor);
+    --primary: var(--primary-dark-color);
+    --paginationCurrentColor: #666356;
 }
 @media (prefers-color-scheme: dark) {
     body.dark {
-      background: var(--fgColor);
-      color: var(--bgColor);
-      --primary: var(--primary-dark);
+      --fg: var(--bgColor);
+      --bg: var(--fgColor);
+      --primary: var(--primary-dark-color);
+      --paginationCurrentColor: #666356;
     }
 }
 
@@ -1426,3 +1432,39 @@ body.dark {
 }
 
 /* home article end */
+
+[aria-current] {
+  background: var(--paginationCurrentColor);
+}
+
+.nav-pagination {
+  text-align: center;
+}
+
+.nav-pagination ol {
+  display: inline-flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  border: 1px solid #e1dfd3;
+  border-radius: 6px;
+}
+
+
+.nav-pagination li a, .nav-pagination li span{
+  padding: 3px 12px;
+  text-align: center;
+  display: block;
+  height: 100%;
+}
+
+.nav-pagination li:not(:first-child) {
+  border-left: 1px solid #c4c3be;
+}
+
+.btn {
+  background: var(--primary);
+  color: var(--bg);
+  padding: 8px 16px;
+  border-radius: 16px;
+}
