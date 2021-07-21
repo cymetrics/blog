@@ -6,7 +6,13 @@ image: /img/favicon/favicon-512x512.png
 date: Last Modified
 ---
 
+{% set maxArticleShow = 10 %}
+
 <section class="posts">
-  {% set postslist = collections.posts %}
+  {% set postslist = collections.posts | reverse | head(maxArticleShow) %}
   {% include "home-postslist.njk" %}
 </section>
+
+{% if collections.posts.length > maxArticleShow %}
+<a href="/posts" class="btn">Read more articles</a>
+{% endif %}
