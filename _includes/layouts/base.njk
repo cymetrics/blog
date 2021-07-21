@@ -47,7 +47,14 @@
       {% if webvitals %}data-cwv-src="{{ "/js/web-vitals.js" | addHash }}"{% endif %}>
     </script>
     {% if googleanalytics %}
-      <script async defer src="{{ "/js/cached.js" | addHash }}"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VBVCXV9Z0"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-3VBVCXV9Z0');
+      </script>
     {% endif %}
     <!-- Notably iOS UAs also contain Mac OS X -->
     <script csp-hash>if (/Mac OS X/.test(navigator.userAgent))document.documentElement.classList.add('apple')
@@ -78,12 +85,6 @@
       <h1 class="w-full">{{ title }}</h1>
       {% block extraArticleHeader %}{% endblock %}
       <dialog id="message"></dialog>
-      {% if googleanalytics %}
-      <noscript>
-        <img src="/.netlify/functions/ga?v=1&_v=j83&t=pageview&dr=https%3A%2F%2Fno-script.com&_s=1&dh={{ metadata.domain | encodeURIComponent }}&dp={{ page.url | encodeURIComponent }}&ul=en-us&de=UTF-8&dt={{title|encodeURIComponent}}&tid={{googleanalytics}}" width="1" height="1"
-        style="display:none" alt="">
-      </noscript>
-      {% endif %}
     </header>
 
     <main>
