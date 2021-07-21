@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<title>Cymetrics Tech Blog</title>
-	<subtitle>Cymetrics 技術部落格</subtitle>
+	<subtitle>Cymetrics Tech Blog</subtitle>
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
 	<updated>2021-07-09T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
-		<name>Cymetrics 技術部落格</name>
+		<name>Cymetrics Tech Blog</name>
 		<email></email>
 	</author>
 	
