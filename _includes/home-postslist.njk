@@ -6,14 +6,14 @@
     {% summary post=post.templateContent %}
     <div class="post-info">
         <a href="/posts/{{ author.name }}" class="author-link">
-          <img src="{{ author.avatarUrl}}" class="avatar-small" />
+          <img src="{{ author.avatarUrl}}" class="avatar-small" alt="avatar" />
           <span class="post-author">{{ author.name }}</span>
         </a>on<time class="post-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | htmlDateString }}</time>
     </div>
   </div>
   {% if post.data.image %}
   <div class="post-cover">
-    <a href="{{ post.url | url }}"><img src="{{ post.data.image | absoluteUrl(metadata.url) }}" class="post-cover-img" /></a>
+    <a href="{{ post.url | url }}"><img src="{{ post.data.image | absoluteUrl(metadata.url) }}" class="post-cover-img" alt="cover-image" /></a>
   </div>
   {% endif %}
 </article>

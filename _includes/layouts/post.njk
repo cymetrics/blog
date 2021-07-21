@@ -9,7 +9,7 @@ templateClass: tmpl-post
 {% block extraArticleHeader %}
    <aside class="w-full">
       <div class="flex items-center">
-        <img class="avatar" src="{{ postAuthor.avatarUrl }}">
+        <img class="avatar" src="{{ postAuthor.avatarUrl }}" alt="avatar">
         <span style="margin-left: 12px;"><a href="/posts/{{ author }}">{{ postAuthor.name }}</a> 於 {{ date | htmlDateString }} 發布</span>
       </div>
       <div style="text-align: left;">
@@ -35,7 +35,7 @@ templateClass: tmpl-post
 <p>
   <h3>關於作者</h3>
   <div class="flex items-center">
-    <img class="avatar avatar-large" src="{{ postAuthor.avatarUrl }}">
+    <img class="avatar avatar-large" alt="avatar" src="{{ postAuthor.avatarUrl }}">
     <h3 style="margin-left: 12px;"><a href="/posts/{{ author }}">{{ postAuthor.name }}</a></h3>
   </div>
   <p>{{ postAuthor.intro | safe }}</p>

@@ -24,7 +24,9 @@ if (location.search) {
   var a = document.createElement("a");
   a.href = location.href;
   a.search = "";
-  history.replaceState(null, null, a.href);
+  setTimeout(() => {
+    history.replaceState(null, null, a.href);
+  }, 1000)
 }
 
 function tweet_(url) {
