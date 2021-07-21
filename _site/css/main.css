@@ -1,10 +1,10 @@
 /* Color customization */
 :root {
-  --primary: #2250b2;
-  --primary-dark: #e7bf60;
-  --fgColor: #181818;
+  --primary: #00bcb2;
+  --primary-dark: #ffd349;
+  --fgColor: #222;
   --bgColor: #eee;
-  --progressColor: #f9c412;
+  --progressColor: #ffd349;
 }
 
 .test-dead-code-elimination-sentinel {
@@ -538,7 +538,7 @@ ul {
   }
   h3 {
     font-size: 1.7989rem;
-    line-height: 1.74rem;
+    line-height: 2rem;
     margin-bottom: 1.496rem;
   }
   h4 {
@@ -650,7 +650,7 @@ pre code:not([class]) {
 code,
 kbd {
   border-radius: 0.3em;
-  color: #e2777a;
+  color: var(--primary);
   padding: 0 0.3em;
   font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
   font-size: 90%;
@@ -1003,7 +1003,6 @@ dd + dt {
   border-top: 1px solid #f9c412;
 }
 blockquote {
-  border-left: 1px solid #f9c412;
   padding: 0 1.5em;
   margin: 1.5em 0 1.5em 1.5em;
 }
@@ -1138,7 +1137,7 @@ dd + dt {
 }
 
 blockquote {
-  border-left: 1px solid var(--primary);
+  border-left: 4px solid var(--primary);
 }
 
 mark {
@@ -1327,13 +1326,13 @@ nav a:hover {
 body.dark {
     background: var(--fgColor);
     color: var(--bgColor);
-    --primary:#e7bf60;
+    --primary: var(--primary-dark);
 }
 @media (prefers-color-scheme: dark) {
     body.dark {
       background: var(--fgColor);
       color: var(--bgColor);
-      --primary:#e7bf60;
+      --primary: var(--primary-dark);
     }
 }
 
@@ -1370,16 +1369,15 @@ body.dark {
 
 .summary {
   font-size: 1rem;
-  line-height: 1.125rem;
+  line-height: 1.25rem;
   margin: .5em 0;
-  max-height: 3.375rem;
   overflow: hidden;
   word-break: break-word;
 }
 
 .post-cover {
   flex: 1;
-  height: 120px;
+  height: 150px;
   margin-left: 1em;
   overflow: hidden;
   cursor: pointer;

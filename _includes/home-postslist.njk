@@ -8,7 +8,7 @@
         <a href="/posts/{{ author.name }}" class="author-link">
           <img src="{{ author.avatarUrl}}" class="avatar-small" />
           <span class="post-author">{{ author.name }}</span>
-        </a>on<time class="f-monospace post-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | htmlDateString }}</time>
+        </a>on<time class="post-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | htmlDateString }}</time>
     </div>
   </div>
   {% if post.data.image %}

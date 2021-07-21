@@ -1,5 +1,12 @@
 ---
-layout: layouts/base.njk
 templateClass: tmpl-home
 ---
+{% extends "layouts/base.njk" %}
+
+{% block extraArticleHeader %}
+   <aside class="w-full" style="text-align:left;">
+      這是 Cymetrics 技術部落格，分享資訊安全與技術開發相關內容
+   </aside>
+{% endblock %}
+
 {{ content | safe }}
