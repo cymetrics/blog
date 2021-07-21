@@ -120,11 +120,33 @@
       }
       function setTheme(theme){
         if (theme === DARK) {
+          setUtterancesTheme(DARK)
           bodyEl.classList.add(DARK);
           toggleEl.src = toggleEl.src.replace(DARK, LIGHT);
         }else{
+          setUtterancesTheme(LIGHT)
           toggleEl.src = toggleEl.src.replace(LIGHT, DARK);
         }
+      }
+
+      var isUtterancesLoaded = false
+      window.addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') {
+          return;
+        }
+        isUtterancesLoaded = true
+      });
+
+      function setUtterancesTheme(theme) {
+        let utterancesIframe = document.querySelector('.utterances iframe')
+        if (!isUtterancesLoaded) {
+          return requestAnimationFrame(() => setUtterancesTheme(theme))
+        }
+
+        utterancesIframe.contentWindow.postMessage({
+          type: 'set-theme',
+          theme: theme === DARK ? 'github-dark-orange' : 'github-light'
+        }, 'https://utteranc.es');
       }
 
     </script>
