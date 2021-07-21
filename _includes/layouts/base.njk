@@ -31,7 +31,8 @@
     {% if image %}
       <meta property="og:image" content="{{ image | absoluteUrl(metadata.url) }}">
     {% endif %}
-
+    <meta name="google-site-verification" content="hsZQwAip9iIbys-i4PJp_MfpNiA6w6RB0hYdWLiLUuk" />
+    
     <link rel="canonical" href="{{ metadata.url }}{{ canonicalUrl or page.url }}">
     <!-- This is a blog and so it SHOULD be safe and it is nice for the web
          to send referrers cross-origin.
@@ -47,13 +48,13 @@
       {% if webvitals %}data-cwv-src="{{ "/js/web-vitals.js" | addHash }}"{% endif %}>
     </script>
     {% if googleanalytics %}
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VBVCXV9Z0"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{ googleanalytics }}"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-3VBVCXV9Z0');
+        gtag('config', '{{ googleanalytics }}');
       </script>
     {% endif %}
     <!-- Notably iOS UAs also contain Mac OS X -->
