@@ -1,0 +1,54 @@
+<!DOCTYPE html><html domain=cymetrics.io ga-id=G-3VBVCXV9Z0 lang=en><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><link href="/img/favicon/favicon-192x192.png?hash=42b087227d" rel=icon type=image/png><meta content=#f9c412 name=theme-color><meta content="max-snippet:-1, max-image-preview: large, max-video-preview: -1" name=robots><title>Ming You 的文章列表</title><meta content="Ming You 的文章列表" property=og:title><meta content="2021-05-28&amp;nbsp;&amp;nbsp; 隱藏在 React 下的機制： Fiber" name=description><meta content="2021-05-28&amp;nbsp;&amp;nbsp; 隱藏在 React 下的機制： Fiber" property=og:description><meta content=summary_large_image name=twitter:card><meta content=@ name=twitter:site><meta content=@ name=twitter:creator><link href=https://tech-blog.cymetrics.io/posts/mingyou/ rel=canonical><meta content=no-referrer-when-downgrade name=referrer><link href=/feed/feed.xml rel=alternate type=application/atom+xml title="Cymetrics Tech Blog"><link href=/ rel=preconnect crossorigin=""><script async src="/js/min.js?hash=b870cb012d" defer></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-3VBVCXV9Z0"></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-3VBVCXV9Z0');</script><script csp-hash="">if (/Mac OS X/.test(navigator.userAgent))document.documentElement.classList.add('apple')</script><style>:root{--primary: #00bcb2;--primary-dark: #ffd349;--fgColor: #222;--bgColor: #eee;--progressColor: #ffd349;--main-width: calc(100vw - 3em)}main img{content-visibility:auto}article *{scroll-margin-top:50px}header nav{position:fixed;padding:.375em 1.5em;background:rgba(255,255,255,.9);font-weight:200;text-align:right}@media (min-width:37.5em){:root{--main-width: calc(37.5em - 3em)}}dialog{background-color:var(--primary-dark);position:fixed;opacity:.8;z-index:1000;font-size:10px}#nav{z-index:2;position:relative}#reading-progress,header nav{z-index:1;width:100vw;left:0;top:0}#reading-progress{background-color:var(--progressColor);position:absolute;bottom:0;transform:translate(-100vw,0);will-change:transform;pointer-events:none}#posts li{margin-bottom:.5em}html{line-height:1.15;-webkit-text-size-adjust:100%;font-family:"Open Sans",-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans","Helvetica Neue",Helvetica,Arial,"Noto Sans TC","PingFang TC","Hiragino Sans GB","Heiti TC","Microsoft YaHei","Microsoft Jhenghei",sans-serif;--font-family: "Open Sans", -apple-system, system-ui, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Helvetica, Arial,
+    "Noto Sans TC", "PingFang TC", "Hiragino Sans GB", "Heiti TC",
+    "Microsoft YaHei", "Microsoft Jhenghei", sans-serif}body{margin:0;font-size:1em}h1,ul{margin-bottom:1.36rem}h1{text-align:left;font-size:3em;line-height:1.25;margin:.67em 0 .5em;font-size:2.074rem;line-height:2.4rem}a{background-color:transparent;color:#f9c412;text-decoration:none;color:var(--primary)}img{border-style:none;height:auto;margin:0 auto}header,img,input{max-width:100%}input{font-family:inherit;font-size:100%;line-height:1.15;overflow:visible;border-radius:.3em;padding:.75em;margin:0 0 1.5em;display:inline}*,[type=checkbox]{box-sizing:border-box}[type=checkbox]{padding:0}ul{font-size:1em;margin-bottom:1.5em}body,ul{font-size:1rem;line-height:1.6}@media (min-width:600px){h1{font-size:3.0978rem;line-height:1.25}body,ul{font-size:1.1rem;line-height:1.6}h1,ul{margin-bottom:1.496rem}}@media (min-width:1200px){h1{font-size:3rem}body,ul{font-size:1.2rem;line-height:1.6}h1,ul{margin-bottom:1.632rem}}a:hover{text-decoration:underline}input+input[type=checkbox],input+label,label+*{page-break-before:always}.copyright,label{display:inline-block}input[type=datetime],input[type=time]{border:1px solid #595959;padding:.75em}input[type=checkbox]{flex-grow:0;margin:.75em .375em .75em 0;vertical-align:middle}input[type=checkbox]+label{page-break-before:avoid}*{border:0}body,h1,header nav a{font-family:var(--font-family)}body{background:var(--bgColor);color:var(--fgColor)}header label{display:block}header{padding:4.5em 1.5em 3em;width:50.5em;margin:0 auto;text-align:center;display:flex;align-items:center;flex-direction:column}header nav h1{float:left;font-size:inherit;line-height:inherit;margin:0;text-align:left}header nav a{font-weight:700;text-decoration:none;color:#181818;margin-left:1.5em}header nav a:first-of-type{margin-left:auto}header nav a:last-of-type{margin-right:1.5em}header nav label{color:#000;cursor:pointer;margin:0;font-style:normal;text-align:right}main{max-width:70rem;margin:0 auto;border-top:.5px solid #ccc;min-height:60vh}footer{font-size:14px;padding:3em;text-align:center}footer>*{margin:.5em}footer nav a img{vertical-align:middle}footer nav{font-size:90%}article{max-width:100%;padding:1.5em;width:50.5em;margin:0 auto;word-break:break-word}ul{margin-top:0}li ul{margin-bottom:0}.utterances{position:relative;box-sizing:border-box;width:100%;max-width:760px;margin-left:auto;margin-right:auto}.w-full{width:100%}#menu__control,.menu__btn{display:none}.menu__btn span{opacity:0;width:1px;height:1px;overflow:hidden;display:block}nav a:hover{color:#595959}@media screen and (max-width:960px){#nav .nav__links a{margin-right:.5rem;margin-left:.5rem}}@media screen and (max-width:840px){header nav{padding:0}#nav,.menu__btn{position:relative}#nav h1{padding:.375rem 1.5rem;justify-content:space-between}#nav h1 *{margin:0}.menu__btn{display:inline-block;width:1.5rem;height:1.5rem;border:1px solid #191919;border-radius:.3rem}.menu__btn::before{content:"";position:absolute;top:51%;left:50%;transform:translate(-50%,-50%);height:.1rem;width:.9rem;background-color:#2d2d2d;border-radius:.1rem;box-shadow:0 .3rem 0 #2d2d2d,0 -.3rem 0 #2d2d2d}.menu__btn:hover{filter:brightness(.6)}#nav h1,.nav__links{display:flex;align-items:center;width:100%}.nav__links{flex-direction:column;justify-content:center;height:0;max-height:0;overflow:hidden;position:absolute;top:2.24em;transition:max-height .6s ease;margin:0;padding:0;z-index:-1;background:rgba(255,255,255,.9)}.nav__links a{text-align:center;width:100%;padding:.5rem 0;transition:all .3s ease-out}.nav__links a:hover{color:#f9c412;background:rgba(245,245,245,.9)}#menu__control:checked+.nav__links{height:auto;max-height:100vh}}#rss{vertical-align:text-top}#nav{display:flex}#color-scheme-toggle{cursor:pointer;vertical-align:text-top;display:inline-block;margin-right:1em}body.dark{background:var(--fgColor);color:var(--bgColor);--primary: var(--primary-dark)}@media (prefers-color-scheme:dark){body.dark{background:var(--fgColor);color:var(--bgColor);--primary: var(--primary-dark)}}.posts{max-width:100%}</style><header><nav><div id=nav><h1><a href=/ title=Homepage>Cymetrics Tech Blog</a> <label class=menu__btn for=menu__control><span>選單</span></label></h1><img alt="switch dark mode" height=22 src=/img/dark.svg width=22 id=color-scheme-toggle> <input id=menu__control type=checkbox><div class=nav__links><a href=/tags/ >Tags</a> <a href=/about/ >About</a></div></div><div id=reading-progress aria-hidden=true></div></nav><h1 class=w-full>Ming You 的文章列表</h1><aside class=w-full style=text-align:left;>這是 Cymetrics 技術部落格，分享資訊安全與技術開發相關內容</aside><dialog id=message></dialog></header><main><article><ul><li><time datetime=2021-05-28>2021-05-28</time>   <a href=/posts/mingyou/deep-dive-into-react-fiber/ >隱藏在 React 下的機制： Fiber</a></ul></article></main><footer><div class=copyright>© 2021 Cymetrics Tech Blog</div><a href=https://tech-blog.cymetrics.io/feed/feed.xml id=rss><img alt="rss feed" height=18 src=/img/rss-feed.svg width=18></a></footer><script>// light/dark theme switch
+      const toggleEl = document.querySelector('#color-scheme-toggle')
+      const bodyEl = document.querySelector('body');
+      const DARK = 'dark';
+      const LIGHT = 'light';
+      const currentTheme = localStorage.getItem("theme") ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK : LIGHT);
+      setTheme(currentTheme)
+
+      toggleEl.addEventListener("click", handleToggleEvent)
+
+      function handleToggleEvent(){
+        const isDark = bodyEl.classList.toggle(DARK);
+        const theme = isDark ? DARK : LIGHT;
+        setTheme(theme)
+        localStorage.setItem('theme', theme);
+      }
+      function setTheme(theme){
+        if (theme === DARK) {
+          setUtterancesTheme(DARK)
+          bodyEl.classList.add(DARK);
+          toggleEl.src = toggleEl.src.replace(DARK, LIGHT);
+        }else{
+          setUtterancesTheme(LIGHT)
+          toggleEl.src = toggleEl.src.replace(LIGHT, DARK);
+        }
+      }
+
+      var isUtterancesLoaded = false
+      window.addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') {
+          return;
+        }
+        isUtterancesLoaded = true
+      });
+
+      function setUtterancesTheme(theme) {
+        let utterancesIframe = document.querySelector('.utterances iframe')
+        if (!isUtterancesLoaded) {
+          return requestAnimationFrame(() => setUtterancesTheme(theme))
+        }
+
+        utterancesIframe.contentWindow.postMessage({
+          type: 'set-theme',
+          theme: theme === DARK ? 'github-dark-orange' : 'github-light'
+        }, 'https://utteranc.es');
+      }</script>
