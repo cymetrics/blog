@@ -49,7 +49,7 @@ function share(anchor) {
     });
   } else if (navigator.clipboard) {
     navigator.clipboard.writeText(url);
-    message("文章連結已複製");
+    message("URL copied!");
   } else {
     tweet_(url);
   }

@@ -10,7 +10,7 @@ templateClass: tmpl-post
    <aside class="w-full">
       <div class="flex items-center">
         <img class="avatar" src="{{ postAuthor.avatarUrl }}" alt="avatar">
-        <span style="margin-left: 12px;"><a href="/posts/{{ author }}">{{ postAuthor.name }}</a> 於 {{ date | htmlDateString }} 發布</span>
+        <span style="margin-left: 12px;"><a href="/posts/{{ author }}">{{ postAuthor.name }}</a> published on {{ date | htmlDateString }}</span>
       </div>
       <div style="text-align: left;">
       {% for tag in tags %}
@@ -33,7 +33,7 @@ templateClass: tmpl-post
 
 <hr>
 <p>
-  <h3>關於作者</h3>
+  <h3>Author</h3>
   <div class="flex items-center">
     <img class="avatar avatar-large" alt="avatar" src="{{ postAuthor.avatarUrl }}">
     <h3 style="margin-left: 12px;"><a href="/posts/{{ author }}">{{ postAuthor.name }}</a></h3>
@@ -42,7 +42,7 @@ templateClass: tmpl-post
 </p>
 
 <p>
-  <a href="{{ shareUrl | safe }}" on-click="share">分享文章</a>
+  <a href="{{ shareUrl | safe }}" on-click="share">Share this post</a>
 </p>
 
 <script
