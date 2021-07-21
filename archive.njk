@@ -1,9 +1,29 @@
 ---
+title: Archive
 layout: layouts/common.njk
-permalink: /posts/
+eleventyNavigation:
+  key: Archive
+  order: 1
+pagination:
+  data: collections.posts
+  size: 50
+  alias: posts
+permalink: /posts/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}
 ---
 
-<h1>Archive</h1>
-
-{% set postslist = collections.posts %}
+{% set postslist = posts %}
 {% include "postslist.njk" %}
+
+{% if pagination.pages.length > 1 %}
+<nav class="nav-pagination" aria-labelledby="my-pagination">
+  <ol>
+    <li>{% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}">«</a>{% else %}<span>«</span>{% endif %}</li>
+    <li>{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">‹</a>{% else %}<span>‹</span>{% endif %}</li>
+{%- for pageEntry in pagination.pages %}
+    <li><a href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>{{ loop.index }}</a></li>
+{%- endfor %}
+    <li>{% if pagination.href.next %}<a href="{{ pagination.href.next }}">›</a>{% else %}<span>›</span>{% endif %}</li>
+    <li>{% if page.url != pagination.href.last %}<a href="{{ pagination.href.last }}">»</a>{% else %}<span>»</span>{% endif %}</li>
+  </ol>
+</nav>
+{% endif %}

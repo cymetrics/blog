@@ -78,4 +78,4 @@ css/main.css 所有的樣式都在裡面，有新增的都放在最下面
 1. [Eleventy Documentation](https://www.11ty.dev/docs/collections/)
 2. [Nunjucks 文件](https://mozilla.github.io/nunjucks/templating.html)
 
-fork from [error-baker-blog](https://github.com/Lidemy/error-baker-blog)
+fork from [error-baker-blog](https://github.com/Lidemy/error-baker-blog) and [eleventy-high-performance-blog](https://github.com/google/eleventy-high-performance-blog)
