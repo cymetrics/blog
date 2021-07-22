@@ -35,6 +35,11 @@
       "name": "nick",
       "intro": "Security",
       "avatarUrl": "/img/authors/nick_logo.jpg"
+    },
+    "crystal": {
+      "name": "crystal",
+      "intro": "Security newbie with a gallon of passion",
+      "avatarUrl": "/img/authors/crystal_logo.png"
     }
   },
   "publisher": {
