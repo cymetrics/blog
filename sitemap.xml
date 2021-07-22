@@ -13,7 +13,7 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/huli/prevent-xss-might-be-harder-than-you-thought/</loc>
-    <lastmod>2021-07-22T08:44:14.000Z</lastmod>
+    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
   </url>
   
   
@@ -28,7 +28,22 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/mingyou/deep-dive-into-react-fiber/</loc>
-    <lastmod>2021-07-22T08:44:14.000Z</lastmod>
+    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-01/</loc>
+    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
   </url>
   
   
@@ -43,7 +58,22 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/huli/xss-attack-and-defense/</loc>
-    <lastmod>2021-07-22T08:44:14.000Z</lastmod>
+    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-theory/</loc>
+    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
   </url>
   
   
@@ -58,7 +88,52 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/huli/why-only-reset-password-not-retrieve-password/</loc>
-    <lastmod>2021-07-22T08:44:14.000Z</lastmod>
+    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf/</loc>
+    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-dkimdmarc/</loc>
+    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-examples/</loc>
+    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
   </url>
   
   
@@ -71,7 +146,7 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/about/</loc>
-    <lastmod>2021-07-22T08:44:32.756Z</lastmod>
+    <lastmod>2021-07-22T10:51:28.128Z</lastmod>
   </url>
   
   
@@ -84,7 +159,7 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/</loc>
-    <lastmod>2021-07-22T08:44:32.756Z</lastmod>
+    <lastmod>2021-07-22T10:51:28.128Z</lastmod>
   </url>
   
   
@@ -97,7 +172,7 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/</loc>
-    <lastmod>2021-07-22T08:44:32.780Z</lastmod>
+    <lastmod>2021-07-22T10:51:28.164Z</lastmod>
   </url>
   
   
@@ -110,7 +185,7 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/page-list/</loc>
-    <lastmod>2021-07-22T08:44:32.780Z</lastmod>
+    <lastmod>2021-07-22T10:51:28.164Z</lastmod>
   </url>
   
   
@@ -123,7 +198,7 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/</loc>
-    <lastmod>2021-07-22T08:44:32.780Z</lastmod>
+    <lastmod>2021-07-22T10:51:28.164Z</lastmod>
   </url>
   
   
@@ -136,7 +211,7 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/security/</loc>
-    <lastmod>2021-07-22T08:44:32.780Z</lastmod>
+    <lastmod>2021-07-22T10:51:28.164Z</lastmod>
   </url>
   
   
@@ -149,6 +224,19 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
-    <lastmod>2021-07-22T08:44:32.780Z</lastmod>
+    <lastmod>2021-07-22T10:51:28.164Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-extra/</loc>
+    <lastmod>2021-07-23T00:00:00.000Z</lastmod>
   </url>
 </urlset>
