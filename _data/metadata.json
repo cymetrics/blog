@@ -30,6 +30,11 @@
       "name": "ming-you-tsai",
       "intro": "Front-end Developer",
       "avatarUrl": "/img/authors/mingyou_avatar.jpeg"
+    },
+    "nick": {
+      "name": "nick",
+      "intro": "Security",
+      "avatarUrl": "/img/authors/nick_logo.jpg"
     }
   },
   "publisher": {
