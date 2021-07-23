@@ -1786,9 +1786,8 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 &lt;!-- summary --&gt;
 &lt;p&gt;剛出生的嬰兒最好欺負，網站也是一樣，網站初建時不管是為了方便測試或維護，都會對外開放較多的服務，駭客也容易在此時趁虛而入。&lt;br&gt;
 本文會先簡單介紹一下駭客如何找到新建立的網站，並實測一下這個方法可以找出多少 7 天內架設的網站，再從這些網站的掃描結果中整理出 5 種最常見且有弱點的服務，並討論一下弱點可能帶來的風險與防範方式 。&lt;/p&gt;
-&lt;br&gt;
-## 工具介紹
-這邊介紹下兩個測試中用到的工具，第一個工具整理了每天有哪些人來申請新的網域，因為新網域上大多也是新建立的網站，所以這些網域上的網站就是我們的測試對象。另外一個工具則是去掃描這些網站開放了那些服務。
+&lt;h2 id=&quot;%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;#&lt;/a&gt; 工具介紹&lt;/h2&gt;
+&lt;p&gt;這邊介紹下兩個測試中用到的工具，第一個工具整理了每天有哪些人來申請新的網域，因為新網域上大多也是新建立的網站，所以這些網域上的網站就是我們的測試對象。另外一個工具則是去掃描這些網站開放了那些服務。&lt;/p&gt;
 &lt;h3 id=&quot;1.-whois-data-center&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-whois-data-center&quot;&gt;#&lt;/a&gt; 1. Whois Data Center&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/website-go-live-attack/2.jpg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;#&lt;/a&gt; 簡介 :&lt;/h3&gt;
@@ -1813,7 +1812,6 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 &lt;p&gt;NMAP 預設會掃最常見的 1000 個 Port，T4 與 sS 都是加速掃描的選項。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;nmap -T4 -sS example.com
 &lt;/code&gt;&lt;/pre&gt;
-&lt;br&gt;
 &lt;h2 id=&quot;%E5%AF%A6%E4%BE%8B%E5%88%86%E4%BA%AB&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AF%A6%E4%BE%8B%E5%88%86%E4%BA%AB&quot;&gt;#&lt;/a&gt; 實例分享&lt;/h2&gt;
 &lt;p&gt;從 Whois Data Center 收集來一週內新註冊網域來當測試對象，實際上總共找到了約 46 萬個不同的網域，接著用 NMAP 對所有找出來的網域進行 Port Scan，最後從結果中整理出 5 個新網站最常見且有弱點的服務，排名方式以網站數量為準。&lt;/p&gt;
 &lt;hr&gt;
@@ -1857,7 +1855,6 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 &lt;p&gt;FTP 是最常用的檔案傳輸協議，但它本身的安全性不足，不管是傳輸或登入皆使用明碼傳輸，有很高的資料外洩風險，更不用說 FTP 還支援無帳密登入(anyoneuser)，FTP 傳檔雖方便但真的不適合對外開放。&lt;/p&gt;
 &lt;h4 id=&quot;%E4%BF%AE%E5%BE%A9%E5%BB%BA%E8%AD%B0-%3A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BF%AE%E5%BE%A9%E5%BB%BA%E8%AD%B0-%3A-3&quot;&gt;#&lt;/a&gt; 修復建議 :&lt;/h4&gt;
 &lt;p&gt;如有對外需求改用 SFTP 或其他有權限控管的檔案傳輸方案，否則盡快關閉對外的 FTP 服務。&lt;/p&gt;
-&lt;br&gt;
 &lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
 &lt;p&gt;現在越來越多人將網站架在雲上，減少維運成本的同時還可以讓 CSP 業者幫你把關資安問題，但不管怎麼把關也阻止不了你自己開洞給駭客鑽，網站架在雲上用到遠端服務的機會很多，多花一些時間了解該服務並進行安全性設定，這樣才能保證，不管是資安還是品質，我全都要。&lt;/p&gt;
 &lt;p&gt;這些問題在成熟的網站上比較少見，因為在網站穩定後大多會關閉這些對外服務，但駭客也知道這個狀況，盯著新建的網站攻擊，想辦法在架站初期植入後門，之後就算網站穩定後關閉對外服務，後門也不會跟著消失。&lt;/p&gt;

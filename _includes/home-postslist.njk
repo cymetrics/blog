@@ -13,7 +13,7 @@
   </div>
   {% if post.data.image %}
   <div class="post-cover">
-    <a href="{{ post.url | url }}"><img src="{{ post.data.image | absoluteUrl(metadata.url) }}" class="post-cover-img" alt="cover-image" /></a>
+    <a href="{{ post.url | url }}"><img src="{{ post.data.image }}" class="post-cover-img" alt="cover-image" /></a>
   </div>
   {% endif %}
 </article>
