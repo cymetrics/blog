@@ -547,12 +547,12 @@ ul {
     margin-bottom: 1.496rem;
   }
   h4 {
-    font-size: 1.5554rem;
+    font-size: 1.3554rem;
   }
   h4,
   h5 {
-    line-height: 1.76rem;
-    margin-bottom: 1.496rem;
+    line-height: 1.56rem;
+    margin-bottom: 1.296rem;
   }
   h5,
   h6 {
@@ -593,12 +593,12 @@ ul {
     margin-bottom: 1.632rem;
   }
   h4 {
-    font-size: 1.8rem;
+    font-size: 1.15rem;
   }
   h4,
   h5 {
-    line-height: 1.92rem;
-    margin-bottom: 1.632rem;
+    line-height: 1.42rem;
+    margin-bottom: 1.2rem;
   }
   h5,
   h6 {
@@ -689,7 +689,7 @@ small {
   color: #ccc;
 }
 hr {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--fg);
 }
 figcaption {
   color: #ccc;
