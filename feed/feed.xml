@@ -1779,7 +1779,7 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 		<updated>2021-07-23T00:00:00-00:00</updated>
 		<id>https://tech-blog.cymetrics.io/posts/nick/website-go-live-attack/</id>
 		<content type="html">
-		  &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/PY78kJz.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/website-go-live-attack/1.jpeg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;p&gt;剛出生的嬰兒最好欺負，網站也是一樣，網站初建時不管是為了方便測試或維護，都會對外開放較多的服務，駭客也容易在此時趁虛而入。&lt;/p&gt;
 &lt;p&gt;本文會先簡單介紹一下駭客如何找到新建立的網站，並實測一下這個方法可以找出多少 7 天內架設的網站，再從這些網站的掃描結果中整理出 5 種最常見且有弱點的服務，並討論一下弱點可能帶來的風險與防範方式 。&lt;br&gt;
@@ -1787,7 +1787,7 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 &lt;h2 id=&quot;%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;#&lt;/a&gt; 工具介紹&lt;/h2&gt;
 &lt;p&gt;這邊介紹下兩個測試中用到的工具，第一個工具整理了每天有哪些人來申請新的網域，因為新網域上大多也是新建立的網站，所以這些網域上的網站就是我們的測試對象。另外一個工具則是去掃描這些網站開放了那些服務。&lt;/p&gt;
 &lt;h3 id=&quot;1.-whois-data-center&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-whois-data-center&quot;&gt;#&lt;/a&gt; 1. Whois Data Center&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/IfXOaZf.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/website-go-live-attack/2.jpeg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;#&lt;/a&gt; 簡介 :&lt;/h3&gt;
 &lt;p&gt;Whois Data Center 收集了從 1985 年以來全球 Whois 資料庫的數據，更重要的是將些龐大的數據整理與分門別類，像是新註冊的網域、即將過期的網域、已經刪除的網域等等，可惜的是大部份功能與資料都要收費。&lt;/p&gt;
 &lt;h3 id=&quot;%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AD%98-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AD%98-%3A&quot;&gt;#&lt;/a&gt; 背景知識 :&lt;/h3&gt;
@@ -1799,7 +1799,7 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 &lt;p&gt;這次我們會用到的是新註冊的網域，在 Whois Data Center 最近 7 天的新註冊網域資料是免費的，任何人都可以下載，包含駭客。&lt;br&gt;
 下載位置 : &lt;a href=&quot;https://whoisdatacenter.com/free-database&quot;&gt;https://whoisdatacenter.com/free-database&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;2.-nmap&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-nmap&quot;&gt;#&lt;/a&gt; 2. NMAP&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/OJ9q7jk.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/website-go-live-attack/3.jpeg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;%E7%B0%A1%E4%BB%8B-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B0%A1%E4%BB%8B-%3A-2&quot;&gt;#&lt;/a&gt; 簡介 :&lt;/h3&gt;
 &lt;p&gt;NMAP(Network Mapper)是一款開源的網絡探測和安全審核的工具。它的設計目標是快速地掃描大型網路。NMAP的功能非常豐富光介紹就可以寫數篇文章，所以這邊只著重在測試中有用到的功能。&lt;/p&gt;
 &lt;h3 id=&quot;%E5%AE%89%E8%A3%9D%E6%96%B9%E5%BC%8F-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AE%89%E8%A3%9D%E6%96%B9%E5%BC%8F-%3A&quot;&gt;#&lt;/a&gt; 安裝方式 :&lt;/h3&gt;
