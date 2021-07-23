@@ -40,6 +40,11 @@
       "name": "crystal",
       "intro": "Security newbie with a gallon of passion",
       "avatarUrl": "/img/authors/crystal_logo.png"
+    },
+    "genchilu": {
+      "name": "genchilu",
+      "intro": "I am Genchi, a backend engineer in Taiwan.",
+      "avatarUrl": "/img/authors/genchilu_logo.jpeg"
     }
   },
   "publisher": {

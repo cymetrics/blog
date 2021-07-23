@@ -1,0 +1,9 @@
+---
+layout: layouts/common.njk
+title: G7 的文章列表
+eleventyExcludeFromCollections: true
+---
+
+{% set postslist = collections.posts %}
+{% set author = 'genchilu' %}
+{% include "author-postslist.njk" %}

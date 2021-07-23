@@ -10,6 +10,33 @@
     
   
   
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/genchilu/the-difference-between-java-and-golang-in-writing-concurrent-code-to-access-shared-variable-en/</loc>
+    <lastmod>2021-05-03T00:00:00.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/genchilu/the-difference-between-java-and-golang-in-writing-concurrent-code-to-access-shared-variable-zh/</loc>
+    <lastmod>2021-05-03T00:00:00.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/huli/prevent-xss-might-be-harder-than-you-thought/</loc>
@@ -78,29 +105,9 @@
     
   
   
-  
   <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-theory/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-22T10:52:54.930Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/why-only-reset-password-not-retrieve-password/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T02:40:19.092Z</lastmod>
+    <loc>https://tech-blog.cymetrics.io/posts/genchilu/javas-thread-model-and-golang-goroutine-en/</loc>
+    <lastmod>2021-07-05T00:00:00.000Z</lastmod>
   </url>
   
   
@@ -111,34 +118,9 @@
     
   
   
-    
-  
-  
-  
   <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-22T10:52:54.929Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-dkimdmarc/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-22T10:52:54.929Z</lastmod>
+    <loc>https://tech-blog.cymetrics.io/posts/genchilu/javas-thread-model-and-golang-goroutine-zh/</loc>
+    <lastmod>2021-07-05T00:00:00.000Z</lastmod>
   </url>
   
   
@@ -173,10 +155,8 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/about/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T13:51:16.550Z</lastmod>
+    <loc>https://tech-blog.cymetrics.io/posts/huli/why-only-reset-password-not-retrieve-password/</loc>
+    <lastmod>2021-07-21T02:56:55.000Z</lastmod>
   </url>
   
   
@@ -187,15 +167,22 @@
     
   
   
-    
+  <url>
+    <loc>https://tech-blog.cymetrics.io/about/</loc>
+    <lastmod>2021-07-22T09:53:27.073Z</lastmod>
+  </url>
   
+  
+  
+  
+  
+  
+    
   
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T13:46:17.994Z</lastmod>
+    <lastmod>2021-07-22T09:53:27.074Z</lastmod>
   </url>
   
   
@@ -206,15 +193,22 @@
     
   
   
-    
+  <url>
+    <loc>https://tech-blog.cymetrics.io/</loc>
+    <lastmod>2021-07-22T09:53:27.113Z</lastmod>
+  </url>
   
+  
+  
+  
+  
+  
+    
   
   
   <url>
     <loc>https://tech-blog.cymetrics.io/page-list/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T13:47:09.994Z</lastmod>
+    <lastmod>2021-07-22T09:53:27.117Z</lastmod>
   </url>
   
   
@@ -223,17 +217,11 @@
   
   
     
-  
-  
-    
-  
   
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T09:08:54.199Z</lastmod>
+    <lastmod>2021-07-22T09:53:27.121Z</lastmod>
   </url>
   
   
@@ -242,17 +230,11 @@
   
   
     
-  
-  
-    
-  
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T09:08:48.675Z</lastmod>
+    <loc>https://tech-blog.cymetrics.io/tags/java/</loc>
+    <lastmod>2021-07-22T09:53:27.121Z</lastmod>
   </url>
   
   
@@ -263,15 +245,48 @@
     
   
   
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/golang/</loc>
+    <lastmod>2021-07-22T09:53:27.121Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
     
   
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/volatile/</loc>
+    <lastmod>2021-07-22T09:53:27.121Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/concurrency/</loc>
+    <lastmod>2021-07-22T09:53:27.121Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
   
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/security/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T09:08:48.675Z</lastmod>
+    <lastmod>2021-07-22T09:53:27.121Z</lastmod>
   </url>
   
   
@@ -282,13 +297,9 @@
     
   
   
-  
-  
   <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-extra/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-23T00:00:00.000Z</lastmod>
+    <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
+    <lastmod>2021-07-22T09:53:27.121Z</lastmod>
   </url>
   
   
@@ -299,16 +310,21 @@
     
   
   
-    
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/thread/</loc>
+    <lastmod>2021-07-22T09:53:27.121Z</lastmod>
+  </url>
+  
+  
+  
   
   
   
     
+  
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1</priority>
-    <lastmod>2021-07-23T01:26:48.896Z</lastmod>
+    <loc>https://tech-blog.cymetrics.io/tags/goroutine/</loc>
+    <lastmod>2021-07-22T09:53:27.121Z</lastmod>
   </url>
 </urlset>
