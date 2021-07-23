@@ -6,14 +6,16 @@
   
   
   
+  
     
   
   
-    
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/huli/prevent-xss-might-be-harder-than-you-thought/</loc>
-    <lastmod>2021-07-21T02:56:55.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-22T08:43:56.582Z</lastmod>
   </url>
   
   
@@ -21,14 +23,16 @@
   
   
   
+  
     
   
   
-    
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/mingyou/deep-dive-into-react-fiber/</loc>
-    <lastmod>2021-07-21T09:12:20.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T09:19:09.758Z</lastmod>
   </url>
   
   
@@ -36,14 +40,16 @@
   
   
   
+  
     
   
   
-    
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-01/</loc>
-    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-22T10:52:54.930Z</lastmod>
   </url>
   
   
@@ -51,14 +57,16 @@
   
   
   
+  
     
   
   
-    
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/huli/xss-attack-and-defense/</loc>
-    <lastmod>2021-07-21T02:56:55.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T02:51:15.667Z</lastmod>
   </url>
   
   
@@ -66,14 +74,16 @@
   
   
   
+  
     
   
   
-    
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-theory/</loc>
-    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-22T10:52:54.930Z</lastmod>
   </url>
   
   
@@ -81,14 +91,16 @@
   
   
   
+  
     
   
   
-    
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/huli/why-only-reset-password-not-retrieve-password/</loc>
-    <lastmod>2021-07-21T02:56:55.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T02:40:19.092Z</lastmod>
   </url>
   
   
@@ -100,10 +112,14 @@
   
   
     
+  
+  
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf/</loc>
-    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-22T10:52:54.929Z</lastmod>
   </url>
   
   
@@ -115,10 +131,14 @@
   
   
     
+  
+  
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-dkimdmarc/</loc>
-    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-22T10:52:54.929Z</lastmod>
   </url>
   
   
@@ -130,10 +150,14 @@
   
   
     
+  
+  
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-examples/</loc>
-    <lastmod>2021-07-22T10:14:29.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-22T10:52:54.928Z</lastmod>
   </url>
   
   
@@ -145,10 +169,14 @@
   
   
     
+  
+  
   
   <url>
     <loc>https://tech-blog.cymetrics.io/about/</loc>
-    <lastmod>2021-07-21T14:22:19.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T13:51:16.550Z</lastmod>
   </url>
   
   
@@ -160,10 +188,14 @@
   
   
     
+  
+  
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/</loc>
-    <lastmod>2021-07-21T13:48:08.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T13:46:17.994Z</lastmod>
   </url>
   
   
@@ -175,10 +207,14 @@
   
   
     
+  
+  
   
   <url>
     <loc>https://tech-blog.cymetrics.io/page-list/</loc>
-    <lastmod>2021-07-21T09:09:27.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T13:47:09.994Z</lastmod>
   </url>
   
   
@@ -190,10 +226,14 @@
   
   
     
+  
+  
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/</loc>
-    <lastmod>2021-07-21T09:09:27.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T09:08:54.199Z</lastmod>
   </url>
   
   
@@ -206,24 +246,13 @@
   
     
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/security/</loc>
-    <lastmod>2021-07-21T09:09:27.000Z</lastmod>
-  </url>
   
-  
-  
-  
-  
-  
-    
-  
-  
-    
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
-    <lastmod>2021-07-21T09:09:27.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T09:08:48.675Z</lastmod>
   </url>
   
   
@@ -232,10 +261,33 @@
   
   
     
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/security/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T09:08:48.675Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
   
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-extra/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
     <lastmod>2021-07-23T00:00:00.000Z</lastmod>
   </url>
   
@@ -247,8 +299,16 @@
     
   
   
+    
+  
+  
+  
+    
+  
   <url>
     <loc>https://tech-blog.cymetrics.io/</loc>
-    <lastmod>2021-07-23T01:26:48.895Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+    <lastmod>2021-07-23T01:26:48.896Z</lastmod>
   </url>
 </urlset>
