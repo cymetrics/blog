@@ -5,8 +5,7 @@ tags: [Security, Front-end]
 author: nick
 layout: layouts/post.njk
 ---
-
-![](https://i.imgur.com/PY78kJz.png)
+![Photo by Arget on Unsplash](/img/posts/nick/website-go-live-attack/1.jpeg)
 ## 前言
 剛出生的嬰兒最好欺負，網站也是一樣，網站初建時不管是為了方便測試或維護，都會對外開放較多的服務，駭客也容易在此時趁虛而入。
 
@@ -16,7 +15,7 @@ layout: layouts/post.njk
 這邊介紹下兩個測試中用到的工具，第一個工具整理了每天有哪些人來申請新的網域，因為新網域上大多也是新建立的網站，所以這些網域上的網站就是我們的測試對象。另外一個工具則是去掃描這些網站開放了那些服務。
 
 ### 1. Whois Data Center
-![](https://i.imgur.com/IfXOaZf.png)
+![Photo by Arget on Unsplash](/img/posts/nick/website-go-live-attack/2.jpeg)
 
 ### 簡介 :
 Whois Data Center 收集了從 1985 年以來全球 Whois 資料庫的數據，更重要的是將些龐大的數據整理與分門別類，像是新註冊的網域、即將過期的網域、已經刪除的網域等等，可惜的是大部份功能與資料都要收費。
@@ -33,7 +32,7 @@ Whois Data Center 收集了從 1985 年以來全球 Whois 資料庫的數據，�
 下載位置 : https://whoisdatacenter.com/free-database
 
 ### 2. NMAP
-![](https://i.imgur.com/OJ9q7jk.jpg)
+![Photo by Arget on Unsplash](/img/posts/nick/website-go-live-attack/3.jpeg)
 
 ### 簡介 :
 NMAP(Network Mapper)是一款開源的網絡探測和安全審核的工具。它的設計目標是快速地掃描大型網路。NMAP的功能非常豐富光介紹就可以寫數篇文章，所以這邊只著重在測試中有用到的功能。
