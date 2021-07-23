@@ -1772,4 +1772,95 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 
 		</content>
 	</entry>
+	
+	<entry>
+		<title>為什麼網站才剛上線就被攻擊？</title>
+		<link href="https://tech-blog.cymetrics.io/posts/nick/website-go-live-attack/"/>
+		<updated>2021-07-23T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/nick/website-go-live-attack/</id>
+		<content type="html">
+		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/website-go-live-attack/1.jpeg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;剛出生的嬰兒最好欺負，網站也是一樣，網站初建時不管是為了方便測試或維護，都會對外開放較多的服務，駭客也容易在此時趁虛而入。&lt;/p&gt;
+&lt;p&gt;本文會先簡單介紹一下駭客如何找到新建立的網站，並實測一下這個方法可以找出多少 7 天內架設的網站，再從這些網站的掃描結果中整理出 5 種最常見且有弱點的服務，並討論一下弱點可能帶來的風險與防範方式 。&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;#&lt;/a&gt; 工具介紹&lt;/h2&gt;
+&lt;p&gt;這邊介紹下兩個測試中用到的工具，第一個工具整理了每天有哪些人來申請新的網域，因為新網域上大多也是新建立的網站，所以這些網域上的網站就是我們的測試對象。另外一個工具則是去掃描這些網站開放了那些服務。&lt;/p&gt;
+&lt;h3 id=&quot;1.-whois-data-center&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-whois-data-center&quot;&gt;#&lt;/a&gt; 1. Whois Data Center&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/website-go-live-attack/2.jpeg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;#&lt;/a&gt; 簡介 :&lt;/h3&gt;
+&lt;p&gt;Whois Data Center 收集了從 1985 年以來全球 Whois 資料庫的數據，更重要的是將些龐大的數據整理與分門別類，像是新註冊的網域、即將過期的網域、已經刪除的網域等等，可惜的是大部份功能與資料都要收費。&lt;/p&gt;
+&lt;h3 id=&quot;%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AD%98-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AD%98-%3A&quot;&gt;#&lt;/a&gt; 背景知識 :&lt;/h3&gt;
+&lt;h4 id=&quot;%E7%B6%B2%E5%9F%9F(domain-)%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B6%B2%E5%9F%9F(domain-)%3A&quot;&gt;#&lt;/a&gt; 網域(Domain ):&lt;/h4&gt;
+&lt;p&gt;在網路的世界中，網站會有一組 IP 位址，使用者可在瀏覽器輸入 IP 位址來找到對應的網站。不過 IP 位址是一組不容易記憶的數字。為了讓瀏覽網站更容易，網域的概念便應運而生，簡單一點說就是平常在網址列看到的最前面一段(ex. &lt;a href=&quot;http://google.com/&quot;&gt;google.com&lt;/a&gt;)。&lt;/p&gt;
+&lt;h4 id=&quot;whois-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#whois-%3A&quot;&gt;#&lt;/a&gt; Whois :&lt;/h4&gt;
+&lt;p&gt;網站在申請網域後，負責管理 Domain與 IP 的註冊商會依照 ICANN(註 1) 的規定將資訊公開在 Whois 資料庫。Whois 是非集中管理式的資料庫，註冊數據保存在不同的位置，並由複數註冊商共同管理，所有人都可以藉由 Whois 查詢到域名的擁有者與聯繫信息，聯繫信息中包括郵寄地址、電話號碼和電子郵件。&lt;/p&gt;
+&lt;h3 id=&quot;%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F-%3A&quot;&gt;#&lt;/a&gt; 使用方式 :&lt;/h3&gt;
+&lt;p&gt;這次我們會用到的是新註冊的網域，在 Whois Data Center 最近 7 天的新註冊網域資料是免費的，任何人都可以下載，包含駭客。&lt;br&gt;
+下載位置 : &lt;a href=&quot;https://whoisdatacenter.com/free-database&quot;&gt;https://whoisdatacenter.com/free-database&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2.-nmap&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-nmap&quot;&gt;#&lt;/a&gt; 2. NMAP&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/website-go-live-attack/3.jpeg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B0%A1%E4%BB%8B-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B0%A1%E4%BB%8B-%3A-2&quot;&gt;#&lt;/a&gt; 簡介 :&lt;/h3&gt;
+&lt;p&gt;NMAP(Network Mapper)是一款開源的網絡探測和安全審核的工具。它的設計目標是快速地掃描大型網路。NMAP的功能非常豐富光介紹就可以寫數篇文章，所以這邊只著重在測試中有用到的功能。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%AE%89%E8%A3%9D%E6%96%B9%E5%BC%8F-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AE%89%E8%A3%9D%E6%96%B9%E5%BC%8F-%3A&quot;&gt;#&lt;/a&gt; 安裝方式 :&lt;/h3&gt;
+&lt;p&gt;Linux(Debain) 系統可參考下列命令安裝，Windows 則需從到官網下載安裝檔。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install nmap
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F-%3A-2&quot;&gt;#&lt;/a&gt; 使用方式 :&lt;/h3&gt;
+&lt;p&gt;NMAP 預設會掃最常見的 1000 個 Port，T4 與 sS 都是加速掃描的選項。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nmap -T4 -sS example.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;%E5%AF%A6%E4%BE%8B%E5%88%86%E4%BA%AB&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AF%A6%E4%BE%8B%E5%88%86%E4%BA%AB&quot;&gt;#&lt;/a&gt; 實例分享&lt;/h2&gt;
+&lt;p&gt;從 Whois Data Center 收集來一週內新註冊網域來當測試對象，實際上總共找到了約 46 萬個不同的網域，接著用 NMAP 對所有找出來的網域進行 Port Scan，最後從結果中整理出 5 個新網站最常見且有弱點的服務，排名方式以網站數量為準。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;no.5-rdp&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#no.5-rdp&quot;&gt;#&lt;/a&gt; NO.5 RDP&lt;/h3&gt;
+&lt;h4 id=&quot;1.-%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-7147(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-1.6%25)%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-7147(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-1.6%25)%E3%80%82&quot;&gt;#&lt;/a&gt; 1. 網站數量 : 7147(約佔總數 1.6%)。&lt;/h4&gt;
+&lt;h4 id=&quot;2.-%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6%E3%80%82&quot;&gt;#&lt;/a&gt; 2. 服務類型 : 遠端控制。&lt;/h4&gt;
+&lt;h4 id=&quot;3.-%E5%B0%8D%E5%A4%96-port-%3A-3389%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#3.-%E5%B0%8D%E5%A4%96-port-%3A-3389%E3%80%82&quot;&gt;#&lt;/a&gt; 3. 對外 Port : 3389。&lt;/h4&gt;
+&lt;h4 id=&quot;4.-%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#4.-%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A&quot;&gt;#&lt;/a&gt; 4. 弱點說明 :&lt;/h4&gt;
+&lt;p&gt;RDP(Remote Desktop Protocol) 是 Windows 內建的遠端控制功能，特點之一是會把登入過的使用者帳號顯示出來，這大幅降低了駭客暴力破解難度，用 Windows Server 來架站比較常出現這個問題。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;no.4.-postgresql-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#no.4.-postgresql-%3A&quot;&gt;#&lt;/a&gt; NO.4. PostgreSQL :&lt;/h3&gt;
+&lt;h4 id=&quot;1.-%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-31983-(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-7.0%25)%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-31983-(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-7.0%25)%E3%80%82&quot;&gt;#&lt;/a&gt; 1. 網站數量 : 31983 (約佔總數 7.0%)。&lt;/h4&gt;
+&lt;h4 id=&quot;2.-%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E8%B3%87%E6%96%99%E5%BA%AB%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E8%B3%87%E6%96%99%E5%BA%AB%E3%80%82&quot;&gt;#&lt;/a&gt; 2. 服務類型 : 資料庫。&lt;/h4&gt;
+&lt;h4 id=&quot;3.-%E5%B0%8D%E5%A4%96-port-%3A-5432%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#3.-%E5%B0%8D%E5%A4%96-port-%3A-5432%E3%80%82&quot;&gt;#&lt;/a&gt; 3. 對外 Port : 5432。&lt;/h4&gt;
+&lt;h4 id=&quot;4.-%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#4.-%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A-2&quot;&gt;#&lt;/a&gt; 4. 弱點說明 :&lt;/h4&gt;
+&lt;p&gt;PostgreSQL 是一個強大的開源資料庫，一般狀況下該資料庫限制只有本地機器才可存取，但有些人為了方便將其對外開放，對外開放就要特別注意暴力破解的風險跟禁用預設帳號。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;no-3.-mysql-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#no-3.-mysql-%3A&quot;&gt;#&lt;/a&gt; No 3. MySQL :&lt;/h3&gt;
+&lt;h4 id=&quot;%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-38458(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-8.3%25)%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-38458(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-8.3%25)%E3%80%82&quot;&gt;#&lt;/a&gt; 網站數量 : 38458(約佔總數 8.3%)。&lt;/h4&gt;
+&lt;h4 id=&quot;%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E8%B3%87%E6%96%99%E5%BA%AB%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E8%B3%87%E6%96%99%E5%BA%AB%E3%80%82&quot;&gt;#&lt;/a&gt; 服務類型 : 資料庫。&lt;/h4&gt;
+&lt;h4 id=&quot;%E5%B0%8D%E5%A4%96-port-%3A-3306%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B0%8D%E5%A4%96-port-%3A-3306%E3%80%82&quot;&gt;#&lt;/a&gt; 對外 Port : 3306。&lt;/h4&gt;
+&lt;h4 id=&quot;%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A&quot;&gt;#&lt;/a&gt; 弱點說明 :&lt;/h4&gt;
+&lt;p&gt;MySQL 是老牌且有著高市佔率的資料庫，危險的地方在於預設帳號 root 的密碼是空白，資料庫安裝時如果沒有改設定又對外開放，駭客有機會長驅直入。&lt;/p&gt;
+&lt;h4 id=&quot;%E4%BF%AE%E5%BE%A9%E5%BB%BA%E8%AD%B0-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BF%AE%E5%BE%A9%E5%BB%BA%E8%AD%B0-%3A&quot;&gt;#&lt;/a&gt; 修復建議 :&lt;/h4&gt;
+&lt;p&gt;資料庫安裝完畢後盡快移除 root 帳號，否則就算沒有使用空密碼也有被暴力破解的風險，另外建議限制 IP 來源，下方範例為更改所有現有的用戶只能從指定 IP 登錄。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;no-2.-ssh-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#no-2.-ssh-%3A&quot;&gt;#&lt;/a&gt; No 2. SSH :&lt;/h3&gt;
+&lt;h4 id=&quot;%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-65041(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-14.1%25)%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-65041(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-14.1%25)%E3%80%82&quot;&gt;#&lt;/a&gt; 網站數量 : 65041(約佔總數 14.1%)。&lt;/h4&gt;
+&lt;h4 id=&quot;%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6%E3%80%82&quot;&gt;#&lt;/a&gt; 服務類型 : 遠端控制。&lt;/h4&gt;
+&lt;h4 id=&quot;%E5%B0%8D%E5%A4%96-port-%3A-22%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B0%8D%E5%A4%96-port-%3A-22%E3%80%82&quot;&gt;#&lt;/a&gt; 對外 Port : 22。&lt;/h4&gt;
+&lt;h4 id=&quot;%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A-2&quot;&gt;#&lt;/a&gt; 弱點說明 :&lt;/h4&gt;
+&lt;p&gt;SSH 是遠端控制最常見的方法，協議本身安全性很夠，但帳號密碼強度太弱時還是很危險，越常見的功能也越常被駭客盯上。&lt;/p&gt;
+&lt;h4 id=&quot;%E4%BF%AE%E5%BE%A9%E5%BB%BA%E8%AD%B0-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BF%AE%E5%BE%A9%E5%BB%BA%E8%AD%B0-%3A-2&quot;&gt;#&lt;/a&gt; 修復建議 :&lt;/h4&gt;
+&lt;p&gt;改用公私鑰登入，駭客偷鑰匙難度比猜密碼難度難上太多了，已經有很多人分享過了，就不重複介紹。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;no-1.-ftp-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#no-1.-ftp-%3A&quot;&gt;#&lt;/a&gt; No 1. FTP :&lt;/h3&gt;
+&lt;h4 id=&quot;%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-77899(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-16.9%25)%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B6%B2%E7%AB%99%E6%95%B8%E9%87%8F-%3A-77899(%E7%B4%84%E4%BD%94%E7%B8%BD%E6%95%B8-16.9%25)%E3%80%82&quot;&gt;#&lt;/a&gt; 網站數量 : 77899(約佔總數 16.9%)。&lt;/h4&gt;
+&lt;h4 id=&quot;%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E6%AA%94%E6%A1%88%E5%82%B3%E8%BC%B8%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%9C%8D%E5%8B%99%E9%A1%9E%E5%9E%8B-%3A-%E6%AA%94%E6%A1%88%E5%82%B3%E8%BC%B8%E3%80%82&quot;&gt;#&lt;/a&gt; 服務類型 : 檔案傳輸。&lt;/h4&gt;
+&lt;h4 id=&quot;%E5%B0%8D%E5%A4%96-port-%3A-21%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B0%8D%E5%A4%96-port-%3A-21%E3%80%82&quot;&gt;#&lt;/a&gt; 對外 Port : 21。&lt;/h4&gt;
+&lt;h4 id=&quot;%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BC%B1%E9%BB%9E%E8%AA%AA%E6%98%8E-%3A-3&quot;&gt;#&lt;/a&gt; 弱點說明 :&lt;/h4&gt;
+&lt;p&gt;FTP 是最常用的檔案傳輸協議，但它本身的安全性不足，不管是傳輸或登入皆使用明碼傳輸，有很高的資料外洩風險，更不用說 FTP 還支援無帳密登入(anyoneuser)，FTP 傳檔雖方便但真的不適合對外開放。&lt;/p&gt;
+&lt;h4 id=&quot;%E4%BF%AE%E5%BE%A9%E5%BB%BA%E8%AD%B0-%3A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BF%AE%E5%BE%A9%E5%BB%BA%E8%AD%B0-%3A-3&quot;&gt;#&lt;/a&gt; 修復建議 :&lt;/h4&gt;
+&lt;p&gt;如有對外需求改用 SFTP 或其他有權限控管的檔案傳輸方案，否則盡快關閉對外的 FTP 服務。&lt;/p&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;現在越來越多人將網站架在雲上，減少維運成本的同時還可以讓 CSP 業者幫你把關資安問題，但不管怎麼把關也阻止不了你自己開洞給駭客鑽，網站架在雲上用到遠端服務的機會很多，多花一些時間了解該服務並進行安全性設定，這樣才能保證，不管是資安還是品質，我全都要。&lt;/p&gt;
+&lt;p&gt;這些問題在成熟的網站上比較少見，因為在網站穩定後大多會關閉這些對外服務，但駭客也知道這個狀況，盯著新建的網站攻擊，想辦法在架站初期植入後門，之後就算網站穩定後關閉對外服務，後門也不會跟著消失。&lt;/p&gt;
+&lt;p&gt;這 5 個常見問題不以弱點的嚴重程度來排名是因為其安全性與設定完善程度有關，實際測試的過程中有部分的網站已經有做好安全性設定，駭客實際上是打不進去的，但也有找到部分網站使用預設帳號密碼，甚至是開放無帳密登入，這類網站受到攻擊的機率非常高，如果擔心自己的網站也屬於這一類的話，還未上線的網站可用前面提到的 NMAP 指令在內網進行測試，已上線的網站可以參考前一篇文章用 Shodan 或 FOFA 從外網進快速進行檢測。&lt;/p&gt;
+&lt;p&gt;文章連結 : &lt;a href=&quot;https://medium.com/cymetrics/shodan-fofa-e7e69702923d&quot;&gt;駭客的起手式工具 : Shodan &amp;amp; Fofa&lt;/a&gt;&lt;/p&gt;
+
+		</content>
+	</entry>
 </feed>
