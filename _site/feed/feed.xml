@@ -328,6 +328,264 @@ thread2 賦值 101
 	</entry>
 	
 	<entry>
+		<title>零基礎資安系列（一）-認識 CSRF（Cross Site Request Forgery）</title>
+		<link href="https://tech-blog.cymetrics.io/posts/jo/zerobased-cross-site-request-forgery/"/>
+		<updated>2021-05-26T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/jo/zerobased-cross-site-request-forgery/</id>
+		<content type="html">
+		  &lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;陌生人＝ &lt;strong&gt;Hacker&lt;/strong&gt; 菜單 ＝ &lt;strong&gt;Request&lt;/strong&gt;&lt;br&gt;
+桌號＝ &lt;strong&gt;cookie 註1&lt;/strong&gt; 老闆＝ &lt;strong&gt;web server&lt;/strong&gt; 你 ＝ &lt;strong&gt;User&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;想像你到一家餐廳吃飯，陌生人拿了一張有你桌號的菜單點餐之後給老闆，結果老闆問也不問便收了菜單並將帳記到了你的身上，這就是 CSRF 的基礎概念。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E9%87%8B%E4%BE%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%87%8B%E4%BE%8B&quot;&gt;#&lt;/a&gt; 釋例&lt;/h2&gt;
+&lt;p&gt;CSRF ( Cross Site Request Forgery )，翻成中文叫做&lt;strong&gt;跨站請求偽造&lt;/strong&gt;，其實字面上把他猜成拆開成請求偽造和跨站之後就蠻好理解的，怎麼說呢？ 我以前言的例子來說明一下&lt;strong&gt;跨站請求偽造是怎麼一回事&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;先講請求偽造，請求偽造的意思很好理解，指的是陌生人拿了一張有你桌號的菜單點自己想點的餐之後給老闆這件事（ Hacker 用帶著你 cookie 的 Request 送給 web server ），那至於跨站跨在哪裡呢？&lt;/p&gt;
+&lt;p&gt;跨在陌生人在你不知情的情況下把有你桌號的菜單送給了老闆，所以跨過了本該知情的你（送出的人不同，所以送出 Request 的 Domain 註2) 也會不同），CSRF 的本質在於 web server 無條件信任 cookie 而沒有再確認或以其他方式驗證（ 等於老闆問也不問無條件相信菜單上的桌號，也不看是誰送的），因此只能保證這個Request 發自某個 User ，卻不能保證請求本身是 User 自願發出的（ 等於菜單上的桌號是你的，但不代表這個菜是你點的 ）。&lt;/p&gt;
+&lt;h2 id=&quot;csrf-%E6%94%BB%E6%93%8A%E6%B5%81%E7%A8%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#csrf-%E6%94%BB%E6%93%8A%E6%B5%81%E7%A8%8B&quot;&gt;#&lt;/a&gt; CSRF 攻擊流程&lt;/h2&gt;
+&lt;p&gt;用簡單的圖帶你看一下 Hacker 的犯案過程&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-cross-site-request-forgery/p1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;User 訪問並登入 A 網站&lt;/li&gt;
+&lt;li&gt;User 獲得 Cookie 並存至 User 瀏覽器&lt;/li&gt;
+&lt;li&gt;User 在未登出 A 網站的情況下瀏覽 B 網站，接著 Hacker 以 B 網站的 Domain 以 A 網站給 User 的 Cookie 對 A 網站發送請求，如果 A 網站沒發現的話就 GG 了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;＊Ｂ網站會在自身的網站中加入含 A 網站 Domain 的 Javascript ，例如：上方圖中的 &lt;strong&gt;A/pay?to=B&lt;/strong&gt; ，這裡的 A 就是指 A 網站 Domain ，然後去執行 Pay 這個動作給 B ，這個攻擊的破綻就是剛剛前言例子中提到的，送出資料的Domain 不同，另外，貼心小提醒，在惡意網站中就算只是滑鼠移過圖片也可能會執行惡意的 Javascript 千萬不要覺得我都不點就沒事。&lt;/p&gt;
+&lt;p&gt;通常 Hacker 發現網站有漏洞時，都會以金流及竊取隱私資料為主要攻擊面向，畢竟 Hacker 除了做興趣也是要吃飯，因此當網站在設計關於金流及隱私資料的架構時需要特別小心，&lt;/p&gt;
+&lt;h2 id=&quot;hacker%E5%AF%A6%E9%9A%9B%E5%88%A9%E7%94%A8csrf%E6%BC%8F%E6%B4%9E%E6%A1%88%E4%BE%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#hacker%E5%AF%A6%E9%9A%9B%E5%88%A9%E7%94%A8csrf%E6%BC%8F%E6%B4%9E%E6%A1%88%E4%BE%8B&quot;&gt;#&lt;/a&gt; Hacker實際利用CSRF漏洞案例&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-cross-site-request-forgery/p2.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+&lt;strong&gt;photo by &lt;a href=&quot;https://www.ithome.com.tw/news/139205&quot;&gt;https://www.ithome.com.tw/news/139205&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;這個新聞是經典的 XSS 與 CSRF 聯動的漏洞， Hacker 在注入 XSS 之後，只要造訪被注入 XSS 頁面的是主辦單位， Hacker 可利用 CSRF 漏洞把自己的角色變更為協辦單位，而獲得可以存取社團所有功能的權限，包括利用程式變更主辦單位 PayPal 帳號的電子郵件，這表示之後這個社團舉辦的各種活動所收取的款項，都會流落到 Hacker 所指定的帳號中，而且因為電子郵件被變更，所以主辦單位也不會收到任何的郵件通知。&lt;/p&gt;
+&lt;p&gt;＊如果是對 XSS 不了解的朋友，歡迎看我的第二篇文章喔 XD&lt;/p&gt;
+&lt;h3 id=&quot;%E9%81%94%E6%88%90-csrf-%E6%94%BB%E6%93%8A%E6%B5%81%E7%A8%8B%E4%B8%89%E8%A6%81%E7%B4%A0&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%81%94%E6%88%90-csrf-%E6%94%BB%E6%93%8A%E6%B5%81%E7%A8%8B%E4%B8%89%E8%A6%81%E7%B4%A0&quot;&gt;#&lt;/a&gt; 達成 CSRF 攻擊流程三要素&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;有一個可以觸發惡意腳本的動作&lt;/li&gt;
+&lt;li&gt;只以單一條件驗證網站身份，例如：只驗證 cookie 或 token&lt;/li&gt;
+&lt;li&gt;沒有驗證或是驗證的參數可以預測（固定的 cookie ）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;%E5%A6%82%E4%BD%95%E9%98%B2%E7%AF%84-csrf&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%A6%82%E4%BD%95%E9%98%B2%E7%AF%84-csrf&quot;&gt;#&lt;/a&gt; 如何防範 CSRF&lt;/h2&gt;
+&lt;p&gt;防範 CSRF 的重點在於打破 CSRF 攻擊流程三要素，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;增加所有敏感動作的驗證方式，例如：金流、提交個資 等…多加一道驗證碼的機制&lt;/li&gt;
+&lt;li&gt;增加無法預測的參數，常見且有效的防範方式例如：&lt;strong&gt;CSRF token (在頁面的 form 或是 custom header 裡面放一個 token 並要求 client request 要夾帶這個 token )&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;%E5%AF%A6%E4%BD%9C-csrf-token-%E9%82%8F%E8%BC%AF&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AF%A6%E4%BD%9C-csrf-token-%E9%82%8F%E8%BC%AF&quot;&gt;#&lt;/a&gt; 實作 CSRF Token 邏輯&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;建立&lt;/strong&gt;：在 User 打開網頁時，Server 會根據 User 的身份生成一個 Token ，將 Token 存放在頁面中（通常生成的基礎是 User 名稱加上隨機亂數或是時間戳記的加密組合，另外需要注意的是 Token 需要額外放置，不能依然存放在 Cookie 中，不然一樣會被整包帶走 ，建議是存在 Server 的 Session中）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;傳送請求&lt;/strong&gt;：之後只要有添加 Token 的頁面在提交請求時，都需要加上這個Token ，請求才會被允許，通常對於GET請求，Token會附在請求的網址之後，這樣 URL 會變成   &lt;code&gt;http://url?csrftoken=tokenvalue&lt;/code&gt;而 POST 請求則會在 form 的最後加上：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;&amp;lt;input type=「hidden」 name=「csrftoken」 value=「tokenvalue」/&gt;`&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;把Token以參數的形式加入請求了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;驗證&lt;/strong&gt;：當 User 發送當有請求的 Token 給 Server 時，Server 為了要確定 Token 的時間有效性和正確性，會先解密 Token，對比加密過後的 User 名稱和當時的隨機亂數及時間戳記，如果加密的資料一致而且時間戳記沒有過期，Server 就會驗證通過，確認 Token 是有效的。&lt;/p&gt;
+&lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;除了加上 CSRF Token 及多重驗證的防範方式以外，為避免 CSRF 風險，建議在每階段架構和設計時，使用經過審查的套件或框架。 使用諸如 owasp csrfguard 之類的反 CSRF 套件可以降低網頁 CSRF 的風險。&lt;/p&gt;
+&lt;p&gt;之後會再另開文章說明 CSRF 的兄弟 XSS 與網頁安全三本柱 Secure 、 samsite 、 httponly 他們之間不得不說的故事。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B&quot;&gt;#&lt;/a&gt; 名詞解釋&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;註1&lt;/strong&gt;：cookie：用來記錄User在網站上的操作及憑證，大多數電商網站，如PChome等都會使用 cookie 來紀錄網頁上的的操作資訊，常見的是紀錄購物車、會員登入或瀏覽紀錄、停留時間等，讓Web可以識別用戶的身分，User登入過後，可以無需再次登入就可以直接進行操作，。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;註2&lt;/strong&gt;：domain：指的是網域名稱，簡單來說就是網站的地址，就如同住家地址一般，寄信的時候可以讓對方知道信是從哪裡寄來的。&lt;/p&gt;
+&lt;p&gt;熱騰騰的XSS文章出爐啦～&lt;/p&gt;
+&lt;h2 id=&quot;%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;#&lt;/a&gt; 延伸閱讀&lt;/h2&gt;
+&lt;h3 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%AA%8D%E8%AD%98-xss%EF%BC%88cross-site-scripting%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%AA%8D%E8%AD%98-xss%EF%BC%88cross-site-scripting%EF%BC%89&quot;&gt;#&lt;/a&gt; 零基礎資安系列（二）-認識 XSS（Cross-Site Scripting）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-scripting&quot;&gt;認識 XSS(Cross-Site Scripting&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 參考資料&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.techbridge.cc/2017/02/25/csrf-introduction/&quot;&gt;https://blog.techbridge.cc/2017/02/25/csrf-introduction/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://kknews.cc/zh-tw/tech/veqpbna.html&quot;&gt;https://kknews.cc/zh-tw/tech/veqpbna.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0&quot;&gt;https://zh.wikipedia.org/wiki/跨站請求偽造&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>零基礎資安系列（二）-認識 XSS（Cross-Site Scripting）</title>
+		<link href="https://tech-blog.cymetrics.io/posts/jo/zerobased-cross-site-scripting/"/>
+		<updated>2021-05-27T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/jo/zerobased-cross-site-scripting/</id>
+		<content type="html">
+		  &lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你＝&lt;strong&gt;User&lt;/strong&gt; 陌生人＝&lt;strong&gt;Hacker&lt;/strong&gt; 菜單＝&lt;strong&gt;Request&lt;/strong&gt; 桌號＝&lt;strong&gt;cookie&lt;/strong&gt; 老闆＝&lt;strong&gt;web server&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;想像你到一家餐廳吃飯，陌生人在有你桌號的菜單備註寫上無敵大辣，接著你沒有發現便直接把菜單送給老闆，然後老闆就送來了一份加了無敵大辣的餐點 ，這就是 XSS 的基礎概念。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E9%87%8B%E4%BE%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%87%8B%E4%BE%8B&quot;&gt;#&lt;/a&gt; 釋例&lt;/h2&gt;
+&lt;p&gt;以前言的範例來做說明，當網頁在進行 browser render &lt;strong&gt;註1&lt;/strong&gt;的時候（老闆收到菜單開始做菜），使用者&lt;strong&gt;輸入的欄位&lt;/strong&gt;或是&lt;strong&gt;沒有被驗證的參數&lt;/strong&gt;就被嵌入在網頁的程式碼（菜單）裡面，如果這段輸入包含惡意程式（被備註無敵大辣）就會導致使用者瀏覽這個頁面的時候觸發這段惡意程式，導致 XSS 風險的發生。&lt;/p&gt;
+&lt;h2 id=&quot;xss%E6%94%BB%E6%93%8A%E6%B5%81%E7%A8%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#xss%E6%94%BB%E6%93%8A%E6%B5%81%E7%A8%8B&quot;&gt;#&lt;/a&gt; XSS攻擊流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-cross-site-scripting/p1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Hacker 在受害網站注入 XSS 漏洞&lt;/li&gt;
+&lt;li&gt;透過社交工程手法傳送惡意 URL 給 User&lt;/li&gt;
+&lt;li&gt;當 User 點擊 URL 便會把自己的資料（cookie）藉由受害網站傳回給 Hacker&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;xss%E4%B8%89%E5%A4%A7%E7%A8%AE%E9%A1%9E&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#xss%E4%B8%89%E5%A4%A7%E7%A8%AE%E9%A1%9E&quot;&gt;#&lt;/a&gt; XSS三大種類&lt;/h2&gt;
+&lt;h3 id=&quot;%E5%8F%8D%E5%B0%84%E5%9E%8B-xss-%EF%BC%88reflected%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%8F%8D%E5%B0%84%E5%9E%8B-xss-%EF%BC%88reflected%EF%BC%89&quot;&gt;#&lt;/a&gt; 反射型 XSS （Reflected）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;最常見的 XSS 攻擊類型，通常是將惡意程式會藏在網址列裡，放在 GET 參數傳遞，範例如下：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;http://www.example.com/upload.asp?id=&amp;lt;script&gt;alert(1);&amp;lt;/script&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;這種手法要能夠成功攻擊，需要使用社交工程釣魚的技巧，使 User 點擊URL 攻擊才會生效。&lt;/li&gt;
+&lt;li&gt;因為 URL 通常看起來很詭異，所以 Hacker 通常會使用短網址或 HTML Encoder 註2的方式嘗試欺騙 User。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;dom-%E5%9E%8B-xss&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#dom-%E5%9E%8B-xss&quot;&gt;#&lt;/a&gt; DOM 型 XSS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;這種手法和反射型 XSS一樣，都需要使用社交工程釣魚的技巧，使 User 點擊 URL 攻擊才會生效。&lt;/li&gt;
+&lt;li&gt;Hacker 在 URL 輸入 DOM &lt;strong&gt;註3&lt;/strong&gt; 物件，把物件嵌入網頁程式碼，範例：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;&amp;lt;img src=# onerror=”alert(123)”&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;%E5%84%B2%E5%AD%98%E5%9E%8B-xss-(-stored-)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%84%B2%E5%AD%98%E5%9E%8B-xss-(-stored-)&quot;&gt;#&lt;/a&gt; 儲存型 XSS ( Stored )&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;與前兩種手法不同的是此種攻擊手法不需要使用社交工程釣魚的技巧，也能使 User 受到攻擊&lt;/li&gt;
+&lt;li&gt;攻擊的方式是 Hacker 將 Javascript 儲存在伺服器的資料庫中，進而引起使 User 遭受攻擊。&lt;/li&gt;
+&lt;li&gt;最常見的例子就是將 Javascript 注入留言板，當下一位 User 瀏覽網頁時，網頁會載入留言板的 Javascript 進而使 User 受到攻擊，範例如下：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;我是壞人！ &amp;lt;script&gt;alert(1);&amp;lt;/script&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然後當 User 瀏覽網頁的時候，就會因為網頁先載入了當下頁面的惡意程式，於是 User 的頁面就會跳出一個 1 的 alert，以此類推， Hacker 在這裡如果輸入讓 User 傳送 cookie 或是其他惡意程式行為，網頁也會完全照做！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;執得一提的是，在三種XSS攻擊中，DOM 型 XSS 和另外兩種 XSS 的區別是 DOM 型 XSS 攻擊中，提取和執行惡意程式都是由 Browser 端完成，屬於前端 JavaScript 的安全漏洞，而其他兩種 XSS 都是因為伺服器而產生的安全風險。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E9%A7%AD%E5%AE%A2%E5%AF%A6%E9%9A%9B%E5%88%A9%E7%94%A8xss%E6%BC%8F%E6%B4%9E%E6%A1%88%E4%BE%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A7%AD%E5%AE%A2%E5%AF%A6%E9%9A%9B%E5%88%A9%E7%94%A8xss%E6%BC%8F%E6%B4%9E%E6%A1%88%E4%BE%8B&quot;&gt;#&lt;/a&gt; 駭客實際利用XSS漏洞案例&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-cross-site-scripting/p2.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+&lt;strong&gt;photo by &lt;a href=&quot;https://www.ithome.com.tw/news/139205&quot;&gt;https://www.ithome.com.tw/news/139205&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;與上期一樣的實際案例，以這個風險來做一個接續的說明，這個風險除了 CSRF 以外，也有儲存型 XSS 的風險，會允許駭客將惡意程式貼到討論區中，而當 User 以瀏覽器造訪頁面時，網頁便會在背景執行程式，卻看不到程式碼。&lt;/p&gt;
+&lt;p&gt;上期的 CSRF 就是預設主辦單位中了此類型的儲存型 XSS 的風險後，被 XSS 中的惡意程式竊取了權限，進而導致了 CSRF 的風險，使 Hacker 能夠以主辦單位的權限執行操作。&lt;/p&gt;
+&lt;h2 id=&quot;%E9%98%B2%E7%AF%84xss%E7%9A%84%E6%BA%96%E5%89%87&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%98%B2%E7%AF%84xss%E7%9A%84%E6%BA%96%E5%89%87&quot;&gt;#&lt;/a&gt; 防範XSS的準則&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;做好欄位輸入的驗證與檢查，不論是前後端都應假設輸入是惡意且不可信任的，例如：URL、檔案上傳、表單欄位、留言板等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;文法與語意：應確認每個網頁表單輸入欄位是否為合理的資料類型與內容，例如：年齡的欄位在文法上應只接受0–9的數字，而語意上應確認此數字介於 0–120。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;像上述所說明的任何輸入和其他難以定義文法的自由格式，都應該要經過編碼成為純字符串來處理，防止內容被當作程式碼執行，許多程式框架都有提供內建的編碼函式庫，可以依自己的慣用語言程式查找並多加利用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;絕對不要將使用者的輸入放入 註解、屬性名稱、標籤名稱 等，因為這些位置都能將字符串作為程式碼運行&lt;br&gt;
+另外，於伺服器上可作以下設定增強&lt;strong&gt;瀏覽器&lt;/strong&gt;的防護：&lt;br&gt;
+•對 cookie 設定 HttpOnly 的屬性，確保程式碼沒有存取權&lt;br&gt;
+•設定內容安全策略（CSP）的標頭，明確定義允許瀏覽器在該頁面上加載的內容來源，涵蓋的類型包括 JavaScriptCSS、HTML框架、字體、圖片和可嵌入對象，例如 Java applet、ActiveX等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B&quot;&gt;#&lt;/a&gt; 名詞解釋&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;註1&lt;/strong&gt;：Browser Render：瀏覽器渲染（ browser render ）是將 URL 對應的各種資源，通過瀏覽器的渲染引擎進行解析，輸出視覺化的影象，渲染引擎包括像是 HTML 直譯器、佈局（ layout ）、CSS 直譯器和 JavaScript 引擎。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;註2&lt;/strong&gt;：HTML Encoder：這是為了避免特殊符號造成的顯示問題，以及避免HTML 將 URL 中的特殊符號視為語法而產生的編碼，範例如下：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;&amp;lt;script&gt;alert(1);&amp;lt;/script&gt; &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;會被轉換成&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;%3Cscript%3Ealert(1)%3B%3C%2Fscript%3E&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但在這裡 Hacker 會反其道而行故意將要輸入在 URL 的特殊符號先轉換成 HTML Encoder 輸入，讓 WebSever 解析成特殊符號，進而進行 XSS 攻擊。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;註3&lt;/strong&gt;：DOM：DOM 全名為 Document Object Model，是用來描述 HTML 文件的表示法，可以使用 JavaScript 來動態產生完整的網頁，而不必透過伺服器，簡單來說就是把一份 HTML 文件中的各種標籤及文字、圖片等，都定義成一個個網頁物件，而這些物件最終會成為一個樹狀結構，範例如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-cross-site-scripting/p3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;講完了 CSRF 和 XSS 這對兄弟，接著下一篇會說明網頁安全三本柱 Secure 、 samsite 、 Httponly 他們之間不得不說的故事，再之後會提到關於內容安全策略（CSP）和跨域資源共用（CORS）與網頁安全的關係。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;#&lt;/a&gt; 延伸閱讀&lt;/h2&gt;
+&lt;h3 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89--%E8%AA%8D%E8%AD%98-csrf%EF%BC%88cross-site-request-forgery%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89--%E8%AA%8D%E8%AD%98-csrf%EF%BC%88cross-site-request-forgery%EF%BC%89&quot;&gt;#&lt;/a&gt; 零基礎資安系列（一）- 認識 CSRF（Cross Site Request Forgery）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-request-forgery&quot;&gt;認識 CSRF(Cross Site Request Forgery )&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>零基礎資安系列（三）-網站安全三本柱（Secure &amp; SameSite &amp; HttpOnly）</title>
+		<link href="https://tech-blog.cymetrics.io/posts/jo/zerobased-secure-samesite-httponly/"/>
+		<updated>2021-05-28T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/jo/zerobased-secure-samesite-httponly/</id>
+		<content type="html">
+		  &lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;保護 Cookie守衛網站安全的三本柱有不同的職責和能力&lt;/strong&gt;&lt;br&gt;
+Secure 表示：我不會讓 Cookie去任何危險的地方！&lt;br&gt;
+HttpOnly 表示：只要有我在的地方 &lt;em&gt;別想找到&lt;/em&gt; Cookie！&lt;br&gt;
+SameSite 表示：所有和 Cookie 來源不同的請求都別想成功！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E9%87%8B%E4%BE%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%87%8B%E4%BE%8B&quot;&gt;#&lt;/a&gt; 釋例&lt;/h2&gt;
+&lt;p&gt;今天要聊的這三種屬性，可以說是在網頁安全的防護上 CP 值最高的設定，想讓你了解瀏覽器為什麼需要這三種設定，而這三種屬性又為什麼會被稱為網站安全三本柱，他們擁有甚麼樣的功能和要如何進行設定，這些是我希望今天能帶給你的小知識，那麼話不多說，就讓我們繼續看下去。&lt;/p&gt;
+&lt;h3 id=&quot;secure&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#secure&quot;&gt;#&lt;/a&gt; Secure&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Secure&lt;/strong&gt; 應該是屬於三本柱中最單純的一位，他的訴求很簡單，所有只要網站開頭不是 https 開頭的網站都沒有辦法獲得 Cookie 中的資訊，舉例來說：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-secure-samesite-httponly/p1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;網站的 Cookie 儲存了5個值，無論是網站本身的配置錯誤讓你可以選擇使用 https 或 http 瀏覽，還是攻擊者把你重導向到他在網站子域建立的未加密的惡意 http 網址裡，基本上在 http 中網站能獲得的，只會剩下第一個 Secure 沒有打勾的值，因為 Secure 會阻止所有他有打勾的值出現在 http 中，最直觀的感受就是，當你不小心連接到 http 的頁面中的時候他會把你登出，因為他找不到可以證明你身分的那些 Cookie 的值，這個時候千萬別傻傻的再登入一次，因為在 http 中傳送的資料可都是未加密的阿！&lt;/p&gt;
+&lt;h3 id=&quot;httponly&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#httponly&quot;&gt;#&lt;/a&gt; HttpOnly&lt;/h3&gt;
+&lt;p&gt;而 &lt;strong&gt;HttpOnly&lt;/strong&gt; 則可以說他是 XSS 之敵，如果有看過我的 &lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-scripting&quot;&gt;基礎第二篇 XSS 攻擊介紹&lt;/a&gt; 的朋友，可以發現在 XSS 攻擊中，網站會允許攻擊者在網站中植入惡意的 JavaScript 藉此竊取使用者的 Cookie ，舉例來說：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-secure-samesite-httponly/p2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;網站的 Cookie 儲存了5個值，當攻擊者在有 XSS 攻擊漏洞中的網站植入惡意程式時，例如前端常用來查詢 Cookie 的 JavaScript 指令 document.cookie ，就是攻擊者最常使用的攻擊方式，攻擊者會在網站中執行 document.cookie 並將結果傳送給攻擊者，但如果我的網站中對敏感的 Cookie 值設定了 HttpOnly 會發生甚麼事？&lt;/p&gt;
+&lt;p&gt;攻擊者會發現即使網站有 XSS 漏洞，也成功的植入了惡意程式，但卻沒有將你受到 HttpOnly 保護的 Cookie 值傳送回來，為什麼會這樣呢？&lt;/p&gt;
+&lt;p&gt;原因是因為 HttpOnly 的功能就是拒絕與 JavaScript 共享 Cookie ，當 Cookie 中包含了設定 HttpOnly 的值之後，HttpOnly 會拒絕這個請求，藉此來保護 Cookie 不被不受信任的 JavaScript 存取，可以稱他為當之無愧的 XSS 之敵。&lt;/p&gt;
+&lt;p&gt;不過額外一提，並不是只要設置了 HttpOnly 之後，即使網站有 XSS 漏洞也可以高枕無憂，曾經碰過一個實例是當某網站搜尋的產品 ID 錯誤時，網站會將當下頁面的所有資訊紀錄在頁面上（包含 Cookie）方便工程師除錯，於是攻擊者便在網站中嵌入一個當使用者進入頁面時預設搜尋一個錯誤的產品 ID 並將整個當下頁面傳送給攻擊者的惡意程式，除了 Cookie 以外還附贈了伺服器版本和套件版本，直接就是一個資訊洩漏大禮包。&lt;/p&gt;
+&lt;h3 id=&quot;samesite&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#samesite&quot;&gt;#&lt;/a&gt; SameSite&lt;/h3&gt;
+&lt;p&gt;講到這邊可能有人會問，如果有 &lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-scripting&quot;&gt;XSS&lt;/a&gt; 之敵，那 CSRF 是不是也有？當然有！工程師也有同樣的疑問，於是 SameSite 這個 CSRF 之敵也出現了！&lt;/p&gt;
+&lt;p&gt;那這個最晚才誕生的瀏覽器安全屬性有甚麼特別之處，可以被稱為 CSRF 之敵？在我的 &lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-request-forgery&quot;&gt;資安零基礎系列第一篇 CSRF 攻擊介紹&lt;/a&gt; 中，可以很清楚的了解到， CSRF 的特性在於攻擊者跨 Domain 向網站提出請求，而網站無條件信任 Cookie 而沒有再確認或以其他方式驗證，只知道這個 Request 帶著某個使用者的 Cookie，便接受了這個 Request ，卻不會去確認這個 Request 是不是由使用者自願發出的（ 就像是菜單上的桌號是你的，但不代表這個菜是你點的 ）。&lt;/p&gt;
+&lt;p&gt;那你一定會想，那如果只要不是我執行操作的這個 Domain 上發送的所有 Request ，網站都通通丟掉不接受不就好了（ 只要不是坐在店裡的人給老闆的菜單老闆都直接丟掉）？&lt;/p&gt;
+&lt;p&gt;沒錯！這就是 SameSite 這個屬性的特性，瀏覽器會檢查 Request 的來源是否與發布 Cookie 的來源相同。&lt;br&gt;
+如果不是，瀏覽器就不會在 Request 中包含Cookie，因此便可以從根本上 CSRF 的攻擊來阻止。&lt;/p&gt;
+&lt;p&gt;但即使如此， SameSite 其實還是有破綻，以自身經歷來說，曾經遇過一個網站設置了 SameSite 卻沒有設定 HttpOnly ，因此攻擊者只要在網站中嵌入一個讓使用者自己執行 document.cookie ，並將執行完成的結果送給攻擊者的惡意程式，於是攻擊者一樣可以拿到使用者所有的 Cookie 資料。&lt;/p&gt;
+&lt;p&gt;也許你會說，這個黑鍋 SameSite 不背，這是 HttpOnly 要負的責任，這樣說當然沒錯，因為三個屬性沒有共存的確會產生預期外的安全風險，不能說這是 SameSite 的錯，但 SameSite 還真有其他的弱點，如果設定的值是 Lax 的話，只要在網站導頁後的兩分鐘內，瀏覽器為了避免破壞到某些網站的登入流程和使用者體驗， SameSite 的設定會變成 none ，也就是沒設的意思。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-secure-samesite-httponly/p3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;所以如果可以的話，建議除了設定 SameSite 以外，再加上 CSRF Token 會更有效的防範 CSRF 的攻擊。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%AF%A6%E4%BD%9C%E4%B8%89%E6%9C%AC%E6%9F%B1&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AF%A6%E4%BD%9C%E4%B8%89%E6%9C%AC%E6%9F%B1&quot;&gt;#&lt;/a&gt; 實作三本柱&lt;/h2&gt;
+&lt;p&gt;說了這麼多，想必到這邊你應該也對這三種瀏覽器的安全屬性有了一定的認識，有道是坐而言不如起而行，讀萬卷書不如行萬里路！&lt;/p&gt;
+&lt;p&gt;有點尷尬不過總而言之，來介紹實作！&lt;/p&gt;
+&lt;h3 id=&quot;secure-%26-httponly&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#secure-%26-httponly&quot;&gt;#&lt;/a&gt; Secure &amp;amp; HttpOnly&lt;/h3&gt;
+&lt;h3 id=&quot;%E7%AC%AC%E4%B8%80%E6%AD%A5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%AC%AC%E4%B8%80%E6%AD%A5&quot;&gt;#&lt;/a&gt; 第一步&lt;/h3&gt;
+&lt;p&gt;確保自己的網站是 Https SSL ，否則你會發現你的網站一直在把使用者登出，相關設置可以參考官方文件 &lt;a href=&quot;https://docs.microsoft.com/zh-tw/iis/manage/configuring-security/how-to-set-up-ssl-on-iis&quot;&gt;How to Set Up SSL&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E7%AC%AC%E4%BA%8C%E6%AD%A5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%AC%AC%E4%BA%8C%E6%AD%A5&quot;&gt;#&lt;/a&gt; 第二步&lt;/h3&gt;
+&lt;p&gt;設定Secure &amp;amp; HttpOnly有很多種方法，我這邊以 &lt;code&gt;ASP.NET&lt;/code&gt; 來舉例，修改你的 &lt;code&gt;web.config&lt;/code&gt;，新增：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;&amp;lt;system.web&gt;  &lt;br&gt; &amp;lt;httpCookies httpOnlyCookies=”true” requireSSL=”true” /&gt;  &lt;br&gt;&amp;lt;system.web&gt;&lt;br&gt;&lt;br&gt;requireSSL=”true” 設定 Secure ，&lt;br&gt;&lt;br&gt;httpOnlyCookies=”true” 設定 HttpOnly&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;這樣設定完後，就完成了 Secure &amp;amp; HttpOnly 的設定！&lt;/p&gt;
+&lt;h3 id=&quot;samesite-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#samesite-2&quot;&gt;#&lt;/a&gt; SameSite&lt;/h3&gt;
+&lt;p&gt;SameSite 的屬性可以進行三種設定&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Strict&lt;/strong&gt;：這是限制最嚴格的設定，會完全禁止第三方的 Cookie 請求，基本上只有在網域和 URL 中的網域相同，才會傳遞 Cookie 請求，舉例來說，當網站裡有一個 FB 連結時，點開連結，使用者必須要再登入一次 FB ，因為網站沒有傳送任何 FB 的 Cookie 。&lt;/p&gt;
+&lt;p&gt;這是三種設定中最嚴謹也最安全的設定，但也因此會讓使用者在網站的使用體驗上變得比較不方便，通常會使用於銀行或是購物網站等有金流交易的網站上。&lt;/p&gt;
+&lt;p&gt;設定的方法為在 Server 上進行設定&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Set-Cookie: CookieName=CookieValue; SameSite=Strict;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Lax&lt;/strong&gt;：而也因為了 Strict 的嚴格，所以有了 Lax 這個比較符合使用者使用體驗上的值產生， Lax 的要求同樣會限制大多數的第三方請求，但 Lax 會允許 Get 的請求，以表單來舉例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-secure-samesite-httponly/p4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;和 none 的全部允許與 Strict 的全部不允許來說， Lax 禁止了比較不安全的 POST 請求，卻又有一定的安全性，因此是 SameSite 目前在應用上較常出現的設定值，而2020年2月發布的 Chrome 80 以後皆是預設網站以 Lax 進行設定。&lt;/p&gt;
+&lt;p&gt;設定的方法為在 Server 上進行設定&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Set-Cookie: CookieName=CookieValue; SameSite=Lax;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;None&lt;/strong&gt;：這個值顧名思義就是不限制 Cookie 傳送的意思，不過如果在網站上想要將 SameSite 的值設定為 None 的話，網站中的 Secure 必須要是開啟的， None 的設定才會生效，算是瀏覽器為了網站的安全性上做的一些小限制。&lt;/p&gt;
+&lt;p&gt;設定的方法為在 Server 上進行設定&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;Set-Cookie: widget\_session=abc123; SameSite=None; Secure&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;%E7%B5%90%E8%AB%96&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B5%90%E8%AB%96&quot;&gt;#&lt;/a&gt; 結論&lt;/h2&gt;
+&lt;p&gt;在瀏覽器上這三種屬性的設定對工程師來說，成本不高但達成的效果卻不小，因此可以說是網站安全的入門經典款配置，不過也正我如前面所說，三個屬性沒有共存有可能會產生預期外的安全風險，所以如果可以的話，請盡可能的將這三種屬性都進行設定。&lt;/p&gt;
+&lt;p&gt;此外，值得注意的一點是 SameSite 的設定不只是在 Cookie 的送出上，其實也會影響到 Cookie 的寫入，如果需要在使用者的使用體驗上進行衡量的話，建議除非是銀行或是購物網站等有金流交易的網站，否則一般的網站其實只要設定 Lax 的值並搭配 CSRF Token 就已經擁有較高層級的 CSRF 攻擊防護了。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;#&lt;/a&gt; 延伸閱讀&lt;/h2&gt;
+&lt;h3 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89-%E8%AA%8D%E8%AD%98-csrf%EF%BC%88cross-site-request-forgery-%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89-%E8%AA%8D%E8%AD%98-csrf%EF%BC%88cross-site-request-forgery-%EF%BC%89&quot;&gt;#&lt;/a&gt; 零基礎資安系列（一）-認識 CSRF（Cross Site Request Forgery ）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-request-forgery&quot;&gt;認識 CSRF（Cross Site Request Forgery）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%AA%8D%E8%AD%98-xss%EF%BC%88cross-site-scripting%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%AA%8D%E8%AD%98-xss%EF%BC%88cross-site-scripting%EF%BC%89&quot;&gt;#&lt;/a&gt; 零基礎資安系列（二）-認識 XSS（Cross-Site Scripting）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-scripting&quot;&gt;認識 XSS（Cross-Site Scripting）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 參考資料&lt;/h2&gt;
+&lt;h3 id=&quot;httpcookies-element&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#httpcookies-element&quot;&gt;#&lt;/a&gt; httpCookies Element&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/ms228262%28v=vs.100%29?redirectedfrom=MSDN&quot;&gt;https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/ms228262(v=vs.100)?redirectedfrom=MSDN&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;how-to-set-up-ssl&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#how-to-set-up-ssl&quot;&gt;#&lt;/a&gt; How to Set Up SSL&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/zh-tw/iis/manage/configuring-security/how-to-set-up-ssl-on-iis&quot;&gt;https://docs.microsoft.com/zh-tw/iis/manage/configuring-security/how-to-set-up-ssl-on-iis&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;cookie-%E7%9A%84-samesite-%E5%B1%AC%E6%80%A7&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#cookie-%E7%9A%84-samesite-%E5%B1%AC%E6%80%A7&quot;&gt;#&lt;/a&gt; Cookie 的 SameSite 屬性&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html&quot;&gt;https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
 		<title>隱藏在 React 下的機制： Fiber</title>
 		<link href="https://tech-blog.cymetrics.io/posts/mingyou/deep-dive-into-react-fiber/"/>
 		<updated>2021-05-28T08:00:00+08:00</updated>
@@ -454,6 +712,140 @@ thread2 賦值 101
 &lt;a href=&quot;https://www.bilibili.com/video/av48384879/&quot;&gt;https://www.bilibili.com/video/av48384879/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;延伸閱讀&lt;br&gt;
 &lt;a href=&quot;https://segmentfault.com/a/1190000017241034?utm_source=sf-related&quot;&gt;https://segmentfault.com/a/1190000017241034?utm_source=sf-related&lt;/a&gt;&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>零基礎資安系列（四）-認識注入攻擊（ Injection Attack）</title>
+		<link href="https://tech-blog.cymetrics.io/posts/jo/zerobased-injectionattack/"/>
+		<updated>2021-05-29T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/jo/zerobased-injectionattack/</id>
+		<content type="html">
+		  &lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;想像今天有個路人突然出現在你面前，拿著一管針筒不由分說的就要往你身上戳，相信正常人的第一反應要嘛拔腿就跑要嘛阻止他，但如果今天你沒想到會有這種狀況，不小心讓他注入成功會發生甚麼事？雖然有很多種可能，但相信我，那一定不會是甚麼好事。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;今天想和大家聊聊常出現在網頁安全風險榜單上的常客，&lt;strong&gt;注入攻擊（ Injection Attack）&lt;/strong&gt;，聊聊這種風險到底是如何的危險，居然可以長年高居風險榜單的前三甲，如果我們的網站真的不幸被注入成功了，會導致甚麼樣的後果？如果真的這麼可怕的話，我們有沒有甚麼辦法可以阻止這種攻擊呢？在看完今天的文章之後，其實你會發現，原來這些攻擊離我們這麼近。&lt;/p&gt;
+&lt;!-- summary --&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-injectionattack/p1.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+&lt;strong&gt;photo by &lt;a href=&quot;https://www.informationsecurity.com.tw/article/article_detail.aspx?aid=8827&quot;&gt;https://www.informationsecurity.com.tw/article/article_detail.aspx?aid=8827&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;注入攻擊並不僅僅是指大家耳熟能詳，針對資料庫相關網頁應用程式/服務攻擊的 SQL Injection，其中也包括了植入惡意 shell 指令到網站主機作業系統的 Command Injection ，甚至之前曾介紹過的 XSS 攻擊也是屬於注入攻擊的一種。&lt;/p&gt;
+&lt;p&gt;也因此，我想藉由這個機會跟大家介紹在 Injection 中比較容易被攻擊者發現並利用的兩種 Injection ： SQL Injection ＆ Command Injection&lt;/p&gt;
+&lt;p&gt;（如果對 &lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-scripting&quot;&gt;XSS 攻擊&lt;/a&gt; 有興趣的小夥伴可以看我之前的 XSS 介紹文章喔）&lt;/p&gt;
+&lt;h3 id=&quot;%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%94%BB%E6%93%8A%E7%AD%96%E7%95%A5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%94%BB%E6%93%8A%E7%AD%96%E7%95%A5&quot;&gt;#&lt;/a&gt; 常見的攻擊策略&lt;/h3&gt;
+&lt;p&gt;先說常見的攻擊策略，這應該是所有 Injection 都通用的，而針對 Injection 攻擊策略大致分為兩種 ，一種是所謂的盲注攻擊（ Blindfolded Injection），相當於攻擊者直接在大街上拿著針筒對你進行衝鋒，優點是不需要太多的準備和成本，只要無腦對網站塞入常見的注入範本就可以，不過也因為如此，所以成功機率偏低，畢竟大街上拿著針筒衝鋒被阻止的機率實在是有夠高的啦。&lt;/p&gt;
+&lt;p&gt;第二種的話，攻擊者會藉由網站的錯誤訊息及意外洩漏的系統資訊，對網站進行針對式的注入，而這種攻擊策略其實通俗點的說法就是預謀殺人，藉由調查受害者的公司和住家以及上下班路線，接著埋伏拿著針筒對受害者進行注射，聽起來成功率就比第一種高多了，對吧？不過也因為這樣，所以攻擊者必須要耗費成本對網站進行資料收集，再把資料進行分析之後設計針對式的注入樣本，攻擊者才能進行攻擊，非常的耗費時間。&lt;/p&gt;
+&lt;p&gt;不過根據我自身的經驗，其實目前的攻擊者通常是採取綜合式的攻擊策略，先用 Open Source 的弱點掃描工具對許多目標網站進行掃描，接著針對防禦最不完整的幾個網站進行盲注攻擊，再依據結果挑選成功可能性最高的目標網站進行針對性的攻擊設計，就像是拿著針筒對路上的每個人進行衝鋒，看起來反應最慢或是最沒反應的那幾個人，就會成為攻擊者的目標。&lt;/p&gt;
+&lt;p&gt;而攻擊者利用注入攻擊的目的可以大致分類為三種，提權、獲取敏感資料、竄改資料，接下來我會在介紹攻擊的同時向大家說明當攻擊者達成以上三種任一目的時可能會產生的安全風險。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%94%BB%E6%93%8A%E4%BB%8B%E7%B4%B9&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B8%B8%E8%A6%8B%E7%9A%84%E6%94%BB%E6%93%8A%E4%BB%8B%E7%B4%B9&quot;&gt;#&lt;/a&gt; 常見的攻擊介紹&lt;/h3&gt;
+&lt;h4 id=&quot;sql-injection&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#sql-injection&quot;&gt;#&lt;/a&gt; SQL Injection&lt;/h4&gt;
+&lt;p&gt;SQL Injection 應該是屬於 Injection 界中無人不知無人不曉的名人了，以一個最常見的 SQL Injection 範本來舉例說明，當一個網站有帳號密碼必須輸入時，攻擊者在帳號／密碼的欄位輸入 admin／ admin 接著系統提示，密碼錯誤，於是攻擊者可以得知，有 admin 這個帳號，但是密碼錯誤，於是攻擊者便在密碼的欄位嘗試輸入 &lt;code&gt;”password’ OR ‘1’=’1&amp;quot;&lt;/code&gt; ，如果這個網站的資料庫語法是 &lt;code&gt;UserList.Password = ‘Password’&lt;/code&gt; 而且沒有限制輸入的話，整串驗證會變成 &lt;code&gt;UserList.Password = ‘password’ OR ‘1’=’1&#39;&lt;/code&gt; ，也就是說 ”Password”被當成了某個空白或者不重要的字串，而1 = 1 是 True 邏輯又是成立的，於是當帳號和密碼都是 True 的時候，會發生甚麼事呢？沒錯！攻擊者就可以以 admin 的權限登入網站為所欲為！&lt;/p&gt;
+&lt;p&gt;如果以更生活化的例子來說明， SQL Injection 的原理其實就像是 PTT 的簽名檔裡常看到的扭曲意義推文一樣，舉例來說：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-injectionattack/p2.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+&lt;strong&gt;photo by &lt;a href=&quot;https://www.ptt.cc/bbs/joke/M.1418702977.A.BEF.html&quot;&gt;https://www.ptt.cc/bbs/joke/M.1418702977.A.BEF.html&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;同樣的，攻擊者也是變更了資料庫中語法的意義，讓資料庫輸出了攻擊者想看到的結果，進而達成目的，除了可能造成剛剛說明的提權，導致攻擊者獲得 admin 權限以外， SQL Injection 也可能造成資料庫資料表中的資料外洩，例如企業及個人機密資料、帳戶資料、密碼等，甚至使攻擊者竄改網站，在網站加入惡意連結、惡意程式使企業商譽遭到破壞。&lt;/p&gt;
+&lt;h4 id=&quot;command-injection&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#command-injection&quot;&gt;#&lt;/a&gt; Command Injection&lt;/h4&gt;
+&lt;p&gt;雖然 Command Injection 相較於 SQL Injection 並沒有那麼有名氣，但他造成的風險卻完全不遑多讓， Command Injection 簡單來說就是當攻擊者的惡意輸入被誤認為作業系統指令時就會發生指令注入，舉例來說，某網站的查詢欄位可以查詢資料，而攻擊者為了驗證網站是不是屬於 Linux 的系統，於是故意在查詢的內容中加上 ; 並輸入指令 pwd ，由於Linux可以利用分號來同時提交多個不同的指令，再加上 pwd 指令是可以用來顯示目前所在目錄&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-injectionattack/p3.jpeg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-injectionattack/p4.jpeg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+&lt;strong&gt;photo by &lt;a href=&quot;http://www.cc.ntu.edu.tw/chinese/epaper/0039/20161220_3905.html&quot;&gt;http://www.cc.ntu.edu.tw/chinese/epaper/0039/20161220_3905.html&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;當上面的範例能夠確認指令被成功執行之後，對攻擊者的限制就只剩下攻擊者的想像力夠不夠了，例如攻擊者可以列出所有 Server 的目錄，查詢有價值的敏感資料，開放 Server 的服務，使 Server 變成攻擊者的跳板，放入勒索軟體或是後門等，為所欲為。&lt;/p&gt;
+&lt;h3 id=&quot;%E9%98%B2%E7%AF%84-injection-%E7%9A%84%E6%BA%96%E5%89%87&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%98%B2%E7%AF%84-injection-%E7%9A%84%E6%BA%96%E5%89%87&quot;&gt;#&lt;/a&gt; 防範 Injection 的準則&lt;/h3&gt;
+&lt;p&gt;相信以上的說明有讓各位小夥伴更加了解 Injection 到底是甚麼樣的攻擊以及 Injection 究竟可以造成甚麼樣的危害，那現在就讓我們來聊聊要怎麼樣才能不被針筒戳到。&lt;/p&gt;
+&lt;p&gt;1. 使用正則表達式過濾使用者的輸入值以及包含在參數中的惡意程式，把輸入值中所有的單引號全部更改為雙引號，確保資料的輸入無論是有意或無意都不會因此被網站視為程式輸入。&lt;/p&gt;
+&lt;p&gt;2. 限制輸入的字元格式不包含特殊符號，並確認欄位的合理輸入長度，例如出生年月日的欄位沒有必要開放到20個字元以上。&lt;/p&gt;
+&lt;p&gt;3. 把系統及資料的使用者帳號權限最小權限化，避免攻擊者萬一獲取了某一個使用者的權限就等於獲得了可以讀寫的所有權限。&lt;/p&gt;
+&lt;p&gt;4. 不要將系統或資料庫錯誤顯示於網頁之上，盡量避免透漏 Server 及資料庫的系統或是版本，以防自身網站成了攻擊者針對的目標。&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Injection&lt;/strong&gt; 會這麼猖獗的原因在於要控制網站中每一個欄位的輸入以及 Server 和資料庫的系統或是版本是不是最新的，因為很有可能因為網站更新導致新增的欄位沒有設定驗證，或是 Server 和資料庫的系統及版本出現漏洞沒有即時更新，加上不同程式語言有不同輸入和檢查，加上 Injection 攻擊的成本不高，使得相關的攻擊層出不窮，因此，除了以上的四種方法以外，建議網站在合理的預算下進行定期的網站檢測，除了可以預防 Injection 以外，也能發現許多開發者非預期的風險發生。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;#&lt;/a&gt; 延伸閱讀&lt;/h3&gt;
+&lt;h4 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89--%E8%AA%8D%E8%AD%98-xss%EF%BC%88cross-site-scripting%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89--%E8%AA%8D%E8%AD%98-xss%EF%BC%88cross-site-scripting%EF%BC%89&quot;&gt;#&lt;/a&gt; 零基礎資安系列（二）- 認識 XSS（Cross-Site Scripting）&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-scripting&quot;&gt;認識 XSS（Cross-Site Scripting）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 參考資料&lt;/h3&gt;
+&lt;h4 id=&quot;sql%E6%B3%A8%E5%85%A5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#sql%E6%B3%A8%E5%85%A5&quot;&gt;#&lt;/a&gt; SQL注入&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/SQL%E6%B3%A8%E5%85%A5&quot;&gt;https://zh.wikipedia.org/wiki/SQL注入&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;command-injection%E9%81%8B%E4%BD%9C%E5%8E%9F%E7%90%86%E8%88%87%E8%A7%A3%E8%AA%AA&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#command-injection%E9%81%8B%E4%BD%9C%E5%8E%9F%E7%90%86%E8%88%87%E8%A7%A3%E8%AA%AA&quot;&gt;#&lt;/a&gt; Command Injection運作原理與解說&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.cc.ntu.edu.tw/chinese/epaper/0039/20161220_3905.html&quot;&gt;http://www.cc.ntu.edu.tw/chinese/epaper/0039/20161220_3905.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>零基礎資安系列（五）-路徑遍歷（Path Traversal）</title>
+		<link href="https://tech-blog.cymetrics.io/posts/jo/zerobased-path-traversal/"/>
+		<updated>2021-05-30T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/jo/zerobased-path-traversal/</id>
+		<content type="html">
+		  &lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;路徑遍歷（Path Traversal）就像想像網站是一個博物館，裡面有許多房間，其中有些房間是 Staff Only 而且門上了鎖不讓訪客進入，但有趣的是博物館裡的每一個房間都有通風口，只要知道房間位置，就可以透過其他房間的通風口前往 Staff Only 的房間獲得所有你想要的資料。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E9%87%8B%E4%BE%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%87%8B%E4%BE%8B&quot;&gt;#&lt;/a&gt; 釋例&lt;/h2&gt;
+&lt;p&gt;今天想和大家聊聊在網站安全上攻擊者容易執行但卻常被開發者忽略的路徑遍歷（Path Traversal）攻擊，談談關於路徑遍歷在網站安全上可能造成的風險以及如何預防。&lt;/p&gt;
+&lt;p&gt;通常路徑遍歷也被稱目錄遍歷（Directory Traversal），但他有個更具體而且蠻可愛的名字叫做點點斜線攻擊（Dot dot slash attack），那為什麼會叫這個名字呢？&lt;/p&gt;
+&lt;p&gt;舉個實際的例子，Linux 中，目錄的顯示是 / Users / hello / Desktop / file，如果使用者輸入 cd ../ 指令時，當前的目錄就會回到上一層，那這會有什麼問題？當這個指令是任一使用者測試在網站 URL 上輸入 ../ 都可以成功執行回到網站目錄上一層的時候問題就大條了，這表示告訴攻擊者，我有路徑遍歷的風險，你可以開始嘗試囉！&lt;/p&gt;
+&lt;h2 id=&quot;%E5%B8%B8%E8%A6%8B%E7%9A%84%E8%B7%AF%E5%BE%91%E9%81%8D%E6%AD%B7%E6%94%BB%E6%93%8A%E6%89%8B%E6%B3%95&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B8%B8%E8%A6%8B%E7%9A%84%E8%B7%AF%E5%BE%91%E9%81%8D%E6%AD%B7%E6%94%BB%E6%93%8A%E6%89%8B%E6%B3%95&quot;&gt;#&lt;/a&gt; 常見的路徑遍歷攻擊手法&lt;/h2&gt;
+&lt;p&gt;以下拿幾個路徑遍歷的攻擊常見的範例來說明：&lt;/p&gt;
+&lt;p&gt;假設網址呈現的方式為：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;https://www.example.com/get-files?file=report.pdf&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;而攻擊者在真正的執行路徑遍歷攻擊以前，常會使用絕對路徑遍歷的手法探測目標網站的網站架構，例如說：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;https://www.example.com/get-files?file=/etc/passwd&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;，嘗試以常用的系統絕對路徑試探是否有回應當，當伺服器回應有關網站應用程序中的錯誤的信息時，攻擊者可以更容易猜測正確的位置（例如顯示原始碼的文件路徑）。&lt;/p&gt;
+&lt;h3 id=&quot;1.%E6%94%BB%E6%93%8A%E8%80%85%E5%98%97%E8%A9%A6%E8%A8%AA%E5%95%8F%E7%9B%AE%E9%8C%84%E5%A4%96%E7%9A%84%E8%B7%AF%E5%BE%91%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.%E6%94%BB%E6%93%8A%E8%80%85%E5%98%97%E8%A9%A6%E8%A8%AA%E5%95%8F%E7%9B%AE%E9%8C%84%E5%A4%96%E7%9A%84%E8%B7%AF%E5%BE%91%EF%BC%9A&quot;&gt;#&lt;/a&gt; 1.攻擊者嘗試訪問目錄外的路徑：&lt;/h3&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;https://www.example.com/../../../../some dir/some file&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;攻擊者藉由多次的 ../ 來超脫當前的目錄，訪問不在目錄下的資料。&lt;/p&gt;
+&lt;h3 id=&quot;2.%E6%94%BB%E6%93%8A%E8%80%85%E5%98%97%E8%A9%A6%E8%AE%80%E5%8F%96%E7%9B%AE%E9%8C%84%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%B5%B1%E6%AA%94%E6%A1%88&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.%E6%94%BB%E6%93%8A%E8%80%85%E5%98%97%E8%A9%A6%E8%AE%80%E5%8F%96%E7%9B%AE%E9%8C%84%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%B5%B1%E6%AA%94%E6%A1%88&quot;&gt;#&lt;/a&gt; 2.攻擊者嘗試讀取目錄中的系統檔案&lt;/h3&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;https://www.example.com/get-files?file=/etc/passwd&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;攻擊者藉由 /etc/passwd 來嘗試直接讀取系統檔案，如果真的被攻擊者讀取到 /etc/passwd 檔的話，攻擊者很有可能藉此解讀 root user 的密碼，另外，值得一提的是，如果網站架在 Windows 的系統中的話，攻擊者只能訪問Web根目錄所在的磁碟分區，但如果是在 Linux 系統中的話，攻擊者則可以訪問整個磁碟。&lt;/p&gt;
+&lt;h3 id=&quot;3.%E6%94%BB%E6%93%8A%E8%80%85%E5%98%97%E8%A9%A6%E4%BD%BF%E7%B6%B2%E7%AB%99%E5%BC%95%E7%94%A8%E5%A4%96%E9%83%A8%E6%96%87%E4%BB%B6%E6%88%96%E8%85%B3%E6%9C%AC&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#3.%E6%94%BB%E6%93%8A%E8%80%85%E5%98%97%E8%A9%A6%E4%BD%BF%E7%B6%B2%E7%AB%99%E5%BC%95%E7%94%A8%E5%A4%96%E9%83%A8%E6%96%87%E4%BB%B6%E6%88%96%E8%85%B3%E6%9C%AC&quot;&gt;#&lt;/a&gt; 3.攻擊者嘗試使網站引用外部文件或腳本&lt;/h3&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;https://www.example.com/get-files?file=http://other-site.com/malicius-code.php&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;攻擊者藉由嘗試將其他網站中的文件包含到當前網站的目錄，讓系統去引用攻擊者的惡意外部文件或腳本，進而達到提權或是竊取機敏資料的目的。&lt;/p&gt;
+&lt;h3 id=&quot;4.%E6%94%BB%E6%93%8A%E8%80%85%E4%BB%A5%E7%AB%84%E6%94%B9-http-%E7%9A%84%E8%AB%8B%E6%B1%82%E8%97%89%E6%AD%A4%E5%B0%8D%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%99%BC%E8%B5%B7%E6%94%BB%E6%93%8A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#4.%E6%94%BB%E6%93%8A%E8%80%85%E4%BB%A5%E7%AB%84%E6%94%B9-http-%E7%9A%84%E8%AB%8B%E6%B1%82%E8%97%89%E6%AD%A4%E5%B0%8D%E4%BC%BA%E6%9C%8D%E5%99%A8%E7%99%BC%E8%B5%B7%E6%94%BB%E6%93%8A&quot;&gt;#&lt;/a&gt; 4.攻擊者以竄改 HTTP 的請求藉此對伺服器發起攻擊&lt;/h3&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;GET /vulnerable.php HTTP/1.0   &lt;br&gt;Cookie: TEMPLATE=../../../../../../../../../etc/passwd&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;與上列不同的是攻擊者不是經由竄改 URL 而達成路徑遍歷的攻擊，而是藉由竄改 HTTP 的請求以多次的../來超脫當前網站的目錄，使伺服器回應傳送 etc/passwd 解讀 root user 的密碼。&lt;/p&gt;
+&lt;h2 id=&quot;%E8%AE%8A%E5%BD%A2%E7%9A%84%E8%B7%AF%E5%BE%91%E9%81%8D%E6%AD%B7%E6%94%BB%E6%93%8A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%AE%8A%E5%BD%A2%E7%9A%84%E8%B7%AF%E5%BE%91%E9%81%8D%E6%AD%B7%E6%94%BB%E6%93%8A&quot;&gt;#&lt;/a&gt; 變形的路徑遍歷攻擊&lt;/h2&gt;
+&lt;p&gt;在看完上述所說明的攻擊之後，你可能想說那我只要擋掉使用者在我的 URL 以及 HTTP 請求的輸入進行驗證及限制，不允許../的出現，那麼針對路徑遍歷的攻擊也就無用武之地了吧？&lt;/p&gt;
+&lt;p&gt;一個好消息和一個壞消息告訴你，好消息是你的觀念正確，對URL 以及 HTTP 請求的輸入進行驗證及限制的確是避免路徑遍歷攻擊的應對策略之一，但壞消息是../是有變形的，而且還有很多種變形，其中最常見的變形就是在&lt;strong&gt;零基礎資安系列(二)-認識 XSS(Cross-Site Scripting)&lt;/strong&gt; 中和大家提過的HTML Encoder 會將 &lt;code&gt;%2e%2e%2f&lt;/code&gt; 解析為 ../ 繞過針對 ../ 的檢查，除此之外還有 UTF-8 編碼 &lt;code&gt;%c1%1c&lt;/code&gt; 會被解析為 / ，以及若是更進階一點的話攻擊者還可能使用 xor 概念，&lt;code&gt;%d0^%ff = /&lt;/code&gt; 的編碼方式，繞過限制的字元，如果大家對攻擊者可能使用的進階 injection 有興趣，我之後會再寫一篇文章和大家說明，在這裡主要想告訴大家的是限制字元的輸入是個好的應對策略，但前提是將所有攻擊者可能的攻擊方式全部寫進規則中，否則仍然會使攻擊者有機可趁。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%A6%82%E4%BD%95%E9%98%B2%E7%A6%A6&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%A6%82%E4%BD%95%E9%98%B2%E7%A6%A6&quot;&gt;#&lt;/a&gt; 如何防禦&lt;/h2&gt;
+&lt;p&gt;上面說了這麼多攻擊者可能的攻擊方式，又表示有那麼多變形的路徑遍歷攻擊，那難道我們對攻擊者就無計可施了嗎？&lt;/p&gt;
+&lt;p&gt;當然不是！依據我的經驗，針對路徑遍歷攻擊的防禦可以從三個方面來看&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.輸入驗證&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;針對路徑遍歷攻擊最直覺的防禦就是驗證及限制所有在 URL 以及 HTTP 請求，不允許輸入 ../ 以及其他變形的輸入，這方面的防禦強度會在於網站對於輸入驗證的規則完善度而決定。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.權限控管&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在開發和部署網頁應用程式的時候盡可能的以最小的權限執行，盡可能的刪除所有不常使用或權限過大的使用者並取消 Guest 角色，建立完整的 ACL（Access Control List） ，且確保文件的可讀可寫權限也的確受到控管（例如Linux 系統盡可能不要有權限 777 的文件，這會讓這份文件全世界可讀可寫），這樣的話即使攻擊者成功的查看網頁目錄，也會因為權限問題而導致無法存取文件，最多只能得知網站目錄架構及檔名。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3.資料處理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;之所以把資料處裡放在最後一步是因為我認為資料處理是面對攻擊者的最後一道防線，即使攻擊者可以繞過輸入驗證，成功獲得瀏覽目錄的權限，但如果目錄中沒有隱密資料或是將重要資料另外備份在其他的伺服器，例如密碼檔、已經沒有被引用的舊文件、網站備份的資料、Log 紀錄、系統版本紀錄 等，攻擊者在沒有獲得任何有效資料的情況下也只能繼續嘗試其他的攻擊路徑。&lt;/p&gt;
+&lt;h2 id=&quot;%E7%B5%90%E8%AB%96&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B5%90%E8%AB%96&quot;&gt;#&lt;/a&gt; 結論&lt;/h2&gt;
+&lt;p&gt;雖然資料處理是三種防禦中面對攻擊者的最後一道防線，但我認為最重要的防禦還是針對路徑遍歷攻擊的輸入驗證，原因是因為對攻擊者來說，一但發現網站的輸入驗證規則設置周全或是一般常見的手法都沒辦法獲得任何有效的資料時，攻擊者通常會選擇另尋目標，所以我建議的方式會是建立一個針對路徑遍歷攻擊包含 ../ 及 HTML Encoder 編碼規則的輸入驗證會是針對路徑遍歷攻擊首先該做的事，接著才是刪除所有不常使用的使用者權限並且不允許遠端操作，將當前網站目錄中非必要存在的重要檔案另外備份並在當下的目錄中刪除，以上兩件事情可以依據公司的情況做調整，例如帳號權限複雜先不動或重要的檔案位置混亂不好歸納所以先處理權限 等，以公司承擔成本較低的方式自行取捨。&lt;/p&gt;
+&lt;p&gt;當以上三種防禦都進行之後，即使攻擊者願意花時間嘗試除了一般常見規則的路徑遍歷攻擊外再特別設計攻擊，並且在進入目錄後連一般使用者權限都沒有的情況下嘗試提權，再提權成功後，看著沒有高重要性資料的目錄同常也會感到挫折。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;#&lt;/a&gt; 延伸閱讀&lt;/h2&gt;
+&lt;h3 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89--%E8%AA%8D%E8%AD%98-xss(cross-site-scripting)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89--%E8%AA%8D%E8%AD%98-xss(cross-site-scripting)&quot;&gt;#&lt;/a&gt; 零基礎資安系列（二）- 認識 XSS(Cross-Site Scripting)&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-scripting&quot;&gt;認識 XSS（Cross-Site Scripting）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89--%E8%AA%8D%E8%AD%98%E6%B3%A8%E5%85%A5%E6%94%BB%E6%93%8A%EF%BC%88-injection-attack%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89--%E8%AA%8D%E8%AD%98%E6%B3%A8%E5%85%A5%E6%94%BB%E6%93%8A%EF%BC%88-injection-attack%EF%BC%89&quot;&gt;#&lt;/a&gt; 零基礎資安系列（四）- 認識注入攻擊（ Injection Attack）&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-injectionattack&quot;&gt;認識注入攻擊（ Injection Attack）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 參考資料&lt;/h2&gt;
+&lt;h3 id=&quot;owasp-path-traversal&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#owasp-path-traversal&quot;&gt;#&lt;/a&gt; OWASP Path Traversal&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://owasp.org/www-community/attacks/Path_Traversal&quot;&gt;https://owasp.org/www-community/attacks/Path_Traversal&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;wikipedia-path-traversal&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#wikipedia-path-traversal&quot;&gt;#&lt;/a&gt; Wikipedia Path Traversal&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Directory_traversal_attack&quot;&gt;https://en.wikipedia.org/wiki/Directory_traversal_attack&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 		</content>
 	</entry>
@@ -703,6 +1095,140 @@ thread2 賦值 101
 &lt;p&gt;XSS 並不是全有或是全無這麼簡單，有的網站雖然被 XSS，但影響範圍有限，而有的網站一被 XSS，連使用者的帳號密碼都可以輕易更改，直接把帳號給搶過來。&lt;/p&gt;
 &lt;p&gt;在防禦 XSS 的時候，如果只防禦了第一關，只有想到「我要把 render 的內容 escape」就容易造成上面所講的狀況，要嘛就是整個網站都很安全連 XSS 都沒有，要嘛就是一被打出 XSS，整個網站就被打穿。&lt;/p&gt;
 &lt;p&gt;所以在防禦的時候必須注意到上面提的這些不同的環節，針對每個環節都去做防禦，設下多個防線。就算攻擊者可以突破第一關，可能也會被第二關的 CSP 擋下，無法執行 JS；就算第二關被破了，還有第三關守著，降低 XSS 的影響程度，不會因為一個漏洞就讓使用者的帳戶整個被搶走。&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>駭客起手式 : Shodan &amp; Fofa</title>
+		<link href="https://tech-blog.cymetrics.io/posts/nick/shodan-fofa/"/>
+		<updated>2021-06-28T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/nick/shodan-fofa/</id>
+		<content type="html">
+		  &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;處於資訊爆炸時代，遇到問題的第一步通常就是去 Google 一下，駭客們當然也是這樣想，不過除了 Google Hacking 以外駭客有更專門的搜尋引擎。&lt;/p&gt;
+&lt;p&gt;本文會先簡單介紹一下駭客常用的搜尋引擎，重點則放在實際案例說明與分享，看一下免費用戶可以做到什麼程度的攻擊，最後討論一下如何避免被找到，打不過駭客難道還躲不起 ?&lt;/p&gt;
+&lt;h2 id=&quot;%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;#&lt;/a&gt; 工具介紹&lt;/h2&gt;
+&lt;p&gt;提到駭客搜尋引擎，有資安背景的朋友第一個會想到的就是大名鼎鼎的 Shodan，但本文除了介紹老牌的 Shodan 之外還要介紹另一個後起之秀 Fofa，就像我們覺得 IE 或 Safari 不順手的時候就會改用 Chrome 或 Firefox一樣，駭客也會嘗試用不同的方法來找到攻擊目標。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__gX36EdhP1jdHBn6tWpMG7g.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;1.-%E7%B0%A1%E4%BB%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E7%B0%A1%E4%BB%8B&quot;&gt;#&lt;/a&gt; 1. 簡介&lt;/h3&gt;
+&lt;p&gt;Shodan 是聯網裝置的搜尋引擎，從網站主機到各種 IOT 設備都可以在上面找到，背後有無數台爬蟲伺服器 24 小時在收集全世界的資料，雖然這個網站的初衷是讓使用者檢查自己的設備或服務是否暴露在外網，但駭客們利用搜尋規則從 Shodan 的資料庫中快速找出有弱點的設備並攻擊，攻擊能影響範圍直接提升到了世界級，所以稱 Shodan 為最危險的搜尋引擎一點也不過分。&lt;/p&gt;
+&lt;h3 id=&quot;2.-%E6%90%9C%E5%B0%8B%E8%A6%8F%E5%89%87-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-%E6%90%9C%E5%B0%8B%E8%A6%8F%E5%89%87-%3A&quot;&gt;#&lt;/a&gt; 2. 搜尋規則 :&lt;/h3&gt;
+&lt;p&gt;規則分為 10 大類，最常用的是 General，其他類別是針對特定領域的搜尋，而且有些需要付費會員才可使用，後面會舉一些實際應用的例子。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__q9RtyVHUj4IJ4uivxn5NNw.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__xrdSmu1pLtoImh3Ab____fCg.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;1.-%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;#&lt;/a&gt; 1. 簡介 :&lt;/h3&gt;
+&lt;p&gt;Fofa 是中國資安廠商白帽匯推出的搜尋引擎，擁有不遜於 Shodan 的龐大資料庫，能夠快速進行聯網裝置匹配，進行漏洞影響範圍分析、應用分佈統計、應用流行度等。&lt;/p&gt;
+&lt;h3 id=&quot;2.-%E6%90%9C%E5%B0%8B%E8%A6%8F%E5%89%87-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-%E6%90%9C%E5%B0%8B%E8%A6%8F%E5%89%87-%3A-2&quot;&gt;#&lt;/a&gt; 2. 搜尋規則 :&lt;/h3&gt;
+&lt;p&gt;這邊為了方便之後進行比較，用了類似 Shodan 的方式來將 Fofa 的規則分類，也可看出 Fofa 將重點放在網站相關的搜尋，而且多了一些分析用的規則，像是時間限制、數量統計等，一樣有部分規則付費用戶才能使用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__zlEjdhzf6j30K4MS1PqQLA.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E5%AF%A6%E4%BE%8B%E5%88%86%E4%BA%AB&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AF%A6%E4%BE%8B%E5%88%86%E4%BA%AB&quot;&gt;#&lt;/a&gt; 實例分享&lt;/h2&gt;
+&lt;p&gt;這邊會先分享幾種真實的攻擊案例，讓大家體驗一下當駭客的感覺，同時比較一下兩種工具找到的結果數量，然後再分享幾種各工具特有的查詢案例，請注意過程中請避免蓄意破壞，造成的影響一律自行承擔。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%A1%88%E4%BE%8B-1-%3A-%E6%AA%94%E6%A1%88%E5%88%86%E4%BA%AB%E4%BC%BA%E6%9C%8D%E5%99%A8-(ftp)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%A1%88%E4%BE%8B-1-%3A-%E6%AA%94%E6%A1%88%E5%88%86%E4%BA%AB%E4%BC%BA%E6%9C%8D%E5%99%A8-(ftp)&quot;&gt;#&lt;/a&gt; 案例 1 : 檔案分享伺服器 (FTP)&lt;/h3&gt;
+&lt;h4 id=&quot;%E9%A7%AD%E5%AE%A2-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A7%AD%E5%AE%A2-%3A&quot;&gt;#&lt;/a&gt; 駭客 :&lt;/h4&gt;
+&lt;p&gt;硬碟空間不夠了，拿別人的來頂一下，順便丟個後門上去。&lt;/p&gt;
+&lt;h4 id=&quot;%E8%AA%AA%E6%98%8E-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%AA%AA%E6%98%8E-%3A&quot;&gt;#&lt;/a&gt; 說明 :&lt;/h4&gt;
+&lt;p&gt;ASUS 型號為 RT-AC66U 的路由器有支援 FTP Server 的功能，問題出在於該 設備開放匿名登入，而且匿名使用者竟然有上傳與下載的權限，所以只要找到後誰都可以使用，駭客還可以藉此打進內網，攻擊有連到該台路由器上的設備。&lt;/p&gt;
+&lt;h4 id=&quot;%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A&quot;&gt;#&lt;/a&gt; 搜尋條件 :&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Port : 21&lt;/li&gt;
+&lt;li&gt;回應內容包含 : RT-AC66R&lt;/li&gt;
+&lt;li&gt;回應內容排除 : 530 (排除禁用匿名登入的設備)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;shodan-%3A-11-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#shodan-%3A-11-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;#&lt;/a&gt; Shodan : 11 筆結果&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__2CX2MOE5o2IXsXP9D__R__aA.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;fofa-%3A-33-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#fofa-%3A-33-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;#&lt;/a&gt; Fofa : 33 筆結果&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__KOu4aEsUhDrMC43U6C4Zww.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;%E9%A9%97%E8%AD%89-%3A-%E9%80%A3%E6%8E%A5%E5%88%B0-shodan-%E6%90%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E4%B8%AD%E7%9A%84-ftp-server&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A9%97%E8%AD%89-%3A-%E9%80%A3%E6%8E%A5%E5%88%B0-shodan-%E6%90%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E4%B8%AD%E7%9A%84-ftp-server&quot;&gt;#&lt;/a&gt; 驗證 : 連接到 Shodan 搜索結果中的 FTP Server&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__fn__pwtV47j3h44FFR__v47Q.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E6%A1%88%E4%BE%8B-2-%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6-(telnet)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%A1%88%E4%BE%8B-2-%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6-(telnet)&quot;&gt;#&lt;/a&gt; 案例 2 : 遠端控制 (Telnet)&lt;/h3&gt;
+&lt;h4 id=&quot;%E9%A7%AD%E5%AE%A2-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A7%AD%E5%AE%A2-%3A-2&quot;&gt;#&lt;/a&gt; 駭客 :&lt;/h4&gt;
+&lt;p&gt;用自己的電腦幹大事怕被發現，那用別人的不就好了。&lt;/p&gt;
+&lt;h4 id=&quot;%E8%AA%AA%E6%98%8E-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%AA%AA%E6%98%8E-%3A-2&quot;&gt;#&lt;/a&gt; 說明 :&lt;/h4&gt;
+&lt;p&gt;有台型號 p750(沒查出是誰家的)的設備開啟了 Telnet Server，登入不需要帳密而且一進去就有 Root 權限，對駭客來說根本是送分題。&lt;/p&gt;
+&lt;h4 id=&quot;%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A-2&quot;&gt;#&lt;/a&gt; 搜尋條件 :&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Port : 23&lt;/li&gt;
+&lt;li&gt;回應內容包含 : p750&lt;/li&gt;
+&lt;li&gt;回應內容包含 : root@&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;shodan-%3A-11-%E7%AD%86%E7%B5%90%E6%9E%9C-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#shodan-%3A-11-%E7%AD%86%E7%B5%90%E6%9E%9C-2&quot;&gt;#&lt;/a&gt; Shodan : 11 筆結果&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__SO9q00Z9x5c1FI__IgBS7ng.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;fofa-%3A-89-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#fofa-%3A-89-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;#&lt;/a&gt; Fofa : 89 筆結果&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__NGGLiD__gKlvmcKbLktDl4w.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;%E9%A9%97%E8%AD%89-%3A-%E9%80%A3%E6%8E%A5%E5%88%B0-fofa-%E6%90%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E4%B8%AD%E7%9A%84-telnet-server&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A9%97%E8%AD%89-%3A-%E9%80%A3%E6%8E%A5%E5%88%B0-fofa-%E6%90%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E4%B8%AD%E7%9A%84-telnet-server&quot;&gt;#&lt;/a&gt; 驗證 : 連接到 Fofa 搜索結果中的 Telnet Server&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__myf23vGvuE0YRKFXRs3EFA.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E6%A1%88%E4%BE%8B-3-%3A-%E7%B6%B2%E8%B7%AF%E6%94%9D%E5%BD%B1%E6%A9%9F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%A1%88%E4%BE%8B-3-%3A-%E7%B6%B2%E8%B7%AF%E6%94%9D%E5%BD%B1%E6%A9%9F&quot;&gt;#&lt;/a&gt; 案例 3 : 網路攝影機&lt;/h3&gt;
+&lt;h4 id=&quot;%E9%A7%AD%E5%AE%A2-%3A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A7%AD%E5%AE%A2-%3A-3&quot;&gt;#&lt;/a&gt; 駭客 :&lt;/h4&gt;
+&lt;p&gt;我無聊想看看別人在幹嘛。&lt;/p&gt;
+&lt;h4 id=&quot;%E8%AA%AA%E6%98%8E-%3A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%AA%AA%E6%98%8E-%3A-3&quot;&gt;#&lt;/a&gt; 說明 :&lt;/h4&gt;
+&lt;p&gt;webcamXP 是整合了 HTTP 網頁伺服器功能的 WebCam 網路攝影機伺服器軟體，藉由它，您可以將網路攝影機所拍攝的內容即時分享給網路上的任何人，包含駭客，另外這類型的搜尋加上地區條件時會有奇效。&lt;/p&gt;
+&lt;h4 id=&quot;%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A-3&quot;&gt;#&lt;/a&gt; 搜尋條件 :&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Server : webcamXP 5&lt;/li&gt;
+&lt;li&gt;回應內容不包含 : 360 (排除 honeypot(註1) 中的回應內容)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;shodan-%3A-239-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#shodan-%3A-239-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;#&lt;/a&gt; Shodan : 239 筆結果&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__lLn3bhqi4v4wl20CHRHw__g.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;fofa-%3A-1718-%E7%AD%86%E7%B5%90%E6%9E%9C-(950%E5%80%8B%E8%A8%AD%E5%82%99)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#fofa-%3A-1718-%E7%AD%86%E7%B5%90%E6%9E%9C-(950%E5%80%8B%E8%A8%AD%E5%82%99)&quot;&gt;#&lt;/a&gt; Fofa : 1718 筆結果 (950個設備)&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__HwqfAOCXyAhnA83xUkUSeQ.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;%E9%A9%97%E8%AD%89-%3A-%E5%BE%9E-fofa-%E7%9A%84%E7%B5%90%E6%9E%9C%E4%B8%AD%E6%89%BE%E4%B8%80%E5%80%8B%E5%8F%B0%E7%81%A3%E7%9A%84%E7%B6%B2%E8%B7%AF%E6%94%9D%E5%BD%B1%E6%A9%9F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A9%97%E8%AD%89-%3A-%E5%BE%9E-fofa-%E7%9A%84%E7%B5%90%E6%9E%9C%E4%B8%AD%E6%89%BE%E4%B8%80%E5%80%8B%E5%8F%B0%E7%81%A3%E7%9A%84%E7%B6%B2%E8%B7%AF%E6%94%9D%E5%BD%B1%E6%A9%9F&quot;&gt;#&lt;/a&gt; 驗證 : 從 Fofa 的結果中找一個台灣的網路攝影機&lt;/h4&gt;
+&lt;p&gt;(在防疫時期後面的朋友到碧潭玩還不戴口罩，I got you !)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__8ESIlmgyrF5ijsMHOO76kA.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E6%A1%88%E4%BE%8B-4-%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6-(windows-rdp)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%A1%88%E4%BE%8B-4-%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6-(windows-rdp)&quot;&gt;#&lt;/a&gt; 案例 4 : 遠端控制 (Windows RDP)&lt;/h3&gt;
+&lt;h4 id=&quot;%E9%A7%AD%E5%AE%A2-%3A-4&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A7%AD%E5%AE%A2-%3A-4&quot;&gt;#&lt;/a&gt; 駭客 :&lt;/h4&gt;
+&lt;p&gt;我想找人幫我挖礦，而且電腦有顯卡才挖的快。&lt;/p&gt;
+&lt;h4 id=&quot;%E8%AA%AA%E6%98%8E-%3A-4&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%AA%AA%E6%98%8E-%3A-4&quot;&gt;#&lt;/a&gt; 說明 :&lt;/h4&gt;
+&lt;p&gt;這項測試用到了 Shodan 獨有的功能 Screenshot，故案例中只包含 Shodan 的結果。RDP(Remote Desktop Protocol) 是 Windows 內建的遠端控制功能，特點之一是會把登入過的使用者帳號顯示出來，這大幅降低了駭客暴力破解難度，配合這個特點增加規則也更好找出容易破解的目標，下圖為典型案例，而且有畫面的話有顯示卡的機會也比較高。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__sfSazc0IKRr__N7za6sQy5g.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A-4&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A-4&quot;&gt;#&lt;/a&gt; 搜尋條件 :&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Port: 3389&lt;/li&gt;
+&lt;li&gt;has_screenshot : true&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;shodan-%3A-1039052-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#shodan-%3A-1039052-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;#&lt;/a&gt; Shodan : 1039052 筆結果&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__NfjZ8g1tEIzc__CCnxBYytg.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E6%A1%88%E4%BE%8B-5%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6-(windows-rdp)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%A1%88%E4%BE%8B-5%3A-%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6-(windows-rdp)&quot;&gt;#&lt;/a&gt; 案例 5: 遠端控制 (Windows RDP)&lt;/h3&gt;
+&lt;h4 id=&quot;%E9%A7%AD%E5%AE%A2-%3A-5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A7%AD%E5%AE%A2-%3A-5&quot;&gt;#&lt;/a&gt; 駭客 :&lt;/h4&gt;
+&lt;p&gt;我想找人幫我挖礦，而且我只要最新的電腦。&lt;/p&gt;
+&lt;h4 id=&quot;%E8%AA%AA%E6%98%8E-%3A-5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%AA%AA%E6%98%8E-%3A-5&quot;&gt;#&lt;/a&gt; 說明 :&lt;/h4&gt;
+&lt;p&gt;這項測試用到 Fofa 獨有的功能 After 跟邏輯判斷式，故案例中只包含 Fofa 的結果。這結果除了拿來攻擊之外也可以用於分析，從結果可以知道今年多了多少台開啟遠端功能的 Windows。&lt;/p&gt;
+&lt;h4 id=&quot;%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A-5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%90%9C%E5%B0%8B%E6%A2%9D%E4%BB%B6-%3A-5&quot;&gt;#&lt;/a&gt; 搜尋條件 :&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Port : 3389&lt;/li&gt;
+&lt;li&gt;After : 2021–01–01&lt;/li&gt;
+&lt;li&gt;回應內容包含 : Windows 10 或 Windows Server 2012&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;fofa-%3A-4438635-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#fofa-%3A-4438635-%E7%AD%86%E7%B5%90%E6%9E%9C&quot;&gt;#&lt;/a&gt; Fofa : 4438635 筆結果&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1__hIcAaYG7rpWfkLzwdI9Xfg.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;雖然案例中只介紹到一小部份的搜尋規則，但可以從這些案例知道搜尋引擎的影響力，這邊整理幾個防範方法與要注意的地方。&lt;/p&gt;
+&lt;h4 id=&quot;%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%BE%9E-shodan-%E6%88%96-fofa-%E8%A2%AB%E6%89%BE%E5%88%B0-%3F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%BE%9E-shodan-%E6%88%96-fofa-%E8%A2%AB%E6%89%BE%E5%88%B0-%3F&quot;&gt;#&lt;/a&gt; 如何避免從 Shodan 或 Fofa 被找到 ?&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;家用網路請避免使用固定 IP，固定IP等於是有個固定門牌，駭客想要攻擊也比較容易找到你，尤其是用搜尋引擎。&lt;/li&gt;
+&lt;li&gt;有遠端服務需求的朋友避免使用帳密登入，盡量選擇憑證或公私鑰。&lt;/li&gt;
+&lt;li&gt;網站建議架在雲端主機，像是 AWS 或 GCP 等，躲在大公司的保護傘下。&lt;/li&gt;
+&lt;li&gt;Shodan 和 Fofa 的更新都不是即時的，所以不管是新服務上線或是防護措施更新一週後都要再次到搜尋引擎上確認是否會被找到。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;shodan-%E6%88%96-fofa-%E4%BD%BF%E7%94%A8%E4%B8%8A%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9C%B0%E6%96%B9-%3F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#shodan-%E6%88%96-fofa-%E4%BD%BF%E7%94%A8%E4%B8%8A%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9C%B0%E6%96%B9-%3F&quot;&gt;#&lt;/a&gt; Shodan 或 Fofa 使用上要注意的地方 ?&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;不管在 Shodan 或 Fofa 免費用戶每天的搜尋量上限都不高，測試過程中很容易超標導致無法繼續使用，所以平常使用時多加一些過濾條件，不只能提升準確度還可以避免太快到達上限，萬一還是超出額度話就只好建立一個新帳號才能繼續使用。&lt;/li&gt;
+&lt;li&gt;Shodan 的搜尋方式網路上有很多範例可以參考，官方也有整理一些最常被使用的搜尋方式在 Explore 頁面(&lt;a href=&quot;https://www.shodan.io/explore&quot;&gt;https://www.shodan.io/explore&lt;/a&gt;)，不知道從何下手時不妨先看看別人怎麼找。&lt;/li&gt;
+&lt;li&gt;Fofa 有跟 Google 類似的搜尋預測功能，可輸入較短的關鍵字後看看有沒有推薦的查詢方式，目標還不精確時非常實用。&lt;/li&gt;
+&lt;li&gt;Fofa 的搜索結果中包含網站所以有些不同的結果是來自同一個 IP，建議計算數量時以獨立 IP 為準(Shodan 也是以 IP 數量來計算結果數)，通常 Fofa 找到的 IP 數量比 Shodan 多，Shodan 找不到問題時可以試試 Fofa。&lt;/li&gt;
+&lt;li&gt;在搜尋結果常常會出現一個不太明顯的提醒，告訴你這個目標可能是honeypots，這時候注意不要連過去，很可能受到反擊或資訊竊取，最好從回應內容中找出與一般設備的差別，新增規則來過濾掉這些無用資訊。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/shodan-fofa/1____8dp4s__lb__bhrc__TYXey6A.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果對這類型技術有興趣的話記得幫忙拍手與分享，數量夠多，之後會再加開一篇分享更進階的用法與付費用戶才有的強大功能，有任何資安方面相關的問題都歡迎留言討論，或者直接到 Cymetrics 尋求協助。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B&quot;&gt;#&lt;/a&gt; 名詞解釋&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;註 1 : 蜜罐 (honeypots)通常偽裝成看似有利用價值的&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%B6%B2%E8%B7%AF&quot; title=&quot;網路&quot;&gt;網路&lt;/a&gt;、資料、&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E9%9B%BB%E8%85%A6&quot; title=&quot;電腦&quot;&gt;電腦&lt;/a&gt;系統，並故意設定了 弱點，用來吸引&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E9%A7%AD%E5%AE%A2&quot; title=&quot;駭客&quot;&gt;駭客&lt;/a&gt;攻擊。由於蜜罐事實上並未對網路提供任何有價值的服務，所以任何對蜜罐的嘗試都是可疑的。蜜罐中還可能裝有監控軟體，用以監視駭客入侵後的舉動。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 參考資料&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.shodan.io/&quot;&gt;https://www.shodan.io/&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://fofa.so/&quot;&gt;https://fofa.so/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 		</content>
 	</entry>
@@ -1141,6 +1667,133 @@ context switch 本身也是會佔用 core 運算資源的。當 thread 數量過
 &lt;li&gt;忘記密碼只能重設，不能找回，是因為網站也不知道你的密碼&lt;/li&gt;
 &lt;li&gt;如果有網站可以把舊密碼給你，那你得要小心一點&lt;/li&gt;
 &lt;/ol&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>資安科普番外篇（一）-大意了啊沒有閃！常見網站曝險你中了幾項？！</title>
+		<link href="https://tech-blog.cymetrics.io/posts/jo/zerobased-common-risk-exposure/"/>
+		<updated>2021-07-09T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/jo/zerobased-common-risk-exposure/</id>
+		<content type="html">
+		  &lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;曝險就是暴露的風險，而曝險評估就是&lt;strong&gt;模擬駭客在網路上搜尋網站的資訊進行攻擊鏈的構建進行暴露的風險評估&lt;/strong&gt;，而在協助許多商業網站（ e.g. 擁有會員登入、金流功能）執行非侵入式的網路曝險檢測時，發現許多商業網站的檢測結果在去除極端值後，有 60% 以上的網站曝險是共通的，來關注一下這些常見的網路曝險你的網站是否也大意了沒有閃。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E6%91%98%E8%A6%81&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%91%98%E8%A6%81&quot;&gt;#&lt;/a&gt; 摘要&lt;/h2&gt;
+&lt;p&gt;以去除極端值之後的檢測結果統計，排列出目前發生比例大於 50 % 的網路曝險，並說明&lt;strong&gt;可能造成的風險&lt;/strong&gt;以及如何簡單的進行&lt;strong&gt;初步自我曝險檢測&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;之後會在番外篇（二 ）中提供這幾項&lt;strong&gt;風險的改善複雜度&lt;/strong&gt;說明以及解決辦法和關鍵字，另外也會說明這些曝險與目前現行一些較為&lt;strong&gt;知名法規的關聯&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%B8%B8%E8%A6%8B%E7%B6%B2%E7%AB%99%E6%9B%9D%E9%9A%AA%E6%8E%92%E5%90%8D&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B8%B8%E8%A6%8B%E7%B6%B2%E7%AB%99%E6%9B%9D%E9%9A%AA%E6%8E%92%E5%90%8D&quot;&gt;#&lt;/a&gt; 常見網站曝險排名&lt;/h2&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%95-x-frame-options-%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%95-x-frame-options-%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; №５ X-Frame-Options 未設置或安全等級不足&lt;/h2&gt;
+&lt;p&gt;排行第五的 X-Frame-Options 設置，在這個項目裡有大於 50％ 的網站設置的安全等級不足或是沒有進行設置，X-Frame-Options 用途為&lt;strong&gt;針對 Iframe 點擊劫持攻擊&lt;/strong&gt;的手法進行防禦，避免網頁被內嵌。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;點擊劫持攻擊&lt;/strong&gt;是一種攻擊者在網站上通過 iframe 隱藏目標網頁，欺騙用戶點擊隱藏惡意連結，舉例來說，覆蓋在影片播放鍵上的隱藏超連結，當使用者點擊後，便會下載惡意程式或是彈出惡意網頁讓使用者瀏覽，讓使用者的機敏資訊外洩而導致資安事件的發生，這樣的攻擊很有可能會使網站業者的商譽受到損害。&lt;/p&gt;
+&lt;p&gt;而發生此項曝險表示當攻擊者獲取這項資訊時，很有可能會嘗試對網站進行 Iframe 點擊劫持的攻擊手法。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%96%B0%E8%81%9E%E5%8F%83%E8%80%83%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%96%B0%E8%81%9E%E5%8F%83%E8%80%83%EF%BC%9A&quot;&gt;#&lt;/a&gt; 新聞參考：&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://nakedsecurity.sophos.com/2019/08/29/web-clickjacking-fraud-makes-a-comeback-thanks-to-javascript-tricks/&quot;&gt;&lt;strong&gt;Web clickjacking fraud makes a comeback thanks to JavaScript tricks&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F&quot;&gt;#&lt;/a&gt; 初步自我檢視方式&lt;/h3&gt;
+&lt;p&gt;按下 F12 後，點選 Network 在左方開啟想要檢視的檔案，接著選擇 Header 便可以查看是否有設置 &lt;a href=&quot;https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Headers/X-Frame-Options#%E4%BD%BF%E7%94%A8_x-frame-options&quot;&gt;X-Frame-Options&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-common-risk-exposure/p1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;X-Frame-Options有三種值：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;DENY&lt;/code&gt;表示網頁無論如何都無法被嵌入到 frame 中，即使於相同網域內嵌入也不允許。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SAMEORIGIN&lt;/code&gt;唯有當符合&lt;a href=&quot;https://developer.mozilla.org/zh-TW/docs/Web/Security/Same-origin_policy&quot;&gt;同源政策&lt;/a&gt;下，才能被嵌入到 frame 中。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ALLOW-FROM _uri_&lt;/code&gt;［已廢止］唯有列表許可的 URI 才能嵌入到 frame 中，不過新版瀏覽器已不再支援此指令。&lt;/p&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%94cookie-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%94cookie-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; №４Cookie 基本設定未設置或安全等級不足&lt;/h2&gt;
+&lt;p&gt;排名第四的 Cookie 基本設定未設置或安全等級不足，在這個項目裡有大於 60％ 的網站設置安全等級不足或是沒有進行設置，而 Cookie 的三項基本設定為，能夠&lt;strong&gt;阻止（ XSS ）跨站腳本攻擊影響擴大&lt;/strong&gt;的 HttpOnly 、&lt;strong&gt;強化 Https 機制&lt;/strong&gt;的 Secure 以及&lt;strong&gt;預防（ CSRF ）跨站請求偽冒&lt;/strong&gt;的 SameSite 。&lt;/p&gt;
+&lt;p&gt;由於三項安全設定也同樣都是網站公開資訊，在相關資訊容易被取得的情況下使三項基本設定很容易成為攻擊者篩選攻擊標的第一層過濾，也就是當攻擊者發現這三項設定設置不全甚至未設置的網站業者，攻擊者會特別關注，將網站納入攻擊的標的清單。&lt;/p&gt;
+&lt;h3 id=&quot;xss-%E8%B7%A8%E7%AB%99%E8%85%B3%E6%9C%AC%E6%94%BB%E6%93%8A%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#xss-%E8%B7%A8%E7%AB%99%E8%85%B3%E6%9C%AC%E6%94%BB%E6%93%8A%EF%BC%9A&quot;&gt;#&lt;/a&gt; XSS 跨站腳本攻擊：&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-scripting&quot;&gt;&lt;strong&gt;零基礎資安系列（二）-認識 XSS（Cross-Site Scripting）&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;csrf-%E8%B7%A8%E7%AB%99%E8%AB%8B%E6%B1%82%E5%81%BD%E5%86%92%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#csrf-%E8%B7%A8%E7%AB%99%E8%AB%8B%E6%B1%82%E5%81%BD%E5%86%92%EF%BC%9A&quot;&gt;#&lt;/a&gt; CSRF 跨站請求偽冒：&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-request-forgery&quot;&gt;&lt;strong&gt;零基礎資安系列（一）-認識 CSRF（Cross Site Request Forgery）&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E6%96%B0%E8%81%9E%E5%8F%83%E8%80%83%EF%BC%9A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%96%B0%E8%81%9E%E5%8F%83%E8%80%83%EF%BC%9A-2&quot;&gt;#&lt;/a&gt; 新聞參考：&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.ithome.com.tw/news/111254&quot;&gt;&lt;strong&gt;麥當勞官網遭爆有XSS漏洞，可解密竊取用戶密碼&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F-2&quot;&gt;#&lt;/a&gt; 初步自我檢視方式&lt;/h3&gt;
+&lt;p&gt;因為這堪稱網站安全三本柱的三個基本設定，為了三項基本設定寫了一篇文章，提供自我檢視風險的方式以及更深入的說明，有興趣了解更多關於 Cookie 三項基本設定資訊的朋友可以參考下方文章&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-secure-samesite-httponly&quot;&gt;&lt;strong&gt;零基礎資安系列（三）-網站安全三本柱（Secure &amp;amp; SameSite &amp;amp; HttpOnly）&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%93-%E9%83%B5%E4%BB%B6%E7%B3%BB%E7%B5%B1-dmarc-%E8%A8%AD%E5%AE%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%93-%E9%83%B5%E4%BB%B6%E7%B3%BB%E7%B5%B1-dmarc-%E8%A8%AD%E5%AE%9A&quot;&gt;#&lt;/a&gt; №３ 郵件系統 DMARC 設定&lt;/h2&gt;
+&lt;p&gt;排名第三的郵件系統 DMARC 設定，在這個項目裡有大於 70％ 的網站DMARC 設置不全或無設置，&lt;strong&gt;DMARC 會向收件伺服器指示該如何處理特定郵件&lt;/strong&gt;，讓伺服器在收到疑似來自自身機構卻未通過驗證檢查的郵件，或是不符合 DMARC 政策記錄中驗證規定的郵件時，採取合適的處置方式。&lt;/p&gt;
+&lt;p&gt;例如無法通過驗證的郵件有兩種，一種是&lt;strong&gt;冒用自身機構名義的郵件&lt;/strong&gt;，另一種則是&lt;strong&gt;從未經驗證的伺服器寄出的郵件&lt;/strong&gt;， DMARC 便會拒絕惡意電子郵件訊息（拒收）或隔離惡意電子郵件訊息（垃圾信件），&lt;strong&gt;強化收件者對未授權郵件的識別&lt;/strong&gt;，藉此&lt;strong&gt;讓社交工程發生的可能性減低&lt;/strong&gt;，是&lt;strong&gt;除了進行社交工程演練以及強化員工資安意識以外很好的防護手段&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DMARC 的設定在近期受重視程度逐漸提高&lt;/strong&gt;，如世界知名顧問公司 Gartner 就在他們的 &lt;a href=&quot;https://www.gartner.com/smarterwithgartner/gartner-top-security-projects-for-2020-2021/&quot;&gt;list of critical security projects&lt;/a&gt; 中，建議將 DMARC 納入安全評估，而綜合了報告以及測試結果，其實也意味著目前大多數的業者仍是依靠&lt;strong&gt;社交工程演練&lt;/strong&gt;以及&lt;strong&gt;資安訓練&lt;/strong&gt;來作為防範社交工程的手法，但因爲現在的攻擊手法，許多駭客在攻擊前都會利用**「勒索軟體即服務」 （Ransomware-as-a-Service，RaaS）**的方式，降低攻擊技術門檻及成本提高攻擊頻次，而在疫情影響大家逐漸習慣在家工作的情況下，社交工程變得更加防不勝防，靠傳統的方式並不能確保自身不受社交工程的影響。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%96%B0%E8%81%9E%E5%8F%83%E8%80%83%EF%BC%9A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%96%B0%E8%81%9E%E5%8F%83%E8%80%83%EF%BC%9A-3&quot;&gt;#&lt;/a&gt; 新聞參考：&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.ithome.com.tw/news/145223&quot;&gt;&lt;strong&gt;報導：巴西最大醫療診斷業者Grupo Fleury也遭勒索軟體REvil攻陷&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F-3&quot;&gt;#&lt;/a&gt; 初步自我檢視方式&lt;/h3&gt;
+&lt;p&gt;在檢視 DMARC 的設定時，其實最大的問題在於沒有設定 DMARC ，而通常檢視自身 DMARC 的設定需要前往網域供應商網站查看 DMARC 的 TXT 記錄：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;登入網域供應商提供的管理控制台。&lt;/li&gt;
+&lt;li&gt;找出用於更新網域 DNS TXT 記錄的網頁或資訊主頁。&lt;/li&gt;
+&lt;li&gt;查看網域的 DNS TXT 記錄。如果網域已經有 DMARC 記錄，就會看到一筆以 v=DMARC 開頭的 TXT 記錄項目。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;%E5%A6%82%E4%BD%95%E6%AA%A2%E6%9F%A5%E7%8F%BE%E6%9C%89%E7%9A%84-dmarc-%E8%A8%98%E9%8C%84%E5%8F%83%E8%80%83%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%A6%82%E4%BD%95%E6%AA%A2%E6%9F%A5%E7%8F%BE%E6%9C%89%E7%9A%84-dmarc-%E8%A8%98%E9%8C%84%E5%8F%83%E8%80%83%EF%BC%9A&quot;&gt;#&lt;/a&gt; 如何檢查現有的 DMARC 記錄參考：&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://support.google.com/a/answer/10032674?hl=zh-Hant&amp;amp;ref_topic=2759254&quot;&gt;&lt;strong&gt;設定 DMARC 前的注意事項&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%92csp-%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%92csp-%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; №２CSP 未設置或安全等級不足&lt;/h2&gt;
+&lt;p&gt;排名第二的CSP 未設置或安全等級不足，在這個項目裡有將近 90% 的網站CSP 未設置或安全等級不足，**網頁內容安全政策 （ Content Security Policy, CSP）**主要是為了防範 &lt;strong&gt;XSS（跨站腳本攻擊）&lt;/strong&gt;，以告知瀏覽器發出的 Request 位置是否受到信任來阻擋非預期的對外連線，加強網站安全性，在 http header 定義限制載入的跨站 script 像是 &lt;code&gt;img-src、script-src&lt;/code&gt;…等這些可以載入外部資源的標籤。&lt;/p&gt;
+&lt;p&gt;根據檢測的結果顯示，其實幾乎檢測出有錯誤設置的網站裡都有 &lt;code&gt;unsafe-inline&lt;/code&gt; 以及 &lt;code&gt;unsafe-eval&lt;/code&gt; 的身影，但其實 CSP 是&lt;strong&gt;預設禁止使用 inline script 或 inline CSS 以及 eval 函式&lt;/strong&gt;的。&lt;/p&gt;
+&lt;p&gt;以禁止使用 inline script 或 inline CSS 來說，&lt;strong&gt;為了開發時程或是更好的引用第三方套件&lt;/strong&gt;，經常會在 HTML 中寫入 inline 的程式碼，但這種手法也是攻擊者會使用的，然而在瀏覽器並不能確認的情況下，為求安全， CSP 希望以預設禁止的方式讓開發人員將 inline 的程式碼移到外部來避免 HTML 中出現 inline 程式的可能，而禁止 eval 函式是因為雖然 eval （）在開發上有一定的方便性，但也因此容易衍生出 XSS 的風險，所以 &lt;strong&gt;eval 函式與 inline 的程式碼相同，都是被 CSP 預設禁止&lt;/strong&gt;的。&lt;/p&gt;
+&lt;p&gt;其實看到這邊應該可以發現，在 CSP 發生錯誤設置的情況基本上會是因為在開發的過程中為了開發上的便利或為了更好的引用第三方套件而導致，不過從實務的角度上來說，這樣的選擇無可厚非，只是該如何在資安以及開發的速度及便利性上取得平衡，無論是在其他針對 XSS 方面補強或更改設置其實都行，因此，在下一篇裡我也會針對這個問題提出一些解決辦法，希望讓大家能夠依據自身的情況去做一些調整。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F-4&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F-4&quot;&gt;#&lt;/a&gt; 初步自我檢視方式&lt;/h3&gt;
+&lt;p&gt;按下 F12 後，點選 Network 在左方開啟想要檢視的檔案，接著選擇 Header 便可以查看是否有設置 CSP 以及 CSP 是否有 unsafe-inline 以及 unsafe-eval 的身影。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-common-risk-exposure/p2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%91%E7%B6%B2%E7%AB%99%E6%86%91%E8%AD%89%E5%AE%8C%E6%95%B4%E6%80%A7%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%91%E7%B6%B2%E7%AB%99%E6%86%91%E8%AD%89%E5%AE%8C%E6%95%B4%E6%80%A7%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; №１網站憑證完整性不足&lt;/h2&gt;
+&lt;p&gt;排名第一的網站憑證完整性不足，在這個項目裡有 90% 的完整性不足例如&lt;strong&gt;憑證撤銷機制未設定完整&lt;/strong&gt;或&lt;strong&gt;憑證授權機關資源紀錄檢查&lt;/strong&gt;，在沒有這些設定的情況下業者很難防堵任意數位憑證認證機構擅自簽署網域憑證，而憑證完整性不足的業者中還包含了&lt;strong&gt;使用不安全的加密&lt;/strong&gt;及&lt;strong&gt;過期憑證&lt;/strong&gt;與&lt;strong&gt;過舊的 SSL/TLS 協議&lt;/strong&gt;，以上問題增加了業者在憑證層面可能發生資安事件的風險機率。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%86%91%E8%AD%89%E6%92%A4%E9%8A%B7%E6%A9%9F%E5%88%B6%E6%9C%AA%E8%A8%AD%E5%AE%9A%E5%AE%8C%E6%95%B4%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%86%91%E8%AD%89%E6%92%A4%E9%8A%B7%E6%A9%9F%E5%88%B6%E6%9C%AA%E8%A8%AD%E5%AE%9A%E5%AE%8C%E6%95%B4%EF%BC%9A&quot;&gt;#&lt;/a&gt; &lt;strong&gt;憑證撤銷機制未設定完整：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;可能是未提供 CRL 或 OCSP。 CRL 或 OCSP 為兩種檢查憑證是否被撤銷的方式，用於客戶端驗證伺服器是否可以信任。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%86%91%E8%AD%89%E6%8E%88%E6%AC%8A%E6%A9%9F%E9%97%9C%E8%B3%87%E6%BA%90%E7%B4%80%E9%8C%84%E6%AA%A2%E6%9F%A5%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%86%91%E8%AD%89%E6%8E%88%E6%AC%8A%E6%A9%9F%E9%97%9C%E8%B3%87%E6%BA%90%E7%B4%80%E9%8C%84%E6%AA%A2%E6%9F%A5%EF%BC%9A&quot;&gt;#&lt;/a&gt; &lt;strong&gt;憑證授權機關資源紀錄檢查：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;授權某 CA 為某機構發行憑證的 DNS 紀錄，能確保只有授權的 CA 能為業者的網域發行憑證，防止任意 CA 擅自簽署網域的憑證。&lt;/p&gt;
+&lt;h3 id=&quot;%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E5%8A%A0%E5%AF%86%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E5%8A%A0%E5%AF%86%EF%BC%9A&quot;&gt;#&lt;/a&gt; &lt;strong&gt;使用不安全的加密：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;可能是低強度加密套件使用已知且公開的演算法進行資料混淆或是過舊已被破解的加密法。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%86%91%E8%AD%89%E9%81%8E%E6%9C%9F%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%86%91%E8%AD%89%E9%81%8E%E6%9C%9F%EF%BC%9A&quot;&gt;#&lt;/a&gt; &lt;strong&gt;憑證過期：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;憑證不合法、已過期、或是被撤銷而失效。&lt;/p&gt;
+&lt;h3 id=&quot;%E9%81%8E%E8%88%8A%E7%9A%84-ssl%2Ftls-%E5%8D%94%E8%AD%B0%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%81%8E%E8%88%8A%E7%9A%84-ssl%2Ftls-%E5%8D%94%E8%AD%B0%EF%BC%9A&quot;&gt;#&lt;/a&gt; &lt;strong&gt;過舊的 SSL/TLS 協議：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;SSL（ Secure Sockets Layer）安全通訊端層，可以用於保持網際網路連線安全防止系統之間的敏感資料被駭客讀取甚至修改任何傳輸資訊。&lt;br&gt;
+ TLS（ Transport Layer Security）傳輸層安全性，取代 SSL 的加密協定，比 起 SSL 能提供更高更安全的連線。&lt;/p&gt;
+&lt;p&gt;而使用過舊或已廢棄的協議可能導致駭客利用已知漏洞竊取傳輸中的機敏資料。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F-5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%88%9D%E6%AD%A5%E8%87%AA%E6%88%91%E6%AA%A2%E8%A6%96%E6%96%B9%E5%BC%8F-5&quot;&gt;#&lt;/a&gt; 初步自我檢視方式&lt;/h3&gt;
+&lt;p&gt;以 Chrome 為例，點擊網址左方小鎖頭可以看到目前是否為安全連線以及憑證是否有效，點選憑證後可以看見憑證詳細資訊，在 github 上也有提供許多憑證測試工具，可以根據需求選擇工具或是針對工具進行調整。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-common-risk-exposure/p3.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-common-risk-exposure/p4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E5%B0%8F%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B0%8F%E7%B5%90&quot;&gt;#&lt;/a&gt; 小結&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;常見曝險的發生原因大致有兩種&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;為了方便業者使用所以有些網頁應用或伺服器端的預設值會以可用性為優先進行考量，也因此當許多的業者直接採用預設值而未進行配置檢視時，很有可能因此產生風險。&lt;/li&gt;
+&lt;li&gt;有時業者爲了更好的在網站中使用第三方套件或者是開發時程吃緊的緣故而採用了不安全的配置使風險產生。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;綜合上述兩點，其實在沒有進行過評估或是執行風險管理的情況下，很容易衍生曝險使網站成為攻擊目標，上述是目前發生比例大於 50 % 的網路曝險說明及非常初步的自我檢測方式，如果希望能更精確的針對自身網站的風險進行評估及管理的話，建議可以以文中的關鍵字去搜尋相關工具進行檢測。&lt;/p&gt;
+&lt;p&gt;但若希望省時且擔心&lt;strong&gt;檢測出問題不知道該如何修復&lt;/strong&gt;或是&lt;strong&gt;修復問題的 CP 值該如何衡量&lt;/strong&gt;的話，可以尋找相關的資安服務進行曝險評估。&lt;/p&gt;
+&lt;p&gt;以自身為例，Cymetrics 便有提供網站資安曝險評估的服務，包含&lt;strong&gt;實時風險情資調整評級權重&lt;/strong&gt;以及&lt;strong&gt;關鍵字形式的全中文風險建議&lt;/strong&gt;及&lt;strong&gt;複雜度改善評級象限&lt;/strong&gt;的資安服務，如果有相關的資安需求也歡迎將 Cymetrics 的產品列入比較。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80%EF%BC%9A&quot;&gt;#&lt;/a&gt; 延伸閱讀：&lt;/h2&gt;
+&lt;h3 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89-%E8%AA%8D%E8%AD%98-csrf%EF%BC%88cross-site-request-forgery-%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89-%E8%AA%8D%E8%AD%98-csrf%EF%BC%88cross-site-request-forgery-%EF%BC%89&quot;&gt;#&lt;/a&gt; 零基礎資安系列（一）-認識 CSRF（Cross Site Request Forgery ）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-request-forgery&quot;&gt;認識 CSRF（Cross Site Request Forgery）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%AA%8D%E8%AD%98-xss%EF%BC%88cross-site-scripting%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%AA%8D%E8%AD%98-xss%EF%BC%88cross-site-scripting%EF%BC%89&quot;&gt;#&lt;/a&gt; 零基礎資安系列（二）-認識 XSS（Cross-Site Scripting）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-cross-site-scripting&quot;&gt;認識 XSS（Cross-Site Scripting）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89-%E7%B6%B2%E7%AB%99%E5%AE%89%E5%85%A8%E4%B8%89%E6%9C%AC%E6%9F%B1%EF%BC%88secure-%26-samesite-%26-httponly%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9B%B6%E5%9F%BA%E7%A4%8E%E8%B3%87%E5%AE%89%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89-%E7%B6%B2%E7%AB%99%E5%AE%89%E5%85%A8%E4%B8%89%E6%9C%AC%E6%9F%B1%EF%BC%88secure-%26-samesite-%26-httponly%EF%BC%89&quot;&gt;#&lt;/a&gt; 零基礎資安系列（三）-網站安全三本柱（Secure &amp;amp; SameSite &amp;amp; HttpOnly）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-secure-samesite-httponly/&quot;&gt;網站安全三本柱（Secure &amp;amp; SameSite &amp;amp; HttpOnly）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A&quot;&gt;#&lt;/a&gt; &lt;strong&gt;參考資料：&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;x-frame-options%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#x-frame-options%EF%BC%9A&quot;&gt;#&lt;/a&gt; X-Frame-Options：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Headers/X-Frame-Options#%E4%BD%BF%E7%94%A8_x-frame-options&quot;&gt;https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Headers/X-Frame-Options&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;gartner-list-of-critical-security-projects%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#gartner-list-of-critical-security-projects%EF%BC%9A&quot;&gt;#&lt;/a&gt; Gartner list of critical security projects：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.gartner.com/smarterwithgartner/gartner-top-security-projects-for-2020-2021/&quot;&gt;https://www.gartner.com/smarterwithgartner/gartner-top-security-projects-for-2020-2021/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;dmarc%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#dmarc%EF%BC%9A&quot;&gt;#&lt;/a&gt; DMARC：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://support.google.com/a/answer/10032674?hl=zh-Hant&amp;amp;ref_topic=2759254&quot;&gt;https://support.google.com/a/answer/10032674?hl=zh-Hant&amp;amp;ref_topic=2759254&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 		</content>
 	</entry>
@@ -1666,6 +2319,224 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 	</entry>
 	
 	<entry>
+		<title>資安科普番外篇（二）-如何有效率選擇風險進行修復 feat.風險和法規息息相關？！</title>
+		<link href="https://tech-blog.cymetrics.io/posts/jo/zerobased-common-risk-fix/"/>
+		<updated>2021-07-16T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/jo/zerobased-common-risk-fix/</id>
+		<content type="html">
+		  &lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;繼上一篇的&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-common-risk-exposure/&quot;&gt;&lt;strong&gt;資安科普番外篇（一）-大意了啊沒有閃！常見網站曝險你中了幾項？！&lt;/strong&gt;&lt;/a&gt;)之後，接著我們要來談談關於網站風險的修復，這部分我想大家的直覺應該都是&lt;strong&gt;無條件高風險先修&lt;/strong&gt;，但當以這個思維執行時，&lt;strong&gt;把時間以及金錢成本加入權衡之後，又總是很難給出一個符合老闆期待的高 CP 值作法&lt;/strong&gt;，而這其實就是我們今天所要討論的主題，&lt;strong&gt;如何有效率的選擇風險進行修復&lt;/strong&gt;以及&lt;strong&gt;風險在法規技術面上的影響。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E6%91%98%E8%A6%81&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%91%98%E8%A6%81&quot;&gt;#&lt;/a&gt; 摘要&lt;/h2&gt;
+&lt;p&gt;這些商業網站（ e.g. 擁有會員登入、金流功能）在修復風險以前，若將改善複雜度加入考量，可以很大程度的減少在風險管理上的困難，那麼什麼是改善複雜度呢？&lt;/p&gt;
+&lt;p&gt;改善複雜度就是在權衡了&lt;strong&gt;時間以及金錢成本後做出的最適風險修復方案。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;舉例來說 常常會聽到許多朋友反應 CSRF Token 設置不易，沒有這麼多時間可以對這項風險進行設定，這時候我會詢問兩個問題&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;產業別是否為金融產業（風險管控特別嚴格的產業）&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;網站的 Cookie 是否設置了 SameSite 的屬性&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;問這兩個問題的原因為，在不屬於風險管控特別嚴格的產業中，當網站的 Cookie 設置了 SameSite 時，通常是可以將 CSRF Token 的設置順序向後排，待有資源時再執行此風險的修復，原因是 SameSite 的功能便是在網站執行跨站請求時，讓伺服器端無法從 Cookie 中取得 Session Id ，進而阻止 CSRF 風險的發生，當然，若是網站連 SameSite 的屬性都尚未設置的話，那我會強烈建議儘速執行 SameSite 的設置，接著將預計花費在設置 CSRF Token 這項高改善複雜度中風險的人力及時間，挪到其餘序列更高的風險修補上（ e.g 低改善複雜度中風險）&lt;/p&gt;
+&lt;p&gt;當然權衡的因素很多，除了改善的難易度以外，評估修復的順序也必須思考風險本身的風險（包括攻擊難易度、弱點普遍度、漏洞影響程度）而在接下來的章節中，我也會把這些因素加入說明。&lt;/p&gt;
+&lt;p&gt;此外，因應產業對於法規面的需求，以下說明也會提到常見的風險可能會對應到法規中哪一項規範的技術面項目。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6&quot;&gt;#&lt;/a&gt; 常見風險改善複雜度&lt;/h2&gt;
+&lt;p&gt;說明了什麼是改善複雜度後，接下來將改善複雜度實際套用到上一篇中的常見風險來和大家說明，除了希望能夠更清楚的說明改善複雜度的概念以外，也希望當各位遇到以下風險時， 能夠以此當做參考來進行最適的風險修復方案。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/jo/zerobased-common-risk-fix/p1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%95-x-frame-options-%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%95-x-frame-options-%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; №５ X-Frame-Options 未設置或安全等級不足&lt;/h2&gt;
+&lt;p&gt;排行第五的 X-Frame-Options 設置，在這個項目裡有大於 50％ 的網站設置的安全等級不足或是沒有進行設置，X-Frame-Options 用途為&lt;strong&gt;針對 Iframe 點擊劫持攻擊&lt;/strong&gt;的手法進行防禦，避免網頁被內嵌。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA&quot;&gt;#&lt;/a&gt; &lt;strong&gt;改善複雜度等級為：低複雜度中風險&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;X-Frame-Options 未設置或安全等級不足：建議若&lt;/strong&gt;要避免此風險，需確保只有可信任來源才能嵌入 。&lt;/p&gt;
+&lt;p&gt;此項目的改善複雜度並不高，只要按照修復風險參考資料中的設定，選擇適合網站的值即可，建議可以在 Cookie 的三項基本設置完成後進行風險修補。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E5%B0%8D%E6%87%89%E6%B3%95%E8%A6%8F%E6%8A%80%E8%A1%93%E9%9D%A2%E9%A0%85%E7%9B%AE%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E5%B0%8D%E6%87%89%E6%B3%95%E8%A6%8F%E6%8A%80%E8%A1%93%E9%9D%A2%E9%A0%85%E7%9B%AE%EF%BC%9A&quot;&gt;#&lt;/a&gt; 常見風險對應法規技術面項目：&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;PCIDSS&lt;/strong&gt;：Develop and maintain secure systems and applications&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A&quot;&gt;#&lt;/a&gt; 細項說明：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;6.5.1: Protected from injection flaws, particularly SQL injection. Also consider OS Command Injection, LDAP and XPath injection flaws as well as other injection flaws.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E6%87%B6%E4%BA%BA%E5%8C%85%EF%BC%9A%E9%9C%80%E9%98%B2%E7%AF%84%E5%8F%AF%E8%83%BD%E5%B0%8E%E8%87%B4%E5%85%A7%E5%B5%8C%E6%88%96%E6%98%AF%E6%B3%A8%E5%85%A5%E7%9A%84%E6%94%BB%E6%93%8A%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%87%B6%E4%BA%BA%E5%8C%85%EF%BC%9A%E9%9C%80%E9%98%B2%E7%AF%84%E5%8F%AF%E8%83%BD%E5%B0%8E%E8%87%B4%E5%85%A7%E5%B5%8C%E6%88%96%E6%98%AF%E6%B3%A8%E5%85%A5%E7%9A%84%E6%94%BB%E6%93%8A%E3%80%82&quot;&gt;#&lt;/a&gt; &lt;strong&gt;懶人包：需防範可能導致內嵌或是注入的攻擊。&lt;/strong&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;%E4%BF%AE%E5%BE%A9%E9%A2%A8%E9%9A%AA%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BF%AE%E5%BE%A9%E9%A2%A8%E9%9A%AA%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A&quot;&gt;#&lt;/a&gt; &lt;strong&gt;修復風險參考資料：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Headers/X-Frame-Options&quot;&gt;&lt;strong&gt;X-Frame-Options 回應標頭 - HTTP | MDN&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%94cookie-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%94cookie-%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; №４Cookie 基本設定未設置或安全等級不足&lt;/h2&gt;
+&lt;p&gt;排名第四的 Cookie 基本設定未設置或安全等級不足，在這個項目裡有大於 60％ 的網站設置安全等級不足或是沒有進行設置，而 Cookie 的三項基本設定為，能夠&lt;strong&gt;阻止（ XSS ）跨站腳本攻擊影響擴大&lt;/strong&gt;的 HttpOnly 、&lt;strong&gt;強化 Https 機制&lt;/strong&gt;的 Secure 以及&lt;strong&gt;預防（ CSRF ）跨站請求偽冒&lt;/strong&gt;的 SameSite 。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA-2&quot;&gt;#&lt;/a&gt; 改善複雜度等級為：低複雜度中風險&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;SameSite 未設定&lt;/strong&gt;：建議依據網站需求選用 Strict 或 Lax 進行設定&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HttpOnly Flag 未設定&lt;/strong&gt;：建議在設置中開啟 HttpOnly&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Secure Flag 未設定&lt;/strong&gt;：建議在設置中開啟Secure&lt;/p&gt;
+&lt;p&gt;三個項目的改善複雜都不高，如果檢測出未開啟或進行設定的話，建議三項應優先且儘速進行設置。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E5%B0%8D%E6%87%89%E6%B3%95%E8%A6%8F%E6%8A%80%E8%A1%93%E9%9D%A2%E9%A0%85%E7%9B%AE%EF%BC%9A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E5%B0%8D%E6%87%89%E6%B3%95%E8%A6%8F%E6%8A%80%E8%A1%93%E9%9D%A2%E9%A0%85%E7%9B%AE%EF%BC%9A-2&quot;&gt;#&lt;/a&gt; 常見風險對應法規技術面項目：&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;PCIDSS&lt;/strong&gt;：Develop and maintain secure systems and applications&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-2&quot;&gt;#&lt;/a&gt; 細項說明：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;6.5.1: Protected from injection flaws, particularly SQL injection. Also consider OS Command Injection, LDAP and XPath injection flaws as well as other injection flaws.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;6.5.7: Protect all web applications and application interfaces from cross-site scripting (XSS).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;6.5.9: Do not allow cross-site request forgery (CSRF).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E6%87%B6%E4%BA%BA%E5%8C%85%EF%BC%9A%E9%99%A4%E4%BA%86%E9%98%B2%E7%AF%84%E5%8F%AF%E8%83%BD%E5%B0%8E%E8%87%B4%E5%85%A7%E5%B5%8C%E6%88%96%E6%98%AF%E6%B3%A8%E5%85%A5%E7%9A%84%E6%94%BB%E6%93%8A%EF%BC%8C%E9%87%9D%E5%B0%8D-xss-%E4%BB%A5%E5%8F%8A-csrf-%E7%9A%84%E6%94%BB%E6%93%8A%E4%B9%9F%E9%9C%80%E8%A6%81%E7%89%B9%E5%88%A5%E6%B3%A8%E6%84%8F%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%87%B6%E4%BA%BA%E5%8C%85%EF%BC%9A%E9%99%A4%E4%BA%86%E9%98%B2%E7%AF%84%E5%8F%AF%E8%83%BD%E5%B0%8E%E8%87%B4%E5%85%A7%E5%B5%8C%E6%88%96%E6%98%AF%E6%B3%A8%E5%85%A5%E7%9A%84%E6%94%BB%E6%93%8A%EF%BC%8C%E9%87%9D%E5%B0%8D-xss-%E4%BB%A5%E5%8F%8A-csrf-%E7%9A%84%E6%94%BB%E6%93%8A%E4%B9%9F%E9%9C%80%E8%A6%81%E7%89%B9%E5%88%A5%E6%B3%A8%E6%84%8F%E3%80%82&quot;&gt;#&lt;/a&gt; &lt;strong&gt;懶人包：除了防範可能導致內嵌或是注入的攻擊，針對 XSS 以及 CSRF 的攻擊也需要特別注意。&lt;/strong&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;%E9%A2%A8%E9%9A%AA%E4%BF%AE%E5%BE%A9%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A2%A8%E9%9A%AA%E4%BF%AE%E5%BE%A9%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A&quot;&gt;#&lt;/a&gt; 風險修復參考資料：&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-secure-samesite-httponly/&quot;&gt;&lt;strong&gt;零基礎資安系列（三）-網站安全三本柱（Secure &amp;amp; SameSite &amp;amp; HttpOnly）&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%93-%E9%83%B5%E4%BB%B6%E7%B3%BB%E7%B5%B1-dmarc-%E8%A8%AD%E5%AE%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%93-%E9%83%B5%E4%BB%B6%E7%B3%BB%E7%B5%B1-dmarc-%E8%A8%AD%E5%AE%9A&quot;&gt;#&lt;/a&gt; №３ 郵件系統 DMARC 設定&lt;/h2&gt;
+&lt;p&gt;排名第三的郵件系統 DMARC 設定，在這個項目裡有大於 70％ 的網站DMARC 設置不全或無設置，&lt;strong&gt;DMARC 會向收件伺服器指示該如何處理特定郵件&lt;/strong&gt;，讓伺服器在收到疑似來自自身機構卻未通過驗證檢查的郵件，或是不符合 DMARC 政策記錄中驗證規定的郵件時，採取合適的處置方式。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E9%AB%98%E9%A2%A8%E9%9A%AA&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E9%AB%98%E9%A2%A8%E9%9A%AA&quot;&gt;#&lt;/a&gt; 改善複雜度等級為：低複雜度高風險&lt;/h3&gt;
+&lt;p&gt;無SPF 紀錄：建議為網域設定 SPF 紀錄&lt;/p&gt;
+&lt;h3 id=&quot;%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%B8%AD%E8%A4%87%E9%9B%9C%E5%BA%A6%E9%AB%98%E9%A2%A8%E9%9A%AA&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%B8%AD%E8%A4%87%E9%9B%9C%E5%BA%A6%E9%AB%98%E9%A2%A8%E9%9A%AA&quot;&gt;#&lt;/a&gt; 改善複雜度等級為：中複雜度高風險&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;無 DMARC 紀錄&lt;/strong&gt;：建議為網域設定 DMARC 紀錄（先設置 SPF 與 DKIM）&lt;/p&gt;
+&lt;p&gt;由於 DMARC 必須仰賴 SPF 與 DKIM 機制才能發揮功效，因此建議先檢查是否有 SPF 設置錯誤的問題，而雖然 SPF 的改善複雜度並不高，但許多網站的設置皆為預設，因此建議按照上一篇文章的初步檢視之後，可以將 SPF 的改善列為優先項目。&lt;/p&gt;
+&lt;p&gt;此外，雖然 DMARC 的改善複雜度不低，但此項目對於防範社交工程來說效果十分顯著，所以若針對社交工程有疑慮的朋友，不妨在 SPF 設置完成之後，參考風險修復參考資料對 DMARC 進行設置。&lt;/p&gt;
+&lt;h3 id=&quot;%E9%A2%A8%E9%9A%AA%E4%BF%AE%E5%BE%A9%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A2%A8%E9%9A%AA%E4%BF%AE%E5%BE%A9%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A-2&quot;&gt;#&lt;/a&gt; 風險修復參考資料：&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;SPF：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf/&quot;&gt;&lt;strong&gt;關於 email security 的大小事 — 設定篇 SPF&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DMARC &amp;amp; DKIM：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-dkimdmarc/&quot;&gt;&lt;strong&gt;關於 email security 的大小事 — 設定篇 DKIM、DMARC&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%92csp-%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%92csp-%E6%9C%AA%E8%A8%AD%E7%BD%AE%E6%88%96%E5%AE%89%E5%85%A8%E7%AD%89%E7%B4%9A%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; №２CSP 未設置或安全等級不足&lt;/h2&gt;
+&lt;p&gt;排名第二的CSP 未設置或安全等級不足，在這個項目裡有將近 90% 的網站CSP 未設置或安全等級不足，&lt;strong&gt;網頁內容安全政策&lt;/strong&gt;（ Content Security Policy, CSP）主要是為了防範 &lt;strong&gt;XSS（跨站腳本攻擊）&lt;/strong&gt;，以告知瀏覽器發出的 Request 位置是否受到信任來阻擋非預期的對外連線，加強網站安全性，在 http header 定義限制載入的跨站 script 像是 img-src、script-src…等這些可以載入外部資源的標籤。&lt;/p&gt;
+&lt;h3 id=&quot;%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA&quot;&gt;#&lt;/a&gt; &lt;strong&gt;低複雜度中風險&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;CSP未設定或安全等級不足&lt;/strong&gt;：建議為避免此風險可於 HTTP Headers 中設置 Content-Security-Policy。&lt;/p&gt;
+&lt;p&gt;此項目的改善複雜度不高，建議可以在 Cookie 的三項基本設定以及 X-Frame-Options 完成後對此項目進行設置。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E5%B0%8D%E6%87%89%E6%B3%95%E8%A6%8F%E6%8A%80%E8%A1%93%E9%9D%A2%E9%A0%85%E7%9B%AE%EF%BC%9A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E5%B0%8D%E6%87%89%E6%B3%95%E8%A6%8F%E6%8A%80%E8%A1%93%E9%9D%A2%E9%A0%85%E7%9B%AE%EF%BC%9A-3&quot;&gt;#&lt;/a&gt; 常見風險對應法規技術面項目：&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;PCIDSS&lt;/strong&gt; ：Develop and maintain secure systems and applications&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-3&quot;&gt;#&lt;/a&gt; 細項說明：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;6.5.1: Protected from injection flaws, particularly SQL injection. Also consider OS Command Injection, LDAP and XPath injection flaws as well as other injection flaws.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;6.5.7: Protect all web applications and application interfaces from cross-site scripting (XSS).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E6%87%B6%E4%BA%BA%E5%8C%85%EF%BC%9A%E9%99%A4%E4%BA%86%E9%98%B2%E7%AF%84%E5%8F%AF%E8%83%BD%E5%B0%8E%E8%87%B4%E5%85%A7%E5%B5%8C%E6%88%96%E6%98%AF%E6%B3%A8%E5%85%A5%E7%9A%84%E6%94%BB%E6%93%8A%EF%BC%8C%E9%87%9D%E5%B0%8D-xss-%E7%9A%84%E6%94%BB%E6%93%8A%E9%9C%80%E8%A6%81%E7%89%B9%E5%88%A5%E6%B3%A8%E6%84%8F%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%87%B6%E4%BA%BA%E5%8C%85%EF%BC%9A%E9%99%A4%E4%BA%86%E9%98%B2%E7%AF%84%E5%8F%AF%E8%83%BD%E5%B0%8E%E8%87%B4%E5%85%A7%E5%B5%8C%E6%88%96%E6%98%AF%E6%B3%A8%E5%85%A5%E7%9A%84%E6%94%BB%E6%93%8A%EF%BC%8C%E9%87%9D%E5%B0%8D-xss-%E7%9A%84%E6%94%BB%E6%93%8A%E9%9C%80%E8%A6%81%E7%89%B9%E5%88%A5%E6%B3%A8%E6%84%8F%E3%80%82&quot;&gt;#&lt;/a&gt; &lt;strong&gt;懶人包：除了防範可能導致內嵌或是注入的攻擊，針對 XSS 的攻擊需要特別注意。&lt;/strong&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;%E9%A2%A8%E9%9A%AA%E4%BF%AE%E5%BE%A9%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A2%A8%E9%9A%AA%E4%BF%AE%E5%BE%A9%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A-3&quot;&gt;#&lt;/a&gt; &lt;strong&gt;風險修復參考資料：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP&quot;&gt;&lt;strong&gt;Content Security Policy (CSP) - HTTP | MDN&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E2%84%96%EF%BC%91%E7%B6%B2%E7%AB%99%E6%86%91%E8%AD%89%E5%AE%8C%E6%95%B4%E6%80%A7%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E2%84%96%EF%BC%91%E7%B6%B2%E7%AB%99%E6%86%91%E8%AD%89%E5%AE%8C%E6%95%B4%E6%80%A7%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; №１網站憑證完整性不足&lt;/h2&gt;
+&lt;p&gt;排名第一的網站憑證完整性不足，在這個項目裡有 90% 的完整性不足例如&lt;strong&gt;憑證撤銷機制未設定完整&lt;/strong&gt;或&lt;strong&gt;憑證授權機關資源紀錄檢查&lt;/strong&gt;，在沒有這些設定的情況下業者很難防堵任意數位憑證認證機構擅自簽署網域憑證，而憑證完整性不足的業者中還包含了&lt;strong&gt;使用不安全的加密&lt;/strong&gt;及&lt;strong&gt;過期憑證&lt;/strong&gt;與&lt;strong&gt;過舊的 SSL/TLS 協議&lt;/strong&gt;，以上問題增加了業者在憑證層面可能發生資安事件的風險機率。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E9%AB%98%E9%A2%A8%E9%9A%AA-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E9%AB%98%E9%A2%A8%E9%9A%AA-2&quot;&gt;#&lt;/a&gt; 改善複雜度等級為：低複雜度高風險&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;SSL/TLS 協議過舊&lt;/strong&gt;：建議停用如 TLS 1.1 等過舊協議。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA-3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%BD%8E%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA-3&quot;&gt;#&lt;/a&gt; 改善複雜度等級為：低複雜度中風險&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;使用不安全的加密法&lt;/strong&gt;：建議在伺服器設定中停用此加密套件&lt;/p&gt;
+&lt;h3 id=&quot;%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%B8%AD%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%94%B9%E5%96%84%E8%A4%87%E9%9B%9C%E5%BA%A6%E7%AD%89%E7%B4%9A%E7%82%BA%EF%BC%9A%E4%B8%AD%E8%A4%87%E9%9B%9C%E5%BA%A6%E4%B8%AD%E9%A2%A8%E9%9A%AA&quot;&gt;#&lt;/a&gt; 改善複雜度等級為：中複雜度中風險&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;憑證撤銷機制未設定完整&lt;/strong&gt;：建議依據伺服器設定，使用加密套件完整此功能&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;憑證授權機關資源記錄檢查&lt;/strong&gt;：建議為網域設定 CAA RR&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;憑證過期&lt;/strong&gt;：建議聯繫 CA 更新憑證&lt;/p&gt;
+&lt;p&gt;普遍網站在憑證相關的設置上較容易有疏漏，建議優先檢視協議過舊以及是否使用不安全的加密法，也因為這兩項的初步檢視較為容易，所以建議在憑證的類別中，將這兩項進行優先修復，而改善複雜度為中的三項憑證設置，由於檢視方式以及改善複雜度較高，因此可以評估這三項憑證項目的必要性，優先修復其餘中複雜度中風險項目，但因為憑證與資料的加密和保護息息相關，所以與之相關聯的法規項目也特別多，所以如果很在意法遵的朋友建議還是將憑證項目的風險修復順序提高一個層級。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E5%B0%8D%E6%87%89%E6%B3%95%E8%A6%8F%E6%8A%80%E8%A1%93%E9%9D%A2%E9%A0%85%E7%9B%AE%EF%BC%9A-4&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B8%B8%E8%A6%8B%E9%A2%A8%E9%9A%AA%E5%B0%8D%E6%87%89%E6%B3%95%E8%A6%8F%E6%8A%80%E8%A1%93%E9%9D%A2%E9%A0%85%E7%9B%AE%EF%BC%9A-4&quot;&gt;#&lt;/a&gt; 常見風險對應法規技術面項目：&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;憑證撤銷機制未設定完整、不安全加密套件、憑證過期&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PCIDSS&lt;/strong&gt; ：&lt;/p&gt;
+&lt;p&gt;Encrypt transmission of cardholder data across open，public networks&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-4&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-4&quot;&gt;#&lt;/a&gt; 細項說明：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1: Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.1: Ensure wireless networks transmitting cardholder data, or connected to the cardholder data environment, use industry best practices to implement strong encryption for authentication and transmission.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Develop and maintain secure systems and applications&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-5&quot;&gt;#&lt;/a&gt; 細項說明：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;6.5.4: Do not allow insecure communications.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E6%87%B6%E4%BA%BA%E5%8C%85%E4%B9%8B-pcidss%EF%BC%9A%E9%99%A4%E4%BA%86%E4%B8%8D%E5%85%81%E8%A8%B1%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E9%80%9A%E8%A8%8A%E4%BB%A5%E5%A4%96%EF%BC%8C%E4%B9%9F%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E5%BC%B7%E5%8A%A0%E5%AF%86%E5%92%8C%E5%AE%89%E5%85%A8%E5%8D%94%E8%AD%B0%E4%BE%86%E4%BF%9D%E8%AD%B7%E6%95%8F%E6%84%9F%E6%95%B8%E6%93%9A%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%87%B6%E4%BA%BA%E5%8C%85%E4%B9%8B-pcidss%EF%BC%9A%E9%99%A4%E4%BA%86%E4%B8%8D%E5%85%81%E8%A8%B1%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E9%80%9A%E8%A8%8A%E4%BB%A5%E5%A4%96%EF%BC%8C%E4%B9%9F%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E5%BC%B7%E5%8A%A0%E5%AF%86%E5%92%8C%E5%AE%89%E5%85%A8%E5%8D%94%E8%AD%B0%E4%BE%86%E4%BF%9D%E8%AD%B7%E6%95%8F%E6%84%9F%E6%95%B8%E6%93%9A%E3%80%82&quot;&gt;#&lt;/a&gt; &lt;strong&gt;懶人包之 PCIDSS&lt;/strong&gt;：除了不允許不安全的通訊以外，也需要使用強加密和安全協議來保護敏感數據。&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;ISO27001：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Cryptographic Controls&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-6&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-6&quot;&gt;#&lt;/a&gt; 細項說明：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Encryption and cryptographic controls are often seen as one of the key weapons in the security arsenal, however, on its own it is not the “silver bullet” that solves every problem. Incorrect selection of cryptographic technologies and techniques or the poor management of cryptographic material (e.g. keys and certificates) can create vulnerabilities themselves.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E6%87%B6%E4%BA%BA%E5%8C%85%E4%B9%8B-iso27001%EF%BC%9A%E5%8A%A0%E5%AF%86%E6%8A%80%E8%A1%93%E7%9A%84%E9%81%B8%E6%93%87%E9%8C%AF%E8%AA%A4%E6%88%96%E5%8A%A0%E5%AF%86%E7%B4%A0%E6%9D%90%EF%BC%88%E4%BE%8B%E5%A6%82%E5%AF%86%E9%91%B0%E5%92%8C%E8%AD%89%E6%9B%B8%EF%BC%89%E7%9A%84%E7%AE%A1%E7%90%86%E4%B8%8D%E5%96%84%E5%8F%AF%E8%83%BD%E6%9C%83%E5%B0%8E%E8%87%B4%E6%9C%8D%E5%8B%99%E7%94%A2%E7%94%9F%E6%BC%8F%E6%B4%9E%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%87%B6%E4%BA%BA%E5%8C%85%E4%B9%8B-iso27001%EF%BC%9A%E5%8A%A0%E5%AF%86%E6%8A%80%E8%A1%93%E7%9A%84%E9%81%B8%E6%93%87%E9%8C%AF%E8%AA%A4%E6%88%96%E5%8A%A0%E5%AF%86%E7%B4%A0%E6%9D%90%EF%BC%88%E4%BE%8B%E5%A6%82%E5%AF%86%E9%91%B0%E5%92%8C%E8%AD%89%E6%9B%B8%EF%BC%89%E7%9A%84%E7%AE%A1%E7%90%86%E4%B8%8D%E5%96%84%E5%8F%AF%E8%83%BD%E6%9C%83%E5%B0%8E%E8%87%B4%E6%9C%8D%E5%8B%99%E7%94%A2%E7%94%9F%E6%BC%8F%E6%B4%9E%E3%80%82&quot;&gt;#&lt;/a&gt; &lt;strong&gt;懶人包之 ISO27001&lt;/strong&gt;：加密技術的選擇錯誤或加密素材（例如密鑰和證書）的管理不善可能會導致服務產生漏洞。&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;GDPR：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Responsibility of the controller&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-7&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-7&quot;&gt;#&lt;/a&gt; 細項說明：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Taking into account the nature, scope, context and purposes of processing as well as the risks of varying likelihood and severity for the rights and freedoms of natural persons, the controller shall implement appropriate technical and organisational measures to ensure and to be able to demonstrate that processing is performed in accordance with this Regulation. 2Those measures shall be reviewed and updated where necessary.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Where proportionate in relation to processing activities, the measures referred to in paragraph 1 shall include the implementation of appropriate data protection policies by the controller.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Adherence to approved codes of conduct as referred to in &lt;a href=&quot;https://gdpr-info.eu/art-40-gdpr/&quot;&gt;Article 40&lt;/a&gt; or approved certification mechanisms as referred to in &lt;a href=&quot;https://gdpr-info.eu/art-42-gdpr/&quot;&gt;Article 42&lt;/a&gt; may be used as an element by which to demonstrate compliance with the obligations of the controller.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Data protection by design and by default&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-8&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-8&quot;&gt;#&lt;/a&gt; 細項說明：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Taking into account the state of the art, the cost of implementation and the nature, scope, context and purposes of processing as well as the risks of varying likelihood and severity for rights and freedoms of natural persons posed by the processing, the controller shall, both at the time of the determination of the means for processing and at the time of the processing itself, implement appropriate technical and organisational measures, such as pseudonymisation, which are designed to implement data-protection principles, such as data minimisation, in an effective manner and to integrate the necessary safeguards into the processing in order to meet the requirements of this Regulation and protect the rights of data subjects.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The controller shall implement appropriate technical and organisational measures for ensuring that, by default, only personal data which are necessary for each specific purpose of the processing are processed. 2That obligation applies to the amount of personal data collected, the extent of their processing, the period of their storage and their accessibility. 3In particular, such measures shall ensure that by default personal data are not made accessible without the individual’s intervention to an indefinite number of natural persons.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An approved certification mechanism pursuant to &lt;a href=&quot;https://gdpr-info.eu/art-42-gdpr/&quot;&gt;Article 42&lt;/a&gt; may be used as an element to demonstrate compliance with the requirements set out in paragraphs 1 and 2 of this Article.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Security of processing&lt;/p&gt;
+&lt;h3 id=&quot;%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-9&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%B0%E9%A0%85%E8%AA%AA%E6%98%8E%EF%BC%9A-9&quot;&gt;#&lt;/a&gt; 細項說明：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Taking into account the state of the art, the costs of implementation and the nature, scope, context and purposes of processing as well as the risk of varying likelihood and severity for the rights and freedoms of natural persons, the controller and the processor shall implement appropriate technical and organisational measures to ensure a level of security appropriate to the risk, including inter alia as appropriate:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1.the pseudonymisation and encryption of personal data;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2.the ability to ensure the ongoing confidentiality, integrity, availability and resilience of processing systems and services;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;3.the ability to restore the availability and access to personal data in a timely manner in the event of a physical or technical incident;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;4.a process for regularly testing, assessing and evaluating the effectiveness of technical and organisational measures for ensuring the security of the processing.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In assessing the appropriate level of security account shall be taken in particular of the risks that are presented by processing, in particular from accidental or unlawful destruction, loss, alteration, unauthorised disclosure of, or access to personal data transmitted, stored or otherwise processed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Adherence to an approved code of conduct as referred to in &lt;a href=&quot;https://gdpr-info.eu/art-40-gdpr/&quot;&gt;Article 40&lt;/a&gt; or an approved certification mechanism as referred to in &lt;a href=&quot;https://gdpr-info.eu/art-42-gdpr/&quot;&gt;Article 42&lt;/a&gt; may be used as an element by which to demonstrate compliance with the requirements set out in paragraph 1 of this Article.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The controller and processor shall take steps to ensure that any natural person acting under the authority of the controller or the processor who has access to personal data does not process them except on instructions from the controller, unless he or she is required to do so by Union or Member State law.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;%E6%87%B6%E4%BA%BA%E5%8C%85%E4%B9%8B-gdpr-%EF%BC%9A%E6%8E%A7%E5%88%B6%E8%80%85%E6%87%89%E5%AF%A6%E6%96%BD%E9%81%A9%E7%95%B6%E7%9A%84%E6%95%B8%E6%93%9A%E4%BF%9D%E8%AD%B7%E6%94%BF%E7%AD%96%E5%92%8C%E6%95%B8%E6%93%9A%E4%BF%9D%E8%AD%B7%E5%8E%9F%E5%89%87%EF%BC%8C%E4%BE%8B%E5%A6%82%E5%B0%87%E5%BF%85%E8%A6%81%E7%9A%84%E4%BF%9D%E8%AD%B7%E6%8E%AA%E6%96%BD%E6%95%B4%E5%90%88%E5%88%B0%E8%B3%87%E6%96%99%E8%99%95%E7%90%86%E9%81%8E%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%B9%9F%E9%9C%80%E7%A2%BA%E4%BF%9D%E8%99%95%E7%90%86%E6%95%B8%E6%93%9A%E7%9A%84%E7%B3%BB%E7%B5%B1%E5%92%8C%E6%9C%8D%E5%8B%99%E6%A9%9F%E5%AF%86%E6%80%A7%E3%80%81%E5%AE%8C%E6%95%B4%E6%80%A7%E3%80%81%E5%8F%AF%E7%94%A8%E6%80%A7%EF%BC%8C%E9%81%BF%E5%85%8D%E6%9C%AA%E7%B6%93%E6%8E%88%E6%AC%8A%E8%80%8C%E6%8F%AD%E9%9C%B2%E7%9A%84%E5%80%8B%E4%BA%BA%E6%95%B8%E6%93%9A%E3%80%82&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%87%B6%E4%BA%BA%E5%8C%85%E4%B9%8B-gdpr-%EF%BC%9A%E6%8E%A7%E5%88%B6%E8%80%85%E6%87%89%E5%AF%A6%E6%96%BD%E9%81%A9%E7%95%B6%E7%9A%84%E6%95%B8%E6%93%9A%E4%BF%9D%E8%AD%B7%E6%94%BF%E7%AD%96%E5%92%8C%E6%95%B8%E6%93%9A%E4%BF%9D%E8%AD%B7%E5%8E%9F%E5%89%87%EF%BC%8C%E4%BE%8B%E5%A6%82%E5%B0%87%E5%BF%85%E8%A6%81%E7%9A%84%E4%BF%9D%E8%AD%B7%E6%8E%AA%E6%96%BD%E6%95%B4%E5%90%88%E5%88%B0%E8%B3%87%E6%96%99%E8%99%95%E7%90%86%E9%81%8E%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%B9%9F%E9%9C%80%E7%A2%BA%E4%BF%9D%E8%99%95%E7%90%86%E6%95%B8%E6%93%9A%E7%9A%84%E7%B3%BB%E7%B5%B1%E5%92%8C%E6%9C%8D%E5%8B%99%E6%A9%9F%E5%AF%86%E6%80%A7%E3%80%81%E5%AE%8C%E6%95%B4%E6%80%A7%E3%80%81%E5%8F%AF%E7%94%A8%E6%80%A7%EF%BC%8C%E9%81%BF%E5%85%8D%E6%9C%AA%E7%B6%93%E6%8E%88%E6%AC%8A%E8%80%8C%E6%8F%AD%E9%9C%B2%E7%9A%84%E5%80%8B%E4%BA%BA%E6%95%B8%E6%93%9A%E3%80%82&quot;&gt;#&lt;/a&gt; &lt;strong&gt;懶人包之 GDPR&lt;/strong&gt; ：控制者應實施適當的數據保護政策和數據保護原則，例如將必要的保護措施整合到資料處理過程中，也需確保處理數據的系統和服務機密性、完整性、可用性，避免未經授權而揭露的個人數據。&lt;/h3&gt;
+&lt;h3 id=&quot;%E9%A2%A8%E9%9A%AA%E4%BF%AE%E5%BE%A9%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A-4&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A2%A8%E9%9A%AA%E4%BF%AE%E5%BE%A9%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99%EF%BC%9A-4&quot;&gt;#&lt;/a&gt; &lt;strong&gt;風險修復參考資料：&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;協議過舊：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/zh-tw/security/engineering/disable-legacy-tls&quot;&gt;&lt;strong&gt;Windows Server 2019 現已依憑證繫結提供 TLS 版本強制執行功能 - Security documentation&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;憑證相關：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;aws:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html&quot;&gt;&lt;strong&gt;What Is AWS Certificate Manager?&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;gcp(load balancer):&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs&quot;&gt;&lt;strong&gt;Using Google-managed SSL certificates | Load Balancing | Google Cloud&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;gcp(k8s engine):&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs&quot;&gt;&lt;strong&gt;Using Google-managed SSL certificates&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;azure key vault:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/key-vault/certificates/certificate-scenarios&quot;&gt;&lt;strong&gt;Get started with Key Vault certificates&lt;/strong&gt;&lt;br&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E7%B5%90%E8%AB%96&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B5%90%E8%AB%96&quot;&gt;#&lt;/a&gt; &lt;strong&gt;結論&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;將風險與法規比對並不是為了說明若是未修復風險會違反多少法規，而是為了藉著風險的修復來佐證自身對於法規的重視，舉例來說， 當客戶詢問公司有沒有符合 GDPR 的規範時，若是能夠提供憑證的風險修復紀錄，其實就是一個很好的佐證資料。&lt;/p&gt;
+&lt;p&gt;而本文所提到的改善複雜度，則是為了目前常見的資源有限但問題不會消失的情況而提供決策的輔助，目前市面上有許多相關的評估報告和掃描也是圍繞著風險管理的概念延伸，若是能因此而管理自身的風險以及對應的法規並找到最適的風險修復方案的話，無論是在稽核或是安全性的管控上都是一筆十分划算的投資。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80%EF%BC%9A&quot;&gt;#&lt;/a&gt; 延伸閱讀：&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;資安科普番外篇（一）-大意了啊沒有閃！常見網站曝險你中了幾項？！&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/jo/zerobased-common-risk-exposure/&quot;&gt;大意了啊沒有閃！常見網站曝險你中了幾項？！&lt;/a&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;%E5%8F%83%E8%80%83%E6%96%87%E7%8D%BB%EF%BC%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%8F%83%E8%80%83%E6%96%87%E7%8D%BB%EF%BC%9A&quot;&gt;#&lt;/a&gt; 參考文獻：&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;PCIDSS&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://kirkpatrickprice.com/video/pci-requirement-6-develop-maintain-secure-systems-applications/&quot;&gt;https://kirkpatrickprice.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ISO27001&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.isms.online/iso-27001/annex-a-10-cryptography/&quot;&gt;https://www.isms.online/iso-27001&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;GDPR&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://gdpr-info.eu/art-24-gdpr/&quot;&gt;https://gdpr-info.eu&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
 		<title>關於 email security 的大小事 — 延伸篇</title>
 		<link href="https://tech-blog.cymetrics.io/posts/crystal/email-sec-extra/"/>
 		<updated>2021-07-23T08:00:00+08:00</updated>
@@ -1787,7 +2658,7 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 &lt;p&gt;剛出生的嬰兒最好欺負，網站也是一樣，網站初建時不管是為了方便測試或維護，都會對外開放較多的服務，駭客也容易在此時趁虛而入。&lt;br&gt;
 本文會先簡單介紹一下駭客如何找到新建立的網站，並實測一下這個方法可以找出多少 7 天內架設的網站，再從這些網站的掃描結果中整理出 5 種最常見且有弱點的服務，並討論一下弱點可能帶來的風險與防範方式 。&lt;/p&gt;
 &lt;h2 id=&quot;%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9&quot;&gt;#&lt;/a&gt; 工具介紹&lt;/h2&gt;
-&lt;p&gt;這邊介紹下兩個測試中用到的工具，第一個工具整理了每天有哪些人來申請新的網域，因為新網域上大多也是新建立的網站，所以這些網域上的網站就是我們的測試對象。另外一個工具則是去掃描這些網站開放了那些服務。&lt;/p&gt;
+&lt;p&gt;這邊介紹兩個測試中用到的工具，第一個工具整理了每天有哪些人來申請新的網域，因為新網域上大多也是新建立的網站，所以這些網域上的網站就是我們的測試對象。另外一個工具則是去掃描這些網站開放了那些服務。&lt;/p&gt;
 &lt;h3 id=&quot;1.-whois-data-center&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-whois-data-center&quot;&gt;#&lt;/a&gt; 1. Whois Data Center&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/website-go-live-attack/2.jpg&quot; alt=&quot;Photo by Arget on Unsplash&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B0%A1%E4%BB%8B-%3A&quot;&gt;#&lt;/a&gt; 簡介 :&lt;/h3&gt;
