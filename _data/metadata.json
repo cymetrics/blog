@@ -50,6 +50,11 @@
       "name": "genchilu",
       "intro": "I am Genchi, a backend engineer in Taiwan.",
       "avatarUrl": "/img/authors/genchilu_logo.jpeg"
+    },
+    "maxchiu": {
+      "name": "maxchiu",
+      "intro": "Fullstack rookie, also love developing games and visual computing",
+      "avatarUrl": "/img/authors/max_logo.jpeg"
     }
   },
   "publisher": {
