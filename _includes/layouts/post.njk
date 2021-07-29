@@ -39,7 +39,7 @@ templateClass: tmpl-post
 <div id="post-page"></div>
 {{ content | safe }}
 <div class="article-footer">
-  <a href="{{ shareUrl | safe }}" on-click="share"><img src="/img/icons/icon_external link hyperlink.svg">Share this post</a>
+  <a href="{{ shareUrl | safe }}" on-click="share"><img src="/img/icons/icon_external link hyperlink.svg" alt="Share">Share this post</a>
 </div>
 <div class="article-author">
   <img class="article-author__img" data-deopt="true" src="{{ postAuthor.avatarUrl }}" alt="{{ postAuthor.name }}">

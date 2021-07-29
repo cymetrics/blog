@@ -16,7 +16,7 @@ permalink: /archive/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }
 {% include "postslist.njk" %}
 
 {% if pagination.pages.length > 1 %}
-<nav class="nav-pagination" aria-labelledby="my-pagination">
+<nav class="nav-pagination">
   <ol>
     {% if pagination.href.previous %}
       <li class="nav-pagination__prev">

@@ -452,7 +452,26 @@
     <loc>https://tech-blog.cymetrics.io/archive/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T03:59:25.814Z</lastmod>
+    <lastmod>2021-07-29T07:27:08.410Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/robots.txt</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-29T07:45:38.885Z</lastmod>
   </url>
   
   
@@ -696,25 +715,6 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/csrf/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
     <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -734,7 +734,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/csrf/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-07-29T06:10:23.796Z</lastmod>
@@ -754,6 +754,25 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-07-29T06:10:23.796Z</lastmod>
@@ -887,6 +906,6 @@
     <loc>https://tech-blog.cymetrics.io/</loc>
     <changefreq>daily</changefreq>
     <priority>1</priority>
-    <lastmod>2021-07-29T03:44:05.133Z</lastmod>
+    <lastmod>2021-07-29T07:40:07.465Z</lastmod>
   </url>
 </urlset>

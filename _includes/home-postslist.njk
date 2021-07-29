@@ -1,15 +1,15 @@
 {% for post in postslist %}
   {% set author = metadata.authors[post.data.author] %}
   <div class="post">
-    <h3 class="post-title">
+    <h2 class="post-title">
       <a href="{{ post.url | url }}">{{ post.data.title | safe }}</a>
-    </h3>
+    </h2>
     <div class="post-description">
       {% summary post=post.templateContent %}
     </div>
     <div class="post-info">
       <div class="post-read-more">
-        <a href="{{ post.url | url }}">Read more</a>
+        <a href="{{ post.url | url }}">Continue Reading</a>
       </div>
       <div class="post-footer">
         <a href="/posts/{{ post.data.author }}" class="author-link">
