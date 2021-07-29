@@ -7,6 +7,12 @@
     </div>
     <h3 class="postlist__title">
       <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+      <a class="postlist__author" href="/posts/{{ post.data.author }}">
+        <span style="white-space: nowrap;">
+          <img data-deopt="true" src="{{ author.avatarUrl }}">
+          <span class="postlist__author-name">{{ author.name }}</span>
+        </span>
+      </a>
     </h3>
   </div>
 {% endfor %}

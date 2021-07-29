@@ -1514,7 +1514,6 @@ footer > * {
 .nav-pagination li a, .nav-pagination li span{
   font-size: 14px;
   color: var(--fg);
-  width: 32px;
   height: 32px;
   line-height: 32px;
   display: flex;
@@ -1540,6 +1539,7 @@ footer > * {
 .nav-pagination li.nav-pagination__prev *,
 .nav-pagination li.nav-pagination__next * {
   color: #fff;
+  margin-top: -1px;
 }
 
 .nav-pagination li.nav-pagination__prev *:hover,
@@ -1588,6 +1588,25 @@ footer > * {
 
 .postlist__item + .postlist__item {
   margin-top: 32px;
+}
+
+.postlist__title > a:first-child {
+  margin-right: 10px;
+}
+
+.postlist__author img {
+  width: 26px;
+  height: 26px;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin: 0;
+  border-radius: 50%;
+  vertical-align: text-bottom;
+}
+
+.postlist__author-name {
+  font-weight: bold;
+  color: #747474;
 }
 
 .about-item {
