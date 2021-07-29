@@ -82,13 +82,12 @@ templateClass: tmpl-post
   "headline": "{{ title }}",
   "image": [],
   "author": "{{ postAuthor.name }}", 
-  "genre": "{{ metadata.genre }}", 
   "publisher": {
     "@type": "Organization",
     "name": "{{ metadata.publisher.name }}",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ '/img/favicon/favicon-192x192.png' | addHash }}"
+      "url": "{{ '/img/favicon/favicon-192x192.png' | absoluteUrl(metadata.url) }}"
     }
   },
   "url": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
