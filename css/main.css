@@ -316,6 +316,7 @@ pre {
 }
 a {
   background-color: transparent;
+  text-underline-offset: 2px;
 }
 abbr[title] {
   border-bottom: none;
@@ -1197,7 +1198,7 @@ h1 {
 
 header aside {
   font-size: 16px;
-  color: #4a5568;
+  color: #4b4b4b;
 }
 
 .post {
@@ -1216,8 +1217,9 @@ header aside {
 }
 
 .post-description {
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 24px;
+  color: #747474;
 }
 
 .post-info {
@@ -1230,6 +1232,11 @@ header aside {
 
 .post-read-more a {
   color: #002282;
+}
+
+.post-read-more a:hover {
+  color: #3254B4;
+  text-decoration: none;
 }
 
 .post-footer {
@@ -1501,7 +1508,6 @@ footer > * {
 }
 
 .nav-pagination li.current {
-  background: transparent;
   border-color: #5789d3;
 }
 
@@ -1515,6 +1521,11 @@ footer > * {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.nav-pagination li a:hover {
+  text-decoration: none;
+  color: #5789D3;
 }
 
 .nav-pagination li:not(:first-child) {
@@ -1531,9 +1542,20 @@ footer > * {
   color: #fff;
 }
 
+.nav-pagination li.nav-pagination__prev *:hover,
+.nav-pagination li.nav-pagination__next *:hover {
+  color: #fff;
+}
+
+.nav-pagination li.nav-pagination__prev:hover,
+.nav-pagination li.nav-pagination__next:hover {
+  background: #7FB1FB;
+}
+
 .nav-pagination li.nav-pagination__prev--disable, .nav-pagination li.nav-pagination__next--disable {
   background: #ccc;
   border-color: #ccc;
+  pointer-events: none;
 }
 
 .btn {
@@ -1557,6 +1579,7 @@ footer > * {
 .postlist__title {
   font-size: 20px;
   margin: 8px 0 0 0;
+  font-weight: 400;
 }
 
 .postlist__title a {
@@ -1615,9 +1638,19 @@ footer > * {
   color: var(--fg);
 }
 
+.tag-list__item:hover {
+  text-decoration: none;
+  background: #CCCCCC;
+}
+
 .tag-list__item--active {
   background: #e7eff8;
 }
+
+.tag-list__item--active:hover {
+  background: #D3DBE4;
+}
+
 
 @media (min-width: 768px) {
   h1 {
