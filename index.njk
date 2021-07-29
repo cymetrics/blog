@@ -4,15 +4,44 @@ layout: layouts/home.njk
 description: 分享資訊安全與技術開發相關內容
 image: /img/favicon/favicon-512x512.png
 date: Last Modified
+pagination:
+  data: collections.posts
+  size: 8
+  alias: posts
+  reverse: true
+permalink: /{% if pagination.pageNumber > 0 %}articles/{{ pagination.pageNumber }}/{% endif %}
 ---
 
-{% set maxArticleShow = 8 %}
-
 <div class="posts">
-  {% set postslist = collections.posts | reverse | head(maxArticleShow) %}
+  {% set postslist = posts %}
   {% include "home-postslist.njk" %}
 </div>
 
-{% if collections.posts.length > maxArticleShow %}
-<a href="/posts" class="btn">Read more articles</a>
+{% if pagination.pages.length > 1 %}
+<nav class="nav-pagination" aria-labelledby="my-pagination">
+  <ol>
+    {% if pagination.href.previous %}
+      <li class="nav-pagination__prev">
+        <a href="{{ pagination.href.previous }}">‹</a>
+      </li>
+    {% else %}
+      <li class="nav-pagination__prev nav-pagination__prev--disable">
+        <span>‹</span>
+      </li>
+    {% endif %}
+{%- for pageEntry in pagination.pages %}
+    {% set isCurrent = (page.url == pagination.hrefs[ loop.index0 ]) %}
+    <li {% if isCurrent %} class="current"{% endif %}><a {% if isCurrent %} aria-current="page"{% endif %} href="{{ pagination.hrefs[ loop.index0 ] }}">{{ loop.index }}</a></li>
+{%- endfor %}
+    {% if pagination.href.next %}
+      <li class="nav-pagination__next">
+        <a href="{{ pagination.href.next }}">›</a>
+      </li>
+    {% else %}
+      <li class="nav-pagination__next nav-pagination__next--disable">
+        <span>›</span>
+      </li>
+    {% endif %}
+  </ol>
+</nav>
 {% endif %}

@@ -6,9 +6,10 @@ eleventyNavigation:
   order: 1
 pagination:
   data: collections.posts
-  size: 50
+  size: 12
   alias: posts
-permalink: /posts/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}
+  reverse: true
+permalink: /archive/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}
 ---
 
 {% set postslist = posts %}
@@ -17,13 +18,28 @@ permalink: /posts/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/
 {% if pagination.pages.length > 1 %}
 <nav class="nav-pagination" aria-labelledby="my-pagination">
   <ol>
-    <li>{% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}">«</a>{% else %}<span>«</span>{% endif %}</li>
-    <li>{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">‹</a>{% else %}<span>‹</span>{% endif %}</li>
+    {% if pagination.href.previous %}
+      <li class="nav-pagination__prev">
+        <a href="{{ pagination.href.previous }}">‹</a>
+      </li>
+    {% else %}
+      <li class="nav-pagination__prev nav-pagination__prev--disable">
+        <span>‹</span>
+      </li>
+    {% endif %}
 {%- for pageEntry in pagination.pages %}
-    <li><a href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>{{ loop.index }}</a></li>
+    {% set isCurrent = (page.url == pagination.hrefs[ loop.index0 ]) %}
+    <li {% if isCurrent %} class="current"{% endif %}><a {% if isCurrent %} aria-current="page"{% endif %} href="{{ pagination.hrefs[ loop.index0 ] }}">{{ loop.index }}</a></li>
 {%- endfor %}
-    <li>{% if pagination.href.next %}<a href="{{ pagination.href.next }}">›</a>{% else %}<span>›</span>{% endif %}</li>
-    <li>{% if page.url != pagination.href.last %}<a href="{{ pagination.href.last }}">»</a>{% else %}<span>»</span>{% endif %}</li>
+    {% if pagination.href.next %}
+      <li class="nav-pagination__next">
+        <a href="{{ pagination.href.next }}">›</a>
+      </li>
+    {% else %}
+      <li class="nav-pagination__next nav-pagination__next--disable">
+        <span>›</span>
+      </li>
+    {% endif %}
   </ol>
 </nav>
 {% endif %}

@@ -398,10 +398,10 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/posts/</loc>
+    <loc>https://tech-blog.cymetrics.io/archive/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-21T13:46:17.994Z</lastmod>
+    <lastmod>2021-07-29T03:38:58.060Z</lastmod>
   </url>
   
   
@@ -440,6 +440,25 @@
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-07-21T09:08:54.199Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/security/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T09:08:48.675Z</lastmod>
   </url>
   
   
@@ -569,25 +588,6 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/security/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T09:08:48.675Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
     <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -646,6 +646,25 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-21T09:08:48.675Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-07-21T09:08:48.675Z</lastmod>
@@ -735,25 +754,6 @@
     
   
   
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T09:08:48.675Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
   
   
   <url>
@@ -798,6 +798,6 @@
     <loc>https://tech-blog.cymetrics.io/</loc>
     <changefreq>daily</changefreq>
     <priority>1</priority>
-    <lastmod>2021-07-28T09:55:17.002Z</lastmod>
+    <lastmod>2021-07-29T03:44:05.133Z</lastmod>
   </url>
 </urlset>
