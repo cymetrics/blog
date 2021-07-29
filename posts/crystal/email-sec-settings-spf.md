@@ -185,7 +185,9 @@ include 機制適合用在核准外部（跨域）的 email provider，例如當
 
 如果你有使用第三方的寄件服務，例如 SendGrid，你可以在 SPF 紀錄中用 include 機制把第三方的 email server 涵蓋進來，例如 OneDegree 使用微軟 Outlook、MailChimp、FreshDesk、SendGrid 等服務：
 
+```txt
 v=spf1 include:spf.protection.outlook.com include:servers.mcsv.net include:email.freshdesk.com -all
+```
 
 眼尖的人可能會發現，上面的紀錄怎麼少了 `include:sendgrid.net`？
 
