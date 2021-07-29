@@ -1,7 +1,7 @@
 ---
 title: Java’s Thread Model and Golang Goroutine
 date: 2021-07-05
-tags: [java, golang, thread, goroutine, concurrency]
+tags: [Back-end, java, golang, thread, goroutine, concurrency]
 author: genchilu
 layout: layouts/post.njk
 ---

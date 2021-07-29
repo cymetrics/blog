@@ -8,7 +8,7 @@ templateClass: tmpl-post
 
 {% block extraArticleHeader %}
    <aside class="w-full">
-      <div style="text-align: left;">
+      <div class="post-tags">
       {% for tag in tags %}
         {% if tag !== "posts" %}
           {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}

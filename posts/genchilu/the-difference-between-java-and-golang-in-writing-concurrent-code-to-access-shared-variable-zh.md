@@ -1,7 +1,7 @@
 ---
 title: 比較 Java 和 Golang 在撰寫併發時處理共享變數的差異
 date: 2021-05-03
-tags: [java, golang, volatile, concurrency]
+tags: [Back-end, java, golang, volatile, concurrency]
 author: genchilu
 layout: layouts/post.njk
 ---

@@ -2,7 +2,7 @@
 title: The Difference Between Java and Golang in  Writing Concurrent Code to Access
   Shared Variable
 date: 2021-05-03
-tags: [java, golang, volatile, concurrency]
+tags: [Back-end, java, golang, volatile, concurrency]
 author: genchilu
 layout: layouts/post.njk
 ---

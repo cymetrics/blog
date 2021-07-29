@@ -7,9 +7,10 @@ eleventyNavigation:
   order: 2
 ---
 
-{% for tag in collections.tagList %}
-  {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
-  <h2><a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a></h2>
-  {% set postslist = collections[tag] %}
-  {% include "postslist.njk" %}
-{% endfor %}
+{% set currentTag = 'Security' %}
+{% include "tags.njk" %}
+
+<div style="margin-top: 32px;">
+{% set postslist = collections['Security'] | reverse %}
+{% include "postslist.njk" %}
+</div>

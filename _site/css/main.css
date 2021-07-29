@@ -636,7 +636,7 @@ pre code:not([class]) {
 code,
 kbd {
   border-radius: 0.3em;
-  color: var(--primary);
+  color: #f2cd59;
   padding: 0 0.3em;
   font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
   font-size: 90%;
@@ -1173,11 +1173,6 @@ a {
 
 /* navbar RWD -------------------- */
 
-nav a:hover {
-  color: #595959;
-}
-
-
 body.dark {
     --fg: var(--bgColor);
     --bg: var(--fgColor);
@@ -1356,7 +1351,7 @@ header nav {
 }
 
 .nav__links a:hover {
-  color: #f9c412;
+  color: var(--primary-color);
 }
 
 .nav-logo {
@@ -1390,8 +1385,10 @@ footer > * {
   margin-left: 32px;
 }
 
-.post-tag + .post-tag {
-  margin-left: 24px;
+.post-tags {
+  display: flex;
+  gap: 0px 16px;
+  flex-wrap: wrap;
 }
 
 .direct-link {
@@ -1603,6 +1600,24 @@ footer > * {
 
 .about-item__intro {
   margin: 4px 0 0 0;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 8px;
+}
+
+.tag-list__item {
+  background: #ececec;
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: var(--fg);
+}
+
+.tag-list__item--active {
+  background: #e7eff8;
 }
 
 @media (min-width: 768px) {
