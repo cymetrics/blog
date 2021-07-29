@@ -8,10 +8,10 @@ date: Last Modified
 
 {% set maxArticleShow = 8 %}
 
-<section class="posts">
+<div class="posts">
   {% set postslist = collections.posts | reverse | head(maxArticleShow) %}
   {% include "home-postslist.njk" %}
-</section>
+</div>
 
 {% if collections.posts.length > maxArticleShow %}
 <a href="/posts" class="btn">Read more articles</a>

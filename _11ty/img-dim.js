@@ -36,6 +36,9 @@ const { gif2mp4 } = require("./video-gif");
 
 const processImage = async (img, outputPath) => {
   let src = img.getAttribute("src");
+  if (img.getAttribute('data-deopt')) {
+    return;
+  }
   if (/^(https?\:\/\/|\/\/)/i.test(src)) {
     return;
   }

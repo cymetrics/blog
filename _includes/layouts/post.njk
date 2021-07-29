@@ -8,10 +8,6 @@ templateClass: tmpl-post
 
 {% block extraArticleHeader %}
    <aside class="w-full">
-      <div class="flex items-center">
-        <img class="avatar" src="{{ postAuthor.avatarUrl }}" alt="avatar">
-        <span style="margin-left: 12px;"><a href="/posts/{{ author }}">{{ postAuthor.name }}</a> published on {{ date | htmlDateString }}</span>
-      </div>
       <div style="text-align: left;">
       {% for tag in tags %}
         {% if tag !== "posts" %}
@@ -21,6 +17,18 @@ templateClass: tmpl-post
         
       {% endfor %}
       </div>
+      <div class="post-avatar">
+        <img class="post-avatar__img" data-deopt="true" src="{{ postAuthor.avatarUrl }}" alt="{{ postAuthor.name }}">
+        <div class="post-avatar__info">
+          <div class="post-avatar__author">
+            <a href="/posts/{{ author }}">{{ postAuthor.name }}</a>
+          </div>
+          <div class="post-avatar__time">
+            {{ date | readableDate }}
+          </div>
+        </div>
+      </div>
+      
    </aside>
 {% endblock %}
 
@@ -28,22 +36,25 @@ templateClass: tmpl-post
 {% set shareUrl = metadata.url + page.url %}
 
 {% block article %}
-
+<div id="post-page"></div>
 {{ content | safe }}
-
-<hr>
-<p>
-  <h3>Author</h3>
-  <div class="flex items-center">
-    <img class="avatar avatar-large" alt="avatar" src="{{ postAuthor.avatarUrl }}">
-    <h3 style="margin-left: 12px;"><a href="/posts/{{ author }}">{{ postAuthor.name }}</a></h3>
+<div class="article-footer">
+  <a href="{{ shareUrl | safe }}" on-click="share"><img src="/img/icons/icon_external link hyperlink.svg">Share this post</a>
+</div>
+<div class="article-author">
+  <img class="article-author__img" data-deopt="true" src="{{ postAuthor.avatarUrl }}" alt="{{ postAuthor.name }}">
+  <div class="article-author__info">
+    <div class="article-author__title">
+      Author
+    </div>
+    <div class="article-author__author">
+      <a href="/posts/{{ author }}">{{ postAuthor.name }}</a>
+    </div>
+    <div class="article-author__intro">
+      {{ postAuthor.intro | safe }}
+    </div>
   </div>
-  <p>{{ postAuthor.intro | safe }}</p>
-</p>
-
-<p>
-  <a href="{{ shareUrl | safe }}" on-click="share">Share this post</a>
-</p>
+</div>
 
 <script
   id="utterance-script"
@@ -56,11 +67,13 @@ templateClass: tmpl-post
   async>
 </script>
 
+<!--
 <share-widget>
   <button on-click="share" aria-label="Share" href="{{ shareUrl | safe }}">
     <div></div>
   </button>
 </share-widget>
+-->
 
 <script type="application/ld+json">
 {

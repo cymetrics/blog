@@ -66,15 +66,13 @@
     <header>
       <nav>
         <div id="nav">
-          <h1>
-            <a href="{{ '/' | url }}" title="Homepage">{{ metadata.title }}</a>
+          <div class="nav-title">
+            <a class="nav-logo" href="{{ '/' | url }}" title="Homepage"></a>
             <label for="menu__control" class="menu__btn">
               <span>Menu</span>
             </label>
-          </h1>
-          <img id="color-scheme-toggle" src="{{ '/img/dark.svg' | url }}" alt="switch dark mode" />
+          </div>
           {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-          <input id="menu__control" type="checkbox" />
           <div class ="nav__links">
           {%- for entry in collections.all | eleventyNavigation %}
             <a href="{{ entry.url | url }}">{{ entry.title }}</a>
@@ -97,13 +95,27 @@
     </main>
 
     <footer>
+      <div class="footer-logos">
+        <a href="{{ metadata.feed.id + metadata.feed.path | url }}" target="_blank"><img src="/img/icons/icon_social media_facebook.svg" alt="facebook" /></a>
+        <a href="{{ metadata.feed.id + metadata.feed.path | url }}" target="_blank"><img src="/img/icons/icon_social media_linkedln.svg" alt="linkedin" /></a>
+        <a href="{{ metadata.feed.id + metadata.feed.path | url }}" target="_blank"><img src="/img/icons/rss-feed.svg" alt="rss feed" /></a>
+      </div>
       <div class="copyright">&copy 2021 Cymetrics Tech Blog </div>
-      <a href="{{ metadata.feed.id + metadata.feed.path | url }}" id="rss"><img src="/img/rss-feed.svg" alt="rss feed" /></a>
     </footer>
 
     <!-- Current page: {{ page.url | url }} -->
     <script>
       // light/dark theme switch
+      // disable dark mode for now
+      const menuBtn = document.querySelector('.menu__btn')
+      menuBtn.addEventListener('click', function() {
+        document.querySelector('body').classList.toggle('lock')
+        menuBtn.classList.toggle('menu__btn--close');
+        document.querySelector('.nav__links').classList.toggle('nav__links--open')
+      })
+      
+
+      /*
       const toggleEl = document.querySelector('#color-scheme-toggle')
       const bodyEl = document.querySelector('body');
       const DARK = 'dark';
@@ -150,7 +162,7 @@
           theme: theme === DARK ? 'github-dark-orange' : 'github-light'
         }, 'https://utteranc.es');
       }
-
+    */
     </script>
   </body>
 </html>

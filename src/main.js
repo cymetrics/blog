@@ -199,7 +199,11 @@ addEventListener(
   true
 );
 
-if (window.ResizeObserver && document.querySelector("header nav #nav")) {
+if (window.ResizeObserver &&
+    document.querySelector("header nav #nav") &&
+    document.querySelector('#post-page') // only show it on post page
+) {
+
   var progress = document.getElementById("reading-progress");
 
   var timeOfLastScroll = 0;
