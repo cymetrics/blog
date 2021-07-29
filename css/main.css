@@ -636,12 +636,11 @@ pre code:not([class]) {
 code,
 kbd {
   border-radius: 0.3em;
-  color: #f2cd59;
+  color: #e33671;
   padding: 0 0.3em;
   font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
   font-size: 90%;
 }
-code,
 kbd {
   background: #2d2d2d;
 }
@@ -1684,8 +1683,6 @@ footer > * {
     margin: 0 0 0 24px;
   }
 
-
-
   footer {
     display: flex;
     flex-direction: row-reverse;
@@ -1694,5 +1691,15 @@ footer > * {
     max-width: 1168px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .about-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 24px;
+  }
+
+  .about-item {
+    width: 48%;
   }
 }
