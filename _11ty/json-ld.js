@@ -45,7 +45,12 @@ const jsonLd = (rawContent, outputPath) => {
       const obj = JSON.parse(jsonLd.textContent);
 
       if (images.length) {
-        obj.image = images.map((img) => BASE_URL + img.src);
+        obj.image = images.map(img => {
+            if (img.src.startsWith('http://') || img.src.startsWith('https://')) {
+              return img.src
+            }
+            return BASE_URL + img.src
+        });
         jsonLd.textContent = JSON.stringify(obj);
         content = dom.serialize();
       }
