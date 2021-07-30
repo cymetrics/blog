@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2021-07-24T00:00:00-00:00</updated>
+	<updated>2021-07-30T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -3040,7 +3040,7 @@ DKIM、DMARC 的設定 👉 &lt;a href=&quot;https://tech-blog.cymetrics.io/post
 	<entry>
 		<title>Reverse Engineering 101 — Part 2</title>
 		<link href="https://tech-blog.cymetrics.io/posts/crystal/reverse-02/"/>
-		<updated>2021-07-24T00:00:00-00:00</updated>
+		<updated>2021-07-30T00:00:00-00:00</updated>
 		<id>https://tech-blog.cymetrics.io/posts/crystal/reverse-02/</id>
 		<content type="html">
 		  &lt;!-- summary --&gt;
