@@ -357,7 +357,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-22T10:52:54.929Z</lastmod>
+    <lastmod>2021-08-02T01:24:58.164Z</lastmod>
   </url>
   
   
@@ -715,7 +715,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-07-29T06:10:23.796Z</lastmod>
@@ -734,7 +734,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-07-29T06:10:23.796Z</lastmod>
@@ -907,5 +907,24 @@
     <changefreq>daily</changefreq>
     <priority>1</priority>
     <lastmod>2021-07-29T07:40:07.465Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-02/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-02T01:24:58.164Z</lastmod>
   </url>
 </urlset>

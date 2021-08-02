@@ -99,13 +99,13 @@ const processImage = async (img, outputPath) => {
     const avif = doc.createElement("source");
     const webp = doc.createElement("source");
     const jpeg = doc.createElement("source");
-    await setSrcset(avif, src, "avif");
-    avif.setAttribute("type", "image/avif");
+    // await setSrcset(avif, src, "avif");
+    // avif.setAttribute("type", "image/avif");
     await setSrcset(webp, src, "webp");
     webp.setAttribute("type", "image/webp");
     const fallback = await setSrcset(jpeg, src, "jpeg");
     jpeg.setAttribute("type", "image/jpeg");
-    picture.appendChild(avif);
+    // picture.appendChild(avif);
     picture.appendChild(webp);
     picture.appendChild(jpeg);
     img.parentElement.replaceChild(picture, img);
