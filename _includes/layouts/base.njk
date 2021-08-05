@@ -18,7 +18,7 @@
     <meta property="og:title" content="{{ renderData.title or title or metadata.title | escape  }}">
     <meta name="twitter:title" content="{{ renderData.title or title or metadata.title | escape  }}">
     <meta name="twitter:card" content="summary">
-    {% set coverImage = renderData.image or '/img/favicon/favicon-192x192.png' %}
+    {% set coverImage = renderData.image or '/img/favicon/favicon-512x512.png' %}
     {% set desc = renderData.description or description %}
     {% if not desc %}
       {% set desc = content | striptags | truncate(140) %}
