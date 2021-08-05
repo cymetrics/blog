@@ -677,6 +677,25 @@
   
   
   <url>
+    <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
     <loc>https://tech-blog.cymetrics.io/tags/zerobased/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -773,25 +792,6 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-07-29T06:10:23.796Z</lastmod>
@@ -926,5 +926,24 @@
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-02T01:24:58.164Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/huli/learn-from-intigriti-xss-0721/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-05T10:15:07.696Z</lastmod>
   </url>
 </urlset>
