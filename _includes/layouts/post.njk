@@ -81,13 +81,19 @@ templateClass: tmpl-post
   "@type": "Article",
   "headline": "{{ title }}",
   "image": [],
-  "author": "{{ postAuthor.name }}", 
+  "author": {
+    "@type": "Person",
+    "name": "{{ postAuthor.name }}"
+  }, 
   "publisher": {
     "@type": "Organization",
     "name": "{{ metadata.publisher.name }}",
+    "url": "{{ metadata.url }}",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ '/img/favicon/favicon-512x512.png' | absoluteUrl(metadata.url) }}"
+      "url": "{{ '/img/favicon/favicon-512x512.png' | absoluteUrl(metadata.url) }}",
+      "width": 512,
+      "height": 512
     }
   },
   "url": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
@@ -96,6 +102,33 @@ templateClass: tmpl-post
   "dateModified": "{{ page.inputPath | lastModifiedDate  | htmlDateString }}",
   "description": "{{ content | striptags | truncate(140) }}"
 }
+</script>
+<script type="application/ld+json">
+{   
+  "@context":"http://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ metadata.title }}",
+      "item": "{{ metadata.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Archive",
+      "item": "{{ metadata.url }}/archive/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ title }}",
+      "item": "{{ metadata.url }}{{ page.url }}"
+    }
+  ]
+}
+
 </script>
 
 {% endblock %}
