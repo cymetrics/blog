@@ -56,6 +56,10 @@ Supply chain attack，中文翻成供應鏈攻擊，這個手法瞄準了上游�
 
 第二個理由是如果大家都在用這個 CDN，那它被快取住的機率就提高了。例如說，假設 Facebook 也用了 cdnjs 來載入 jQuery 3.6.0 版，那如果我的網站也用了同樣的服務載入了同個 library，對於造訪過 Facebook 的瀏覽器來說，它就不需要再次下載檔案，因為已經下載過，被快取住了。
 
+（2021-08-09 補充：感謝 Ho Hong Yip 於文章發出後在臉書前端社群的指正，現在的瀏覽器對於快取多加了一個限制，也就是跨網站（更詳細一點說是根據 eTLD+1 來判斷）的快取將會分開。所以就算 Facebook 已經載入 jQuery 3.6.0，使用者造訪你的網站時還是需要再下載一次。更詳細的介紹可以看這篇：[Gaining security and privacy by partitioning the cache](https://developers.google.com/web/updates/2020/10/http-cache-partitioning)。如此一來，好像又少了一個用 public CDN 的理由了？但文末有提到 [Web Shared Libraries](https://docs.google.com/document/d/1lQykm9HgzkPlaKXwpQ9vNc3m2Eq2hF4TY-Vup5wg4qg/edit) 想解決這個問題，只是看起來還在早期階段。）
+
+
+
 以大家熟悉的 [iT 邦幫忙](https://ithelp.ithome.com.tw/articles?tab=tech)網站為例，就有使用到來自於 google 跟 cdnjs 的資源：
 
 ![ithome](/img/posts/huli/front-end-supply-chain-attack-cdnjs/ithome.png)
