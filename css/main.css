@@ -1461,6 +1461,7 @@ footer > * {
   overflow: hidden;
   margin: 0;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .article-author__info {
