@@ -3347,6 +3347,7 @@ object-src &#39;none&#39;;base-uri &#39;none&#39;;
 &lt;p&gt;第三點速度考量值得特別說明一下，如果載入的函式庫是來自於 CDN，下載的速度可能會比較快。&lt;/p&gt;
 &lt;p&gt;比較快的第一個理由是他們本來就是做 CDN 的，所以在不同國家可能都有節點。假設你主機放在美國，那若是放自己網站，台灣的使用者就要連到美國的伺服器去抓這些 library，但如果是用 CDN 提供的網址，可能只要連到台灣的節點就好，省去一些延遲（latency）。&lt;/p&gt;
 &lt;p&gt;第二個理由是如果大家都在用這個 CDN，那它被快取住的機率就提高了。例如說，假設 Facebook 也用了 cdnjs 來載入 jQuery 3.6.0 版，那如果我的網站也用了同樣的服務載入了同個 library，對於造訪過 Facebook 的瀏覽器來說，它就不需要再次下載檔案，因為已經下載過，被快取住了。&lt;/p&gt;
+&lt;p&gt;（2021-08-09 補充：感謝 Ho Hong Yip 於文章發出後在臉書前端社群的指正，現在的瀏覽器對於快取多加了一個限制，也就是跨網站（更詳細一點說是根據 eTLD+1 來判斷）的快取將會分開。所以就算 Facebook 已經載入 jQuery 3.6.0，使用者造訪你的網站時還是需要再下載一次。更詳細的介紹可以看這篇：&lt;a href=&quot;https://developers.google.com/web/updates/2020/10/http-cache-partitioning&quot;&gt;Gaining security and privacy by partitioning the cache&lt;/a&gt;。如此一來，好像又少了一個用 public CDN 的理由了？但文末有提到 &lt;a href=&quot;https://docs.google.com/document/d/1lQykm9HgzkPlaKXwpQ9vNc3m2Eq2hF4TY-Vup5wg4qg/edit&quot;&gt;Web Shared Libraries&lt;/a&gt; 想解決這個問題，只是看起來還在早期階段。）&lt;/p&gt;
 &lt;p&gt;以大家熟悉的 &lt;a href=&quot;https://ithelp.ithome.com.tw/articles?tab=tech&quot;&gt;iT 邦幫忙&lt;/a&gt;網站為例，就有使用到來自於 google 跟 cdnjs 的資源：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/huli/front-end-supply-chain-attack-cdnjs/ithome.png&quot; alt=&quot;ithome&quot;&gt;&lt;/p&gt;
 &lt;p&gt;前面講了一些使用第三方 CDN 的優點，那缺點是什麼呢？&lt;/p&gt;
