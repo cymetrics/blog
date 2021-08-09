@@ -433,7 +433,7 @@
     <loc>https://tech-blog.cymetrics.io/about/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-23T05:44:14.264Z</lastmod>
+    <lastmod>2021-08-09T07:40:22.807Z</lastmod>
   </url>
   
   
@@ -715,6 +715,25 @@
   
   
   <url>
+    <loc>https://tech-blog.cymetrics.io/tags/csrf/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
     <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -754,25 +773,6 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/csrf/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-07-29T06:10:23.796Z</lastmod>
@@ -945,5 +945,24 @@
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-05T10:15:07.696Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/huli/front-end-supply-chain-attack-cdnjs/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-09T07:36:04.608Z</lastmod>
   </url>
 </urlset>
