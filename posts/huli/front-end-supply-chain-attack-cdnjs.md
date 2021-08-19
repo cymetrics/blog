@@ -23,7 +23,7 @@ Supply chain attack，中文翻成供應鏈攻擊，這個手法瞄準了上游�
 
 而 cdnjs 就是其中一個來源，它的官網長這樣：
 
-![cdnjs](/img/posts/huli/front-end-supply-chain-attack-cdnjs/cdnjs.png)
+#[圖片擷取自 <a href="https://cdnjs.com/">cdnjs</a> 官網](/img/posts/huli/front-end-supply-chain-attack-cdnjs/cdnjs.png [cdnjs 截圖])
 
 除了 cdnjs，也有其他提供類似服務的網站，例如說在 [jQuery](https://jquery.com/download/) 官網上可以看見他們自己的 code.jquery.com ，而 [Bootstrap](https://getbootstrap.com/) 則是使用了另一個叫做 [jsDelivr](https://www.jsdelivr.com/) 的服務。
 

@@ -54,6 +54,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItFootnote = require('markdown-it-footnote');
 const markdownItAttrs = require('markdown-it-attrs');
+const markdownItFigure = require('./_11ty/markdown-it-figure');
 const localImages = require("./third_party/eleventy-plugin-local-images/.eleventy.js");
 const CleanCSS = require("clean-css");
 const GA_ID = require("./_data/metadata.json").googleAnalyticsId;
@@ -182,6 +183,7 @@ module.exports = function (eleventyConfig) {
   })
   .use(markdownItAttrs)
   .use(markdownItFootnote)
+  .use(markdownItFigure)
   .use(markdownItAnchor, {
     permalink: true,
     permalinkClass: "direct-link",
