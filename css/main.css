@@ -671,10 +671,15 @@ hr {
   border-bottom: 1px solid var(--fg);
 }
 figcaption {
-  color: #ccc;
+  color: #757575;
   margin-top: 0.75em;
-  font-size: 80%;
+  text-align: center;
 }
+figcaption > p{
+  margin: 0;
+  font-size: 90%;
+}
+
 dt {
   font-weight: 600;
 }
@@ -973,7 +978,7 @@ video {
   margin: 0 auto;
 }
 figure {
-  margin: 1.5em;
+  margin: 0;
 }
 figure img {
   display: block;
