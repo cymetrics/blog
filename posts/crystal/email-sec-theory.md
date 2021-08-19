@@ -26,13 +26,13 @@ image: /img/posts/crystal/email-sec-theory/cover.jpg
 
 其實一封電子郵件的旅程也差不多如此。假設今天我要寄一封電子新年賀卡給爺爺會發生什麼事呢？我們用下面這張圖來說明。
 
-![](/img/posts/crystal/email-sec-theory/journey.png)
+#[Email’s journey （參考 <a href="https://afreshcloud.com/sysadmin/mail-terminology-mta-mua-msa-mda-smtp-dkim-spf-dmarc">Mail Terminology</a>）](/img/posts/crystal/email-sec-theory/journey.png [mail's journey])
 
 首先，我會在網頁上登入我的 gmail ，此時『網頁版 gmail 』這個應用程式就扮演著圖左上角寫著 Mail User Agent（MUA）的角色，是使用者直接互動、操作的介面。當我寫好信之好按下寄出，MUA 就會把我寫的內文（body）前面加上一些 header，包含寄信人（`header.From`）、收件人（`header.To`）、`header.Reply-To`、`header.BCC`、`header.CC`、日期等等資訊。
 
 如果你點開信件的原始資訊，會看到類似下面這一張圖的內容：
 
-![](/img/posts/crystal/email-sec-theory/header.png)
+#[Header 的一小部分](/img/posts/crystal/email-sec-theory/header.png)
 
 當 MUA 把信包裝好後，就會通過 SMTP（Simple Mail Transfer Protocol）這個協定進行身份驗證並把信包在一個信封袋（SMTP envelope）中交給 email server。這裡我用的是 gmail，以上圖來說黃色的 sender server 就是一台 gmail server。在 email server 中，首先會送到在 port 587 的 Mail Submission Agent（MSA），在這裡進行一些郵件審查與勘誤。審查的功能常用於確保符合 AD 設定的 policy，例如拒絕非同網域的收信地址、或是未經帳密驗證的寄件人等等。勘誤的部分則是會檢查是否缺少某些 header 欄位或是有格式不正確的地方。
 
@@ -40,7 +40,7 @@ image: /img/posts/crystal/email-sec-theory/cover.jpg
 
 前面說過，使用 SMTP 會把信包在一個信封袋（SMTP envelope）中，實際上也就是加上一些 SMTP 欄位的紀錄，例如 `smtp.HELO`、`smtp.MailFrom`、`smtp.RcptTo` 等等。所以經過 MSA 與 MTA 這些 relay 的信件都會被加上一些軌跡（trace），你可以在原始資訊中看見這些紀錄：
 
-![](/img/posts/crystal/email-sec-theory/trace.png)
+#[SMTP trace information](/img/posts/crystal/email-sec-theory/trace.png)
 
 好不容易送到使用 outlook 的爺爺那邊的 Microsoft server，然後呢？
 
@@ -48,7 +48,7 @@ image: /img/posts/crystal/email-sec-theory/cover.jpg
 
 最後，當爺爺打開他的桌機版 outlook （MUA）準備收信時，MUA 就會使用 POP3 或是 IMAP 協定向 email server 上運行的 POP3 / IMAP server 進行身份驗證並要求存取信件，如果驗證成功就會從 MS 中下載我給爺爺的信，這樣爺爺就能在 outlook 的介面上看到我的賀卡啦～
 
-![](/img/posts/crystal/email-sec-theory/journey.png)
+#[Email’s journey （參考 <a href="https://afreshcloud.com/sysadmin/mail-terminology-mta-mua-msa-mda-smtp-dkim-spf-dmarc">Mail Terminology</a>）](/img/posts/crystal/email-sec-theory/journey.png [mail's journey])
 
 至此我們配著圖稍微整理一下這趟旅程中的各個角色：
 
@@ -79,7 +79,7 @@ image: /img/posts/crystal/email-sec-theory/cover.jpg
 *   source：在定義上為『負責確保信件有效（valid）再交給 relay 』的角色，即 MUA 與 MSA
 *   mediator：指 user-level 的信件傳送，如 mailing list 這種自動轉發的中間人角色，或是 MDA 所支援的 aliasing 功能。與 MTA relay 機制不同。
 
-![](/img/posts/crystal/email-sec-theory/identity-ref.png)
+#[Identity References（From: <a href="https://bbiw.net/specifications/draft-crocker-email-arch-03.html#Users">Internet Mail Architecture</a>）](/img/posts/crystal/email-sec-theory/identity-ref.png)
 
 ---
 
@@ -114,11 +114,11 @@ image: /img/posts/crystal/email-sec-theory/cover.jpg
 
 下圖是一筆合法的 SPF 紀錄，裡面表列了允許寄信的 IP 位置，並且用 -all 宣告『除了前列 IP 之外一律拒絕』。其實 SPF 有非常多種設定，我們下一篇再談。
 
-![](/img/posts/crystal/email-sec-theory/spf.png)
+#[SPF record（取自 維基百科）](/img/posts/crystal/email-sec-theory/spf.png)
 
 你可以在信件的原始資訊裡看到 SPF 的驗證結果，收信方的 email server（protection.outlook.com）在確定 IP 為此 domain 的合法寄信人後，就會給出 PASS 的結果。
 
-![](/img/posts/crystal/email-sec-theory/spf-result.png)
+#[SPF 驗證結果](/img/posts/crystal/email-sec-theory/spf-result.png)
 
 如果今天 gmail.com 設置了 SPF 紀錄，那爺爺的 email server 在驗證時就會發現表弟所用的自架 email server 沒有在列表裡找到對應的 IP ，因此判斷為驗證失敗，成功擋下這個詐騙攻擊。
 
@@ -134,11 +134,11 @@ image: /img/posts/crystal/email-sec-theory/cover.jpg
 
 收信的 email server 進行驗證時，如同 SPF，MDA 會去查詢寄信網域的 DNS 紀錄，找到對應的公鑰後解密簽章內容來比對是否一致。
 
-![](/img/posts/crystal/email-sec-theory/dkim.png)
+#[公鑰（取自 維基百科）](/img/posts/crystal/email-sec-theory/dkim.png)
 
 簽章如下圖所示，標籤中 `v` 為版本、`a` 代表加密方式。`d` `s` `q` 三者一起用來查詢公鑰，表示查詢域名為 `<selector>._domainkey.<domain>`（圖中就是 `brisbane._domainkey.example.net`）的 DNS TXT 紀錄。`h` 代表指定的header 欄位，加密後的結果會放在 `b`，而 `bh`（body hash）則是 body 本身經過雜湊後的結果。
 
-![](/img/posts/crystal/email-sec-theory/dkim-signature.png)
+#[DKIM signature（取自 維基百科）](/img/posts/crystal/email-sec-theory/dkim-signature.png)
 
 如果今天 gmail.com 設置了 DKIM 紀錄，那爺爺的 email server 在驗證時就會發現表弟竄改完的信件跟數位簽章解密的結果不符，因此判斷為驗證失敗，爺爺再度逃脫表弟的暗算。
 
@@ -154,7 +154,7 @@ image: /img/posts/crystal/email-sec-theory/cover.jpg
 
 DMARC 主要有兩個功能，其一是指示了當 SPF 與 DKIM 驗證失敗時該採取的行為，稱為 policy；第二則是確保信紙與信封袋上標示的寄件人來自同一個網域（也就是比對`header.From`跟`smtp.MailFrom`），稱為 alignment。
 
-![](/img/posts/crystal/email-sec-theory/dmarc.png)
+#[DMARC record（取自 bbc.com 的紀錄）](/img/posts/crystal/email-sec-theory/dmarc.png)
 
 以上面這個 DMARC 紀錄為例，必要的標籤為 `p`（policy），可能的值有：
 
@@ -173,7 +173,7 @@ DMARC 甚至很貼心的附贈回報功能，你可以在 DMARC 紀錄指定信�
 
 你也可以在每一封信的原始資訊中看見驗證結果：
 
-![](/img/posts/crystal/email-sec-theory/dmarc-result.png)
+#[DMARC 驗證結果](/img/posts/crystal/email-sec-theory/dmarc-result.png)
 
 如果今天 gmail.com 設置了 SPF、DKIM、DMARC 紀錄，那爺爺的 email server 在驗證時就會發現雖然表弟的 SPF、DKIM 驗證通過了，但是`header.From`寫的 gmail.com 跟`smtp.MailFrom`還有 DKIM signature 中 `d` 標籤寫的 cousin.com 對不起來，因此判斷為驗證失敗，爺爺因此又平安度過了一天！
 

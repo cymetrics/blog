@@ -89,7 +89,7 @@ End of assembler dump.
 
 在編譯程式碼的時候，有 dynamic linking 和 static linking 兩種方法，簡單對比的話，dynamic linking 就是只把作者自己定義的函數跟邏輯包進執行檔，而 static linking 則會把外部引用的函數一起包進去。所以 static linking 產生的檔案會大很多，而 dynamic linking 則會需要檔案執行者本機上的函示庫支援。到了執行的時候，statically linked 的檔案就可以直接在執行檔裡找到函數，dynamically linked 則是在程式跑起來的時候，作業系統才會做 linking，把各個要調用的外部函數的位置填到這隻程式的一張表裡，方便執行時查詢呼叫。剛剛說要『填入的一張表』就是 GOT（Global Offsets Table），是一個可讀可寫的記憶體空間；而 PLT（Procedure Linkage Table）就是『執行時查詢呼叫』的另一張表，是一個可讀可執行的記憶體空間。
 
-![](/img/posts/crystal/reverse-02/plt-got.png)
+#[GOT PLT table](/img/posts/crystal/reverse-02/plt-got.png)
 
 我們用上面這張圖簡單說明一下。
 
@@ -123,11 +123,11 @@ End of assembler dump.
 
 例如 `main+39` 的 `_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc` 前面是 `mov esi,0x400cd0; mov edi,0x6021a0`， `main+56` 的 `_ZNSirsERi` 前面是 `mov edi,0x602080`：
 
-![](/img/posts/crystal/reverse-02/cin-cout.png)
+#[cin cout](/img/posts/crystal/reverse-02/cin-cout.png)
 
 最後 `main+145` 的 `_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc` 前面是 `mov esi,0x400ce6; mov edi,0x6021a0`， `main+167` 的 `puts@plt` 前面是 `mov edi,0x400cef`：
 
-![](/img/posts/crystal/reverse-02/flag-cout.png)
+#[print flag](/img/posts/crystal/reverse-02/flag-cout.png)
 
 標準函式庫的參數都可以在文件上查到，只要對應著前一篇提過的 register 的順序就可以推敲出每塊資料的意義了喔！
 
@@ -179,7 +179,7 @@ Dump of assembler code for function main:
 
 其實到這裡，這一題就已經解完了。我們只要輸入任意三個相加為 1337 的數字就可以成功拿到 flag 了！
 
-![](/img/posts/crystal/reverse-02/reversed.png)
+#[reversed](/img/posts/crystal/reverse-02/reversed.png)
 
 根據上面的分析，我們可以手動還原 `main`的 cpp code。建議你可以先自己試試看，練習完再來看下面這段！
 
@@ -264,15 +264,15 @@ Patching 的確是一個常見又簡單的方法的方法，這題只要把 `mai
 
 我們從 assembly dump 可以看到 `jne 0x400bcc` 在 `0x400ba3` 的地方。另外，從 ELF header 可以看到程式跑起來會被 load 在 `0x400000` 的位置，所以我們在 ELF 中要找的就是 `0x400ba3 — 0x400000 = 0xba3` 這個 offset。
 
-![](/img/posts/crystal/reverse-02/codebase.png)
+#[find codebase](/img/posts/crystal/reverse-02/codebase.png)
 
 我們可以用 vim + xxd mode 找到 `0xba3` 的位置（記得 little endian 嗎），看到代表 `jne` 的 75。再來只要把它編輯成代表 `je` 的 74 再存檔，我們就 patch 好了！
 
-![](/img/posts/crystal/reverse-02/xxd-patch.png)
+#[patch in vim+xxd](/img/posts/crystal/reverse-02/xxd-patch.png)
 
 於是我們很興奮地把它跑起來，為了確定真的有影響『印 flag 的邏輯』還先輸入正確數字並看到確實出現 “nope”。結果… flag 怎麼是個亂七八糟的東西！
 
-![](/img/posts/crystal/reverse-02/messed-flag.png)
+#[messed up!](/img/posts/crystal/reverse-02/messed-flag.png)
 
 抱歉啦，出題者為了防止這種解法，加了產生 flag 的 `gen()`，所以數字總合如果不是 1337，產出的 flag 也會是不對的！
 

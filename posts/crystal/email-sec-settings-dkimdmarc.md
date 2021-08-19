@@ -32,7 +32,7 @@ image: /img/posts/crystal/email-sec-settings-dkimdmarc/cover.jpg
 
 回顧我們在原理篇看到的 DKIM signature，裡面有非常多欄位，包含版本、加密法、時間戳、網域等等。舉例來說，當收信方的 email server 看到下圖這個 DKIM signature，就會用裡面的 `s=brisbane,d=example.net` 組合出 DKIM 公鑰發行的網域：`brisbane._domainkey.example.net`，再用找到的公鑰解密 `bh`（body hash） 來比對雜湊（hash），進而驗證信件真實性。
 
-![](/img/posts/crystal/email-sec-theory/dkim-signature.png)
+#[DKIM signature（取自 維基百科）](/img/posts/crystal/email-sec-theory/dkim-signature.png)
 
 一般來說，你的 email provider 都會提供給你產生 DKIM 的工具，裡面的網域名稱、加密演算法等等都不能更改，可以配置的通常只有：
 
@@ -41,7 +41,7 @@ image: /img/posts/crystal/email-sec-settings-dkimdmarc/cover.jpg
 
 設定完成後就把公鑰發布在 `<selector>._domainkey.<domain>` 這個網域下，以 onedegree 為例，存在如下的一筆 DKIM 紀錄：
 
-![](/img/posts/crystal/email-sec-settings-dkimdmarc/onedegree-dkim.png)
+#[OneDegree DKIM](/img/posts/crystal/email-sec-settings-dkimdmarc/onedegree-dkim.png)
 
 根據 RFC，DKIM signature 產生於 Administrative Management Domains (ADMDs)，在信件的 creation 與 relay 均可能發生，也就是說一封信件可能是經過多次簽名的，例如我們之前提過的轉發（forwarding）就會保留原始信件的簽章並且加上中繼 email server 自己的的簽章。當信件內有多個 DKIM signature，每一個都會被驗證，不過只需要其中一個同時符合 verification 跟 alignment，DMARC 就會判定為 pass。
 
@@ -74,13 +74,13 @@ image: /img/posts/crystal/email-sec-settings-dkimdmarc/cover.jpg
 
 DMARC 運作流程可以用下面這張 RFC 裡定義的 flowchart 表示，重點注意紅色框框的部分。點點（…）代表 DNS query，星星（\*\*\*）代表有 data exchange，所以可以看到 DMARC 是先得到 SPF 與 DKIM 的結果，再跟 author domain 進行 DNS query 拿到 DMARC 紀錄，如果成功找到紀錄就配合 SPF 與 DKIM 的結果得出 DMARC 驗證的結論，最後把驗證結果交給 MDA 做信件的過濾。
 
-![](/img/posts/crystal/email-sec-settings-dkimdmarc/flowchart.png)
+#[Flowchart from RFC](/img/posts/crystal/email-sec-settings-dkimdmarc/flowchart.png)
 
 DMARC 驗證結果也會在原始信件裡留下紀錄。下圖紅框的地方分別是 SPF 與 DKIM 的驗證加上 alignment 檢查的結果，最後的 compauth 則是 DMARC 本身的驗證結果。因為 SPF 與 DKIM 都是 pass，所以 DMARC 也是 pass。
 
 另外，只要 SPF **或** DKIM 通過 alignment 檢查就可以，不用兩個都符合！
 
-![](/img/posts/crystal/email-sec-settings-dkimdmarc/dmarc-result.png)
+#[DMARC result](/img/posts/crystal/email-sec-settings-dkimdmarc/dmarc-result.png)
 
 接下來進入設定的部分。
 

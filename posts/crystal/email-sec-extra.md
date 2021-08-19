@@ -120,7 +120,7 @@ ARC-Seal 的意義是什麼呢？大家可能有經驗，如果去銀行或是�
 
 下面是一封原始信件的 ARC Set。所有的 header 都是用 stack 的方式紀錄，所以最先加的是紫色的 AAR ，再來是藍色的 AMS，最後是紅色的 AS。
 
-![](/img/posts/crystal/email-sec-extra/arc-set.png)
+#[ARC set from onedegree.hk to gmail](/img/posts/crystal/email-sec-extra/arc-set.png)
 
 首先可以注意到的是，三個 header 中都由一樣的 `i` 標籤開始，這是一個類似 nonce、counter、或 ID 的數字，代表是第幾個經過的 mediator，從 1 開始累加。 所以假設我是收到上面這封信的 mediator，我要新增的 ARC Set 就都會標示 `i=2`。
 

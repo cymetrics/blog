@@ -23,7 +23,7 @@ layout: layouts/post.njk
 
 今天拿到一個未知的檔案，我們該從何下手呢？首先，要知道我們的目標是什麼樣的檔案。我們可以用 linux 內建的 `file` 指令來辨識檔案類型。
 
-![](/img/posts/crystal/reverse-01/file.png)
+#[file 指令](/img/posts/crystal/reverse-01/file.png)
 
 例如從上圖中我們可以觀察到幾件事：
 
@@ -31,7 +31,7 @@ layout: layouts/post.njk
 
 2. 記憶體的位元組順序（Endianness）採 LSB（Least Significant Bit），或是常說的 little endian，表示把最高位的位元組放在最高的記憶體位址上，如下圖所示。這表示當我們輸入 `1234` 的時候，在 GDB 等軟體裡觀察記憶體時會看到的是 `\x34\x33\x32\x31`，這部分我們等等用 GDB 會再看到。
 
-    ![](/img/posts/crystal/reverse-01/little-endian.png)
+    #[圖片來自 <a href="https://blog.gtwang.org/programming/difference-between-big-endian-and-little-endian-implementation-in-c/">這篇文章</a>](/img/posts/crystal/reverse-01/little-endian.png)
 
 3. libc 函數的調用為 dynamically linked，亦即程式跑起來的時候，作業系統才會做 linking，把各個要調用的 libc 函數的位置填到這隻程式的一張表裡，方便執行時查詢呼叫。如果是 statically linked，在編譯過程中就會直接把這些外部函數都一起包到程式裡面，產出一個比較肥大的檔案。就像有人製作筆記時，會把課本內容抄到筆記本上，這樣所有資料一目瞭然，馬上就能找到，缺點是筆記厚厚一本；也有人僅是標註對應的課本頁數，這樣筆記較為精簡輕便，不過缺點是要找資料時必須另外參照課本。[^2]
 
@@ -41,7 +41,7 @@ layout: layouts/post.njk
 
 接著就可以執行看看！跑起來如下圖所示，會先跟使用者要三個數字，然後進行某些判斷，錯誤就會像這樣印出 ‘nope.’。因此，我們可以判斷拿到 flag 的條件就是讓這三個數字符合某些關係，檢查通過了就會印出 flag。
 
-![](/img/posts/crystal/reverse-01/execution.png)
+#[adder 跑起來！](/img/posts/crystal/reverse-01/execution.png)
 
 ---
 
@@ -51,7 +51,7 @@ GDB 的全名是 GNU Debugger，顧名思義就是可以讓你一邊執行一個
 
 首先，執行 `gdb <filename>` 就可以在 GDB 裡面載入這個執行檔。再來就是用 `info file` 來觀察這個程式的進入點跟各區段位置[^3]。編譯器運作時，會把負責邏輯的程式碼跟變數等資料分區存放並加上對應的標籤以供程式運行時存取。
 
-![](/img/posts/crystal/reverse-01/gdb-info.png)
+#[info file 結果](/img/posts/crystal/reverse-01/gdb-info.png)
 
 通常我們會注意的幾個比較重要的區段為：
 
@@ -104,17 +104,17 @@ GDB 的全名是 GNU Debugger，顧名思義就是可以讓你一邊執行一個
 
 記憶體常見的結構如下圖。最上層是 CPU 暫存器（register），是存取最快速頻繁也最小的記憶體。再往下至快取（cache）、RAM、 hard drive ，能存的資料越來越多、體積越來越大、存取速度也越來越慢。
 
-![](/img/posts/crystal/reverse-01/memory-model.png)
+#[memory model，取自<a href="https://www.itread01.com/content/1548607715.html">組合語言入門教程</a>](/img/posts/crystal/reverse-01/memory-model.png)
 
 要看懂組合語言，首要之務就是了解暫存器。
 
 在 x86–64 結構下，暫存器都是 64 bits = 8 bytes 大小[^5]，暫存器也可以部分存取，以 `rax` 為例，`eax` 指 `rax` 的後 4 bytes、再對切得到 `ax` 為倒數 2 bytes、然後再切分為 `ah` 與 `al`。
 
-![](/img/posts/crystal/reverse-01/reg-size.png)
+#[register sizes](/img/posts/crystal/reverse-01/reg-size.png)
 
 暫存器的種類也非常多，一般來說，有 16 個一般用途暫存器，為 `rax` `rbx` `rcx` `rdx` `rdi` `rsi` `rbp` `rsp` `r8-r15`，意指可能被用於任何運算操作。與之相對，屬於特殊用途暫存器的 `rip` `rflags`就不是可以拿來運算調用的。
 
-![](/img/posts/crystal/reverse-01/x64-regs.png)
+#[x64 registers，來自<a href="https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf">布朗大學講義</a>](/img/posts/crystal/reverse-01/x64-regs.png)
 
 每個暫存器傳統上都有特殊用途，例如：
 
@@ -128,7 +128,7 @@ GDB 的全名是 GNU Debugger，顧名思義就是可以讓你一邊執行一個
 
 再來，我們看看 stack 跟 heap 。C 程式一般的記憶體配置如下圖。上面是高的記憶體位址（`0xffff…`）下面是低的記憶體位址（`0x0000…`），heap 在 `.bss` 區段之後開始、隨著動態記憶體配置增加慢慢往上長，而 stack 則是從高的記憶體位址開始往下長。stack 放置的是靜態的、已知大小的資料，例如每一個函數內的區域變數以及函數的參數跟地址等等。
 
-![](/img/posts/crystal/reverse-01/memory-layout.png)
+#[memory layout，取自 <a href="https://www.geeksforgeeks.org/memory-layout-of-c-program/">geekforgeeks</a>](/img/posts/crystal/reverse-01/memory-layout.png)
 
 程式執行時函數的呼叫就會以 stack frame 的方式層層堆疊，也可以想成記憶體是一個直立式的櫃子、每個函數是一本一本的書籍，裡面記載了這個函數內的各種變數，當一個函數被呼叫時，就把這本書平放到櫃子中書堆的最上面，完成後再從書堆上拿下來。
 
@@ -146,7 +146,7 @@ sub   esp,  $n     # allocate space on the stack
 
 搭配下圖由左而右來看，藍色區塊是 caller 的 stack frame，黃色是進行 `call` 後把當前執行到的地方，也就是等等 callee 結束執行要返回的地方給存起來。第一行的 `push` 把當前的 `ebp` 放到 stack 上面，等同存好現在的 stack 基底，方便函數結束後回復到前一個函數的狀態，此時 stack 從左一變成左二，多了綠色的部分。第二行把 `ebp` 指到現在 `esp` 的位置，stack 從左二變成左三。第三行把 `esp` 向上移大小為 n 的空間，也就是預留出 callee 函數所需要的記憶體，stack 變成最後一張，創造出了紅色部分的另一個 stack frame。
 
-![](/img/posts/crystal/reverse-01/prologue.png)
+#[function prologue](/img/posts/crystal/reverse-01/prologue.png)
 
 『清掉自己的 stack frame』這個動作又稱為 function epilogue，可以類比為書的後言。使用的組語指令叫 `leave`，概念上等同下面這段：
 
@@ -157,7 +157,7 @@ pop   ebp          # restore old ebp
 
 搭配下圖由左而右來看，原始狀態就是前面 function prologue 完的樣子。第一行把 `esp` 指回 `ebp` 的地方，stack 從左一變成左二，這下子紅色的 callee stack frame 就被釋放出來了。第二行把 stack 上的值拿下來放回 `ebp`，也就是把舊的 `ebp` 位置還原回來，stack 變成最右邊的樣子，當前的記憶體最上面就回到 caller 的 stack frame 了。
 
-![](/img/posts/crystal/reverse-01/epilogue.png)
+#[function epilogue](/img/posts/crystal/reverse-01/epilogue.png)
 
 ---
 
@@ -176,4 +176,4 @@ pop   ebp          # restore old ebp
 [^4]: 指令集：[Intel 64 & 32 bits](https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html)、[維基百科](https://en.wikipedia.org/wiki/X86_instruction_listings)、[x64 cheat sheet](https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf)
 [^5]: 另外其實有 128 bit 的暫存器，例如用來傳遞浮點數的參數時使用的是 `XMM` 系列，calling convention 跟一般用途暫存器類似，`XMM0-XMM7` 用於傳遞參數，回傳值則會放在 `XMM0`
 
-    ![](/img/posts/crystal/reverse-01/objdump.png)
+    #[objdump output](/img/posts/crystal/reverse-01/objdump.png)

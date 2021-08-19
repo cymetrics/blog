@@ -50,7 +50,7 @@ SPF 的小地雷就在於，很多種設置上的小失誤可能導致 PermError
 
 下面我們看看 SPF 紀錄中的標籤： 8 個機制（mechanism）跟 2 種修飾（modifier），以及他們可能踩到地雷的情形。所有的標籤（tag）與標籤值（tag value）中間都不能有空白。此外，至少在出現更新版本的 SPF spec之前，現階段 SPF 紀錄開頭必須是 `v=spf1`。
 
-![](/img/posts/crystal/email-sec-theory/spf.png)
+#[簡短的 SPF record（取自 維基百科）](/img/posts/crystal/email-sec-theory/spf.png)
 
 以下我們稱信件的來源（也就是 `smtp.MailFrom`）為 sender-domain 或 sender-ip，標籤值為 target-domain 或 target-ip。
 

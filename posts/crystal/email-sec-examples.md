@@ -123,7 +123,7 @@ DKIM 不同於 SPF 在於，一筆 SPF 紀錄就代表了一個寄信 domain，�
 
 舉例來說，如果是用 SendGrid，完成 “Settings/Sender Authentication/Authenticate Your Domain” 的流程後會來到這一頁：
 
-![](/img/posts/crystal/email-sec-examples/dmarcly.png)
+#[from <a href="https://dmarcly.com/blog/how-to-set-up-spf-and-dkim-for-sendgrid">DMARCLY tutorial</a>](/img/posts/crystal/email-sec-examples/dmarcly.png)
 
 你就照著發在 DNS 就好，如下：
 
