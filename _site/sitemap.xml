@@ -219,7 +219,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-01/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-22T10:52:54.930Z</lastmod>
+    <lastmod>2021-08-23T10:03:47.697Z</lastmod>
   </url>
   
   
@@ -270,7 +270,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-theory/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-22T10:52:54.930Z</lastmod>
+    <lastmod>2021-08-23T10:03:47.697Z</lastmod>
   </url>
   
   
@@ -357,7 +357,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-08-02T01:24:58.164Z</lastmod>
+    <lastmod>2021-08-23T10:03:47.696Z</lastmod>
   </url>
   
   
@@ -376,7 +376,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-dkimdmarc/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-22T10:52:54.929Z</lastmod>
+    <lastmod>2021-08-23T10:03:47.695Z</lastmod>
   </url>
   
   
@@ -395,7 +395,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-examples/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-22T10:52:54.928Z</lastmod>
+    <lastmod>2021-08-23T10:03:47.694Z</lastmod>
   </url>
   
   
@@ -772,25 +772,6 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
     <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -810,7 +791,102 @@
   
   
   <url>
+    <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
     <loc>https://tech-blog.cymetrics.io/tags/javascript/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/owasp/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/cwe/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/top-10/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/top-25/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-07-29T06:10:23.796Z</lastmod>
@@ -862,13 +938,15 @@
     
   
   
+    
+  
   
   
   <url>
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-extra/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-23T00:00:00.000Z</lastmod>
+    <lastmod>2021-08-23T10:03:47.694Z</lastmod>
   </url>
   
   
@@ -925,7 +1003,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-02/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-08-02T01:24:58.164Z</lastmod>
+    <lastmod>2021-08-23T10:03:47.698Z</lastmod>
   </url>
   
   
@@ -964,5 +1042,24 @@
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-19T03:15:24.409Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/nick/owasp-cwe/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-23T10:07:10.403Z</lastmod>
   </url>
 </urlset>
