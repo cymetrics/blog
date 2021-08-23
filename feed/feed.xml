@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2021-08-09T00:00:00-00:00</updated>
+	<updated>2021-08-23T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -3461,6 +3461,118 @@ object-src &#39;none&#39;;base-uri &#39;none&#39;;
 &lt;p&gt;攻擊手法千千百百種，發現 cdnjs 漏洞的研究員近期鍾情於 supply chain attack，不只 cdnjs，連 &lt;a href=&quot;https://blog.ryotak.me/post/homebrew-security-incident-en/&quot;&gt;Homebrew&lt;/a&gt; 跟 &lt;a href=&quot;https://blog.ryotak.me/post/pypi-potential-remote-code-execution-en/&quot;&gt;PyPI&lt;/a&gt; 甚至是 &lt;a href=&quot;https://blog.ryotak.me/post/definitelytyped-tamper-with-arbitrary-packages-en/&quot;&gt;@types&lt;/a&gt; 也都被找到漏洞。&lt;/p&gt;
 &lt;p&gt;如果要直接在頁面上用 script 引入第三方的網址，記得先確認對方的網站是值得信任的，如果可以的話也請加上 integrity 屬性，避免檔案被竄改，連帶影響到自己的服務。也要注意 CSP 的設定，對於 cdnjs 這種網站，若是只設置 domain 的話，已經有了可行的繞過手法，在設置前請多加注意。&lt;/p&gt;
 &lt;p&gt;在談到前端的安全時，大家第一個會想到 XSS，第二個會想到 CSRF，然後可能就沒了。這篇文章希望藉由 cdnjs 的漏洞讓前端工程師們認識什麼是供應鏈攻擊。只要有意識到這個攻擊手法，日後在開發時就會多留意一些，就會注意到引入第三方 library 所帶來的風險。&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>資安規範實戰篇 : OWASP + CWE</title>
+		<link href="https://tech-blog.cymetrics.io/posts/nick/owasp-cwe/"/>
+		<updated>2021-08-23T00:00:00-00:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/nick/owasp-cwe/</id>
+		<content type="html">
+		  &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;!-- summary --&gt;
+&lt;p&gt;沒有人希望自己的網站被攻擊，但工程師想做好資安防護就像廚師想燒出一桌好菜，剛開始想參考食譜來做菜，發現食譜種類好多，同一道菜有好各式各樣的做法，到底該怎麼選怎麼做才對 ?&lt;/p&gt;
+&lt;p&gt;選擇太多會讓開發人員一陣混亂，本文的目標就是整理 2 個由名國際組織整理出來對資安漏洞的排名與分類，然後藉由靶站來示範如何利用這些資料，快速的找網站可能的漏洞與修補建議。&lt;/p&gt;
+&lt;!-- summary --&gt;
+&lt;h2 id=&quot;%E6%9C%89%E9%82%A3%E4%BA%9B%E8%B3%87%E5%AE%89%E8%A6%8F%E7%AF%84-%3F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%9C%89%E9%82%A3%E4%BA%9B%E8%B3%87%E5%AE%89%E8%A6%8F%E7%AF%84-%3F&quot;&gt;#&lt;/a&gt; 有那些資安規範 ?&lt;/h2&gt;
+&lt;p&gt;要先看懂食譜才有辦法做菜 ! 所以這邊介紹 2 組由知名國際組織整理出來的常見資安問題排名，然後利用知名靶站 DVWA(註1) 來示範如何利用這些資訊，達到快速找出網站常見問題的目的。&lt;/p&gt;
+&lt;h3 id=&quot;owasp-top-10%EF%BC%88open-web-application-security-project%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#owasp-top-10%EF%BC%88open-web-application-security-project%EF%BC%89&quot;&gt;#&lt;/a&gt; OWASP TOP 10（Open Web Application Security Project）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;簡介&lt;/strong&gt;:&lt;br&gt;
+藉由社群的力量蒐集各種網頁安全漏洞，歸納出容易攻擊的弱點，定期彙整出前 10 大資安問題，更新頻率較高（2~4 年）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;命名方式&lt;/strong&gt;:&lt;br&gt;
+排名 + 發布年份 + 漏洞名稱&lt;br&gt;
+ ex. A1:2017-Injection （2017 年排名第 1 的漏洞為注入問題）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用範例&lt;/strong&gt;:
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;選擇要檢查的問題&lt;/strong&gt;:&lt;br&gt;
+到 Owap Top 10 (&lt;a href=&quot;https://owasp.org/www-project-top-ten/&quot;&gt;https://owasp.org/www-project-top-ten/&lt;/a&gt;)點選要查詢的類型，這邊選排名第一的 Injection 問題為當範例。&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;找出問題發生特徵&lt;/strong&gt;:&lt;br&gt;
+點進去找一下問題可能發生在哪裡，或是如何分辨問題，範例中從 Attack Vectors 的敘述得知 Injection 類型的問題只要在有輸入的地方都有可能發生。&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;找出可能的問題點&lt;/strong&gt;:&lt;br&gt;
+到自己的網站找出所有可疑的地方，範例中是 DVWA 準備好的 SQL Injection 弱點輸入位置，該位置原本的功能是輸入 ID 編號來查詢用戶資料，實際上測試的時候應該要把全部的問題點都找出來。&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_4.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;測試是否真的有弱點&lt;/strong&gt;:&lt;br&gt;
+對輸入點進行測試來驗證是否真的有弱點(如果對該弱點不熟悉的話可以參考 Owasp 中的 Example Attack Scenarios 欄位)，範例中是靶站準備好的 SQL Injection 弱點，攻擊方法是選自 Owasp 的 Example 中利用 SQL 語法的 OR 來導出所有資料。&lt;br&gt;
+4-1. Owasp 提供的 Injection 弱點範例&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_5.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+4-2. DVWA Injection 弱點攻擊測試&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_6.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;嘗試修復發現的問題&lt;/strong&gt;:&lt;br&gt;
+參考 Owasp 中 How to Prevent 欄位提供的建議進行修復。&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;cwe-%2F-sans-top-25-%EF%BC%88common-weakness-enumeration%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#cwe-%2F-sans-top-25-%EF%BC%88common-weakness-enumeration%EF%BC%89&quot;&gt;#&lt;/a&gt; CWE / SANS TOP 25 （Common Weakness Enumeration）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;簡介:&lt;br&gt;
+由國際組織 MITRE 主導，透過對 SANS 與其他資安專家進行訪談調查來制定通用缺陷列表，彙整為前 25 大資安問題，更新頻率較低（8 年）。&lt;/li&gt;
+&lt;li&gt;命名方式:&lt;br&gt;
+發現順序 + 漏洞名稱&lt;br&gt;
+ ex. CWE-79 Cross-site Scripting (XSS)&lt;br&gt;
+（2021 年排名第 2 的漏洞為跨站腳本，排名需查表）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用範例&lt;/strong&gt;:
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;選擇要檢查的問題&lt;/strong&gt;:&lt;br&gt;
+到 CWE Top 25 (&lt;a href=&quot;https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html&quot;&gt;https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html&lt;/a&gt;)點選要查找的問題，這邊以排名第一的 Cross-site Scripting 問題為例。&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;找出問題發生特徵&lt;/strong&gt;:&lt;br&gt;
+從敘述中找出關於問題發生點的資訊&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_9.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;找出所有可能的問題點&lt;/strong&gt;:&lt;br&gt;
+到自己的網站找出所有可疑的地方，範例中是 DVWA 準備好的 XSS 弱點輸入位置，該位置原本的功能是將輸入文字顯示出來，實際上測試的時候應該要把全部的問題點都找出來。&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_10.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;逐個測試是否真的有弱點&lt;/strong&gt;:&lt;br&gt;
+對輸入點進行測試來驗證是否真的有弱點(如果對該弱點不熟悉的話可以參考 CWE 中的 Demonstrative Examples 欄位)，範例中是靶站準備好的 XSS 弱點，攻擊方法是參考 CWE 的 Example 中利用 JS 語法的 Alert 來彈出視窗，但這邊進行深入一點的攻擊藉由彈出視窗的機會導出較敏感的 Cookie 資訊。&lt;br&gt;
+4-1. CEW 提供的 XSS 弱點範例&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_11.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+4-2. 輸入下列 script 進行攻擊測試&lt;br&gt;
+&lt;code&gt;&amp;lt;script&amp;gt;alert(document.cookie)&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_12.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+4-3. 攻擊結果&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_13.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;嘗試修復發現的問題&lt;/strong&gt;:&lt;br&gt;
+參考 CWE 中 Potential Mitigations 欄位中的建議進行修復。&lt;br&gt;
+&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_14.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;%E6%9C%89%E5%95%8F%E9%A1%8C%E5%85%88%E6%89%BE%E8%AA%B0-%3F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%9C%89%E5%95%8F%E9%A1%8C%E5%85%88%E6%89%BE%E8%AA%B0-%3F&quot;&gt;#&lt;/a&gt; 有問題先找誰 ?&lt;/h2&gt;
+&lt;p&gt;OWASP 跟 CWE，重視效率的開發者可能覺得 Owasp Top 10 選了前 10 常見的問題，先解決這 10 個問題才是 CP 值最高的做法，實際上並非如此，原因就藏在這張 Owasp Top 10 與 CWE Top 25 的對照表中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_15.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;從這張圖可以明顯看出來雖然 Owasp Top 10 項目較少，但它每一個項目的範圍較大，換句話說處理 Owasp 不會比 CWE 快多少，實際上含蓋的範圍大小是差不多的，當今天你做資安檢測不是為了來自業主的合規需求時，選擇那一個規範優其實是由目的來決定的。&lt;/p&gt;
+&lt;p&gt;當使用者擔心自己的網站有資安問題，想要解決掉問題的時候會推薦先找 CWE ，因為它的項目分的比較細，說明與解決方案比起 Owasp 比來更具有針對性，所以藉由這些說明解決問題的機率也更高，這邊用兩種規範排名都很高的 Injection 舉個例子，開發者肯定知道自己的網站有沒有用到資料庫，假設有用到的話就要特別注意網站有沒有 SQL Injection 問題，當要藉由這些資安規範來解決問題時，查詢 &lt;a href=&quot;https://cwe.mitre.org/data/definitions/89.html&quot;&gt;CWE-89 SQL Injection&lt;/a&gt; 裡面的資料會比起 &lt;a href=&quot;https://owasp.org/www-project-top-ten/2017/A1_2017-Injection&quot;&gt;Owasp A1:2017-Injection&lt;/a&gt; 更有效率。&lt;/p&gt;
+&lt;p&gt;當使用者要評估一個不一定是自己的網站到底安不安全，則會建議先用 Owasp，一樣用 Injection 來舉一個例子，當你今天發現別人開發的網站上有一個輸入欄位沒有進行任何檢查，可以輸入所有種號的特殊符號，但你不確定後面用的是哪種技術或套件，這時候 &lt;a href=&quot;https://owasp.org/www-project-top-ten/2017/A1_2017-Injection&quot;&gt;Owasp A1:2017-Injection&lt;/a&gt; 就有關於 Injection 的整體評估和分析後面可能用了哪些套件會導致問題發生，而 CWE 的話還要想辦法做進一步測試才能確定屬於那一個類型。&lt;/p&gt;
+&lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;分享一下對於網站開發人員建議的資安檢視步驟，與各類標準使用時機。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 確認開發工具與套件版本 : CVE&lt;/strong&gt;&lt;br&gt;
+在開發之前請先去到 CVE Details 查一下用到的工具或套件是否已有弱點，用了有弱點的套件或工具開發高機率導致網站先天不良，如果非用不可則需要把弱點藏好或避開有弱點的功能。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 避開常見弱點 : OWASP TOP 10, CWE TOP 25&lt;/strong&gt;&lt;br&gt;
+從開始開發到完成這個階段特別要注意避開常見的資安問題，畢竟資安要做到完美成本過高，一般網站很難做到 100 分，但解決常見弱點能大幅的增加駭客攻擊成本，你家的鎖只要比鄰居家的鎖更好，小偷就不喜歡到你家偷東西，沒有人願意把時間在難搞的目標上，駭客也是一樣。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 安全性測試(模擬攻擊） : ATT&amp;amp;CK&lt;/strong&gt;&lt;br&gt;
+不管是處理完弱點或建立好防護後都需要一個驗證的機制，模擬一下駭客的攻擊是否會成功，避免做了白工卻不自知，這時候最好的方法是交給第三方的資安廠商來做測試，不只有專業的資安人員為你服務，也能避免測試時球員兼裁判的問題，但礙於成本考量或者網站屬於不可公開的內部系統，就推薦參考 ATT&amp;amp;CK 來自行建立一個較全面的測試，降低前述問題帶來的影響。&lt;/p&gt;
+&lt;p&gt;本文主要介紹的內容與第 2 項避開常見弱點有比較直接的關係，這部份是與開發最相關也是影響最大的一部分，之後有機會在分享有關第 1 項與第 3 項中用到的其他類型資安規範。&lt;/p&gt;
+&lt;h2 id=&quot;%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 參考資料&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://owasp.org/&quot;&gt;https://owasp.org/&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://cwe.mitre.org/&quot;&gt;https://cwe.mitre.org/&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://cve.mitre.org/&quot;&gt;https://cve.mitre.org/&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://www.cvedetails.com/&quot;&gt;https://www.cvedetails.com/&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://attack.mitre.org/&quot;&gt;https://attack.mitre.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 		</content>
 	</entry>
