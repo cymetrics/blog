@@ -6,6 +6,8 @@ author: nick
 layout: layouts/post.njk
 image: /img/posts/nick/owasp-cwe/owasp_1.jpg
 ---
+![](/img/posts/nick/owasp-cwe/owasp_1.jpg)
+
 
 ## 前言
 
