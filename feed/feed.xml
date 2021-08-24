@@ -3471,7 +3471,8 @@ object-src &#39;none&#39;;base-uri &#39;none&#39;;
 		<updated>2021-08-23T00:00:00-00:00</updated>
 		<id>https://tech-blog.cymetrics.io/posts/nick/owasp-cwe/</id>
 		<content type="html">
-		  &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;!-- summary --&gt;
 &lt;p&gt;沒有人希望自己的網站被攻擊，但工程師想做好資安防護就像廚師想燒出一桌好菜，剛開始想參考食譜來做菜，發現食譜種類好多，同一道菜有好各式各樣的做法，到底該怎麼選怎麼做才對 ?&lt;/p&gt;
 &lt;p&gt;選擇太多會讓開發人員一陣混亂，本文的目標就是整理 2 個由名國際組織整理出來對資安漏洞的排名與分類，然後藉由靶站來示範如何利用這些資料，快速的找網站可能的漏洞與修補建議。&lt;/p&gt;
