@@ -3548,7 +3548,7 @@ object-src &#39;none&#39;;base-uri &#39;none&#39;;
 &lt;li&gt;定期執行網路曝險以及弱點掃描、滲透測試等，確保企業對於自身服務以及狀態，除了提高駭客的攻擊難度以外，也能在層層篩選中避免成為最終標的。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&quot;%E5%B0%8F%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%B0%8F%E7%B5%90&quot;&gt;#&lt;/a&gt; 小結&lt;/h2&gt;
-&lt;p&gt;介紹了什麼是 APT ，也以實例說明流程，也許有人會產生這根本防不勝防的無力感，不過其實魔高一尺道高一丈，其實已經有組織分析了知名的駭客組織 APT 手法，並且將這些手法分類歸納，以此建立資安框架，除了讓一致化威脅和入侵的描述，也有助攻防演練以及資安產品的驗證，而這其實也是我下一篇文章想要說明的重點，希望可以讓大家對於 APT 有更充分的了解，建立更豐富的資安知識庫。&lt;/p&gt;
+&lt;p&gt;介紹了什麼是 APT ，也以實例說明流程之後，也許有人會產生這根本防不勝防的無力感，不過其實魔高一尺道高一丈，其實已經有組織分析了知名的駭客組織 APT 手法，並且將這些手法分類歸納，以此建立資安框架，除了將威脅和入侵的描述一致以外，也有助攻防演練以及資安產品的驗證，而這其實也是我下一篇文章想要說明的重點，希望可以讓大家對於 APT 有更充分的了解，建立更豐富的資安知識庫。&lt;/p&gt;
 &lt;h2 id=&quot;%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%BB%B6%E4%BC%B8%E9%96%B1%E8%AE%80&quot;&gt;#&lt;/a&gt; 延伸閱讀&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/jo/zerobased-common-risk-exposure/&quot;&gt;資安科普番外篇（一）-大意了啊沒有閃！常見網站曝險你中了幾項？！&lt;/a&gt;&lt;/p&gt;
