@@ -149,6 +149,14 @@ module.exports = function (eleventyConfig) {
     return dt.toISO();
   });
 
+  eleventyConfig.addFilter("randomPick", (array, n) => {
+    const arr = Array.from({length: array.length})
+      .map((_, idx) => idx)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, n)
+    return array.filter((_, idx) => arr.includes(idx))
+  });
+
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {
     if (n < 0) {

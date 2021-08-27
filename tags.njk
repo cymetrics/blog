@@ -20,6 +20,6 @@ permalink: /tags/{{ tag | slug }}/
 {% include "tags.njk" %}
 
 <div style="margin-top: 32px;">
-  {% set postslist = collections[ tag ] %}
+  {% set postslist = collections[ tag ] | reverse %}
   {% include "postslist.njk" %}
 </div>

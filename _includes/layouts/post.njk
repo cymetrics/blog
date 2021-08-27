@@ -41,6 +41,18 @@ templateClass: tmpl-post
 <div class="article-footer">
   <a href="{{ shareUrl | safe }}" on-click="share"><img src="/img/icons/icon_external link hyperlink.svg" alt="Share">Share this post</a>
 </div>
+<div>
+  <p style="font-weight: bold;">更多同分類文章</p>
+  <div class="post-tags">
+    {% for tag in tags %}
+      {% if tag !== "posts" %}
+        {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+        <a href="{{ tagUrl | url }}" class="post-tag">#{{ tag }}</a>
+      {% endif %}
+      
+    {% endfor %}
+  </div>
+</div>
 <div class="article-author">
   <img class="article-author__img" data-deopt="true" src="{{ postAuthor.avatarUrl }}" alt="{{ postAuthor.name }}">
   <div class="article-author__info">

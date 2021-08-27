@@ -528,7 +528,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/security/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -547,7 +547,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/back-end/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -566,7 +566,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/java/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -585,7 +585,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/golang/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -604,7 +604,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/thread/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -623,7 +623,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/goroutine/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -642,7 +642,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/concurrency/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -661,7 +661,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/volatile/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -680,7 +680,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -699,102 +699,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/zerobased/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/csrf/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -813,7 +718,83 @@
     <loc>https://tech-blog.cymetrics.io/tags/apt/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -832,7 +813,26 @@
     <loc>https://tech-blog.cymetrics.io/tags/javascript/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/csrf/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -851,7 +851,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -870,7 +870,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -889,7 +889,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/owasp/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -908,7 +908,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/cwe/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -927,7 +927,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/top-10/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   
@@ -946,7 +946,7 @@
     <loc>https://tech-blog.cymetrics.io/tags/top-25/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-07-29T06:10:23.796Z</lastmod>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
   </url>
   
   

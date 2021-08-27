@@ -1,0 +1,17 @@
+---
+layout: layouts/common.njk
+permalink: 404.html
+eleventyExcludeFromCollections: true
+title: Not Found
+---
+
+{% block extraArticleHeader %}
+   <aside class="w-full" style="text-align:left;">
+      <p>雖然沒有找到你想要的東西，但不妨參考一下底下的隨選推薦文章</p>
+   </aside>
+{% endblock %}
+
+{% set postslist = collections.posts | reverse | randomPick(12) %}
+{% include "postslist.njk" %}
+<br>
+<a href="{{ '/' | url }}">Back</a>
