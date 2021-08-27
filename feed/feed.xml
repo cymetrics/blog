@@ -3609,7 +3609,7 @@ object-src &#39;none&#39;;base-uri &#39;none&#39;;
 &lt;p&gt;&lt;strong&gt;測試是否真的有弱點&lt;/strong&gt;:&lt;br&gt;
 對輸入點進行測試來驗證是否真的有弱點(如果對該弱點不熟悉的話可以參考 Owasp 中的 Example Attack Scenarios 欄位)，範例中是靶站準備好的 SQL Injection 弱點，攻擊方法是選自 Owasp 的 Example 中利用 SQL 語法的 OR 來導出所有資料。&lt;br&gt;
 4-1. Owasp 提供的 Injection 弱點範例&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_5.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
-4-2. DVWA Injection 弱點攻擊測試&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_6.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+4-2. DVWA Injection 弱點攻擊測試&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/owasp-cwe/owasp_6_2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;嘗試修復發現的問題&lt;/strong&gt;:&lt;br&gt;
