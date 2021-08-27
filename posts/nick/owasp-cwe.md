@@ -40,7 +40,7 @@ image: /img/posts/nick/owasp-cwe/owasp_1.jpg
   4. **測試是否真的有弱點**:
   對輸入點進行測試來驗證是否真的有弱點(如果對該弱點不熟悉的話可以參考 Owasp 中的 Example Attack Scenarios 欄位)，範例中是靶站準備好的 SQL Injection 弱點，攻擊方法是選自 Owasp 的 Example 中利用 SQL 語法的 OR 來導出所有資料。
   4-1. Owasp 提供的 Injection 弱點範例![](/img/posts/nick/owasp-cwe/owasp_5.jpg)
-  4-2. DVWA Injection 弱點攻擊測試![](/img/posts/nick/owasp-cwe/owasp_6.jpg)
+  4-2. DVWA Injection 弱點攻擊測試![](/img/posts/nick/owasp-cwe/owasp_6_2.jpg)
 
   5. **嘗試修復發現的問題**:
   參考 Owasp 中 How to Prevent 欄位提供的建議進行修復。![](/img/posts/nick/owasp-cwe/owasp_7.jpg)
