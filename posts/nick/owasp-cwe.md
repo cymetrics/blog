@@ -65,7 +65,7 @@ image: /img/posts/nick/owasp-cwe/owasp_1.jpg
 
   4. **逐個測試是否真的有弱點**:
   對輸入點進行測試來驗證是否真的有弱點(如果對該弱點不熟悉的話可以參考 CWE 中的 Demonstrative Examples 欄位)，範例中是靶站準備好的 XSS 弱點，攻擊方法是參考 CWE 的 Example 中利用 JS 語法的 Alert 來彈出視窗，但這邊進行深入一點的攻擊藉由彈出視窗的機會導出較敏感的 Cookie 資訊。
-  4-1. CEW 提供的 XSS 弱點範例![](/img/posts/nick/owasp-cwe/owasp_11.jpg)
+  4-1. CWE 提供的 XSS 弱點範例![](/img/posts/nick/owasp-cwe/owasp_11.jpg)
   4-2. 輸入下列 script 進行攻擊測試
   `<script>alert(document.cookie)</script>`![](/img/posts/nick/owasp-cwe/owasp_12.jpg)
   4-3. 攻擊結果![](/img/posts/nick/owasp-cwe/owasp_13.jpg)
