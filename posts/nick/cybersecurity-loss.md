@@ -4,10 +4,10 @@ date: 2021-09-09
 tags: [Security,Cyber,Cybersecurity,event,loss]
 author: nick
 layout: layouts/post.njk
-image: /img/posts/nick/cybersecurity-loss/cl_1.png
+image: /img/posts/nick/cybersecurity-loss/cl_1.jpg
 ---
 # 資安弱點會造成多大損失 ?
-![](/img/posts/nick/cybersecurity-loss/cl_1.png)
+![](/img/posts/nick/cybersecurity-loss/cl_1.jpg)
 
 ## 前言
 當碰到資安問題時，會馬上跟著遇到另一個難題，就是這個問題到底要不要修 ? 就像得感冒的時候可能會考慮不吃藥忍一忍，賭自己的身體夠健康，但如果中的是 Covid-19 肯定不會猶豫要不要買藥，只會擔心買不到藥，畢竟兩者的嚴重性差太多了。
@@ -26,7 +26,7 @@ image: /img/posts/nick/cybersecurity-loss/cl_1.png
 ## 分析比較
 ### 1. 原始報告: IC3 Annual Report
 IC3 統計了網路犯罪所造成的金額損失，並以犯罪手法的方式來分類。
-![](/img/posts/nick/cybersecurity-loss/cl_2.png)
+![](/img/posts/nick/cybersecurity-loss/cl_2.jpg)
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">https://www.ic3.gov/Media/PDF/AnnualReport/2020_IC3Report.pdf</center>
 
 <br>
@@ -50,12 +50,12 @@ IC3 統計了網路犯罪所造成的金額損失，並以犯罪手法的方式�
 * **網站** : 攻擊者對被害者網站發動攻擊，或者反過來誘導被害者連到惡意網站。
 * **網路服務** : 在攻擊者接觸到被害者對外開放的服務(ex. FTP, SMB...)後可能發生的攻擊。
 
-![](/img/posts/nick/cybersecurity-loss/cl_3.png)
+![](/img/posts/nick/cybersecurity-loss/cl_3.jpg)
 
 所以我們可以從這張圖看出，在 2020 年有超過一半的損失是來自電子郵件未做好保護，損失第二高的是來自網站漏洞，剩下的一成則是由帳號密碼外流與對外開放網路服務的所導致。
 
 ## 結論
-![](/img/posts/nick/cybersecurity-loss/cl_4.png)
+![](/img/posts/nick/cybersecurity-loss/cl_4.jpg)
 
 接著分享一下如果要遇防問題發生該怎麼做。
 
