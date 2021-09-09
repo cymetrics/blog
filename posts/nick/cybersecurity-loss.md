@@ -50,12 +50,12 @@ IC3 統計了網路犯罪所造成的金額損失，並以犯罪手法的方式�
 * **網站** : 攻擊者對被害者網站發動攻擊，或者反過來誘導被害者連到惡意網站。
 * **網路服務** : 在攻擊者接觸到被害者對外開放的服務(ex. FTP, SMB...)後可能發生的攻擊。
 
-![](/img/posts/nick/cybersecurity-loss/cl_3.jpg)
+<img data-deopt="true" src="/img/posts/nick/cybersecurity-loss/cl_3.jpg">
 
 所以我們可以從這張圖看出，在 2020 年有超過一半的損失是來自電子郵件未做好保護，損失第二高的是來自網站漏洞，剩下的一成則是由帳號密碼外流與對外開放網路服務的所導致。
 
 ## 結論
-![](/img/posts/nick/cybersecurity-loss/cl_4.jpg)
+<img data-deopt="true" src="/img/posts/nick/cybersecurity-loss/cl_4.jpg">
 
 接著分享一下如果要遇防問題發生該怎麼做。
 
