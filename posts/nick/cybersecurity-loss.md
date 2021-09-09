@@ -1,5 +1,5 @@
 ---
-title: "駭客起手式 : Shodan & Fofa"
+title: "資安弱點會造成多大損失 ?"
 date: 2021-09-09
 tags: [Security,Cyber,Cybersecurity,event,loss]
 author: nick
