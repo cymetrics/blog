@@ -734,7 +734,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/apt/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -772,26 +772,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/apt/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -943,6 +924,63 @@
   
   
   <url>
+    <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
     <loc>https://tech-blog.cymetrics.io/tags/owasp/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1001,44 +1039,6 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/top-25/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -1383,6 +1383,6 @@
     <loc>https://tech-blog.cymetrics.io/posts/nick/cybersecurity-loss/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-09-09T08:06:08.956Z</lastmod>
+    <lastmod>2021-09-09T08:21:15.202Z</lastmod>
   </url>
 </urlset>
