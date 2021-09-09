@@ -322,7 +322,7 @@ func servePhotosProxy(w http.ResponseWriter, r *http.Request) {
 
 因為有設置 content type，所以沒辦法用 MIME sniffing 去攻擊。簡單解釋一下 MIME sniffing，當你的 response 沒有設置 content type 的時候，瀏覽器就會自動去猜這是什麼內容，如果裡面含有 HTML 的話，那就會被當成是 HTML 網站來解析並且渲染。
 
-而作者發現了另一個 bug，就是如果是 error 的話，並不會設置 cotnent type，只有成功的時候會，所以可以故意回傳一個含有 HTML 的錯誤訊息，這樣被印在畫面時瀏覽器就會把這整份當成是 HTML，進而達成 XSS！詳細的流程跟介紹原文都寫得很清楚，很推薦大家去看一下原文。
+而作者發現了另一個 bug，就是如果是 error 的話，並不會設置 content type，只有成功的時候會，所以可以故意回傳一個含有 HTML 的錯誤訊息，這樣被印在畫面時瀏覽器就會把這整份當成是 HTML，進而達成 XSS！詳細的流程跟介紹原文都寫得很清楚，很推薦大家去看一下原文。
 
 以上就是兩個在 Google 中曾經被發現的 open redirect 串聯其他漏洞引起的攻擊，兩個都很有趣！
 
