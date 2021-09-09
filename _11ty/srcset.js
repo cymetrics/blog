@@ -37,7 +37,7 @@ const extension = {
 
 const quality = {
   avif: 40,
-  default: 60,
+  default: 80,
 };
 
 module.exports = async function srcset(filename, format) {
