@@ -4474,7 +4474,7 @@ your-domain.example.com/path?querystring
 		<id>https://tech-blog.cymetrics.io/posts/nick/cybersecurity-loss/</id>
 		<content type="html">
 		  &lt;h1 id=&quot;%E8%B3%87%E5%AE%89%E5%BC%B1%E9%BB%9E%E6%9C%83%E9%80%A0%E6%88%90%E5%A4%9A%E5%A4%A7%E6%90%8D%E5%A4%B1-%3F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%B3%87%E5%AE%89%E5%BC%B1%E9%BB%9E%E6%9C%83%E9%80%A0%E6%88%90%E5%A4%9A%E5%A4%A7%E6%90%8D%E5%A4%B1-%3F&quot;&gt;#&lt;/a&gt; 資安弱點會造成多大損失 ?&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;p&gt;當碰到資安問題時，會馬上跟著遇到另一個難題，就是這個問題到底要不要修 ? 就像得感冒的時候可能會考慮不吃藥忍一忍，賭自己的身體夠健康，但如果中的是 Covid-19 肯定不會猶豫要不要買藥，只會擔心買不到藥，畢竟兩者的嚴重性差太多了。&lt;/p&gt;
 &lt;!-- summary --&gt;
@@ -4491,7 +4491,7 @@ IC3 是 聯邦調查局 (FBI) 旗下的組織，也是美國最大的資安通�
 &lt;h2 id=&quot;%E5%88%86%E6%9E%90%E6%AF%94%E8%BC%83&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%88%86%E6%9E%90%E6%AF%94%E8%BC%83&quot;&gt;#&lt;/a&gt; 分析比較&lt;/h2&gt;
 &lt;h3 id=&quot;1.-%E5%8E%9F%E5%A7%8B%E5%A0%B1%E5%91%8A%3A-ic3-annual-report&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E5%8E%9F%E5%A7%8B%E5%A0%B1%E5%91%8A%3A-ic3-annual-report&quot;&gt;#&lt;/a&gt; 1. 原始報告: IC3 Annual Report&lt;/h3&gt;
 &lt;p&gt;IC3 統計了網路犯罪所造成的金額損失，並以犯罪手法的方式來分類。&lt;br&gt;
-&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;center style=&quot;font-size:14px;color:#C0C0C0;text-decoration:underline&quot;&gt;https://www.ic3.gov/Media/PDF/AnnualReport/2020_IC3Report.pdf&lt;/center&gt;
 &lt;br&gt;
 &lt;p&gt;從這張表格中我們可以看出前三名分別是&lt;/p&gt;
@@ -4513,10 +4513,10 @@ IC3 是 聯邦調查局 (FBI) 旗下的組織，也是美國最大的資安通�
 &lt;li&gt;&lt;strong&gt;網站&lt;/strong&gt; : 攻擊者對被害者網站發動攻擊，或者反過來誘導被害者連到惡意網站。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;網路服務&lt;/strong&gt; : 在攻擊者接觸到被害者對外開放的服務(ex. FTP, SMB...)後可能發生的攻擊。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;所以我們可以從這張圖看出，在 2020 年有超過一半的損失是來自電子郵件未做好保護，損失第二高的是來自網站漏洞，剩下的一成則是由帳號密碼外流與對外開放網路服務的所導致。&lt;/p&gt;
 &lt;h2 id=&quot;%E7%B5%90%E8%AB%96&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B5%90%E8%AB%96&quot;&gt;#&lt;/a&gt; 結論&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_4.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;接著分享一下如果要遇防問題發生該怎麼做。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
