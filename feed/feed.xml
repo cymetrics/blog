@@ -4513,10 +4513,10 @@ IC3 是 聯邦調查局 (FBI) 旗下的組織，也是美國最大的資安通�
 &lt;li&gt;&lt;strong&gt;網站&lt;/strong&gt; : 攻擊者對被害者網站發動攻擊，或者反過來誘導被害者連到惡意網站。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;網路服務&lt;/strong&gt; : 在攻擊者接觸到被害者對外開放的服務(ex. FTP, SMB...)後可能發生的攻擊。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;img data-deopt=&quot;true&quot; src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_3.jpg&quot;&gt;
 &lt;p&gt;所以我們可以從這張圖看出，在 2020 年有超過一半的損失是來自電子郵件未做好保護，損失第二高的是來自網站漏洞，剩下的一成則是由帳號密碼外流與對外開放網路服務的所導致。&lt;/p&gt;
 &lt;h2 id=&quot;%E7%B5%90%E8%AB%96&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B5%90%E8%AB%96&quot;&gt;#&lt;/a&gt; 結論&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_4.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;img data-deopt=&quot;true&quot; src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cybersecurity-loss/cl_4.jpg&quot;&gt;
 &lt;p&gt;接著分享一下如果要遇防問題發生該怎麼做。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
