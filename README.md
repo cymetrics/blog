@@ -1,5 +1,7 @@
 # Cymetrics 技術部落格
 
+網址：https://tech-blog.cymetrics.io/
+
 ## 開發
 
 ```
