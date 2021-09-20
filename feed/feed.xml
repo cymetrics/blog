@@ -4029,7 +4029,7 @@ Package sync 提供基礎的同步原型，像是互斥鎖。除了 Once 和 Wai
 &lt;p&gt;&lt;strong&gt;Error-based&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;簡介: 藉由錯誤訊息來取得想要的資訊。&lt;/li&gt;
-&lt;li&gt;攻擊範例: &lt;code&gt;&#39;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;攻擊範例: &lt;code&gt;&#39;&lt;/code&gt; (別懷疑你沒看錯，只要一個符號就可能導致問題)&lt;/li&gt;
 &lt;li&gt;測試結果: 藉由錯誤訊息來取得資料庫的類型，以便於之後針對性的攻擊。&lt;br&gt;
 &lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/sqli/sqli_6.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
 &lt;/ul&gt;
