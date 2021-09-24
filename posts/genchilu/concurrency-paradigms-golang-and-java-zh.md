@@ -1,5 +1,5 @@
 ---
-title: "併發程式典範 (Paradigms): Golang V.S. Java"
+title: "並行程式典範 (Paradigms): Golang V.S. Java"
 date: 2021-08-29
 tags: [Back-end, java, golang, thread, goroutine, concurrency paradigms]
 author: genchilu
@@ -7,15 +7,15 @@ layout: layouts/post.njk
 ---
 
 <!-- summary -->
-當我回頭看剛開始學 Golang 的程式時，我發現我只是用 Golang 語法寫 Java 程式。尤其在併發程式的設計思路上 Golang 和 Java 完全不同：Java 習慣上會用 thread-safe 的概念設計併發，而 Golang 的設計上鼓勵開發者使用 channel 處理併發問題。
+當我回頭看剛開始學 Golang 的程式時，我發現我只是用 Golang 語法寫 Java 程式。尤其在並行程式的設計思路上 Golang 和 Java 完全不同：Java 習慣上會用 thread-safe 的概念設計並行，而 Golang 的設計上鼓勵開發者使用 channel 處理並行問題。
 <!-- summary -->
 
-這篇文章主要想討論 Java 和 Golang 撰寫併發程式上的風格差異，希望能讓初學 Golang 的開發者在撰寫併發時，能對 Golang 的併發設計模式有些概念。  
+這篇文章主要想討論 Java 和 Golang 撰寫並行程式上的風格差異，希望能讓初學 Golang 的開發者在撰寫並行時，能對 Golang 的並行設計模式有些概念。  
 
 # 什麼是典範
 程式典範是指規範如何撰寫程式的指導原則，一種更高位的設計模式， 像是物件導向程式設計 (Object Oriented Programming) 就是一種程式典範，其餘的還有函式語言程式設計 (Functional programming)。  
 要注意的是，典範本身並無優劣之分，有的只是適用的情境不同。  
-如同程式併發典範，撰寫併發程式也有典範，如 Thread & Lock 就是一種併發的典範。Java 在撰寫併發程式時即是依循 Thread & Lock。另一方面， Golang 的併發典範則更多是遵循 Communicating Sequential Process(CSP) 。接下來讓我們更深入探討兩種典範的差異。  
+如同程式並行典範，撰寫並行程式也有典範，如 Thread & Lock 就是一種並行的典範。Java 在撰寫並行程式時即是依循 Thread & Lock。另一方面， Golang 的並行典範則更多是遵循 Communicating Sequential Process(CSP) 。接下來讓我們更深入探討兩種典範的差異。  
 
 # Thread & Lock
 Thread & Lock 在運作上完全反映底層硬體的行為。基本上是不同 Thread 透過共享記憶體溝通，而透過 Lock 確保一次只有個 Thread 存取共享記憶體，即是互斥鎖的概念：
@@ -68,7 +68,7 @@ Thread & Lock 在運作上完全反映底層硬體的行為。基本上是不同
     }
 ```
 生產者和消費者透過 queue 溝通，每次往 queue 新增/刪除資料時，都會先用 lock 保護，確保一次只有一個 thread 能存取 queue。  
-Thread & Lock 基本上完全模擬了底層硬體處理併發的行為，且大部分程式語言都有支援，因此可以廣泛應用在大多數的場景。  
+Thread & Lock 基本上完全模擬了底層硬體處理並行的行為，且大部分程式語言都有支援，因此可以廣泛應用在大多數的場景。  
 但是 Thread & Lock 很難寫好，不小心會造成 deadlock。如以下的 code：
 
 ```java
@@ -110,7 +110,7 @@ Thread & Lock 基本上完全模擬了底層硬體處理併發的行為，且大
 
 ![](/img/posts/genchilu/concurrency_paradigms_golang_and_Java/csp.png)
 
-Golang 的併發典範則是圍繞著 CSP 概念設計，[Golang 官方 blog](https://go.dev/blog/codelab-share) 提到:
+Golang 的並行典範則是圍繞著 CSP 概念設計，[Golang 官方 blog](https://go.dev/blog/codelab-share) 提到:
 
 > Do not communicate by sharing memory; instead, share memory by communicating.  
 不要透過共享記憶體溝通，透過溝通來共享記憶體。  
@@ -171,9 +171,9 @@ Consume item Addr: 0xc000120000
 
 
 # 結論
-當我們說 Java 的併發是以 Thread & Lock 為基底，並不代表 Java 不能做到 CSP。以生產者/消費者的範例來看， Java 用 BlockingQueue 可以做到類似 Golang 的 channel 的功能。同理，Golang 中也有提供的  sync package 不乏有 Mutext、RWMutex 等機制。    
-但在 Java 中你會看到 Java 的併發生態系會是環繞著 Thread & Locl 去打造，你會看到大量的 synchronized 去規範某個區段一次只能被一個 Thread 執行，你會看到 Java 文章常提到要 Thread-safe 等概念。而在 Golang 你更多的是看到怎麼運用 select & channel 去打造併發程式。    
-在下一篇文章中，我會介紹 Golang 官網介紹的幾種常見的 Concurrency Pattern，以及對應 Java 的寫法做比較，讓大家可以更深刻體會兩種併發典範的內涵差異。
+當我們說 Java 的並行是以 Thread & Lock 為基底，並不代表 Java 不能做到 CSP。以生產者/消費者的範例來看， Java 用 BlockingQueue 可以做到類似 Golang 的 channel 的功能。同理，Golang 中也有提供的  sync package 不乏有 Mutex、RWMutex 等機制。    
+但在 Java 中你會看到 Java 的並行生態系會是環繞著 Thread & Locl 去打造，你會看到大量的 synchronized 去規範某個區段一次只能被一個 Thread 執行，你會看到 Java 文章常提到要 Thread-safe 等概念。而在 Golang 你更多的是看到怎麼運用 select & channel 去打造並行程式。    
+在下一篇文章中，我會介紹 Golang 官網介紹的幾種常見的 Concurrency Pattern，以及對應 Java 的寫法做比較，讓大家可以更深刻體會兩種並行典範的內涵差異。
 
 # Reference
 [GopherCon 2017: Kavya Joshi - Understanding Channels](https://www.youtube.com/watch?v=KBZlN0izeiY)  
