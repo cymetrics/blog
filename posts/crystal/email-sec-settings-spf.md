@@ -2,7 +2,7 @@
 title: 關於 email security 的大小事 — 設定篇 SPF
 author: crystal
 date: 2021-07-14
-tags: [Security]
+tags: [Security, Email Security]
 layout: layouts/post.njk
 image: /img/posts/crystal/email-sec-settings-spf/cover.jpg
 ---

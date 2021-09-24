@@ -2,7 +2,7 @@
 title: Reverse Engineering 101 — Part 1
 author: crystal
 date: 2021-06-04
-tags: [Security]
+tags: [Security, Reverse Engineering]
 layout: layouts/post.njk
 ---
 <!-- summary -->
