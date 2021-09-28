@@ -4,7 +4,7 @@ author: crystal
 date: 2021-09-16
 tags: [Security, Authentication, Brute-force]
 layout: layouts/post.njk
-image: /img/posts/crystal/authentication/news.jpeg
+image: /img/posts/crystal/authentication/phishing.png
 ---
 
 <!-- summary -->
