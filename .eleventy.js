@@ -157,6 +157,11 @@ module.exports = function (eleventyConfig) {
     return array.filter((_, idx) => arr.includes(idx))
   });
 
+  eleventyConfig.addFilter("recommendation", (array, title) => {
+    const arr = array.filter(item => item.data.title !== title)
+    return arr
+  });
+
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {
     if (n < 0) {

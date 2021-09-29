@@ -1758,3 +1758,11 @@ footer > * {
     width: 48%;
   }
 }
+
+.notice-block {
+  text-align: left;
+  background: rgba(87,137,211,0.2);
+  padding: 16px;
+  margin-top: 24px;
+  border-radius: 8px;
+}
