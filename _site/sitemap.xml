@@ -677,25 +677,6 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/concurrency-paradigms/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
     <loc>https://tech-blog.cymetrics.io/tags/concurrency/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -715,7 +696,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/volatile/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/concurrency-paradigms/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -735,6 +716,25 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/volatile/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -810,7 +810,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -829,7 +829,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -867,6 +867,25 @@
   
   
   <url>
+    <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
     <loc>https://tech-blog.cymetrics.io/tags/javascript/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -886,7 +905,26 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -1096,44 +1134,6 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/web/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
