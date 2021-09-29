@@ -219,7 +219,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-01/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-08-23T10:03:47.697Z</lastmod>
+    <lastmod>2021-09-29T09:27:21.733Z</lastmod>
   </url>
   
   
@@ -270,7 +270,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-theory/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-08-23T10:03:47.697Z</lastmod>
+    <lastmod>2021-09-29T09:27:21.732Z</lastmod>
   </url>
   
   
@@ -357,7 +357,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-08-23T10:03:47.696Z</lastmod>
+    <lastmod>2021-09-29T09:27:21.731Z</lastmod>
   </url>
   
   
@@ -376,7 +376,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-dkimdmarc/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-08-23T10:03:47.695Z</lastmod>
+    <lastmod>2021-09-29T09:27:21.731Z</lastmod>
   </url>
   
   
@@ -395,7 +395,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-examples/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-08-23T10:03:47.694Z</lastmod>
+    <lastmod>2021-09-29T09:27:21.730Z</lastmod>
   </url>
   
   
@@ -582,6 +582,63 @@
   
   
   <url>
+    <loc>https://tech-blog.cymetrics.io/tags/email-security/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/reverse-engineering/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/binary-exploitation/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
     <loc>https://tech-blog.cymetrics.io/tags/back-end/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -677,25 +734,6 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/concurrency/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
     <loc>https://tech-blog.cymetrics.io/tags/concurrency-paradigms/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -715,7 +753,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/volatile/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -734,7 +772,26 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/volatile/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/concurrency/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -810,25 +867,6 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
     <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -848,7 +886,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -886,45 +924,26 @@
   
   
   <url>
+    <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
     <loc>https://tech-blog.cymetrics.io/tags/javascript/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -1095,6 +1114,44 @@
   
   
   <url>
+    <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
     <loc>https://tech-blog.cymetrics.io/tags/sql-injection/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1155,7 +1212,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-extra/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-08-23T10:03:47.694Z</lastmod>
+    <lastmod>2021-09-29T09:27:21.731Z</lastmod>
   </url>
   
   
@@ -1212,7 +1269,7 @@
     <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-02/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-08-23T10:03:47.698Z</lastmod>
+    <lastmod>2021-09-29T09:27:21.733Z</lastmod>
   </url>
   
   
@@ -1441,5 +1498,43 @@
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-09-28T02:37:27.992Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/crystal/pwn-intro/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-09-29T09:27:21.732Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/posts/huli/prototype-pollution/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-09-29T09:40:06.412Z</lastmod>
   </url>
 </urlset>
