@@ -52,7 +52,7 @@
     <script async defer src="{{ "/js/min.js" | addHash }}"
       {% if webvitals %}data-cwv-src="{{ "/js/web-vitals.js" | addHash }}"{% endif %}>
     </script>
-    {% if googleanalytics %}
+    {% if googleanalytics and not isdevelopment  %}
       <script async src="https://www.googletagmanager.com/gtag/js?id={{ googleanalytics }}"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
