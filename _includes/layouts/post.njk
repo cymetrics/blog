@@ -52,6 +52,12 @@ templateClass: tmpl-post
       
     {% endfor %}
   </div>
+  <p style="font-weight: bold;">隨機推薦</p>
+  <ol>
+    {%- for entry in collections.posts | recommendation(title) | randomPick(5) | reverse %}
+      <li><a href="{{ entry.url | url }}">{{ entry.data.title }}</a></li>
+    {%- endfor %}
+  </ol>
 </div>
 <div class="article-author">
   <img class="article-author__img" data-deopt="true" src="{{ postAuthor.avatarUrl }}" alt="{{ postAuthor.name }}">
