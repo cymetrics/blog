@@ -544,44 +544,6 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/authentication/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/brute-force/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
     <loc>https://tech-blog.cymetrics.io/tags/email-security/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -602,6 +564,44 @@
   
   <url>
     <loc>https://tech-blog.cymetrics.io/tags/reverse-engineering/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/authentication/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/brute-force/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -734,7 +734,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/concurrency-paradigms/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/concurrency/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -772,7 +772,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/concurrency/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/concurrency-paradigms/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -829,45 +829,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/apt/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
     <loc>https://tech-blog.cymetrics.io/tags/csrf/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -905,7 +867,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -962,7 +924,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cyber/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -981,7 +943,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cybersecurity/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/apt/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -1000,7 +962,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/event/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -1019,7 +981,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/loss/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -1114,7 +1076,7 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/cyber/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -1133,7 +1095,45 @@
   
   
   <url>
-    <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
+    <loc>https://tech-blog.cymetrics.io/tags/cybersecurity/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/event/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  <url>
+    <loc>https://tech-blog.cymetrics.io/tags/loss/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <lastmod>2021-08-27T01:45:07.432Z</lastmod>
@@ -1535,6 +1535,6 @@
     <loc>https://tech-blog.cymetrics.io/posts/huli/prototype-pollution/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-    <lastmod>2021-09-29T09:40:06.412Z</lastmod>
+    <lastmod>2021-09-30T00:38:36.011Z</lastmod>
   </url>
 </urlset>

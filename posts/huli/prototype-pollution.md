@@ -450,6 +450,8 @@ package.json
 
 ## 該如何防禦
 
+在 [snyk](https://snyk.io/vuln/SNYK-JS-SWIPER-1088062) 的任何一個 prototype pollution 漏洞頁面上都會有防禦建議，也可以參考這一篇：[Prototype pollution attack in NodeJS application](https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf)
+
 常見的防禦方式有幾種，第一種是在做這些物件的操作時，阻止 `__proto__` 這個 key，例如說前面提到的解析 query string 跟 merge object 都可以採用這個方式。
 
 但是除了 `__proto__` 以外，也要注意另外一種繞過方式，像這樣：
@@ -482,7 +484,21 @@ obj['__proto__']['a'] = 1 // 根本沒有 __proto__ 這個屬性
 >  
 > The returned object is created with Object.create(null) and thus does not have a prototype.
 
-其他還有像是 `Object.freeze(Object.prototype)`，把 prototype 凍結住就改不了了，或者是用 `Map` 來取代 `{}` 之類的，但我覺得這兩種可能都會有一些副作用，例如說前者如果真的需要改或者是某個 library 有改的話，就爆炸了，而後者我覺得 `Object.create(null)` 會比 `Map` 好用，所以這兩種我就不多提了。
+其他還有像是建議用 `Map` 來取代 `{}`，但我覺得目前大家還是習慣用 object 居多，我自己覺得 `Object.create(null)` 會比 Map 好用一點。
+
+或是用 `Object.freeze(Object.prototype)`，把 prototype 凍結住，就沒辦法去修改：
+
+``` js
+Object.freeze(Object.prototype)
+var obj = {}
+obj['__proto__']['a'] = 1
+var obj2 = {}
+console.log(obj2.a) // undefined
+```
+
+但 `Object.freeze(Object.prototype)` 的問題之一是假設某個第三方套件有去修改 `Object.prototype`，比如說為了方便直接在上面加一個屬性，那就會比較難 debug，因為 freeze 之後去修改並不會造成錯誤，只是不會修改成功而已。
+
+所以你可能會發現你的程式因為某個第三方套件壞掉了，但你不知道為什麼。還有一個我想到的可能風險是 polyfill，假設未來因為版本問題需要幫 `Object.prototype` 加上 polyfill，就會因為 freeze 的關係而失效。
 
 至於 Node.js，還可以使用 `--disable-proto` 這個 option 來把 `Object.prototype.__proto__` 關掉，詳情可以參考[官方文件](https://nodejs.org/api/cli.html#cli_disable_proto_mode)
 
