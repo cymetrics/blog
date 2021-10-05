@@ -10,7 +10,9 @@ layout: layouts/post.njk
 
 
 ## 前言
+<!-- summary -->
 當你把錢藏在垃圾桶，結果錢被清潔人員撿走，就只能怪自己把錢藏錯地方，或者沒有把垃圾桶上鎖，雖然上鎖只是開玩笑，但這個悲劇的原理跟目錄遍歷非常接近。
+<!-- summary -->
 </br>
 
 ## Directory Traversal 怎麼發生 ?
