@@ -1,10 +1,9 @@
 ---
 title: 秒懂 Directory Traversal( 目錄遍歷 )
 date: 2021-010-05
-tags: [Directory Traversal, Path Traversal, Security, Directory, ]
+tags: [Directory Traversal, Path Traversal, Security, Directory]
 author: nick
 layout: layouts/post.njk
-image: /img/posts/nick/directory/d1.jpg
 ---
 # 秒懂 Directory Traversal(目錄遍歷)
 ![](/img/posts/nick/directory/d_1.jpg)
