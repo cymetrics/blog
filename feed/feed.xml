@@ -4952,7 +4952,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 	</entry>
 	
 	<entry>
-		<title>秒懂 Directory Traversal( 目錄遍歷 )</title>
+		<title>秒懂 Directory Traversal(目錄遍歷)</title>
 		<link href="https://tech-blog.cymetrics.io/posts/nick/directory/"/>
 		<updated>2021-10-05T00:00:00-00:00</updated>
 		<id>https://tech-blog.cymetrics.io/posts/nick/directory/</id>
