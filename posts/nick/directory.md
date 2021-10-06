@@ -1,5 +1,5 @@
 ---
-title: 秒懂 Directory Traversal( 目錄遍歷 )
+title: 秒懂 Directory Traversal(目錄遍歷)
 date: 2021-10-05
 tags: [Directory Traversal, Path Traversal, Security, Directory]
 author: nick
