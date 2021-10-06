@@ -5,9 +5,8 @@ tags: [Directory Traversal, Path Traversal, Security, Directory]
 author: nick
 layout: layouts/post.njk
 ---
-# 秒懂 Directory Traversal(目錄遍歷)
-![](/img/posts/nick/directory/d_1.jpg)
 
+![](/img/posts/nick/directory/d1.jpg)
 
 ## 前言
 <!-- summary -->
@@ -20,7 +19,7 @@ layout: layouts/post.njk
 Directory Traversal (也被稱為 Path Traversal) 弱點是網站讓駭客有機會跨目錄或檔案讀取資料，藉此取得伺服器上非公開的檔案，如果發生了這類問題，其問題的嚴重程度與外流了那些檔案有較大的關聯，檔案中包含越多敏感資訊這問題就越嚴重，就像把錢全藏在垃圾桶一但被偷就完了。
 </br>
 
-![](/img/posts/nick/directory/d_2.jpg)
+![](/img/posts/nick/directory/d2.jpg)
 
 </br>
 
@@ -41,7 +40,7 @@ Directory traversal 的攻擊原理相對單純，依路徑的讀取方式可以
 
 輸入參數 : `page=file1.php`
 
-![](/img/posts/nick/directory/d_3.jpg)
+![](/img/posts/nick/directory/d3.jpg)
 
 ### 1. 絕對路徑
 
@@ -49,7 +48,7 @@ Directory traversal 的攻擊原理相對單純，依路徑的讀取方式可以
 
 輸入參數 : `page=/etc/passwd`
 
-![](/img/posts/nick/directory/d_4.jpg)
+![](/img/posts/nick/directory/d4.jpg)
 
 
 ### 2. 相對路徑
@@ -58,7 +57,7 @@ Directory traversal 的攻擊原理相對單純，依路徑的讀取方式可以
 
 輸入參數 : `page=../../../../../../../../../../../../etc/passwd`
 
-![](/img/posts/nick/directory/d_5.jpg)
+![](/img/posts/nick/directory/d5.jpg)
 
 </br>
 
@@ -75,7 +74,7 @@ Directory traversal 的攻擊原理相對單純，依路徑的讀取方式可以
 
 </br>
 
-![](/img/posts/nick/directory/d_6.jpg)
+![](/img/posts/nick/directory/d6.jpg)
 
 </br>
 
@@ -88,7 +87,7 @@ Directory traversal 的攻擊原理相對單純，依路徑的讀取方式可以
 
 </br>
 
-![](/img/posts/nick/directory/d_7.jpg)
+![](/img/posts/nick/directory/d7.jpg)
 
 </br>
 
@@ -102,7 +101,7 @@ https://nvd.nist.gov/vuln/detail/CVE-2018-1999002
 
 </br>
 
-![](/img/posts/nick/directory/d_8.jpg)
+![](/img/posts/nick/directory/d8.jpg)
 
 </br>
 
