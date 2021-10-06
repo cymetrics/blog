@@ -4957,8 +4957,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 		<updated>2021-10-05T00:00:00-00:00</updated>
 		<id>https://tech-blog.cymetrics.io/posts/nick/directory/</id>
 		<content type="html">
-		  &lt;h1 id=&quot;%E7%A7%92%E6%87%82-directory-traversal(%E7%9B%AE%E9%8C%84%E9%81%8D%E6%AD%B7)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%A7%92%E6%87%82-directory-traversal(%E7%9B%AE%E9%8C%84%E9%81%8D%E6%AD%B7)&quot;&gt;#&lt;/a&gt; 秒懂 Directory Traversal(目錄遍歷)&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d_1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;!-- summary --&gt;
 &lt;p&gt;當你把錢藏在垃圾桶，結果錢被清潔人員撿走，就只能怪自己把錢藏錯地方，或者沒有把垃圾桶上鎖，雖然上鎖只是開玩笑，但這個悲劇的原理跟目錄遍歷非常接近。&lt;/p&gt;
@@ -4967,7 +4966,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;h2 id=&quot;directory-traversal-%E6%80%8E%E9%BA%BC%E7%99%BC%E7%94%9F-%3F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#directory-traversal-%E6%80%8E%E9%BA%BC%E7%99%BC%E7%94%9F-%3F&quot;&gt;#&lt;/a&gt; Directory Traversal 怎麼發生 ?&lt;/h2&gt;
 &lt;p&gt;Directory Traversal (也被稱為 Path Traversal) 弱點是網站讓駭客有機會跨目錄或檔案讀取資料，藉此取得伺服器上非公開的檔案，如果發生了這類問題，其問題的嚴重程度與外流了那些檔案有較大的關聯，檔案中包含越多敏感資訊這問題就越嚴重，就像把錢全藏在垃圾桶一但被偷就完了。&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d_2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;p&gt;上圖是一個經典的 Directory Traversal 攻擊&lt;/p&gt;
 &lt;ul&gt;
@@ -4980,15 +4979,15 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;h3 id=&quot;0.-%E6%AD%A3%E5%B8%B8%E6%B5%81%E7%A8%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#0.-%E6%AD%A3%E5%B8%B8%E6%B5%81%E7%A8%8B&quot;&gt;#&lt;/a&gt; 0. 正常流程&lt;/h3&gt;
 &lt;p&gt;在攻擊之前必須先了解正常流程，正常狀況下這個頁面會去讀取 file1.php 來顯示。&lt;/p&gt;
 &lt;p&gt;輸入參數 : &lt;code&gt;page=file1.php&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d_3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;1.-%E7%B5%95%E5%B0%8D%E8%B7%AF%E5%BE%91&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E7%B5%95%E5%B0%8D%E8%B7%AF%E5%BE%91&quot;&gt;#&lt;/a&gt; 1. 絕對路徑&lt;/h3&gt;
 &lt;p&gt;如果你已經知道攻擊對象的系統與目錄結構，可以用絕對路徑直接去讀取目標檔案 (/etc/passwd)。&lt;/p&gt;
 &lt;p&gt;輸入參數 : &lt;code&gt;page=/etc/passwd&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d_4.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d4.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;2.-%E7%9B%B8%E5%B0%8D%E8%B7%AF%E5%BE%91&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-%E7%9B%B8%E5%B0%8D%E8%B7%AF%E5%BE%91&quot;&gt;#&lt;/a&gt; 2. 相對路徑&lt;/h3&gt;
 &lt;p&gt;利用 &lt;code&gt;../&lt;/code&gt; 可以跳回前一層目錄的特性，反覆嘗試讀取網站其他目錄的資料。&lt;/p&gt;
 &lt;p&gt;輸入參數 : &lt;code&gt;page=../../../../../../../../../../../../etc/passwd&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d_5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id=&quot;directory-traversal-%E6%9C%83%E7%99%BC%E7%94%9F%E5%9C%A8%E5%93%AA-%3F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#directory-traversal-%E6%9C%83%E7%99%BC%E7%94%9F%E5%9C%A8%E5%93%AA-%3F&quot;&gt;#&lt;/a&gt; Directory Traversal 會發生在哪 ?&lt;/h2&gt;
 &lt;p&gt;網站上只要有輸入的地方都有機會發生 Directory Traversal，但下面列出較常發生的位置並提供一個實際的發生的案例作為參考。&lt;/p&gt;
@@ -4999,7 +4998,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;li&gt;實際案例: &lt;a href=&quot;https://www.rapid7.com/db/vulnerabilities/http-tomcat-directory-traversal/&quot;&gt;https://www.rapid7.com/db/vulnerabilities/http-tomcat-directory-traversal/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;br&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d_6.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d6.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id=&quot;2.-html-%E8%A1%A8%E5%96%AE-(form)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-html-%E8%A1%A8%E5%96%AE-(form)&quot;&gt;#&lt;/a&gt; 2. HTML 表單 (form)&lt;/h3&gt;
 &lt;p&gt;較常出現在上傳與下載的功能，下載功能可能導致不開放檔案被下載，上傳功能則可以藉由跨越目錄覆蓋伺服器上原本的其他檔案，能衍生非常多種類的攻擊。&lt;/p&gt;
@@ -5008,7 +5007,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;li&gt;實際案例: &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2020-9364&quot;&gt;https://nvd.nist.gov/vuln/detail/CVE-2020-9364&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;br&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d_7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;h3 id=&quot;3.-http-header-%E6%AC%84%E4%BD%8D&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#3.-http-header-%E6%AC%84%E4%BD%8D&quot;&gt;#&lt;/a&gt; 3. HTTP Header 欄位&lt;/h3&gt;
 &lt;p&gt;最常被忽略的一種攻擊，網站從 Header 讀取參數的時候讀到惡意資訊，但攻擊者較不容易藉此得到回傳資料，通常要搭配其他弱點來攻擊。&lt;/p&gt;
@@ -5018,7 +5017,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2018-1999002&quot;&gt;https://nvd.nist.gov/vuln/detail/CVE-2018-1999002&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;br&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d_8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
 &lt;p&gt;Directory Traversal 的防範方式跟保護敏感檔案的方法非常接近，以防止資料外流為主。&lt;/p&gt;
