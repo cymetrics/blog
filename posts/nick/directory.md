@@ -106,7 +106,8 @@ https://nvd.nist.gov/vuln/detail/CVE-2018-1999002
 </br>
 
 ## 總結
-Directory Traversal 的防範方式跟保護敏感檔案的方法非常接近，以防止資料外流為主。
+
+Directory Traversal 雖然原理簡單影響卻很大，而且連知名的產品也不斷發生這類問題，近期最嚴重的應該就是 [Apache(CVE-2021-41773)](https://www.bleepingcomputer.com/news/security/apache-fixes-actively-exploited-zero-day-vulnerability-patch-now/)，這類問題反覆出現的主因是讀檔功能在網站上實在是太常見了，一有疏漏就會導致 Directory Traversal 發生，發生之後還能衍生出很多種攻擊，像是上傳後門來取得控制權。
 
 ___
 
