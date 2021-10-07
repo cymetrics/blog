@@ -5020,7 +5020,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/directory/d8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
-&lt;p&gt;Directory Traversal 的防範方式跟保護敏感檔案的方法非常接近，以防止資料外流為主。&lt;/p&gt;
+&lt;p&gt;Directory Traversal 雖然原理簡單影響卻很大，而且連知名的產品也不斷發生這類問題，近期最嚴重的應該就是 &lt;a href=&quot;https://www.bleepingcomputer.com/news/security/apache-fixes-actively-exploited-zero-day-vulnerability-patch-now/&quot;&gt;Apache(CVE-2021-41773)&lt;/a&gt;，這類問題反覆出現的主因是讀檔功能在網站上實在是太常見了，一有疏漏就會導致 Directory Traversal 發生，發生之後還能衍生出很多種攻擊，像是上傳後門來取得控制權。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;解決方案（一） :  權限控管&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;正確的設定目錄底下的權限，當駭客透過 Directory Traversal 存取檔案時，存取到沒有權限的目錄時，便無法顯示。要特別注意把網站跑起來的時候不能用太高權限的帳號，像是 root，否則權限控管很可能形同虛設。&lt;/p&gt;
