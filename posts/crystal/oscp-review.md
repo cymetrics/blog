@@ -14,7 +14,7 @@ image: /img/posts/crystal/oscp/cover.jpg
 
 ## 關於 OSCP
 
-OSCP （Offensive Security Certified Professional）是 Offensive Security 這家公司發行的一系列證照之一，也是他的入門款第一張（對你沒聽錯，這個大魔王其實是難度比較低的基礎款喔）。Offensive Security 每隔一陣子就會更新課程內容跟證照類型，所以有一些證照現在已經不能考或是改名了，現階段發行的證照可以去官網查詢：
+OSCP （Offensive Security Certified Professional）是 Offensive Security 這家公司發行的一系列證照之一，也是他的入門款第一張（對你沒聽錯，這個大魔王其實是難度比較低的基礎款喔）。Offensive Security 每隔一陣子就會更新課程內容跟證照類型，所以有一些證照現在已經不能考或是改名了，現階段發行的證照可以去官網查詢：
 #[OSCP 證照們](/img/posts/crystal/oscp/oscp-certs.png)
 
 從下面這個編號命名規則跟學習流程圖也可以看出 OSCP 的編號 PEN-200 是最基礎也最 general 的。後續有更深入的 OSEP(PEN-300) 以及專精網頁攻擊的 OSWP(WEB-300) 跟專攻 exploit 開發的 OSED(EXP-301) OSEE(EXP-401) 等等。
