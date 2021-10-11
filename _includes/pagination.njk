@@ -1,0 +1,38 @@
+{% if pagination.pages.length > 1 %}
+{% set currentPage = 0 %}
+{%- for pageEntry in pagination.pages %}
+    {% set isCurrent = (page.url == pagination.hrefs[ loop.index0 ]) %}
+    {% if isCurrent %}
+      {% set currentPage = loop.index0 %}
+    {% endif %}
+{%- endfor %}
+
+<nav class="nav-pagination">
+  <ol>
+    {% if pagination.href.previous %}
+      <li class="nav-pagination__prev">
+        <a href="{{ pagination.href.previous }}">‹</a>
+      </li>
+    {% else %}
+      <li class="nav-pagination__prev nav-pagination__prev--disable">
+        <span>‹</span>
+      </li>
+    {% endif %}
+{%- for pageEntry in pagination.pages %}
+    {% if (currentPage >= loop.index0 - 2) and (currentPage <= loop.index0 + 2) %}
+      {% set isCurrent = (page.url == pagination.hrefs[ loop.index0 ]) %}
+      <li {% if isCurrent %} class="current"{% endif %}><a {% if isCurrent %} aria-current="page"{% endif %} href="{{ pagination.hrefs[ loop.index0 ] }}">{{ loop.index }}</a></li>
+    {% endif %}
+{%- endfor %}
+    {% if pagination.href.next %}
+      <li class="nav-pagination__next">
+        <a href="{{ pagination.href.next }}">›</a>
+      </li>
+    {% else %}
+      <li class="nav-pagination__next nav-pagination__next--disable">
+        <span>›</span>
+      </li>
+    {% endif %}
+  </ol>
+</nav>
+{% endif %}
