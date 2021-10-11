@@ -4106,7 +4106,7 @@ Package sync 提供基礎的同步原型，像是互斥鎖。除了 Once 和 Wai
 &lt;p&gt;資安領域中，多數人都聽過一張標榜最有公信力的證照，就是不少公司跟求職者趨之若鶩的 OSCP。&lt;br&gt;
 常聽很多人說，OSCP 證照是『小魔王』，考前像在地獄爬一圈，考完前途一片光明，多少人考了四五次都沒過，簡直不要太殘忍。這張證照到底是何方神聖能被形容成這樣呢？&lt;/p&gt;
 &lt;h2 id=&quot;%E9%97%9C%E6%96%BC-oscp&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%97%9C%E6%96%BC-oscp&quot;&gt;#&lt;/a&gt; 關於 OSCP&lt;/h2&gt;
-&lt;p&gt;OSCP （Offensive Security Certified Professional）是 Offensive Security 這家公司發行的一系列證照之一，也是他的入門款第一張（對你沒聽錯，這個大魔王其實是難度比較低的基礎款喔）。Offensive Security 每隔一陣子就會更新課程內容跟證照類型，所以有一些證照現在已經不能考或是改名了，現階段發行的證照可以去官網查詢：&lt;br&gt;
+&lt;p&gt;OSCP （Offensive Security Certified Professional）是 Offensive Security 這家公司發行的一系列證照之一，也是他的入門款第一張（對你沒聽錯，這個大魔王其實是難度比較低的基礎款喔）。Offensive Security 每隔一陣子就會更新課程內容跟證照類型，所以有一些證照現在已經不能考或是改名了，現階段發行的證照可以去官網查詢：&lt;br&gt;
 &lt;figure&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/crystal/oscp/oscp-certs.png&quot;&gt;&lt;figcaption&gt;&lt;p&gt;OSCP 證照們&lt;/p&gt;
 &lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;從下面這個編號命名規則跟學習流程圖也可以看出 OSCP 的編號 PEN-200 是最基礎也最 general 的。後續有更深入的 OSEP(PEN-300) 以及專精網頁攻擊的 OSWP(WEB-300) 跟專攻 exploit 開發的 OSED(EXP-301) OSEE(EXP-401) 等等。&lt;/p&gt;
