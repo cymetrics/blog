@@ -7,25 +7,28 @@ siteWideUpdate: 2021-07-12
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for page in collections.all %}
   {% set absoluteUrl %}{{ page.url | url | absoluteUrl(metadata.url) }}{% endset %}
-  {% set pageDate = page.date | sitemapDateTimeString %}
-  {% set lastModifiedDate = page.inputPath | lastModifiedDate  | sitemapDateTimeString %}
-  {% set siteWide = siteWideUpdate| sitemapDateTimeString %}
-  {% set lastmod = siteWide %}
-  {% if pageDate > lastmod %}
-    {% set lastmod = pageDate %}
+  {% set regExp = r/tags/g %}
+  {% if not regExp.test(absoluteUrl) %}
+    {% set pageDate = page.date | sitemapDateTimeString %}
+    {% set lastModifiedDate = page.inputPath | lastModifiedDate  | sitemapDateTimeString %}
+    {% set siteWide = siteWideUpdate| sitemapDateTimeString %}
+    {% set lastmod = siteWide %}
+    {% if pageDate > lastmod %}
+      {% set lastmod = pageDate %}
+    {% endif %}
+    {% if lastModifiedDate > lastmod %}
+      {% set lastmod = lastModifiedDate %}
+    {% endif %}
+    {% set isHomePage = false %}
+    {% if absoluteUrl == metadata.url + '/' %}
+      {% set isHomePage = true %}
+    {% endif %}
+    <url>
+      <loc>{{ absoluteUrl }}</loc>
+      <changefreq>{{ "daily" if isHomePage else "weekly" }}</changefreq>
+      <priority>{{ "1" if isHomePage else "0.8" }}</priority>
+      <lastmod>{{ lastmod }}</lastmod>
+    </url>
   {% endif %}
-  {% if lastModifiedDate > lastmod %}
-    {% set lastmod = lastModifiedDate %}
-  {% endif %}
-  {% set isHomePage = false %}
-  {% if absoluteUrl == metadata.url + '/' %}
-    {% set isHomePage = true %}
-  {% endif %}
-  <url>
-    <loc>{{ absoluteUrl }}</loc>
-    <changefreq>daily</changefreq>
-    <priority>{{ "1" if isHomePage else "0.6" }}</priority>
-    <lastmod>{{ lastmod }}</lastmod>
-  </url>
 {%- endfor %}
 </urlset>

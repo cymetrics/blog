@@ -3,1614 +3,1134 @@
   
   
   
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/maxchiu/indexing/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:19:06.159Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/maxchiu/turbofan/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:18:56.428Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/genchilu/the-difference-between-java-and-golang-in-writing-concurrent-code-to-access-shared-variable-en/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:18:26.389Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/genchilu/the-difference-between-java-and-golang-in-writing-concurrent-code-to-access-shared-variable-zh/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:18:23.029Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/prevent-xss-might-be-harder-than-you-thought/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-22T08:43:56.582Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-cross-site-request-forgery/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-27T06:05:50.475Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-cross-site-scripting/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-27T06:05:50.475Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/maxchiu/aop/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:19:13.679Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-secure-samesite-httponly/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-27T06:05:50.476Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/mingyou/deep-dive-into-react-fiber/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T09:19:09.758Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-injectionattack/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-27T06:05:50.475Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-path-traversal/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-27T06:05:50.475Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-01/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-29T09:27:21.733Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/xss-attack-and-defense/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T02:51:15.667Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/nick/shodan-fofa/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-27T06:05:50.476Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-theory/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-29T09:27:21.732Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/genchilu/javas-thread-model-and-golang-goroutine-en/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:18:31.275Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/genchilu/javas-thread-model-and-golang-goroutine-zh/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:18:28.759Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/why-only-reset-password-not-retrieve-password/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T02:40:19.092Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-common-risk-exposure/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-27T06:05:50.474Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-29T09:27:21.731Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-dkimdmarc/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-29T09:27:21.731Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-examples/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-29T09:27:21.730Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-common-risk-fix/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-27T06:05:50.474Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/about/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-09T07:40:22.807Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/archive/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-10-11T01:13:24.457Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/robots.txt</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T07:45:38.885Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/page-list/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-21T13:47:09.994Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-07-29T06:17:26.599Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/security/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/authentication/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/brute-force/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/email-security/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/reverse-engineering/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/binary-exploitation/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/back-end/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/java/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/golang/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/thread/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/goroutine/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/concurrency-paradigms/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/concurrency/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/volatile/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/front-end/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/javascript/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/zerobased/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/apt/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/csrf/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/xss/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
-    
-  
-  
-    
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/injection/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
     
-  
-  
     
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/path-traversal/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
     
-  
-  
     
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cookie/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
-  
-  
-  
-  
     
-  
-  
     
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cyber/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
-  
-  
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/maxchiu/indexing/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-29T06:19:06.159Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/maxchiu/turbofan/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-29T06:18:56.428Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cybersecurity/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/genchilu/the-difference-between-java-and-golang-in-writing-concurrent-code-to-access-shared-variable-en/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-29T06:18:26.389Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/genchilu/the-difference-between-java-and-golang-in-writing-concurrent-code-to-access-shared-variable-zh/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-29T06:18:23.029Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/event/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/prevent-xss-might-be-harder-than-you-thought/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-22T08:43:56.582Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-cross-site-request-forgery/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-27T06:05:50.475Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/loss/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-cross-site-scripting/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-27T06:05:50.475Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/maxchiu/aop/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-29T06:19:13.679Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/directory-traversal/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-secure-samesite-httponly/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-27T06:05:50.476Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/mingyou/deep-dive-into-react-fiber/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-21T09:19:09.758Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/directory/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-injectionattack/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-27T06:05:50.475Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-path-traversal/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-27T06:05:50.475Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/shodan/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-01/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-29T09:27:21.733Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/xss-attack-and-defense/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-21T02:51:15.667Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/fofa/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/nick/shodan-fofa/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-27T06:05:50.476Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-theory/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-29T09:27:21.732Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/sql-injection/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/genchilu/javas-thread-model-and-golang-goroutine-en/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-29T06:18:31.275Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/genchilu/javas-thread-model-and-golang-goroutine-zh/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-29T06:18:28.759Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/sql/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/why-only-reset-password-not-retrieve-password/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-21T02:40:19.092Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-common-risk-exposure/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-27T06:05:50.474Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/web/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-29T09:27:21.731Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-dkimdmarc/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-29T09:27:21.731Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/owasp/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-examples/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-29T09:27:21.730Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
-  
-  
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/cwe/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-common-risk-fix/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-27T06:05:50.474Z</lastmod>
+    </url>
   
   
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/about/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-08-09T07:40:22.807Z</lastmod>
+    </url>
   
   
-    
   
   
     
-  
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/archive/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-10-11T01:13:24.457Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/top-10/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/robots.txt</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-10-19T06:46:42.398Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
+    
+    
     
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/page-list/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-07-21T13:47:09.994Z</lastmod>
+    </url>
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/tags/top-25/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-27T01:45:07.432Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-extra/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-29T09:27:21.731Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/nick/website-go-live-attack/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-28T02:37:27.995Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-02/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-29T09:27:21.733Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/learn-from-intigriti-xss-0721/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-05T10:15:07.696Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/front-end-supply-chain-attack-cdnjs/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-19T03:15:24.409Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-APT/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-24T08:48:06.812Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/nick/owasp-cwe/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-07T06:59:28.256Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/clickjacking-intro/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-08-26T11:05:25.847Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/genchilu/concurrency-paradigms-golang-and-java-en/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-07T06:59:28.255Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
-    
   
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/genchilu/concurrency-paradigms-golang-and-java-zh/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-28T02:37:27.994Z</lastmod>
-  </url>
   
   
   
   
   
   
-    
   
   
     
-  
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/email-sec-extra/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-29T09:27:21.731Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/nick/sqli/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-28T02:37:27.994Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/nick/website-go-live-attack/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-28T02:37:27.995Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/reverse-02/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-29T09:27:21.733Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/oscp-review/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-07T06:59:28.254Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/learn-from-intigriti-xss-0721/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-08-05T10:15:07.696Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/front-end-supply-chain-attack-cdnjs/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-08-19T03:15:24.409Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/open-redirect/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-09T05:35:28.123Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/jo/zerobased-APT/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-08-24T08:48:06.812Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/nick/owasp-cwe/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-07T06:59:28.256Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/nick/cybersecurity-loss/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-09T08:27:21.180Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/clickjacking-intro/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-08-26T11:05:25.847Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/genchilu/concurrency-paradigms-golang-and-java-en/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-07T06:59:28.255Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/authentication/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-28T02:37:27.992Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/genchilu/concurrency-paradigms-golang-and-java-zh/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-28T02:37:27.994Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/nick/sqli/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-28T02:37:27.994Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/crystal/pwn-intro/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-29T09:27:21.732Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/oscp-review/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-10-11T01:35:59.153Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/open-redirect/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-09T05:35:28.123Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/prototype-pollution/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-09-30T00:38:36.011Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/nick/cybersecurity-loss/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-09T08:27:21.180Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/authentication/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-28T02:37:27.992Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/nick/directory/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-10-11T00:45:40.889Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/pwn-intro/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-29T09:27:21.732Z</lastmod>
+    </url>
   
   
   
   
     
-  
-  
     
-  
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/prototype-pollution/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-09-30T00:38:36.011Z</lastmod>
+    </url>
   
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/posts/huli/xss-history/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <lastmod>2021-10-11T01:09:26.767Z</lastmod>
-  </url>
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/nick/directory/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-10-11T00:45:40.889Z</lastmod>
+    </url>
   
   
   
   
+    
     
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/xss-history/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-10-11T01:09:26.767Z</lastmod>
+    </url>
   
   
   
   
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
     
+    <url>
+      <loc>https://tech-blog.cymetrics.io/</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+      <lastmod>2021-10-11T01:12:50.108Z</lastmod>
+    </url>
   
-  <url>
-    <loc>https://tech-blog.cymetrics.io/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1</priority>
-    <lastmod>2021-10-11T01:12:50.108Z</lastmod>
-  </url>
 </urlset>
