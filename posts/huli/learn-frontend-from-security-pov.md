@@ -442,6 +442,8 @@ function loaded() {
 
 先補充一下，上述的有些攻擊並不是所有環境都適用，例如說有些攻擊需要網站沒有擋 iframe，而拿來身份驗證的 cookie 可能也不能設定 SameSite，否則就會失效，利用 name 來傳 payload 的方法在某些瀏覽器可能也不適用，但我覺得這都不影響這些攻擊的有趣程度。
 
+文章中有些繞過的部分並沒有寫得很完整，因為我把重點放在「找到至少一種繞過方式」，而不是「寫出所有繞過方式」，想看更完整的繞過技巧可以參考：[Cheatsheet: XSS that works in 2021](https://netsec.expert/posts/xss-in-2021/)。
+
 這篇文章提到的許多技巧，都是我透過打 CTF 學習而來，例如說下載檔案的 XS leaks 從 [LINE CTF 2021 - Your Note](https://github.com/aszx87410/ctf-writeups/issues/25)，讀取不同 path 的 cookie 是從 [DiceCTF 2021 - Web IDE](https://github.com/aszx87410/ctf-writeups/issues/19) 學到的，Chrome 的隱藏 API 則是在 [zer0pts CTF 2021 - PDF Generator](https://github.com/aszx87410/ctf-writeups/issues/23) 學習到的技巧，透過 CTF 讓我看見了不一樣的 Web。
 
 以上就是我近期學習到的一些與前端相關的知識，每一個都超出了我的想像，希望這篇文章有讓大家感受到我當初的驚訝，覺得：「哇，原來前端還有這些東西，我怎麼都不知道」。

@@ -5430,6 +5430,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;p&gt;雖然說這個技巧只能用在文字上面，但這種隱藏的功能真是令人興奮。&lt;/p&gt;
 &lt;h2 id=&quot;%E7%B5%90%E8%AA%9E&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B5%90%E8%AA%9E&quot;&gt;#&lt;/a&gt; 結語&lt;/h2&gt;
 &lt;p&gt;先補充一下，上述的有些攻擊並不是所有環境都適用，例如說有些攻擊需要網站沒有擋 iframe，而拿來身份驗證的 cookie 可能也不能設定 SameSite，否則就會失效，利用 name 來傳 payload 的方法在某些瀏覽器可能也不適用，但我覺得這都不影響這些攻擊的有趣程度。&lt;/p&gt;
+&lt;p&gt;文章中有些繞過的部分並沒有寫得很完整，因為我把重點放在「找到至少一種繞過方式」，而不是「寫出所有繞過方式」，想看更完整的繞過技巧可以參考：&lt;a href=&quot;https://netsec.expert/posts/xss-in-2021/&quot;&gt;Cheatsheet: XSS that works in 2021&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;這篇文章提到的許多技巧，都是我透過打 CTF 學習而來，例如說下載檔案的 XS leaks 從 &lt;a href=&quot;https://github.com/aszx87410/ctf-writeups/issues/25&quot;&gt;LINE CTF 2021 - Your Note&lt;/a&gt;，讀取不同 path 的 cookie 是從 &lt;a href=&quot;https://github.com/aszx87410/ctf-writeups/issues/19&quot;&gt;DiceCTF 2021 - Web IDE&lt;/a&gt; 學到的，Chrome 的隱藏 API 則是在 &lt;a href=&quot;https://github.com/aszx87410/ctf-writeups/issues/23&quot;&gt;zer0pts CTF 2021 - PDF Generator&lt;/a&gt; 學習到的技巧，透過 CTF 讓我看見了不一樣的 Web。&lt;/p&gt;
 &lt;p&gt;以上就是我近期學習到的一些與前端相關的知識，每一個都超出了我的想像，希望這篇文章有讓大家感受到我當初的驚訝，覺得：「哇，原來前端還有這些東西，我怎麼都不知道」。&lt;/p&gt;
 
