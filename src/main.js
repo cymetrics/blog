@@ -26,7 +26,7 @@ if (location.search) {
   a.search = "";
   setTimeout(() => {
     history.replaceState(null, null, a.href);
-  }, 1000)
+  }, 5000)
 }
 
 function tweet_(url) {
