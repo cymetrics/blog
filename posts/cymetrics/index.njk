@@ -1,0 +1,9 @@
+---
+layout: layouts/common.njk
+title: Cymetrics 的文章列表
+eleventyExcludeFromCollections: true
+---
+
+{% set postslist = collections.posts %}
+{% set author = 'cymetrics' %}
+{% include "author-postslist.njk" %}
