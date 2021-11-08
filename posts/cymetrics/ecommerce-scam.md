@@ -3,6 +3,7 @@ title: 簡單三招學會辨識電商詐騙，讓你在雙11安心購物
 date: 2021-11-08
 author: cymetrics
 layout: layouts/post.njk
+image: /img/posts/cymetrics/ecommerce-scam/cover.jpg
 ---
 
 現在有越來越多人習慣在網路上購物，在臉書上也可以看見許多購物網站的廣告，文案寫得極其吸引人，價格又便宜，引起了許多人的興趣，紛紛在上面下單。
