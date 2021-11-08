@@ -14,26 +14,6 @@
     
     
     <url>
-      <loc>https://tech-blog.cymetrics.io/posts/cymetrics/ecommerce-scam/</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-      <lastmod>2021-11-02T09:05:53.361Z</lastmod>
-    </url>
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    <url>
       <loc>https://tech-blog.cymetrics.io/posts/maxchiu/indexing/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
@@ -1195,6 +1175,28 @@
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
       <lastmod>2021-10-26T06:38:09.751Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/cymetrics/ecommerce-scam/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-11-08T06:03:34.051Z</lastmod>
     </url>
   
 </urlset>
