@@ -696,6 +696,15 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
     
     
     
@@ -1122,28 +1131,6 @@
       
     
     
-    
-    
-      
-    
-    <url>
-      <loc>https://tech-blog.cymetrics.io/</loc>
-      <changefreq>daily</changefreq>
-      <priority>1</priority>
-      <lastmod>2021-10-11T01:12:50.108Z</lastmod>
-    </url>
-  
-  
-  
-  
-    
-    
-    
-    
-    
-      
-    
-    
       
     
     
@@ -1196,7 +1183,51 @@
       <loc>https://tech-blog.cymetrics.io/posts/cymetrics/ecommerce-scam/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-11-08T06:41:28.859Z</lastmod>
+      <lastmod>2021-11-08T06:42:52.356Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/nick/google-recaptcha/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-11-10T08:09:20.881Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+      <lastmod>2021-11-10T08:09:59.488Z</lastmod>
     </url>
   
 </urlset>

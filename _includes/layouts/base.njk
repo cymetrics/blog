@@ -21,6 +21,10 @@
     <meta name="twitter:card" content="summary">
     {% set coverImage = image or '/img/favicon/favicon-512x512.png' %}
     {% set desc = renderData.description or description %}
+    {% set summaryDesc = content | summary | striptags %}
+    {% if summaryDesc %}
+      {% set desc = summaryDesc %}
+    {% endif %}
     {% if not desc %}
       {% set desc = content | striptags | truncate(140) %}
     {% endif %}
