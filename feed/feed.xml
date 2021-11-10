@@ -5494,7 +5494,9 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/google-recaptcha/re_1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;p&gt;Google 的搜索引擎本身就是世界最大的網路爬蟲之一，無時無刻都在收集資料，但卻不喜歡別人爬走它的資料，用了自家開發的 reCAPTCHA 來保護自己。&lt;/p&gt;
+&lt;!-- summary --&gt;
 &lt;p&gt;提升自動化程度可以說是多數軟體工程師的目標，大家都想躺著賺錢，資安工程師也不例外，而 reCAPTCHA 可以說是 Google Hacking 自動化時會遇到的最大障礙，在嘗試了多種方法後決定寫篇文章記錄一下最後成功的方法，分享下各自的優缺點後加上主觀評分。&lt;/p&gt;
+&lt;!-- summary --&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;google-hacking-%E7%B0%A1%E4%BB%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#google-hacking-%E7%B0%A1%E4%BB%8B&quot;&gt;#&lt;/a&gt; Google Hacking 簡介&lt;/h2&gt;
 &lt;p&gt;Google Hacking 簡單來說就是駭客利用 Google Search 來收集攻擊所需要的資料，最常見的就是利用進階搜索語法來找出敏感或非公開資訊，細講的話可以寫一整篇文章，下面提供一個簡單的 Google Hacking 範例，此範例能快速找出不設防的網路錄影機，找到後人人都可以駭進去。&lt;/p&gt;
