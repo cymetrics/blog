@@ -4,9 +4,8 @@ date: 2021-11-10
 tags: [Security, Search, Google Hacking, reCAPTCHA]
 author: nick
 layout: layouts/post.njk
+image: /img/posts/cymetrics/google-recaptcha/re_1.jpg
 ---
-
-![](/img/posts/nick/google-recaptcha/re_1.jpg)
 
 ## 前言
 Google 的搜索引擎本身就是世界最大的網路爬蟲之一，無時無刻都在收集資料，但卻不喜歡別人爬走它的資料，用了自家開發的 reCAPTCHA 來保護自己。
