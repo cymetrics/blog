@@ -5527,7 +5527,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-2-%3A-%E6%AD%A3%E9%9D%A2%E5%B0%8D%E6%B1%BA&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-2-%3A-%E6%AD%A3%E9%9D%A2%E5%B0%8D%E6%B1%BA&quot;&gt;#&lt;/a&gt; 解決方案 2 : 正面對決&lt;/h3&gt;
-&lt;p&gt;模仿一般人去回答 reCAPTCHA 的問題，但針對 reCAPTCHA 做出一套影像辨識系統非常麻煩，有一個取巧的方法是利用盲人輔助功能，讓回答難度從影像辨識降低到語音辨識，降到語音辨識後甚至可以用 Google Translate 來對付 Google reCAPTCHA。&lt;/p&gt;
+&lt;p&gt;模仿一般人去回答 reCAPTCHA 的問題，但針對 reCAPTCHA 做出一套影像辨識系統非常麻煩，有一個取巧的方法是利用盲人輔助功能，讓回答難度從影像辨識降低到語音辨識，降到語音辨識後甚至可以讓 Google Speech 來對付 Google reCAPTCHA。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/google-recaptcha/re_7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;自動化測試時用的是 Python 的 SpeechRecognition 模組，利用模組中的 recognixe_google() 去呼叫 Google 語音辨識 API，讓 Google 語音辨識解決 Google reCAPTCHA 出的題目。&lt;/p&gt;
 &lt;h3 id=&quot;%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-3-%3A-%E6%8F%9B%E5%BC%95%E6%93%8E&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-3-%3A-%E6%8F%9B%E5%BC%95%E6%93%8E&quot;&gt;#&lt;/a&gt; 解決方案 3 : 換引擎&lt;/h3&gt;
@@ -5599,7 +5599,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;li&gt;優點: 穩定&lt;/li&gt;
 &lt;li&gt;缺點: 有次數上限、驗證複雜&lt;/li&gt;
 &lt;li&gt;使用心得:&lt;br&gt;
-因為不用擔心像前一個方法跳出驗證就導致服務中斷，比起來穩定的多，可惜的是語音辨識多使用幾次後 Google 背後的 AI 會開始懷疑來源是自動化程式，一旦懷疑就會禁用語音驗證的功能，這時候就不能再用 Google Translate 來對付 Google reCAPTCHA 了。&lt;/li&gt;
+因為不用擔心像前一個方法跳出驗證就導致服務中斷，比起來穩定的多，可惜的是語音辨識多使用幾次後 Google 背後的 AI 會開始懷疑來源是自動化程式，一旦懷疑就會禁用語音驗證的功能，這時候就不能再用 Google Speech 來對付 reCAPTCHA 了。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;%E6%8F%9B%E5%BC%95%E6%93%8E-%3A-%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%86&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%8F%9B%E5%BC%95%E6%93%8E-%3A-%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%86&quot;&gt;#&lt;/a&gt; 換引擎 : ★★★★☆&lt;/h3&gt;
 &lt;ul&gt;
