@@ -5512,7 +5512,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;p&gt;爬站時不管是資安人員還是駭客都想繞過 reCAPTCHA，但背後有機器學習導致規則不斷變化，在加上本身不斷改版，所以不少網住文章上的繞過方法都已經失效，這邊分享 3 個經過驗證，至少在當前版本可行的繞過方法。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/google-recaptcha/re_5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-1-%3A-%E5%81%BD%E8%A3%9D&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-1-%3A-%E5%81%BD%E8%A3%9D&quot;&gt;#&lt;/a&gt; 解決方案 1 : 偽裝&lt;/h3&gt;
-&lt;p&gt;偽裝成一般人使用搜索功能，避免出現 reCAPTCHA，偽裝的話期時有很多細節，但最直接影響 reCAPTCHA 出現機會的有 2 個要注意的點。&lt;/p&gt;
+&lt;p&gt;偽裝成一般人使用搜索功能，避免出現 reCAPTCHA，偽裝的話有很多細節，但最直接影響 reCAPTCHA 出現的有 2 點。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;設定 User-Agent 偽裝成常見的設備:&lt;/strong&gt;&lt;br&gt;
