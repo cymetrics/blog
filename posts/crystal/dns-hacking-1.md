@@ -4,7 +4,7 @@ author: crystal
 date: 2021-11-24
 tags: [Security, DNS, Subdomain Takeover]
 layout: layouts/post.njk
-image: /img/posts/crystal/dns-hacking/cover-1.jpeg
+image: /img/posts/crystal/dns-hacking/cover-1.jpg
 ---
 
 <!-- summary -->
