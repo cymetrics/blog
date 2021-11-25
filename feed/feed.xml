@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2021-11-24T00:00:00-00:00</updated>
+	<updated>2021-11-25T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -5616,7 +5616,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 	<entry>
 		<title>DNS Hacking 之 基礎知識：DNS 運作與紀錄類型</title>
 		<link href="https://tech-blog.cymetrics.io/posts/crystal/dns-hacking-1/"/>
-		<updated>2021-11-24T00:00:00-00:00</updated>
+		<updated>2021-11-25T00:00:00-00:00</updated>
 		<id>https://tech-blog.cymetrics.io/posts/crystal/dns-hacking-1/</id>
 		<content type="html">
 		  &lt;!-- summary --&gt;
