@@ -23,9 +23,7 @@ image: /img/posts/huli/reset-password/cover.jpeg
 
 ## 被偷走的資料庫
 
-大家應該很常看到新聞說哪個網站的資料又被偷走了，顧客個資全部都外洩出去。例如說[麥當勞](https://tw.news.yahoo.com/%E5%80%8B%E8%B3%87%E9%81%AD%E6%B4%A9-%E9%BA%A5%E7%95%B6%E5%8B%9E%E8%81%B2%E6%98%8E-%E4%B8%8D%E5%90%AB%E4%BB%98%E6%AC%BE%E8%B3%87%E6%96%99-103012207.html)在近期就發生了類似的事件：
-
-![麥當勞資料外洩的通知信](/img/posts/huli/reset-password/p1.png)
+大家應該很常看到新聞說哪個網站的資料又被偷走了，顧客個資全部都外洩出去。像是國外知名的網域代管網站 [GoDaddy](https://www.inside.com.tw/article/25661-godaddy-email-addresses-passwords-security-breach-managed-wordpress-ssl-keys) 就外洩了 120 萬筆用戶資料，而台灣之前也有過[愛心協會捐款個資外洩](https://www.ithome.com.tw/news/146427)的狀況發生。
 
 這邊我想帶大家探討的兩個問題是：
 

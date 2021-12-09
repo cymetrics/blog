@@ -377,7 +377,7 @@
       <loc>https://tech-blog.cymetrics.io/posts/huli/why-only-reset-password-not-retrieve-password/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-07-21T02:40:19.092Z</lastmod>
+      <lastmod>2021-12-09T00:31:53.204Z</lastmod>
     </url>
   
   
@@ -551,7 +551,7 @@
       <loc>https://tech-blog.cymetrics.io/robots.txt</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-10-19T06:46:42.398Z</lastmod>
+      <lastmod>2021-11-16T01:17:49.138Z</lastmod>
     </url>
   
   
@@ -575,6 +575,9 @@
       <priority>0.8</priority>
       <lastmod>2021-07-21T13:47:09.994Z</lastmod>
     </url>
+  
+  
+  
   
   
   
@@ -1205,7 +1208,7 @@
       <loc>https://tech-blog.cymetrics.io/posts/nick/google-recaptcha/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-11-10T08:09:20.881Z</lastmod>
+      <lastmod>2021-11-16T01:17:26.907Z</lastmod>
     </url>
   
   
@@ -1228,6 +1231,28 @@
       <changefreq>daily</changefreq>
       <priority>1</priority>
       <lastmod>2021-11-10T08:09:59.488Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/dns-hacking-1/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-11-25T02:18:23.917Z</lastmod>
     </url>
   
 </urlset>

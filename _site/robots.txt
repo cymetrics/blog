@@ -1,5 +1,3 @@
 User-agent: *
-Disallow: /tags
-Disallow: /articles
 
 Sitemap: https://tech-blog.cymetrics.io/sitemap.xml

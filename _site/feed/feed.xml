@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2021-11-10T08:00:00+08:00</updated>
+	<updated>2021-11-25T08:00:00+08:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -1872,8 +1872,7 @@ context switch 本身也是會佔用 core 運算資源的。當 thread 數量過
 &lt;!-- summary --&gt;
 &lt;p&gt;先提醒一下，雖然說前半段看起來可能跟文章主題無關，但好酒沉甕底，我保證最後會把這些東西關聯起來。&lt;/p&gt;
 &lt;h2 id=&quot;%E8%A2%AB%E5%81%B7%E8%B5%B0%E7%9A%84%E8%B3%87%E6%96%99%E5%BA%AB&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%A2%AB%E5%81%B7%E8%B5%B0%E7%9A%84%E8%B3%87%E6%96%99%E5%BA%AB&quot;&gt;#&lt;/a&gt; 被偷走的資料庫&lt;/h2&gt;
-&lt;p&gt;大家應該很常看到新聞說哪個網站的資料又被偷走了，顧客個資全部都外洩出去。例如說&lt;a href=&quot;https://tw.news.yahoo.com/%E5%80%8B%E8%B3%87%E9%81%AD%E6%B4%A9-%E9%BA%A5%E7%95%B6%E5%8B%9E%E8%81%B2%E6%98%8E-%E4%B8%8D%E5%90%AB%E4%BB%98%E6%AC%BE%E8%B3%87%E6%96%99-103012207.html&quot;&gt;麥當勞&lt;/a&gt;在近期就發生了類似的事件：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/huli/reset-password/p1.png&quot; alt=&quot;麥當勞資料外洩的通知信&quot;&gt;&lt;/p&gt;
+&lt;p&gt;大家應該很常看到新聞說哪個網站的資料又被偷走了，顧客個資全部都外洩出去。像是國外知名的網域代管網站 &lt;a href=&quot;https://www.inside.com.tw/article/25661-godaddy-email-addresses-passwords-security-breach-managed-wordpress-ssl-keys&quot;&gt;GoDaddy&lt;/a&gt; 就外洩了 120 萬筆用戶資料，而台灣之前也有過&lt;a href=&quot;https://www.ithome.com.tw/news/146427&quot;&gt;愛心協會捐款個資外洩&lt;/a&gt;的狀況發生。&lt;/p&gt;
 &lt;p&gt;這邊我想帶大家探討的兩個問題是：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;資料真的這麼容易外洩嗎？&lt;/li&gt;
@@ -5512,7 +5511,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;p&gt;爬站時不管是資安人員還是駭客都想繞過 reCAPTCHA，但背後有機器學習導致規則不斷變化，在加上本身不斷改版，所以不少網住文章上的繞過方法都已經失效，這邊分享 3 個經過驗證，至少在當前版本可行的繞過方法。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/google-recaptcha/re_5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-1-%3A-%E5%81%BD%E8%A3%9D&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-1-%3A-%E5%81%BD%E8%A3%9D&quot;&gt;#&lt;/a&gt; 解決方案 1 : 偽裝&lt;/h3&gt;
-&lt;p&gt;偽裝成一般人使用搜索功能，避免出現 reCAPTCHA，偽裝的話期時有很多細節，但最直接影響 reCAPTCHA 出現機會的有 2 個要注意的點。&lt;/p&gt;
+&lt;p&gt;偽裝成一般人使用搜索功能，避免出現 reCAPTCHA，偽裝的話有很多細節，但最直接影響 reCAPTCHA 出現的有 2 點。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;設定 User-Agent 偽裝成常見的設備:&lt;/strong&gt;&lt;br&gt;
@@ -5527,7 +5526,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-2-%3A-%E6%AD%A3%E9%9D%A2%E5%B0%8D%E6%B1%BA&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-2-%3A-%E6%AD%A3%E9%9D%A2%E5%B0%8D%E6%B1%BA&quot;&gt;#&lt;/a&gt; 解決方案 2 : 正面對決&lt;/h3&gt;
-&lt;p&gt;模仿一般人去回答 reCAPTCHA 的問題，但針對 reCAPTCHA 做出一套影像辨識系統非常麻煩，有一個取巧的方法是利用盲人輔助功能，讓回答難度從影像辨識降低到語音辨識，降到語音辨識後甚至可以用 Google Translate 來對付 Google reCAPTCHA。&lt;/p&gt;
+&lt;p&gt;模仿一般人去回答 reCAPTCHA 的問題，但針對 reCAPTCHA 做出一套影像辨識系統非常麻煩，有一個取巧的方法是利用盲人輔助功能，讓回答難度從影像辨識降低到語音辨識，降到語音辨識後甚至可以讓 Google Speech 來對付 Google reCAPTCHA。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/google-recaptcha/re_7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;自動化測試時用的是 Python 的 SpeechRecognition 模組，利用模組中的 recognixe_google() 去呼叫 Google 語音辨識 API，讓 Google 語音辨識解決 Google reCAPTCHA 出的題目。&lt;/p&gt;
 &lt;h3 id=&quot;%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-3-%3A-%E6%8F%9B%E5%BC%95%E6%93%8E&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-3-%3A-%E6%8F%9B%E5%BC%95%E6%93%8E&quot;&gt;#&lt;/a&gt; 解決方案 3 : 換引擎&lt;/h3&gt;
@@ -5599,7 +5598,7 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 &lt;li&gt;優點: 穩定&lt;/li&gt;
 &lt;li&gt;缺點: 有次數上限、驗證複雜&lt;/li&gt;
 &lt;li&gt;使用心得:&lt;br&gt;
-因為不用擔心像前一個方法跳出驗證就導致服務中斷，比起來穩定的多，可惜的是語音辨識多使用幾次後 Google 背後的 AI 會開始懷疑來源是自動化程式，一旦懷疑就會禁用語音驗證的功能，這時候就不能再用 Google Translate 來對付 Google reCAPTCHA 了。&lt;/li&gt;
+因為不用擔心像前一個方法跳出驗證就導致服務中斷，比起來穩定的多，可惜的是語音辨識多使用幾次後 Google 背後的 AI 會開始懷疑來源是自動化程式，一旦懷疑就會禁用語音驗證的功能，這時候就不能再用 Google Speech 來對付 reCAPTCHA 了。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;%E6%8F%9B%E5%BC%95%E6%93%8E-%3A-%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%86&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%8F%9B%E5%BC%95%E6%93%8E-%3A-%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%86&quot;&gt;#&lt;/a&gt; 換引擎 : ★★★★☆&lt;/h3&gt;
 &lt;ul&gt;
@@ -5609,6 +5608,176 @@ Parse a query string into an object. Leading ? or # are ignored, so you can pass
 沒有限制後要自動化容易多了，不會綁手綁腳，唯一可惜的地方是 Bing 會過濾掉一些 Microsoft 認為重複或不重要的結果，Google 雖然預設也會過濾但可選擇顯示所有結果，很可惜 Bing 沒有提供這個選項，導致有機會漏掉一些資料，如果可以看到所有資料肯定給 5 顆星。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;前面為快速說明原理挑了一些簡單易懂的攻擊來示範，實際上還有更多更進階的用法，如果閱覽數量夠多，之後會再加開一篇分享一些更進階的用法與經典案例，有任何資安方面相關的問題都歡迎留言討論，或者直接到 Cymetrics 尋求協助。&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>DNS Hacking 之 基礎知識：DNS 運作與紀錄類型</title>
+		<link href="https://tech-blog.cymetrics.io/posts/crystal/dns-hacking-1/"/>
+		<updated>2021-11-25T08:00:00+08:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/crystal/dns-hacking-1/</id>
+		<content type="html">
+		  &lt;!-- summary --&gt;
+&lt;p&gt;要打掛別人的網站難道只能從網頁中的漏洞下手嗎？其實，常常被忽略的 DNS 的漏洞可能更致命，讓駭客輕輕鬆鬆接管你的網站！但首先，我們要認識 DNS 的運作機制，以及有哪些紀錄類型。&lt;/p&gt;
+&lt;!-- summary --&gt;
+&lt;h2 id=&quot;dns-%E5%A6%82%E4%BD%95%E9%81%8B%E4%BD%9C&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#dns-%E5%A6%82%E4%BD%95%E9%81%8B%E4%BD%9C&quot;&gt;#&lt;/a&gt; DNS 如何運作&lt;/h2&gt;
+&lt;p&gt;想像一下你要寄一箱水果到客戶劉先生的家裡，但你並不知道人家的地址。你總不能就只把『螃蟹公司業務部門劉先生』寫在包裹外面，因為郵差先生當然也不知道這個人是誰、更不知道他到底住哪裡。那，你要怎麼知道劉先生的門牌號碼，順利寄出水果呢？&lt;/p&gt;
+&lt;p&gt;首先，你可能會先 google 一下螃蟹公司的電話號碼，然後播一通電話過去問問該如何聯繫到業務部門的窗口。對方可能會給你另一支電話號碼或是轉撥分機，讓你聯繫上業務部門的人。最後，業務人員也許能直接從他的通訊錄中找到並告訴你劉先生家的地址，或是給你劉先生的電話讓你親自聯繫他。&lt;/p&gt;
+&lt;p&gt;這樣經過層層關係追朔出地址的做法，就是 DNS 運作的方式。&lt;/p&gt;
+&lt;p&gt;網路世界中，DNS 是一本巨大的通訊錄，紀錄每個網域的名稱（人看得懂的 &lt;code&gt;google.com&lt;/code&gt;）與實際地址（人看不懂的 &lt;code&gt;172.217.160.78&lt;/code&gt;）的對應關係。&lt;/p&gt;
+&lt;p&gt;你可以想成是，有一個服務專線會幫你處理前述反覆打電話的過程，當你透過專線詢問『螃蟹公司業務部門劉先生』的地址時，他就會直接回覆你詳細的門牌資訊。&lt;/p&gt;
+&lt;p&gt;當然，這麼複雜的工作不是一個人可以有效完成的，所以查詢的工作也需要多個層級的聯絡人，例如一個地方級聯絡人手上有信義區所有公司的電話號碼，而上一層的縣市級聯絡人手上則有所有地方級聯絡人的電話號碼，再往上也許還有區域級甚至全國級的聯絡人。為你服務的接線生手上也不會有所有聯絡人的資訊，畢竟這個清單太龐大了，而且他光是翻遍自己手上的筆記本就要耗費太多時間與資源。所以接線生的筆記本只會紀錄最常用的數筆電話號碼，以及最高層級的聯絡人（可以透過他層層推進往下查詢）。&lt;/p&gt;
+&lt;p&gt;同理，DNS 也是一個樹狀結構，有層級的分別。實際的機制我們用下圖解釋：&lt;/p&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/crystal/dns-hacking/dns-lookup.png&quot;&gt;&lt;figcaption&gt;&lt;p&gt;DNS Lookup&lt;/p&gt;
+&lt;/figcaption&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;當小華雙十一想要大買特買，在瀏覽器輸入 &lt;code&gt;www.abc.com&lt;/code&gt; 的網址時，會依照圖中的流程發生這些事：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;你的瀏覽器對撥打專線尋求接線生的協助，這個接線生就是我們說的 DNS resolver。&lt;/li&gt;
+&lt;li&gt;稱職的接線生手上沒有 &lt;code&gt;www.abc.com&lt;/code&gt; 的記錄，但為了幫你找到正確的地址，會先去詢問最高層級的 DNS，也就是概念上屬於 &lt;code&gt;.&lt;/code&gt; 網域的 Root DNS。&lt;/li&gt;
+&lt;li&gt;Root DNS 查一下自己手上的子網域清單，找到負責 &lt;code&gt;.com&lt;/code&gt; 網域的 TLD(Top Level Domain) DNS，於是把這個地址轉介給 resolver。&lt;/li&gt;
+&lt;li&gt;resolver 轉向 &lt;code&gt;.com&lt;/code&gt; 網域的 TLD DNS 詢問 &lt;code&gt;www.abc.com&lt;/code&gt; 的地址。&lt;/li&gt;
+&lt;li&gt;TLD DNS 從手上的清單找到負責 &lt;code&gt;abc.com&lt;/code&gt; 網域的 Authoritative DNS 的位置，回覆給 resolver。&lt;/li&gt;
+&lt;li&gt;resolver 向負責 &lt;code&gt;abc.com&lt;/code&gt; 網域的 Authoritative DNS 詢問 &lt;code&gt;www.abc.com&lt;/code&gt; 這個子網域。&lt;/li&gt;
+&lt;li&gt;Authoritative DNS 的記錄裡存在 &lt;code&gt;www.abc.com&lt;/code&gt; 的記錄，把 IP 告訴 resolver！&lt;/li&gt;
+&lt;li&gt;DNS resolver 回覆瀏覽器查詢結果，可能是一個或是數個 IP 的清單。&lt;/li&gt;
+&lt;li&gt;瀏覽器對查到的 IP 發起 HTTP Request，成功帶小華到購物網站！&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;經過好一番波折我們才終於得到一個網域名稱對應的實際 IP，如果每次都要經過這麼多次查詢未免太繁瑣了。作為一個世上最大的分散式資料庫系統，能快速查詢結果及同步更新是極為重要的。&lt;/p&gt;
+&lt;p&gt;還記得我們說過接線生手上有一個紀錄聯絡人的筆記本嗎？每個 DNS resolver 都會有 caching 的機制，記錄一些常用聯絡人的資訊，讓查詢的過程可以跳過幾個步驟。如果接線生手上本來就有 &lt;code&gt;www.abc.com&lt;/code&gt; 的地址，那就會直接回覆給瀏覽器，不用經過更多查詢。如果差了一點，只有 &lt;code&gt;abc.com&lt;/code&gt; 網域的 Authoritative DNS 位置，那也可以直接跳到第六個步驟開始。通常 DNS resolver 手上本來就會有多個 TLD DNS 的位置了，所以除非 DNS cache 剛被清空，否則很少會需要從頭開始詢問 Root DNS。&lt;/p&gt;
+&lt;p&gt;不過，DNS cache 中的紀錄也不是就一直存放在裡面的。每一筆紀錄都會有一個 TTL (Time-to-live)，這是一個代表『此紀錄可以被 cache 存多久』的數字，如果超過有效期限就表示這筆紀錄不新鮮，需要丟掉然後重新查詢一次來獲得新紀錄。這個機制的好處是能快速更新各個網域『搬家』的狀態，假設 TTL 為一小時，網管人員若是發布新的紀錄或是更改了服務的 IP，則可以確保至少在一小時後新紀錄就能生效，否則 DNS resolver 怎麼確認手上的地址是否還有效呢？&lt;/p&gt;
+&lt;p&gt;整理一下幾種角色：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Root DNS：最高層級的 DNS，共有 13 種，全世界共有 600-700 多台，由 ICANN 管理，是每個 DNS Resolver 的已知資訊。存放關於各個 TLD DNS 的資訊。&lt;/li&gt;
+&lt;li&gt;TLD DNS：次高層級的 DNS，負責如 &lt;code&gt;.com&lt;/code&gt;、&lt;code&gt;.net&lt;/code&gt;、&lt;code&gt;.org&lt;/code&gt;、&lt;code&gt;.tw&lt;/code&gt; 等最後一個後綴的網域，會存放各個 Authoritative DNS 的資訊。由 ICANN 下的分支 IANA 管理。&lt;/li&gt;
+&lt;li&gt;Authoritative DNS：其他較低層級的 DNS，一般來說會是查詢的最後一站，專屬於掌握此網域的機構並存放此機構的子網域資訊。&lt;/li&gt;
+&lt;li&gt;DNS Resolver：Lookup 的第一站，接線生的角色。 DNS cache 中會存放常用聯絡人，或更精確的說，最近使用的聯絡人的紀錄，向其他 DNS 查詢後會把回覆的紀錄寫進 cache。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;dns-%E8%A8%98%E9%8C%84%E6%9C%89%E5%93%AA%E4%BA%9B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#dns-%E8%A8%98%E9%8C%84%E6%9C%89%E5%93%AA%E4%BA%9B&quot;&gt;#&lt;/a&gt; DNS 記錄有哪些&lt;/h2&gt;
+&lt;p&gt;DNS 記錄非常多種，常見的有： &lt;code&gt;SOA&lt;/code&gt;、&lt;code&gt;A&lt;/code&gt;、&lt;code&gt;AAAA&lt;/code&gt;、&lt;code&gt;CNAME&lt;/code&gt;、&lt;code&gt;NS&lt;/code&gt;、&lt;code&gt;MX&lt;/code&gt;、&lt;code&gt;TXT&lt;/code&gt;、&lt;code&gt;SRV&lt;/code&gt;、&lt;code&gt;PTR&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;不常見的還有： &lt;code&gt;DNSKEY&lt;/code&gt;、&lt;code&gt;CAA&lt;/code&gt;、&lt;code&gt;IPSECKEY&lt;/code&gt;、&lt;code&gt;RRSIG&lt;/code&gt;、&lt;code&gt;NSEC&lt;/code&gt;、&lt;code&gt;AFSDB&lt;/code&gt;、&lt;code&gt;APL&lt;/code&gt;、&lt;code&gt;CDNSKEY&lt;/code&gt;、&lt;code&gt;CERT&lt;/code&gt;、&lt;code&gt;DCHID&lt;/code&gt;、&lt;code&gt;DNAME&lt;/code&gt;、&lt;code&gt;HIP&lt;/code&gt;、&lt;code&gt;LOC&lt;/code&gt;、&lt;code&gt;NAPTR&lt;/code&gt;、&lt;code&gt;P&lt;/code&gt;、&lt;code&gt;SSHFP&lt;/code&gt; 等等&lt;/p&gt;
+&lt;p&gt;這裡我們先介紹常見的紀錄，不常見的下次再說 XDDD&lt;/p&gt;
+&lt;h3 id=&quot;soa&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#soa&quot;&gt;#&lt;/a&gt; SOA&lt;/h3&gt;
+&lt;p&gt;在討論 SOA 記錄之前，我們需要先了解 DNS zone 的概念。&lt;/p&gt;
+&lt;p&gt;很多人誤以為一個網域就是一個 DNS zone，但其實 zone 是一個方便管理 DNS 記錄的分群法，或者可以說是『適合通一管理的網域們的紀錄集合』。&lt;/p&gt;
+&lt;p&gt;想像你的公司 &lt;code&gt;abc.com&lt;/code&gt; 有三個子網域：&lt;code&gt;blog.abc.com&lt;/code&gt;、&lt;code&gt;news.abc.com&lt;/code&gt;、&lt;code&gt;internal.abc.com&lt;/code&gt;，可能本來都放在同一個 DNS zone。但有一天你發現了一個問題：性質上，&lt;code&gt;internal.abc.com&lt;/code&gt; 是內部網域，會需要較嚴格的權限控管，而且下面也許還有更多子網域來辨別各個內部系統；另一方面，&lt;code&gt;abc.com&lt;/code&gt;、&lt;code&gt;blog.abc.com&lt;/code&gt;、&lt;code&gt;news.abc.com&lt;/code&gt; 都是官網上會連結到的對外網域，性質較為相近。當你想要進行設定時，要一次設置共用設定有些困難、個別處理又顯得麻煩，各個網域全部混雜在一起讓你管理變得複雜。&lt;/p&gt;
+&lt;p&gt;這時，你就會考慮將 &lt;code&gt;internal.abc.com&lt;/code&gt; 獨立出來變成自己的 DNS zone，這個切分允許管理者做更精細的控制，而且日後擴展新的子網域也更方便套用設定。&lt;/p&gt;
+&lt;p&gt;所以，DNS zone 可以是一個網域、多個網域、或是一個網域以及他的數個子網域等等各種分群方式，一台 DNS 上也可以有多個 DNS zone。&lt;/p&gt;
+&lt;p&gt;每個 DNS zone 都能用一個 zone file 代表，基本上就是一個文字檔，寫著所有屬於此 DNS zone 的網域的所有紀錄。而 zone file 的第一筆必須是 SOA (Start of Authority) 紀錄，主要記載這個 zone 相關的資訊，例如管理員信箱、用來辨別是否有更新的序號、主要的 NS 等等。&lt;/p&gt;
+&lt;p&gt;此外，主要負責管理 zone file 的那一台 DNS 稱為 primary nameserver，其餘備用或是用於 load balancing 的 nameserver 稱為 secondary nameserver，只有 zone file 的唯讀權限，並且會透過一個稱為 zone transfer 的溝通過程從 primary nameserver 那裡更新 zone file。&lt;/p&gt;
+&lt;p&gt;SOA 紀錄的欄位及敘述，以 &lt;code&gt;example.com&lt;/code&gt; 為範例整理成下面這張表：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;example.com.		3600	IN	SOA	ns.icann.org. noc.dns.icann.org. 2021110801 7200 3600 1209600 3600&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;欄位&lt;/th&gt;
+&lt;th&gt;值&lt;/th&gt;
+&lt;th&gt;敘述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://example.com/&quot;&gt;example.com&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;record&lt;/td&gt;
+&lt;td&gt;SOA&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MNAME&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://ns.icann.org/&quot;&gt;ns.icann.org&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;DNS zone 的 primary nameserver&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RNAME                     &lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://noc.dns.icann.org/&quot;&gt;noc.dns.icann.org&lt;/a&gt;                     &lt;/td&gt;
+&lt;td&gt;管理員信箱，第一個點其實翻譯成 &lt;code&gt;@&lt;/code&gt; ，所以這個例子中是 &lt;code&gt;noc@dns.icann.org&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SERIAL&lt;/td&gt;
+&lt;td&gt;2021110801&lt;/td&gt;
+&lt;td&gt;可以想成版本序號，更動時會讓 secondary nameserver 知道該更新了&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;REFRESH&lt;/td&gt;
+&lt;td&gt;7200&lt;/td&gt;
+&lt;td&gt;secondary nameserver 詢問更新該間隔的時間&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RETRY&lt;/td&gt;
+&lt;td&gt;3600&lt;/td&gt;
+&lt;td&gt;若 primary nameserver 沒有回應，secondary nameserver 再次詢問前該間隔的時間&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EXPIRE&lt;/td&gt;
+&lt;td&gt;1209600&lt;/td&gt;
+&lt;td&gt;primary nameserver 多久沒有回應，secondary nameserver 該停止回應 DNS query&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TTL&lt;/td&gt;
+&lt;td&gt;3600&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;a%2Faaaa&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#a%2Faaaa&quot;&gt;#&lt;/a&gt; A/AAAA&lt;/h3&gt;
+&lt;p&gt;最基本的 DNS 記錄，代表 Address，也就是實際的 IP 地址。 A 用於 IPv4 地址，AAAA 用於 IPv6 地址。&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;example.com.		17460	IN	A	93.184.216.34&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一般來說只會有一筆 A 紀錄，不過你可能在用 AWS 等第三方服務的時候會發現 &lt;code&gt;dig&lt;/code&gt; 指令竟然顯示了好幾筆紀錄，這其實是實作 load balancing 的一種方法，用數個 IP 分散網站的流量。&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;abc.com.		60	IN	A	13.226.115.26&lt;br&gt;abc.com.		60	IN	A	13.226.115.14&lt;br&gt;abc.com.		60	IN	A	13.226.115.45&lt;br&gt;abc.com.		60	IN	A	13.226.115.117&lt;br&gt;abc.com.		300	IN	NS	ns-1368.awsdns-43.org.&lt;br&gt;abc.com.		300	IN	NS	ns-1869.awsdns-41.co.uk.&lt;br&gt;abc.com.		300	IN	NS	ns-318.awsdns-39.com.&lt;br&gt;abc.com.		300	IN	NS	ns-736.awsdns-28.net.&lt;br&gt;abc.com.		900	IN	SOA	ns-318.awsdns-39.com. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;cname&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#cname&quot;&gt;#&lt;/a&gt; CNAME&lt;/h3&gt;
+&lt;p&gt;CNAME 指的是 canonical name，也就是標準的、真實的名稱，讓指向的網域作為別名代表自己的意思。可以想成是一條線索接著一條線索，順著指向最終的寶藏。&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;foo.abc.com.	21600	IN	CNAME	bar.abc.com&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;進行 DNS lookup 的時候，如果得到 CNAME 紀錄，就會以對應的網域為目標重啟一次新的 DNS lookup，直到成功解析出 IP 為止。也因此，CNAME 紀錄跟 A 紀錄互斥，後者是直接給出網域對應的 IP，前者則是把原本的網域映射到另一個網域，等同採用對方的 DNS 紀錄。如果一個網域有 CNAME 紀錄，那麼根據 RFC ，除了使用 DNSSEC 的情況會設置 RRSIG、NSEC 的紀錄外，不能有其他的 DNS 紀錄（例如 NS、MX、TXT 等等）&lt;/p&gt;
+&lt;p&gt;你可能會困惑，如果兩個網域最後都解析到同一個 IP，那我們為什麼不刪掉其中一個就好了，反正都會是同一個網站啊？&lt;/p&gt;
+&lt;p&gt;這個問題的盲點在於，同一台機器的同一個 port 並不是只能運行一個網站，網頁伺服器是可以透過網址決定處理方式的。&lt;/p&gt;
+&lt;p&gt;假設你有 &lt;code&gt;blog.abc.com&lt;/code&gt; 跟 &lt;code&gt;news.abc.com&lt;/code&gt; 兩個網域，且他們都用 CNAME 紀錄指到 &lt;code&gt;abc.com&lt;/code&gt;。當你 URL 輸入 &lt;code&gt;http://blog.abc.com/&lt;/code&gt; 時，這個請求同樣是送到 &lt;code&gt;abc.com&lt;/code&gt; 的 IP，但是網站伺服器會判斷是要存取 &lt;code&gt;blog.abc.com&lt;/code&gt; 的資料而回應公司的部落格頁面。透過網站伺服器的分流，就能讓使用不同 URL 的訪客分別存取到部落格、時事、跟主網頁的資訊。而且這樣做的好處是，這三個網域都在同一台機器上，所以要變更 IP 的時候只要調整 &lt;code&gt;abc.com&lt;/code&gt; 的 A 紀錄就可以確保三個都一起搬家。&lt;/p&gt;
+&lt;h3 id=&quot;ns&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#ns&quot;&gt;#&lt;/a&gt; NS&lt;/h3&gt;
+&lt;p&gt;NS 指的是 name server，也就是負責解析這個網域的 Authoritative DNS，所以 NS 紀錄就代表『去這個 DNS 問可以找到你要的 IP 喔』。&lt;/p&gt;
+&lt;p&gt;如同前面介紹過的，一個 DNS zone 通常不會只有一台 DNS 在運行，所以相對的 NS 紀錄也通常會有多筆資料。這些 Authoritative DNS 就是負責這個 DNS zone 的 primary nameserver 跟 secondary nameserver 們。&lt;/p&gt;
+&lt;p&gt;你可以拿一些網域試試看，會發現往往都會在主網域下發現 SOA 紀錄跟多筆 NS 紀錄：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;$ dig any onedegree.hk&lt;br&gt;&lt;br&gt;;; ANSWER SECTION:&lt;br&gt;onedegree.hk.		21600	IN	NS	ns1-03.azure-dns.com.&lt;br&gt;onedegree.hk.		21600	IN	NS	ns2-03.azure-dns.net.&lt;br&gt;onedegree.hk.		21600	IN	NS	ns3-03.azure-dns.org.&lt;br&gt;onedegree.hk.		21600	IN	NS	ns4-03.azure-dns.info.&lt;br&gt;onedegree.hk.		3600	IN	SOA	ns1-03.azure-dns.com. azuredns-hostmaster.microsoft.com. 20200910 3600 300 2419200 300&lt;br&gt;...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;這並不是說子網域不能有 NS 紀錄，只是通常一個 DNS zone 會以一個主網域以及他下面的多個子網域構成，所以 SOA、NS 等代表整個 zone 的資訊就會掛在主要網域的下面。&lt;/p&gt;
+&lt;h3 id=&quot;mx&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#mx&quot;&gt;#&lt;/a&gt; MX&lt;/h3&gt;
+&lt;p&gt;MX 指的是 mail exchange，也就是郵件伺服器，所以 MX 紀錄指示的是『負責這個網域的郵件伺服器的網域』。&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;onedegree.hk.		3600	IN	MX	0 onedegree-hk.mail.protection.outlook.com.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;當你要寄出一封信到 &lt;code&gt;receiver@onedegree.hk&lt;/code&gt; 時，幫你寄信的 mail server 首先會去查找 &lt;code&gt;onedegree.hk&lt;/code&gt; 的 MX 紀錄，得知信件應該送到 &lt;code&gt;onedegree-hk.mail.protection.outlook.com&lt;/code&gt; 這個網域。再來才會透過 SMTP（email 專用的協議）把信送到 &lt;code&gt;onedegree-hk.mail.protection.outlook.com&lt;/code&gt; 實際上的 IP 位置。沒有設置 MX 紀錄就像不告訴機長目的地的機場在哪裡，信件會完全無法發送。&lt;/p&gt;
+&lt;p&gt;為了增加維運的穩定度，MX 紀錄也可以有很多筆，但是 SOA 紀錄裡又沒有標示 primary mail server 之類的主次關係，寄信的時候怎麼知道要用哪一個結果呢？&lt;/p&gt;
+&lt;p&gt;上面的範例紀錄中，除了 TTL (&lt;code&gt;3600&lt;/code&gt;) 之外還有一個寫在目標網域之前的數字 &lt;code&gt;0&lt;/code&gt;，這個數字是 priority number，可以想像成是採用紀錄的優先序，所以帶有越小的數字表示越優先寄送給這個 mail server。兩個不同 priority number 的 MX 紀錄自然好懂，就是先嘗試寄給數字小的，如果失敗了再嘗試寄到數字大的。那如果兩個 MX 紀錄 有一樣大的 priority number，就是隨機採用其中一筆紀錄，做 load balancing 達到信件分流減少負載的效果。&lt;/p&gt;
+&lt;h3 id=&quot;txt&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#txt&quot;&gt;#&lt;/a&gt; TXT&lt;/h3&gt;
+&lt;p&gt;TXT 指的是 text，也就是純文字的紀錄，原意是讓網管能為他的網域加一些註解，不過現在大多主要用於防範垃圾信以及驗證網域擁有權。&lt;/p&gt;
+&lt;p&gt;格式基本上沒有限制，雖然 RFC 有定義需要是由雙括號包住、等號分隔的 key-value 型態（&lt;code&gt;&amp;quot;attribute=value&amp;quot;&lt;/code&gt;），但並不是所有的 TXT 紀錄都會遵守此規範。&lt;/p&gt;
+&lt;p&gt;以防範垃圾信及偽冒信來說，會設置 SPF、DKIM、DMARC 這三個目前廣泛套用的機制，利用合法發信網域宣告的 IP 位置及郵件政策來實現 email security。這三筆紀錄會在郵件驗證的時候被查詢且採用，以此保障收受信人的安全。&lt;/p&gt;
+&lt;p&gt;更詳細的介紹可以參考我之前寫過的一系列文章：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/crystal/email-sec-theory&quot;&gt;關於 email security 的大小事 — 原理篇&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-spf&quot;&gt;關於 email security 的大小事 — 設定篇 SPF&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/crystal/email-sec-settings-dkimdmarc&quot;&gt;關於 email security 的大小事 — 設定篇 DKIM、DMARC&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/crystal/email-sec-examples&quot;&gt;關於 email security 的大小事 — 範例篇&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/crystal/email-sec-extra&quot;&gt;關於 email security 的大小事 — 延伸篇&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;另一方面，當我們使用第三方服務，例如用 Sendgrid 替自己的網域寄信、或是希望創建出的電商頁面掛上自己的子網域名時，往往會需要先驗證網域擁有權，避免有心人士濫用服務來仿冒我們的網域。這時候廠商就可能會要求我們發一筆指定的 TXT 紀錄以茲證明，畢竟如果你真的是網域的擁有者，就應該能夠存取發佈 DNS 紀錄。這個概念就像是用某個信箱註冊服務時，必須去信箱裡點選確認信才能證明信箱真的是你的。&lt;/p&gt;
+&lt;p&gt;舉例來說，網頁為了行銷需求大多會設置 Google Analytics (GA) 來幫助 marketing 了解使用者的行為，因為這些資料也許包含過多或是敏感的商業資訊，所以 Google 為了確保能存取資料的必須是網域的擁有者，會要求用戶先驗證網域所有權，在 DNS 發佈一筆 &lt;code&gt;&amp;quot;google-site-verification=&amp;lt;long-random-string&amp;gt;&amp;quot;&lt;/code&gt;，然後當 Google 檢查 TXT 紀錄發現確實存在這筆指定紀錄，就可以證明是合法的網域擁有者。&lt;/p&gt;
+&lt;p&gt;下圖是 &lt;code&gt;onedegree.hk&lt;/code&gt; 的一些 TXT 紀錄，你可以看到有多種驗證紀錄及 SPF 紀錄：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;onedegree.hk.		3600	IN	TXT	&quot;facebook-domain-verification=etkvd5dxxpnlcjkol3e1vi3k348k03&quot;&lt;br&gt;onedegree.hk.		3600	IN	TXT	&quot;google-site-verification=kEw0MSSQxwrU4d5GXYBTL6HLTwnQW4aJjh8Om-NTY4Q&quot;&lt;br&gt;onedegree.hk.		3600	IN	TXT	&quot;google-site-verification=EntX-1hrFmMHtANmXdTE4rpEwSxpsZGwnVUPWA9476A&quot;&lt;br&gt;onedegree.hk.		3600	IN	TXT	&quot;VXZDM75TVG5AVR81FP8ZS1Q3RTRJCPO1LFMCGU6G&quot;&lt;br&gt;onedegree.hk.		3600	IN	TXT	&quot;v=spf1 include:spf.protection.outlook.com include:servers.mcsv.net include:email.freshdesk.com -all&quot;&lt;br&gt;onedegree.hk.		3600	IN	TXT	&quot;MS=ms90944132&quot;&lt;br&gt;onedegree.hk.		3600	IN	TXT	&quot;apple-domain-verification=6dcjCOWtHHIBWjLW&quot;&lt;br&gt;onedegree.hk.		3600	IN	TXT	&quot;atlassian-domain-verification=x2gMLRLJwdsyccXscDcOrLausiFdjmV/P37fCfiKf/eEaA6l9tPsfrEadfGQsA7j&quot;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;srv&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#srv&quot;&gt;#&lt;/a&gt; SRV&lt;/h3&gt;
+&lt;p&gt;SRV 紀錄算是相對少見的一種紀錄，是為了支援特定網路協議（例如 &lt;a href=&quot;https://en.wikipedia.org/wiki/Session_Initiation_Protocol&quot;&gt;SIP&lt;/a&gt;、&lt;a href=&quot;https://en.wikipedia.org/wiki/XMPP&quot;&gt;XMPP&lt;/a&gt; 等多媒體或 messaging 功能）的服務 (&lt;strong&gt;s&lt;/strong&gt;e&lt;strong&gt;rv&lt;/strong&gt;ice) 所誕生的紀錄，定義在 &lt;a href=&quot;https://datatracker.ietf.org/doc/html/rfc2782&quot;&gt;RFC 2782&lt;/a&gt; 中。&lt;/p&gt;
+&lt;p&gt;其他的 DNS 紀錄大多都只會含有網域名或是 IP，不過 SRV 紀錄最大的特色就是會寫出目標 port 以及使用的協議，格式為：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;_service._proto.name.   TTL  class type priority weight port    target&lt;br&gt;&lt;br&gt;_xmpp._tcp.example.com. 86400  IN   SRV    10       5   5223  server.example.com&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;從上面的範例可以看到，要向 &lt;code&gt;example.com&lt;/code&gt; 發起使用 TCP 的 XMPP 服務請求的話，就需要聯繫 &lt;code&gt;server.example.com&lt;/code&gt; 的 5223 port。&lt;/p&gt;
+&lt;p&gt;那 priority 跟 weight 是什麼呢？跟前面提過的 MX 紀錄相似，這兩個參數都是用來調配目標伺服器的流量，只不過是分兩階段評比，先比 priority 再比 weight。也就是說，查詢到多筆 SRV 紀錄時會先看 priority 的大小，如果平手了再用 weight 一決勝負。有趣的一點是這兩個的勝負條件完全相反，priority （優先序）代表嘗試連線的順序，越小越吃香；反之 weight （權重）代表同優先序之間負載分配的比例，所以越大越有利。&lt;/p&gt;
+&lt;p&gt;下面的範例取自&lt;a href=&quot;https://en.wikipedia.org/wiki/SRV_record&quot;&gt;維基百科&lt;/a&gt;：&lt;/p&gt;
+&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;_sip._tcp.example.com.   86400 IN    SRV 10       60     5060 bigbox.example.com.&lt;br&gt;_sip._tcp.example.com.   86400 IN    SRV 10       20     5060 smallbox1.example.com.&lt;br&gt;_sip._tcp.example.com.   86400 IN    SRV 10       20     5060 smallbox2.example.com.&lt;br&gt;_sip._tcp.example.com.   86400 IN    SRV 20       0      5060 backupbox.example.com.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;今天一個用戶想要連線時，會發現前三條紀錄的 priority 都是 10，所以除非前三個都連不上，否則他是不會去嘗試 priority 20 的 &lt;code&gt;backupbox.example.com&lt;/code&gt; 的。再來，因為 priority 10 的比重是 60 20 20，所以代表有 60% 的請求會選擇發給 &lt;code&gt;bigbox.example.com&lt;/code&gt;，剩下的再平分到 &lt;code&gt;smallbox1.example.com&lt;/code&gt; 跟 &lt;code&gt;smallbox2.example.com&lt;/code&gt; 這兩台機器。另外，如果 &lt;code&gt;bigbox.example.com&lt;/code&gt; 沒有回應，那麼服務就會由 &lt;code&gt;smallbox1.example.com&lt;/code&gt; 跟 &lt;code&gt;smallbox2.example.com&lt;/code&gt; 平均分擔，各處理 50% 的流量。&lt;/p&gt;
+&lt;h3 id=&quot;ptr&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#ptr&quot;&gt;#&lt;/a&gt; PTR&lt;/h3&gt;
+&lt;p&gt;PTR 紀錄可以說是 A 紀錄的對立面，A 紀錄把網域對應到 IP（用於 DNS lookup），而 PTR 紀錄則是把 IP 對應到網域（用於 reverse DNS lookup）。&lt;/p&gt;
+&lt;p&gt;PTR 紀錄也必須放在某個網域下，所以根據規範，會將 IP 反轉，然後後綴加上 &lt;code&gt;&amp;quot;.in-addr.arpa&amp;quot;&lt;/code&gt; 來構成網域，例如 &lt;code&gt;14.13.12.11&lt;/code&gt; 就會被放在 &lt;code&gt;&amp;quot;11.12.13.14.in-addr.arpa&amp;quot;&lt;/code&gt; 的網域下。如果是 IPv6，反轉後會被轉換成 4-bit 區段，並加上 &lt;code&gt;&amp;quot;.ip6.arpa&amp;quot;&lt;/code&gt;，如 &lt;code&gt;2001:db8::567:89ab&lt;/code&gt; 會變成 &lt;code&gt;b.a.9.8.7.6.5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;.arpa&lt;/code&gt; 是最早創立的一個 TLD，源於網路世界草創期的先驅 Advanced Research Projects Agency (ARPA) 的縮寫，不過目前被重新定義為 Address and Routing Parameter Area (ARPA)。&lt;code&gt;.arpa&lt;/code&gt; 由 IETF 用於管理網路架構，不提供網域註冊也鮮少新增子網域。&lt;/p&gt;
+&lt;h2 id=&quot;%E7%B5%90%E8%AB%96&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B5%90%E8%AB%96&quot;&gt;#&lt;/a&gt; 結論&lt;/h2&gt;
+&lt;p&gt;DNS 是網路世界的電話簿，負擔起全世界的網路流量跟導航，是每個人生活中不可或缺的一環。從 1980 年代到現在，DNS 已經有十分悠久的歷史，也經歷了多次修改與強化，然而如同多數古老的協議，最初的設計其實並沒有考量到太多資安層面，導致隨著應用範圍越來越廣、各種技術越來越進步，層出不窮的攻擊手法才使得許多潛在的資安議題浮出檯面，各種防禦也因應而生。&lt;/p&gt;
+&lt;p&gt;為了後續能介紹一些 DNS 相關的攻擊，開頭還是要先科普一下確定大家都具備基礎知識。下一篇我們會聊聊 DNS 常見的攻擊手法與相應的防禦，探討這場攻防戰的演進史。&lt;/p&gt;
+&lt;p&gt;這篇中的資訊多取自維基百科與 &lt;a href=&quot;https://www.cloudflare.com/learning/dns&quot;&gt;Cloudfare DNS Learning&lt;/a&gt; 的介紹，Cloudfare 提供相當完整且深入的資訊，推薦給大家～&lt;/p&gt;
 
 		</content>
 	</entry>
