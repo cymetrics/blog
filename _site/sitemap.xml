@@ -708,6 +708,9 @@
   
   
   
+  
+  
+  
     
     
     
@@ -1253,6 +1256,50 @@
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
       <lastmod>2021-11-25T02:18:23.917Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/dns-hacking-2/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-12-15T08:39:10.087Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/crest-cpsa-prepare/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2021-12-15T08:49:50.696Z</lastmod>
     </url>
   
 </urlset>
