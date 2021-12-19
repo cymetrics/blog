@@ -14,7 +14,7 @@
     "test-watch": "mocha test/test*.js --watch"
   },
   "pre-push": [
-    "build"
+    
   ],
   "pre-commit": [],
   "repository": {

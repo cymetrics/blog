@@ -6205,8 +6205,8 @@ As an on-path system, the GFW cannot modify or drop the legitimate response retu
 &lt;h2 id=&quot;%E8%A9%B2%E5%A6%82%E4%BD%95%E4%BF%AE%E8%A3%9C%EF%BC%9F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%A9%B2%E5%A6%82%E4%BD%95%E4%BF%AE%E8%A3%9C%EF%BC%9F&quot;&gt;#&lt;/a&gt; 該如何修補？&lt;/h2&gt;
 &lt;p&gt;由瑞士 CERT 發表的這篇文章：&lt;a href=&quot;https://www.govcert.ch/blog/zero-day-exploit-targeting-popular-java-library-log4j/&quot;&gt;Zero-Day Exploit Targeting Popular Java Library Log4j&lt;/a&gt; 中，有給了一張從各個環節去防禦的圖：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/huli/what-is-log4j-and-log4shell/attack.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;如果來不及把根本原因修掉，可以先上 WAF（Web Application Firewall），簡單來說就是針對網站的防火牆，把那些惡意的字串擋掉，例如說 &lt;a href=&quot;https://blog.cloudflare.com/protection-against-cve-2021-45046-the-additional-log4j-rce-vulnerability/&quot;&gt;Cloudflare&lt;/a&gt; 就在第一時間增加了 WAF 的規則加以阻擋，不過也有很多人在研究怎麼繞過 WAF 的規則，因此這是治標不治本。&lt;/p&gt;
-&lt;p&gt;治本的方法就是把 log4j 停用或是升版，升級到不會被這個漏洞影響的版本，但有些時候第一時間的改版可能沒有把漏洞完全補掉，因此記得更新完以後還是要密切注意是否有更新的版本。&lt;/p&gt;
+&lt;p&gt;如果來不及把根本原因修掉，可以先上 WAF（Web Application Firewall），簡單來說就是針對網站的防火牆，把那些惡意的字串擋掉，例如說 &lt;a href=&quot;https://blog.cloudflare.com/protection-against-cve-2021-45046-the-additional-log4j-rce-vulnerability/&quot;&gt;Cloudflare&lt;/a&gt; 就在第一時間增加了 WAF 的規則加以阻擋，不過也有很多人在研究怎麼繞過 WAF 的規則，因此這是治標不治本的做法。&lt;/p&gt;
+&lt;p&gt;治本的方法就是把 log4j 停用或是升版，升級到不會被這個漏洞影響的版本，但有些時候第一時間的改版可能沒有把漏洞完全補掉，因此記得更新完以後還是要密切注意是否有更新的版本。例如說在這篇文章寫完後過沒多久，官方就釋出了第三個 patch 修復其他相關問題：&lt;a href=&quot;https://thehackernews.com/2021/12/apache-issues-3rd-patch-to-fix-new-high.html&quot;&gt;Apache Issues 3rd Patch to Fix New High-Severity Log4j Vulnerability&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;%E7%B5%90%E8%AA%9E&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B5%90%E8%AA%9E&quot;&gt;#&lt;/a&gt; 結語&lt;/h2&gt;
 &lt;p&gt;一個很多人用的套件，加上一個很常見的功能，再加上一個很簡單的攻擊方式以及嚴重的後果，就成了一個可以被載入史冊的漏洞。&lt;/p&gt;
 &lt;p&gt;文中有些比喻為了不要講得太細節，會是精簡過後的版本，不一定能完全涵蓋本來的漏洞，在轉換成故事比喻的過程中一定會有一些遺漏的部分，但對於整體的理解我覺得影響不大。&lt;/p&gt;

