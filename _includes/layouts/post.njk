@@ -124,32 +124,5 @@ templateClass: tmpl-post
   "description": "{{ content | striptags | truncate(140) }}"
 }
 </script>
-<script type="application/ld+json">
-{   
-  "@context":"http://schema.org",
-  "@type":"BreadcrumbList",
-  "itemListElement":[
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "{{ metadata.title }}",
-      "item": "{{ metadata.url }}"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Archive",
-      "item": "{{ metadata.url }}/archive/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "{{ title }}",
-      "item": "{{ metadata.url }}{{ page.url }}"
-    }
-  ]
-}
-
-</script>
 
 {% endblock %}
