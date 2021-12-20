@@ -88,8 +88,8 @@ const minifyHtml = (rawContent, outputPath) => {
   let content = rawContent;
   if (outputPath && outputPath.endsWith(".html") && !isAmp(content)) {
     content = minify(content, {
-      removeAttributeQuotes: true,
-      collapseBooleanAttributes: true,
+      removeAttributeQuotes: false,
+      collapseBooleanAttributes: false,
       collapseWhitespace: true,
       removeComments: true,
       sortClassName: true,
