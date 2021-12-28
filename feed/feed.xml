@@ -6222,7 +6222,8 @@ As an on-path system, the GFW cannot modify or drop the legitimate response retu
 		<updated>2021-12-28T00:00:00-00:00</updated>
 		<id>https://tech-blog.cymetrics.io/posts/nick/selenuim/</id>
 		<content type="html">
-		  &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/selenium/se_1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;p&gt;很多人都買過福袋，試想今天買了一個很貴的福袋，拿起來又大又重感覺很充實，但辛苦的搬回家後卻發現裡面只有一支筆是你想要的，其他都是用不到丟掉卻可惜的東西，真的令人很崩潰。&lt;/p&gt;
 &lt;!-- summary --&gt;
 &lt;p&gt;當你想做特定的安全性測試，又不想只為了單一測項花大錢買整套的弱掃工具時，一個好入門又方便客製化的開源工具能給你很大的幫助，就像根據自己的手打造一支專屬的筆，多花點時間但順手，還比福袋省錢。&lt;/p&gt;
