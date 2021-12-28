@@ -1,5 +1,5 @@
 ---
-title: 資安也要自動化: Selenium 
+title: 資安也要自動化 Selenium 
 date: 2021-12-28
 tags: [Security, Selenium, Selenium IDE, Selenium WebDriver, Selenium Grid]
 author: nick
