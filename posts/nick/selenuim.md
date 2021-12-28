@@ -123,7 +123,7 @@ ___
 
 ### 步驟 3. 執行測試
 * 1. 開啟瀏覽器
-```python=
+```python
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
@@ -149,7 +149,7 @@ driver.set_window_size(1024, 768)
 
 * 2. 設計動作
 
-```python=
+```python
 from selenium.webdriver.common.by import By
 
 try:
@@ -169,7 +169,7 @@ finally:
 
 * 3. 啟動測試(完整程式碼)
 
-```python=
+```python
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -260,7 +260,7 @@ node 的本質就是一個幫你安裝好 Selenium WebDriver 的 Ubuntu VM，部
 * 2. 建立測試
     可參考 Selenium WebDriver 的實作方式建立測試，然後將我們之前準備好確未用到的功能 headless 打開，就可以在 node 裡面跑測試了
 
-```python=
+```python
  selenium_chrome_demo(input_url="https://member.ithome.com.tw/login",
                      input_action_list=test_json_list,
                      headless_mode=True)
