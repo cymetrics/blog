@@ -6,7 +6,7 @@ author: nick
 layout: layouts/post.njk
 image: /img/posts/nick/selenium/se_1.jpg
 ---
-
+![](/img/posts/nick/selenium/se_1.jpg)
 
 ## 前言
 
