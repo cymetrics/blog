@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2021-12-18T00:00:00-00:00</updated>
+	<updated>2021-12-28T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -6212,6 +6212,281 @@ As an on-path system, the GFW cannot modify or drop the legitimate response retu
 &lt;p&gt;文中有些比喻為了不要講得太細節，會是精簡過後的版本，不一定能完全涵蓋本來的漏洞，在轉換成故事比喻的過程中一定會有一些遺漏的部分，但對於整體的理解我覺得影響不大。&lt;/p&gt;
 &lt;p&gt;如果你想了解更技術的細節以及時間軸，很推薦這一支影片：&lt;a href=&quot;https://www.youtube.com/watch?v=w2F67LbEtnk&amp;amp;t=16s&amp;amp;ab_channel=LiveOverflow&quot;&gt;Hackers vs. Developers // CVE-2021-44228 Log4Shell&lt;/a&gt;，裡面講得很清楚，也探討了開發者與資安從業人員的關係。&lt;/p&gt;
 &lt;p&gt;最後，希望這篇文章能讓不懂技術的大家更了解 log4shell 是怎樣的漏洞，以及這個漏洞為什麼如此嚴重。文中若有錯誤也請不吝留言指正，感謝。&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>資安也要自動化 Selenium</title>
+		<link href="https://tech-blog.cymetrics.io/posts/nick/selenuim/"/>
+		<updated>2021-12-28T00:00:00-00:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/nick/selenuim/</id>
+		<content type="html">
+		  &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;很多人都買過福袋，試想今天買了一個很貴的福袋，拿起來又大又重感覺很充實，但辛苦的搬回家後卻發現裡面只有一支筆是你想要的，其他都是用不到丟掉卻可惜的東西，真的令人很崩潰。&lt;/p&gt;
+&lt;p&gt;當你想做特定的安全性測試，又不想只為了單一測項花大錢買整套的弱掃工具時，一個好入門又方便客製化的開源工具能給你很大的幫助，就像根據自己的手打造一支專屬的筆，多花點時間但順手，還比福袋省錢。&lt;/p&gt;
+&lt;p&gt;本文的目的就是簡單介紹一下 Selenium，在舉幾個有關網站安全測試的例子，最後分享一下使用心得。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;selenium-%E7%B0%A1%E4%BB%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#selenium-%E7%B0%A1%E4%BB%8B&quot;&gt;#&lt;/a&gt; Selenium 簡介&lt;/h2&gt;
+&lt;p&gt;Selenium 能模擬一般消費者瀏覽網頁的行為並藉此進行自動化測試，雖然它是自動化測試工具但更多人拿來做動態網頁爬蟲，因為在動態網頁抓資料時必須要模擬一些操作行為，而這正好是 Selenium 的強項。&lt;/p&gt;
+&lt;h3 id=&quot;1.-selenium-ide&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-selenium-ide&quot;&gt;#&lt;/a&gt; 1. Selenium IDE&lt;/h3&gt;
+&lt;p&gt;瀏覽器的擴充套件，它提供了錄製、回放、測試腳本匯入匯出功能，用於編寫功能測試，且不需要用寫程式，是使用 Selenium 進行網站自動化的基礎。&lt;/p&gt;
+&lt;h3 id=&quot;2.-selenium-webdriver&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-selenium-webdriver&quot;&gt;#&lt;/a&gt; 2. Selenium WebDriver&lt;/h3&gt;
+&lt;p&gt;用來執行並操作瀏覽器的一個 API 介面，程式透過呼叫 WebDriver 來直接對瀏覽器進行操作，Selenium WebDriver API 支援 Java、C#、Ruby、Python 及 Perl 等多種語言進行腳本撰寫，許多 Web Test Framework，都是以 Selenium WebDriver API 作為基礎，功能強大且穩固已經讓 Selenium 成為瀏覽器自動化的基石。&lt;/p&gt;
+&lt;h3 id=&quot;3.-selenium-grid&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#3.-selenium-grid&quot;&gt;#&lt;/a&gt; 3. Selenium Grid&lt;/h3&gt;
+&lt;p&gt;主要可以讓我們輕鬆的同時使用多台機器、多個瀏覽器來對網頁進行測試。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;%E5%88%9D%E9%9A%8E%E5%AF%A6%E4%BD%9C%E6%96%B9%E5%BC%8F%3A-selenium-ide&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%88%9D%E9%9A%8E%E5%AF%A6%E4%BD%9C%E6%96%B9%E5%BC%8F%3A-selenium-ide&quot;&gt;#&lt;/a&gt; 初階實作方式: Selenium IDE&lt;/h2&gt;
+&lt;p&gt;最簡單的自動化測試就是將手動測試時的動作紀錄起來，之後要測試的時候重新播放，省去重新手動測試的人力。因為 Selenium IDE 本質是瀏覽器的擴充套件，接下來以 Chrome 來示範對 DVWA 靶站的登入測試頁做 SQL injection 的測試(對 SQL Injection 不熟的可參考)。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%AD%A5%E9%A9%9F-1.-%E5%AE%89%E8%A3%9D-selenium-ide&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%AD%A5%E9%A9%9F-1.-%E5%AE%89%E8%A3%9D-selenium-ide&quot;&gt;#&lt;/a&gt; 步驟 1. 安裝 Selenium IDE&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;安裝 chrome&lt;br&gt;
+&lt;a href=&quot;https://www.google.com/intl/zh-tw/chrome/&quot;&gt;https://www.google.com/intl/zh-tw/chrome/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;到 chrome 線上應用程式商店搜索 Selenium IDE 並安裝&lt;br&gt;
+&lt;a href=&quot;https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd&quot;&gt;https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd&lt;/a&gt;&lt;br&gt;
+&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_2.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;%E6%AD%A5%E9%A9%9F-2.-%E8%A1%8C%E7%82%BA%E9%8C%84%E8%A3%BD&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%AD%A5%E9%A9%9F-2.-%E8%A1%8C%E7%82%BA%E9%8C%84%E8%A3%BD&quot;&gt;#&lt;/a&gt; 步驟 2. 行為錄製&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;點選 Icon 開啟 Selenium IDE&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;點選 &amp;quot;Record a new test in a new project&amp;quot; 建立測試專案並指定要錄製的網站 URL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_4.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;在彈出來的新視窗進行測試行為，這邊以 SQL injection 為例&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_6.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;點輸入框&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;輸入 admin&#39; or &#39;1&#39; = &#39;1&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;點擊登入按鍵&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;%E6%AD%A5%E9%A9%9F-3.-%E9%87%8D%E6%94%BE%E6%B8%AC%E8%A9%A6&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%AD%A5%E9%A9%9F-3.-%E9%87%8D%E6%94%BE%E6%B8%AC%E8%A9%A6&quot;&gt;#&lt;/a&gt; 步驟 3. 重放測試&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;重放前一步驟記錄下的測試，Selenium 會做 5 個動作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;開啟測試頁面&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;設定視窗大小&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;點輸入框&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;輸入 admin&#39; or &#39;1&#39; = &#39;1&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;點擊登入按鍵&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;這時候會看到成功執行 SQL Injection 的畫面&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;最後記得存檔，瀏覽器不會幫你記錄這些，下次開啟需從存檔導入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_9.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;%E9%80%B2%E9%9A%8E%E5%AF%A6%E4%BD%9C%E6%96%B9%E5%BC%8F%3A-selenium-webdriver&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%80%B2%E9%9A%8E%E5%AF%A6%E4%BD%9C%E6%96%B9%E5%BC%8F%3A-selenium-webdriver&quot;&gt;#&lt;/a&gt; 進階實作方式: Selenium WebDriver&lt;/h2&gt;
+&lt;p&gt;有一些無法攻擊方式較難只靠側錄來完成，像是 Brute Force 和 Buffer Overflow 等等，這時候就需要寫程式來配合 Selenium WebDriver 進行測試。接下來以 Chrome + Python 來對 iThome 做登入測試，因為選真實的網站來示範，所以只執行單次登入來證實可以用 Selenium WebDriver 做 Brute Force，而不是真的打下去。&lt;/p&gt;
+&lt;h3 id=&quot;%E6%AD%A5%E9%A9%9F-1.-%E5%AE%89%E8%A3%9D-selenium-webdriver&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%AD%A5%E9%A9%9F-1.-%E5%AE%89%E8%A3%9D-selenium-webdriver&quot;&gt;#&lt;/a&gt; 步驟 1. 安裝 Selenium WebDriver&lt;/h3&gt;
+&lt;p&gt;安裝步驟就不多贅述，這邊提供下載位置與測試時的版本作為參考&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;Chrome (96.0.4664.110)&lt;br&gt;
+&lt;a href=&quot;https://www.google.com/intl/zh-tw/chrome/&quot;&gt;https://www.google.com/intl/zh-tw/chrome/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;Python (3.8.9)&lt;br&gt;
+&lt;a href=&quot;https://www.python.org/downloads/&quot;&gt;https://www.python.org/downloads/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;Selenium WebDriver (4.0.0)&lt;br&gt;
+&lt;code&gt;pip install selenium&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;ChromeDriver (96.0.4664.45)&lt;br&gt;
+&lt;a href=&quot;https://chromedriver.chromium.org/&quot;&gt;https://chromedriver.chromium.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;(option)webdriver_manager (3.5.2)&lt;br&gt;
+&lt;code&gt;pip install webdriver-manager&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;備註: webdriver_manager 可偵測當前系統與Chrome版本自動下載 ChromeDriver，但不是所有開發環境都通用(ex. docker)&lt;/p&gt;
+&lt;h3 id=&quot;%E6%AD%A5%E9%A9%9F-2.-%E5%8F%96%E5%BE%97%E9%A0%81%E9%9D%A2%E5%85%83%E7%B4%A0&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%AD%A5%E9%A9%9F-2.-%E5%8F%96%E5%BE%97%E9%A0%81%E9%9D%A2%E5%85%83%E7%B4%A0&quot;&gt;#&lt;/a&gt; 步驟 2. 取得頁面元素&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;從頁面上取得 XPath 用於定位點擊與輸入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_10.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;%E6%AD%A5%E9%A9%9F-3.-%E5%9F%B7%E8%A1%8C%E6%B8%AC%E8%A9%A6&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%AD%A5%E9%A9%9F-3.-%E5%9F%B7%E8%A1%8C%E6%B8%AC%E8%A9%A6&quot;&gt;#&lt;/a&gt; 步驟 3. 執行測試&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;開啟瀏覽器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; selenium &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; webdriver&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; selenium&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;webdriver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;chrome&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;options &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Options&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; webdriver_manager&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;chrome &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ChromeDriverManager&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; webdriver_manager&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;utils &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ChromeType&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# 0. init&lt;/span&gt;&lt;br&gt;chrome_options &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Options&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;chrome_options&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_argument&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;--incognito&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# 1. set headless&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; headless_mode&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    chrome_options&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_argument&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;--headless&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    chrome_options&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_argument&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;--disable-gpu&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# 2. set user-agent&lt;/span&gt;&lt;br&gt;ua &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) &quot;&lt;/span&gt; \&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&quot;AppleWebKit/537.36 (KHTML, like Gecko) &quot;&lt;/span&gt; \&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&quot;Chrome/92.0.4515.159 Safari/537.36&quot;&lt;/span&gt;&lt;br&gt;chrome_options&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_argument&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;user-agent={}&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ua&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# 3. open browser&lt;/span&gt;&lt;br&gt;driver &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; webdriver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Chrome&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ChromeDriverManager&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;chrome_type&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;ChromeType&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CHROMIUM&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;install&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;                          options&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;chrome_options&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;set_window_size&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;768&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;設計動作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; selenium&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;webdriver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;common&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;by &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; By&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;implicitly_wait&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input_url&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; temp_action &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; input_action_list&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;type&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;click&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;            driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;find_element&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;By&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;XPATH&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;xpath&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;click&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;type&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;write&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;            driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;find_element&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;By&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;XPATH&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;xpath&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;send_keys&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;text&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; Exception &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; ex&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;Exception:&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ex&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;finally&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;quit&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;啟動測試(完整程式碼)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; selenium &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; webdriver&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; selenium&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;webdriver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;chrome&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;options &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Options&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; selenium&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;webdriver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;common&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;by &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; By&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; webdriver_manager&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;chrome &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ChromeDriverManager&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; webdriver_manager&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;utils &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ChromeType&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;selenium_chrome_demo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input_url&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; input_action_list&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; headless_mode&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;# 0. init&lt;/span&gt;&lt;br&gt;    chrome_options &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Options&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    chrome_options&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_argument&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;--incognito&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;# 1. set headless&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; headless_mode&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        chrome_options&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_argument&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;--headless&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        chrome_options&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_argument&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;--disable-gpu&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;# 2. set user-agent&lt;/span&gt;&lt;br&gt;    ua &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) &quot;&lt;/span&gt; \&lt;br&gt;         &lt;span class=&quot;token string&quot;&gt;&quot;AppleWebKit/537.36 (KHTML, like Gecko) &quot;&lt;/span&gt; \&lt;br&gt;         &lt;span class=&quot;token string&quot;&gt;&quot;Chrome/92.0.4515.159 Safari/537.36&quot;&lt;/span&gt;&lt;br&gt;    chrome_options&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add_argument&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;user-agent={}&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ua&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;# 3. open browser&lt;/span&gt;&lt;br&gt;    driver &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; webdriver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Chrome&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ChromeDriverManager&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;chrome_type&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;ChromeType&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;CHROMIUM&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;install&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;                              options&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;chrome_options&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;set_window_size&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;768&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;# 4. run action&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;implicitly_wait&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;get&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input_url&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; temp_action &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; input_action_list&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;type&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;click&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;                driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;find_element&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;By&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;XPATH&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;xpath&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;click&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;type&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;write&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;                driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;find_element&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;By&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;XPATH&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;xpath&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;send_keys&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;temp_action&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;text&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; Exception &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; ex&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;Exception:&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ex&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;finally&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        driver&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;quit&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;br&gt;&lt;br&gt;test_json_list &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;type&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;write&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;xpath&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;//*[@id=&quot;account&quot;]&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;text&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;account&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;type&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;write&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;xpath&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;//*[@id=&quot;password&quot;]&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;text&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;password&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;type&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;click&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;xpath&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;/html/body/div/div/div/form/button&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;text&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;br&gt;&lt;br&gt;selenium_chrome_demo&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input_url&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;https://member.ithome.com.tw/login&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;                     input_action_list&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;test_json_list&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因為帳號跟密碼是隨便寫的理論上會看到這各畫面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_11.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E9%AB%98%E9%9A%8E%E5%AF%A6%E4%BD%9C%E6%96%B9%E5%BC%8F%3A-selenium-grid&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%AB%98%E9%9A%8E%E5%AF%A6%E4%BD%9C%E6%96%B9%E5%BC%8F%3A-selenium-grid&quot;&gt;#&lt;/a&gt; 高階實作方式: Selenium Grid&lt;/h2&gt;
+&lt;p&gt;如果要更進一步建立一個平台來控管 Selenium 的自動化測試，官方就有提供解決方案 Selenium Grid，其中管理平台稱為 Hub，實際運行測試的稱為 Node&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_12.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+圖片來源: &lt;a href=&quot;https://www.edureka.co/blog/selenium-grid-tutorial&quot;&gt;https://www.edureka.co/blog/selenium-grid-tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;%E6%AD%A5%E9%A9%9F-1.-%E5%AE%89%E8%A3%9D-selenium-grid&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%AD%A5%E9%A9%9F-1.-%E5%AE%89%E8%A3%9D-selenium-grid&quot;&gt;#&lt;/a&gt; 步驟 1. 安裝 Selenium Grid&lt;/h3&gt;
+&lt;p&gt;Selenium Grid 安裝與串接推薦用 docker&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;建立串接用的網路(Bridge)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;$ docker network create grid
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;安裝 hub&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;$ docker run -d -p 4442-4444:4442-4444 --net grid --name selenium-hub selenium/hub:4.1.1-20211217
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;安裝 node&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;$ docker run -d --net grid -e SE_EVENT_BUS_HOST=selenium-hub \
+    --shm-size=&amp;quot;2g&amp;quot; \
+    -e SE_EVENT_BUS_PUBLISH_PORT=4442 \
+    -e SE_EVENT_BUS_SUBSCRIBE_PORT=4443 \
+    selenium/node-chrome:4.1.1-20211217
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;%E6%AD%A5%E9%A9%9F-2.-node-%E8%A8%AD%E5%AE%9A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%AD%A5%E9%A9%9F-2.-node-%E8%A8%AD%E5%AE%9A&quot;&gt;#&lt;/a&gt; 步驟 2. node 設定&lt;/h3&gt;
+&lt;p&gt;node 的本質就是一個幫你安裝好 Selenium WebDriver 的 Ubuntu VM，部份 Selenium 會用到的套件已經裝在裡面了，可以省掉不少架環境的時間&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;進入 node 的 container&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;docker exec -i -t your_node /bin/bash&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_13.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;建立測試&lt;br&gt;
+可參考 Selenium WebDriver 的實作方式建立測試，然後將我們之前準備好確未用到的功能 headless 打開，就可以在 node 裡面跑測試了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt; selenium_chrome_demo&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;input_url&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;https://member.ithome.com.tw/login&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;                     input_action_list&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;test_json_list&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;                     headless_mode&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;(option) docker 版本預設開啟 VNC server，可藉此連去調整設定或建立測試&lt;br&gt;
+&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_14.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;%E6%AD%A5%E9%A9%9F-3.-%E5%BE%9E-hub-%E6%AA%A2%E8%A6%96%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%AD%A5%E9%A9%9F-3.-%E5%BE%9E-hub-%E6%AA%A2%E8%A6%96%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C&quot;&gt;#&lt;/a&gt; 步驟 3. 從 hub 檢視測試結果&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/selenium/se_15.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;Selenium 在安全性測試上有他優勢或強大的地方，但是也有從實作過程中較難表現出來的缺點，所以實際運用在資安領運通常要看測試對象的特性來決定。&lt;/p&gt;
+&lt;p&gt;先提一下 Selenium 整體的優缺點，Selenium 在自動化的部分非常強大，可以錄製也可以使用 Script，而且因為是透過瀏覽器來執行動作，被網站判斷是自動化程式而導致被屏蔽的機會也比較低，但缺點就是部份設定細節無法自訂，像是 header 無法自訂導致從 header 發起的攻擊無法實作。&lt;/p&gt;
+&lt;p&gt;Selenium IDE 的優點是設定簡單、測試過程與結果較直觀、不需要 Codeing，總體來說就是開發成本很低，非常適合開發速度較快的團隊，但特有的缺點是無法排程，還是需要一定程度的人力介入，&lt;/p&gt;
+&lt;p&gt;Selenium WebDriver 的泛用性很高，不管是動態還是靜態的網站都能進行攻擊測試，個人認為是三者中最好用的，除了共同的缺點以外，硬要說缺點的話就是改版(4.0.x)後向下兼容性不佳，部分舊版程式碼無法沿用。&lt;/p&gt;
+&lt;p&gt;Selenium Grid 的優點是可以規模化，但實際執行安全性測試的時候基本上是跟 Selenium WebDriver 一樣的，所以優缺點很類似，跟其他兩者相比的缺點則是架設較為複雜，如果使用 docker 的狀況下使用 Gitlab，jenkins 等管理平台可能還更適合大部分的狀況。&lt;/p&gt;
+&lt;p&gt;前面為快速說明原理挑了一些簡單易懂的攻擊來示範，實際上還有更多更進階的用法，如果閱覽數量夠多，之後會再加開一篇分享一些更進階的用法與經典案例，有任何資安方面相關的問題都歡迎留言討論，或者直接到 Cymetrics 尋求協助。&lt;/p&gt;
 
 		</content>
 	</entry>
