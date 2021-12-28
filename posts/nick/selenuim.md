@@ -4,7 +4,7 @@ date: 2021-12-28
 tags: [Security, Selenium, Selenium IDE, Selenium WebDriver, Selenium Grid]
 author: nick
 layout: layouts/post.njk
-image: /img/posts/cymetrics/selenium/se_1.jpg
+image: /img/posts/nick/selenium/se_1.jpg
 ---
 
 
@@ -47,22 +47,22 @@ ___
 
 * 2. 到 chrome 線上應用程式商店搜索 Selenium IDE 並安裝
     https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd
-![](/img/posts/cymetrics/selenium/se_2.jpg)
+![](/img/posts/nick/selenium/se_2.jpg)
 
 ### 步驟 2. 行為錄製
 * 1. 點選 Icon 開啟 Selenium IDE
 
-    ![](/img/posts/cymetrics/selenium/se_3.jpg)
+    ![](/img/posts/nick/selenium/se_3.jpg)
 
 * 2. 點選 "Record a new test in a new project" 建立測試專案並指定要錄製的網站 URL
 
-    ![](/img/posts/cymetrics/selenium/se_4.jpg)
+    ![](/img/posts/nick/selenium/se_4.jpg)
     
-    ![](/img/posts/cymetrics/selenium/se_5.jpg)
+    ![](/img/posts/nick/selenium/se_5.jpg)
 
 * 3. 在彈出來的新視窗進行測試行為，這邊以 SQL injection 為例
 
-    ![](/img/posts/cymetrics/selenium/se_6.jpg)
+    ![](/img/posts/nick/selenium/se_6.jpg)
 
     * 1. 點輸入框
     * 2. 輸入 admin' or '1' = '1
@@ -77,15 +77,15 @@ ___
     * 4. 輸入 admin' or '1' = '1
     * 5. 點擊登入按鍵
 
-    ![](/img/posts/cymetrics/selenium/se_7.jpg)
+    ![](/img/posts/nick/selenium/se_7.jpg)
 
 * 2. 這時候會看到成功執行 SQL Injection 的畫面
 
-    ![](/img/posts/cymetrics/selenium/se_8.jpg)
+    ![](/img/posts/nick/selenium/se_8.jpg)
     
 * 3. 最後記得存檔，瀏覽器不會幫你記錄這些，下次開啟需從存檔導入
 
-    ![](/img/posts/cymetrics/selenium/se_9.jpg)
+    ![](/img/posts/nick/selenium/se_9.jpg)
 
 ___
 
@@ -117,7 +117,7 @@ ___
 ### 步驟 2. 取得頁面元素
 * 1. 從頁面上取得 XPath 用於定位點擊與輸入
 
-    ![](/img/posts/cymetrics/selenium/se_10.jpg)
+    ![](/img/posts/nick/selenium/se_10.jpg)
 
 
 
@@ -220,14 +220,14 @@ selenium_chrome_demo(input_url="https://member.ithome.com.tw/login",
 
 因為帳號跟密碼是隨便寫的理論上會看到這各畫面
 
-![](/img/posts/cymetrics/selenium/se_11.jpg)
+![](/img/posts/nick/selenium/se_11.jpg)
 
 
 ## 高階實作方式: Selenium Grid
 
 如果要更進一步建立一個平台來控管 Selenium 的自動化測試，官方就有提供解決方案 Selenium Grid，其中管理平台稱為 Hub，實際運行測試的稱為 Node
 
-![](/img/posts/cymetrics/selenium/se_12.jpg)
+![](/img/posts/nick/selenium/se_12.jpg)
 圖片來源: https://www.edureka.co/blog/selenium-grid-tutorial
 ### 步驟 1. 安裝 Selenium Grid
 Selenium Grid 安裝與串接推薦用 docker 
@@ -255,7 +255,7 @@ node 的本質就是一個幫你安裝好 Selenium WebDriver 的 Ubuntu VM，部
 
     `docker exec -i -t your_node /bin/bash`
     
-    ![](/img/posts/cymetrics/selenium/se_13.jpg)
+    ![](/img/posts/nick/selenium/se_13.jpg)
     
 * 2. 建立測試
     可參考 Selenium WebDriver 的實作方式建立測試，然後將我們之前準備好確未用到的功能 headless 打開，就可以在 node 裡面跑測試了
@@ -267,12 +267,12 @@ node 的本質就是一個幫你安裝好 Selenium WebDriver 的 Ubuntu VM，部
 ```
 
 * 3. (option) docker 版本預設開啟 VNC server，可藉此連去調整設定或建立測試
-![](/img/posts/cymetrics/selenium/se_14.jpg)
+![](/img/posts/nick/selenium/se_14.jpg)
 
 
 ### 步驟 3. 從 hub 檢視測試結果
 
-![](/img/posts/cymetrics/selenium/se_15.jpg)
+![](/img/posts/nick/selenium/se_15.jpg)
 
 
 
