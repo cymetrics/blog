@@ -3,7 +3,7 @@ title: 從Indexing的角度切入MySQL-Innodb與PostgreSQL的效能比較
 date: 2021-03-12
 author: maxchiu
 description: 這篇文章想要以 MySQL (在本文中所參考的儲存引擎為 innodb ) 和PostgreSQL 為例，來討論一些 Relational Database 在底層操作資料時的一些基本原理。 更確切地說，從DB系統管理Index的方式來切入。
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 tags: [Back-end]
 image: /img/IndexingComparisonOfMySQLAndPostgres/1__D99fysQ1Z0zfpa390g4QvQ.gif
 ---

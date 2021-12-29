@@ -3,7 +3,7 @@ title: 為什麼忘記密碼時只能重設，不把舊密碼告訴我？
 date: 2021-07-09
 tags: [Security]
 author: huli
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/reset-password/cover.jpeg
 ---
 

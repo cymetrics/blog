@@ -3,7 +3,7 @@ title: CPSA(CREST Practitioner Security Analyst) 資安分析師考試心得
 date: 2021-12-15
 tags: [Security]
 author: huli
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/crest-cpsa-prepare/p1.png
 ---
 

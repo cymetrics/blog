@@ -3,7 +3,7 @@ title: XSS 從頭談起：歷史與由來
 date: 2021-10-11
 tags: [Security, Front-end]
 author: huli
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 
 我以前有寫過一些關於 XSS 的文章，主要在談的是實作面的防範以及防禦的各個細節：

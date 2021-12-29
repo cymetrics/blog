@@ -1,0 +1,25 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - tagList
+  addAllPagesToCollections: true
+layout: en/layouts/common.njk
+eleventyComputed:
+  title: "{{ tag }}"
+permalink: /en/tags/{{ tag | slug }}/
+---
+
+{% set currentTag = tag %}
+{% include "en/tags.njk" %}
+
+<div style="margin-top: 32px;">
+  {% set postslist = collections[ tag ] | reverse %}
+  {% include "en/postslist.njk" %}
+</div>

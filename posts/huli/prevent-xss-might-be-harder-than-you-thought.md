@@ -3,7 +3,7 @@ title: 防止 XSS 可能比想像中困難
 date: 2021-05-15
 tags: [Security, Front-end]
 author: huli
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 
 ## 前言

@@ -1,0 +1,14 @@
+<div class="postlist">
+{% for post in postslist | reverse %}
+  {% if author === post.data.author %}
+    <div class="postlist__item">
+      <div class="postlist__time">
+        <time datetime="{{ post.date | htmlDateString }}">{{ post.date | htmlDateString }}</time>
+      </div>
+      <h3 class="postlist__title">
+        <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+      </h3>
+    </div>
+  {% endif %}
+{% endfor %}
+</div>

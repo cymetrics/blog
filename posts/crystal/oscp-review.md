@@ -3,7 +3,7 @@ title: 我們與 OSCP 的距離
 author: crystal
 date: 2021-09-02
 tags: [Security]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/crystal/oscp/cover.jpg
 ---
 <!-- summary --> 

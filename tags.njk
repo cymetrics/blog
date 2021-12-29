@@ -10,16 +10,16 @@ pagination:
     - posts
     - tagList
   addAllPagesToCollections: true
-layout: layouts/common.njk
+layout: zh-tw/layouts/common.njk
 eleventyComputed:
   title: "{{ tag }}"
 permalink: /tags/{{ tag | slug }}/
 ---
 
 {% set currentTag = tag %}
-{% include "tags.njk" %}
+{% include "zh-tw/tags.njk" %}
 
 <div style="margin-top: 32px;">
   {% set postslist = collections[ tag ] | reverse %}
-  {% include "postslist.njk" %}
+  {% include "zh-tw/postslist.njk" %}
 </div>

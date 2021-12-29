@@ -3,7 +3,7 @@ title: "駭客起手式 : Shodan & Fofa"
 date: 2021-06-28
 tags: [Security,Shodan,Fofa]
 author: nick
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/nick/shodan-fofa/1__umABiDO1c0UaI8MmhaatgA.png
 ---
 

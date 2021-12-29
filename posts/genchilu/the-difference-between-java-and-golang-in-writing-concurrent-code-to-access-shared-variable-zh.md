@@ -3,7 +3,7 @@ title: 比較 Java 和 Golang 在撰寫併發時處理共享變數的差異
 date: 2021-05-03
 tags: [Back-end, java, golang, volatile, concurrency]
 author: genchilu
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 <!-- summary -->
 在寫 concurrency 程式時，通常會用 lock、synchronized 等機制保護存取共享資源的程式片段，確保一次只有一個 thread 可以使用這些共享資源。  

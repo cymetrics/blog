@@ -3,7 +3,7 @@ title: "資安規範實戰篇 : OWASP + CWE"
 date: 2021-08-23
 tags: [Security,Owasp,CWE,Top 10, Top 25]
 author: nick
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/nick/owasp-cwe/owasp_1.jpg
 ---
 ![](/img/posts/nick/owasp-cwe/owasp_1.jpg)

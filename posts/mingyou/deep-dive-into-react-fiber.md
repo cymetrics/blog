@@ -4,7 +4,7 @@ date: 2021-05-28
 tags: [Front-end]
 author: mingyou
 description: 從 React 16.3 的重大更新後也已經過了兩年多了，不知到大家還記不記得當時的兩大重要功能，其一為 Function Component ( hooks )，另一個大家比較不那麼熟悉但卻也很重要的則應該屬 Fiber 架構。而在過去這個部分全部只由一個主線程去做同步式渲染。
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/mingyou/deep-dive-into-react-fiber/p1.png
 ---
 

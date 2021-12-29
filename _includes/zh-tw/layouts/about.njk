@@ -1,0 +1,24 @@
+---
+templateClass: tmpl-about
+---
+{% extends "zh-tw/layouts/base.njk" %}
+
+{% set postAuthor = metadata.authors[author] %}
+
+{% block article %}
+
+{{ content | safe }}
+
+<div class="about-items">
+{% for key, author in metadata.authors %}
+    <div class="about-item">
+      <img data-deopt="true" loading="lazy" class="about-item__img" src="{{ author.avatarUrl }}" alt="{{ author.name }}">
+      <div class="about-item__info">
+        <h4 class="about-item__author"><a href="/posts/{{ key }}">{{ author.name }}</a></h4>
+        <p class="about-item__intro">{{ author.intro | safe }}</p>
+      </div>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -37,7 +37,7 @@ title: 用 Paged.js 做出適合印成 PDF 的 HTML 網頁 // 標題
 date: 2018-09-30 // 發文日期
 tags: [Front-end, JavaScript] // 標籤
 author: huli // 作者 key
-layout: layouts/post.njk // 這固定不變
+layout: zh-tw/layouts/post.njk // 這固定不變
 ```
 
 ## 摘要功能
@@ -64,6 +64,15 @@ layout: layouts/post.njk // 這固定不變
 使用 comment 指定的摘要支援 HTML，例如`<code>`等。 結尾的 `-->` 目前不可省略。
 
 另外，`<!-- summary -->` 和 comment 標籤中的半形空白是必須的。
+
+## 多語系支援
+
+目前支援兩個語系：中文跟英文
+
+礙於原先沒有語系又不能做轉址，預設語系即為中文，英文的檔案都放置於 `en` 資料夾以及 `_includes/en` 裡面，要修改的時候必須兩份一起修改
+
+英文文章請發表於 `en/posts/` 裡面，發表文章與中文相同
+
 
 ## 如何客製化？
 

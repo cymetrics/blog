@@ -3,7 +3,7 @@ title: 零基礎資安系列（三）-網站安全三本柱（Secure & SameSite 
 author: jo
 date: 2021-05-28
 tags: [Security,ZeroBased,cookie]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/jo/zerobased-secure-samesite-httponly/cover.jpeg
 ---
 <!-- summary -->

@@ -3,7 +3,7 @@ title: 資安科普番外篇（二）-如何有效率選擇風險進行修復 fe
 author: jo
 date: 2021-07-16
 tags: [Security,ZeroBased]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/jo/zerobased-common-risk-fix/cover.jpeg
 ---
 <!-- summary -->

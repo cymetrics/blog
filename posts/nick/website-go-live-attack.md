@@ -3,7 +3,7 @@ title: 為什麼網站才剛上線就被攻擊？
 date: 2021-07-23
 tags: [Security, Front-end]
 author: nick
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/nick/website-go-live-attack/1.jpg
 ---
 ![Photo by Arget on Unsplash](/img/posts/nick/website-go-live-attack/1.jpg)

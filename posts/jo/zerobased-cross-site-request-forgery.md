@@ -3,7 +3,7 @@ title: 零基礎資安系列（一）-認識 CSRF（Cross Site Request Forgery�
 author: jo
 date: 2021-05-26
 tags: [Security,ZeroBased,CSRF]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/jo/zerobased-cross-site-request-forgery/cover.jpeg
 ---
 <!-- summary -->

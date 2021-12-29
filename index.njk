@@ -1,6 +1,6 @@
 ---
 title: Cymetrics Tech Blog
-layout: layouts/home.njk
+layout: zh-tw/layouts/home.njk
 description: 分享資訊安全與技術開發相關內容
 image: /img/favicon/favicon-512x512.png
 date: Last Modified
@@ -14,7 +14,7 @@ permalink: /{% if pagination.pageNumber > 0 %}articles/{{ pagination.pageNumber 
 
 <div class="posts">
   {% set postslist = posts %}
-  {% include "home-postslist.njk" %}
+  {% include "zh-tw/home-postslist.njk" %}
 </div>
 
-{% include "pagination.njk" %}
+{% include "zh-tw/pagination.njk" %}

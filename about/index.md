@@ -1,5 +1,5 @@
 ---
-layout: layouts/about.njk
+layout: zh-tw/layouts/about.njk
 title: About
 eleventyNavigation:
   key: About

@@ -3,7 +3,7 @@ title: Reverse Engineering 101 — Part 1
 author: crystal
 date: 2021-06-04
 tags: [Security, Reverse Engineering]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 <!-- summary -->
 <!-- 很多人對逆向工程躍躍欲試卻不知道從何開始，又該具備哪些知識？這一篇文章會從逆向一個小程式，帶你建立基礎知識與想法！ -->

@@ -3,7 +3,7 @@ title: "並行程式典範 (Paradigms): Golang V.S. Java"
 date: 2021-08-29
 tags: [Back-end, java, golang, thread, goroutine, concurrency paradigms]
 author: genchilu
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 
 <!-- summary -->

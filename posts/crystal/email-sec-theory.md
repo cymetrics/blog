@@ -3,7 +3,7 @@ title: 關於 email security 的大小事 — 原理篇
 author: crystal
 date: 2021-07-02
 tags: [Security, Email Security]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/crystal/email-sec-theory/cover.jpg
 ---
 <!-- summary -->

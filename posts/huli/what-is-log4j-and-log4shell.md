@@ -3,7 +3,7 @@ title: 從監視攝影機理解 Log4j 跟 Log4Shell 漏洞
 date: 2021-12-18
 tags: [Security]
 author: huli
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/what-is-log4j-and-log4shell/cover.jpeg
 ---
 

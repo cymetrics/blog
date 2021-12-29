@@ -3,7 +3,7 @@ title: 零基礎資安系列（二）-認識 XSS（Cross-Site Scripting）
 author: jo
 date: 2021-05-27
 tags: [Security,ZeroBased,XSS]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/jo/zerobased-cross-site-scripting/cover.jpeg
 ---
 <!-- summary -->

@@ -3,7 +3,7 @@ title: "資安弱點會造成多大損失 ?"
 date: 2021-09-09
 tags: [Security,Cyber,Cybersecurity,event,loss]
 author: nick
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/nick/cybersecurity-loss/cl_1.jpg
 ---
 # 資安弱點會造成多大損失 ?

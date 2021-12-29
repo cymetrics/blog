@@ -1,0 +1,16 @@
+---
+permalink: /en/tags/
+layout: en/layouts/common.njk
+title: Tags
+eleventyNavigation:
+  key: Tags
+  order: 2
+---
+
+{% set currentTag = 'Back-end' %}
+{% include "en/tags.njk" %}
+
+<div style="margin-top: 32px;">
+{% set postslist = collections['Back-end'] | reverse %}
+{% include "en/postslist.njk" %}
+</div>

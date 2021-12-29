@@ -2,7 +2,7 @@
 title: 簡單三招學會辨識電商詐騙，讓你在雙11安心購物
 date: 2021-11-08
 author: cymetrics
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/cymetrics/ecommerce-scam/cover.jpg
 ---
 

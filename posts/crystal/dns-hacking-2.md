@@ -3,7 +3,7 @@ title: DNS Hacking 之 電話簿攻防之術：DNSSEC、DoT/DoH
 author: crystal
 date: 2021-12-13
 tags: [Security, DNS, DNSSEC]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/crystal/dns-hacking/cover-2.jpg
 ---
 

@@ -3,7 +3,7 @@ title: 基於 JS 原型鏈的攻擊手法：Prototype Pollution
 date: 2021-09-29
 tags: [Security, Front-end]
 author: huli
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 
 ## 前言

@@ -1,0 +1,18 @@
+---
+title: Archive
+layout: en/layouts/common.njk
+eleventyNavigation:
+  key: Archive
+  order: 1
+pagination:
+  data: collections.postsEn
+  size: 12
+  alias: posts
+  reverse: true
+permalink: /en/archive/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}
+---
+
+{% set postslist = posts %}
+{% include "en/postslist.njk" %}
+
+{% include "en/pagination.njk" %}

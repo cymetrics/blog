@@ -3,7 +3,7 @@ title: Java’s Thread Model and Golang Goroutine
 date: 2021-07-05
 tags: [Back-end, java, golang, thread, goroutine, concurrency]
 author: genchilu
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 <!-- summary -->
 說到 Golang，總會提到其高併發的特性，而 goroutine 則是撐起 Golang 高併發的基礎。本文試著比較 Java thread 和 Golng goroutine 在 OS 運行的方式，讓大家能理解 goroutine 在設計上的獨到之處。

@@ -3,7 +3,7 @@ title: 資安科普番外篇（一）-大意了啊沒有閃！常見網站曝險
 author: jo
 date: 2021-07-09
 tags: [Security,ZeroBased]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/jo/zerobased-common-risk-exposure/cover.jpeg
 ---
 <!-- summary -->

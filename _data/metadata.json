@@ -25,7 +25,7 @@
   "authors": {
     "huli": {
       "name": "huli",
-      "intro": "遊走在前端與資安間，以開發者身份學習資安，也從資安重新學習前端",
+      "intro": "Act as a bridge between Front-end and Security world",
       "avatarUrl": "/img/authors/huli_logo.jpg"
     },
     "mingyou": {
@@ -60,7 +60,7 @@
     },
     "cymetrics": {
       "name": "Cymetrics",
-      "intro": "Cymetrics 官方帳號",
+      "intro": "Cymetrics Official Account",
       "avatarUrl": "/img/authors/cymetrics_logo.png"
     }
   },

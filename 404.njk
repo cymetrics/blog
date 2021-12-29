@@ -1,5 +1,5 @@
 ---
-layout: layouts/common.njk
+layout: zh-tw/layouts/common.njk
 permalink: 404.html
 eleventyExcludeFromCollections: true
 title: Not Found
@@ -12,6 +12,6 @@ title: Not Found
 {% endblock %}
 
 {% set postslist = collections.posts | reverse | randomPick(12) %}
-{% include "postslist.njk" %}
+{% include "zh-tw/postslist.njk" %}
 <br>
 <a href="{{ '/' | url }}">Back</a>

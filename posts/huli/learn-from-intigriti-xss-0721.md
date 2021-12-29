@@ -4,7 +4,7 @@ date: 2021-08-05
 tags: [Security, Front-end]
 author: huli
 description: 從一題 XSS 的題目中突破層層關卡，學習各種前端相關知識
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 
 ## 前言

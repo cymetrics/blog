@@ -1,0 +1,12 @@
+---
+templateClass: tmpl-home
+---
+{% extends "en/layouts/base.njk" %}
+
+{% block extraArticleHeader %}
+   <aside class="w-full" style="text-align:left;">
+      Welcome to Cymetrics Tech Blog! We share our thoughts and experience on security and technology. Subscribe our <a href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="noreferrer noopener" target="_blank">RSS</a> and follow our <a href="https://www.facebook.com/Cymetrics-100957872049641" rel="noreferrer noopener" target="_blank">Facebook page</a>.  Source code is available on <a href="https://github.com/cymetrics/blog" rel="noreferrer noopener" target="_blank">Cymetrics GitHub</a>.
+   </aside>
+{% endblock %}
+
+{{ content | safe }}

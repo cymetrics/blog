@@ -1,0 +1,20 @@
+---
+title: Cymetrics Tech Blog
+layout: en/layouts/home.njk
+description: All about security
+image: /img/favicon/favicon-512x512.png
+date: Last Modified
+pagination:
+  data: collections.postsEn
+  size: 8
+  alias: posts
+  reverse: true
+permalink: /en/{% if pagination.pageNumber > 0 %}articles/{{ pagination.pageNumber }}/{% endif %}
+---
+
+<div class="posts">
+  {% set postslist = posts %}
+  {% include "en/home-postslist.njk" %}
+</div>
+
+{% include "en/pagination.njk" %}

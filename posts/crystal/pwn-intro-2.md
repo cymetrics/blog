@@ -3,7 +3,7 @@ title: PWN 入門 - rop, gadget 是什麼？
 author: crystal
 date: 2021-10-21
 tags: [Security, Reverse Engineering, Binary Exploitation]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/crystal/pwn-intro/cover-1.jpg
 ---
 <!-- summary -->

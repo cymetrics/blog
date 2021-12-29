@@ -3,7 +3,7 @@ title: 零基礎資安系列（五）-路徑遍歷（Path Traversal）
 author: jo
 date: 2021-05-30
 tags: [Security,ZeroBased,Path Traversal]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/jo/zerobased-path-traversal/cover.jpeg
 ---
 <!-- summary -->

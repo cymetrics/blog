@@ -3,7 +3,7 @@ title: 淺談 XSS 攻擊與防禦的各個環節
 date: 2021-06-17
 tags: [Security, Front-end]
 author: huli
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/attack-and-defense/cover.jpeg
 ---
 

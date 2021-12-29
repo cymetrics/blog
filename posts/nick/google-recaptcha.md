@@ -3,7 +3,7 @@ title: 當 Google Hacking 遇到 reCAPTCHA
 date: 2021-11-10
 tags: [Security, Search, Google Hacking, reCAPTCHA]
 author: nick
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/cymetrics/google-recaptcha/re_1.jpg
 ---
 

@@ -3,7 +3,7 @@ title: 零基礎資安系列（四）-認識注入攻擊（ Injection Attack）
 author: jo
 date: 2021-05-29
 tags: [Security,ZeroBased,injection]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/jo/zerobased-injectionattack/cover.jpeg
 ---
 <!-- summary -->

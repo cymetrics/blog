@@ -3,7 +3,7 @@ title: 從編譯器優化角度初探 Javascript的V8 引擎
 date: 2021-04-07
 author: maxchiu
 description: 這篇文章想以V8引擎對於JS的實現為例來探討編譯器優化的一些基礎議題並搭配實驗，希望能讓讀者對於血汗的編譯器到底在背後幫我們完成了多少事情有點概念。
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 tags: [Front-end, JavaScript]
 image: /img/DiveIntoTurbofan/1__NyZv46I1bYz4K7ngiT__W9Q.jpeg
 ---

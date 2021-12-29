@@ -1,0 +1,21 @@
+<div class="postlist">
+{% for post in postslist %}
+  {% if "/en/" in post.url %}
+  {% set author = metadata.authors[post.data.author] %} 
+  <div class="postlist__item">
+    <div class="postlist__time">
+      <time datetime="{{ post.date | htmlDateString }}">{{ post.date | htmlDateString }}</time>
+    </div>
+    <h3 class="postlist__title">
+      <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+      <a class="postlist__author" href="/en/posts/{{ post.data.author }}">
+        <span style="white-space: nowrap;">
+          <img data-deopt="true" src="{{ author.avatarUrl }}">
+          <span class="postlist__author-name">{{ author.name }}</span>
+        </span>
+      </a>
+    </h3>
+  </div>
+  {% endif %}
+{% endfor %}
+</div>

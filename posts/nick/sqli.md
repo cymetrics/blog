@@ -3,7 +3,7 @@ title: "秒懂 SQL Injection"
 date: 2021-08-31
 tags: [Security, SQL Injection, SQL, Web]
 author: nick
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/nick/sqli/sqli_1.jpg
 ---
 

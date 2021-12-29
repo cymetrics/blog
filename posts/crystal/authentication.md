@@ -3,7 +3,7 @@ title: 被盜帳號是誰的錯？聊聊 Authentication
 author: crystal
 date: 2021-09-16
 tags: [Security, Authentication, Brute-force]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/crystal/authentication/phishing.png
 ---
 

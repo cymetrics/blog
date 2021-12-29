@@ -3,7 +3,7 @@ title: DNS Hacking 之 基礎知識：DNS 運作與紀錄類型
 author: crystal
 date: 2021-11-25
 tags: [Security, DNS]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/crystal/dns-hacking/cover-1.jpg
 ---
 

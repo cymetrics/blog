@@ -3,7 +3,7 @@ title: 零基礎資安系列（六）- 電影中酷駭客做的事？關於 APT�
 author: jo
 date: 2021-08-22
 tags: [Security,ZeroBased,APT]
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/jo/zerobased-APT/cover.jpeg
 ---
 <!-- summary -->

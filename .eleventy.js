@@ -81,7 +81,7 @@ module.exports = function (eleventyConfig) {
   // NOTE: disable CSP because we don't need it
   // eleventyConfig.addPlugin(require("./_11ty/apply-csp.js"));
   eleventyConfig.setDataDeepMerge(true);
-  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
+  eleventyConfig.addLayoutAlias("post", "zh-tw/layouts/post.njk");
   eleventyConfig.addNunjucksAsyncFilter("addHash", function (
     absolutePath,
     callback

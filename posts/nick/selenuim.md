@@ -3,7 +3,7 @@ title: 資安也要自動化 Selenium
 date: 2021-12-28
 tags: [Security, Selenium, Selenium IDE, Selenium WebDriver, Selenium Grid]
 author: nick
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 image: /img/posts/nick/selenium/se_1.jpg
 ---
 ![](/img/posts/nick/selenium/se_1.jpg)

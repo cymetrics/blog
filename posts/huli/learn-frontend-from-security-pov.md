@@ -3,7 +3,7 @@ title: 接觸資安才發現我不懂前端
 date: 2021-10-25
 tags: [Security, Front-end]
 author: huli
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 description: 我在一個新的領域（資安）重新學習到了我原本熟悉的領域（前端）的知識，這種感覺十分特別，因此這篇文章想跟大家分享我學到的一些東西
 ---
 

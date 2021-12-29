@@ -4,7 +4,7 @@ date: 2021-09-07
 tags: [Security, Front-end, Back-end]
 author: huli
 description: 重新導向在網站中是個很常見的功能，但你有思考過這背後存在什麼樣的風險嗎？
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 
 ## 前言

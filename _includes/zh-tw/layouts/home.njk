@@ -1,0 +1,12 @@
+---
+templateClass: tmpl-home
+---
+{% extends "zh-tw/layouts/base.njk" %}
+
+{% block extraArticleHeader %}
+   <aside class="w-full" style="text-align:left;">
+      這是 Cymetrics 技術部落格，分享資訊安全與技術開發相關內容。想持續關注的話可以訂閱 <a href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="noreferrer noopener" target="_blank">RSS</a> 或是追蹤 <a href="https://www.facebook.com/Cymetrics-100957872049641" rel="noreferrer noopener" target="_blank">Facebook 粉絲專頁</a>，部落格原始碼則是放在 <a href="https://github.com/cymetrics/blog" rel="noreferrer noopener" target="_blank">Cymetrics GitHub</a>。
+   </aside>
+{% endblock %}
+
+{{ content | safe }}

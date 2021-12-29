@@ -1,0 +1,124 @@
+---
+templateClass: tmpl-post
+---
+{% extends "zh-tw/layouts/base.njk" %}
+
+{% set postAuthor = metadata.authors[author] %}
+
+{% block extraArticleHeader %}
+   <aside class="w-full">
+      <div class="post-tags">
+      {% for tag in tags %}
+        {% if tag !== "posts" %}
+          {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+          <a href="{{ tagUrl | url }}" class="post-tag">#{{ tag }}</a>
+        {% endif %}
+        
+      {% endfor %}
+      </div>
+      <div class="post-avatar">
+        <img class="post-avatar__img" data-deopt="true" src="{{ postAuthor.avatarUrl }}" alt="{{ postAuthor.name }}">
+        <div class="post-avatar__info">
+          <div class="post-avatar__author">
+            <a href="/posts/{{ author }}">{{ postAuthor.name }}</a>
+          </div>
+          <div class="post-avatar__time">
+            {{ date | readableDate }}
+          </div>
+        </div>
+      </div>
+   </aside>
+{% endblock %}
+
+
+{% set shareUrl = metadata.url + page.url %}
+
+{% block article %}
+<div id="post-page"></div>
+{{ content | safe }}
+<div class="article-footer">
+  <a href="{{ shareUrl | safe }}" on-click="share"><img src="/img/icons/icon_external link hyperlink.svg" alt="Share">Share this post</a>
+</div>
+<div>
+  <p style="font-weight: bold;">Tag</p>
+  <div class="post-tags">
+    {% for tag in tags %}
+      {% if tag !== "posts" %}
+        {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+        <a href="{{ tagUrl | url }}" class="post-tag">#{{ tag }}</a>
+      {% endif %}
+      
+    {% endfor %}
+  </div>
+  <p style="font-weight: bold;">Recommendation</p>
+  <ol>
+    {%- for entry in collections.posts | recommendation(title) | randomPick(5) | reverse %}
+      <li><a href="{{ entry.url | url }}">{{ entry.data.title }}</a></li>
+    {%- endfor %}
+  </ol>
+</div>
+<div class="article-author">
+  <img class="article-author__img" data-deopt="true" src="{{ postAuthor.avatarUrl }}" alt="{{ postAuthor.name }}">
+  <div class="article-author__info">
+    <div class="article-author__title">
+      Author
+    </div>
+    <div class="article-author__author">
+      <a href="/posts/{{ author }}">{{ postAuthor.name }}</a>
+    </div>
+    <div class="article-author__intro">
+      {{ postAuthor.intro | safe }}
+    </div>
+  </div>
+</div>
+
+<p style="font-weight: bold;">Discussion(login required)</p>
+<script
+  id="utterance-script"
+  src="https://utteranc.es/client.js"
+  repo="cymetrics/blog"
+  issue-term="title"
+  label="utterance"
+  theme="github-light"
+  crossorigin="anonymous"
+  async>
+</script>
+
+<!--
+<share-widget>
+  <button on-click="share" aria-label="Share" href="{{ shareUrl | safe }}">
+    <div></div>
+  </button>
+</share-widget>
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ title }}",
+  "image": [],
+  "author": {
+    "@type": "Person",
+    "name": "{{ postAuthor.name }}"
+  }, 
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ metadata.publisher.name }}",
+    "url": "{{ metadata.url }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ '/img/favicon/favicon-512x512.png' | absoluteUrl(metadata.url) }}",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "url": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
+  "mainEntityOfPage": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
+  "datePublished": "{{ page.date | htmlDateString }}",
+  "dateModified": "{{ page.inputPath | lastModifiedDate  | htmlDateString }}",
+  "description": "{{ content | striptags | truncate(140) }}"
+}
+</script>
+
+{% endblock %}
