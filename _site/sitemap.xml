@@ -1422,6 +1422,9 @@
   
   
   
+  
+  
+  
     
     
     
@@ -1438,6 +1441,9 @@
       <priority>0.8</priority>
       <lastmod>2021-12-29T09:15:35.147Z</lastmod>
     </url>
+  
+  
+  
   
   
   
@@ -1627,7 +1633,7 @@
       <loc>https://tech-blog.cymetrics.io/en/posts/huli/log4j-and-log4shell/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2022-01-04T04:57:44.040Z</lastmod>
+      <lastmod>2022-01-04T05:02:50.748Z</lastmod>
     </url>
   
   
@@ -1650,6 +1656,50 @@
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
       <lastmod>2022-01-04T02:42:20.003Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/crystal/dns-hacking-3/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2022-01-17T00:59:31.198Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/sql-injection-in-action/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2022-01-19T06:46:06.363Z</lastmod>
     </url>
   
 </urlset>
