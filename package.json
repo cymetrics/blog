@@ -13,9 +13,7 @@
     "test": "echo 'no test for now'",
     "test-watch": "mocha test/test*.js --watch"
   },
-  "pre-push": [
-    
-  ],
+  "pre-push": [],
   "pre-commit": [],
   "repository": {
     "type": "git",

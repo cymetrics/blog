@@ -3,7 +3,7 @@ title: "Cache Strategy In Backend"
 date: 2022-01-25
 tags: [Back-end, cache, policy, strategy, lru, consistency-hash]
 author: genchilu
-layout: layouts/post.njk
+layout: en/layouts/post.njk
 ---
 
 <!-- summary -->

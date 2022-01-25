@@ -3,7 +3,7 @@ title: "來談談後端快取策略"
 date: 2022-01-25
 tags: [Back-end, cache, policy, strategy, lru, consistency-hash]
 author: genchilu
-layout: layouts/post.njk
+layout: zh-tw/layouts/post.njk
 ---
 
 <!-- summary -->
