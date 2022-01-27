@@ -12,13 +12,13 @@ I find that I was just using Golang's syntax to write Java after I reviewed the 
 
 In this article, I want to discuss the different styles in writing concurrency programs between Java and Goalng, Hope that can help some newbie Golang programmers could have some basic concept while writing concurrency.
 
-# What is Paradigms
+## What is Paradigms
 Program paradigms are the guideline principle of how to writing a program, a higher level design pattern. For example, Object-Oriented Programming is one kind of Program paradigms. There are other program paradigms, like Functional programming. While paradigms differ in many ways, such differences are neither superior nor inferior to each other. There are suitable scenarios for each paradigm.  
 
 Like program paradigms, there are also concurrency paradigms, like Thread & Lock is one of those paradigms that you would follow while writing Java concurrency code. On the other hand, Go's concurrency paradigm is base on Communicating Sequential Process(CSP).  
 Let's deep into the difference more between these two paradigms in the following.
 
-# Thread & Lock
+## Thread & Lock
 Thread & Lock works like what underlying hardware does. Threads communicate with each other by sharing memory and ensure only one thread can access share memory by Lock. That's what we call mutual exclusion or mutex.  
 
 ![](/img/posts/genchilu/concurrency_paradigms_golang_and_Java/thread_and_lock.png)
@@ -107,7 +107,7 @@ But it's difficult to use Thread & Lock to get right, you may accidentally fail 
 Threads in line 20 and 25 wait for each other's Lock, and the whole process will block forever.  
 What's more, deadlock is not obvious in most cases. Think above code, what if **oneMethod** and **anotherMethod** are provided by a third party, you don't know the behavior inside these two methods, you don't know how they use Lock until you trace source code, so you may probably use these two methods in the wrong way that could cause deadlock.  
 
-# Communicating Sequential Process(CSP)
+## Communicating Sequential Process(CSP)
 Compare to Thread & Lock paradigm that communicates by sharing memory, CSP paradigm encourages to share by communicating, every thread sends/receives the message to/from each other. Looks like:  
 
 ![](/img/posts/genchilu/concurrency_paradigms_golang_and_Java/csp.png)
@@ -171,11 +171,11 @@ Consume item Addr: 0xc000120000
 Copying items will decrease performance more or less, that is the cost to decouple goroutine.
 
 
-# Conculsion
+## Conculsion
 In this article, we mention that Java's concurrency paradigm is base on Thread & Lock does not mean that you can not write Java's concurrency code like CSP. For example, you can use BlockingQueue. Similarly, Golang provides Mutex or RWMutex to developers who are familiar with Lock, too.  
 What I want to say is you may see lots of Thread & Lock in Java's project more than CSP, you would see that thread-safe terms in Java's ecosystem, but You may see that Golang developers are caring more about select & channel while writing concurrency.  
 In the next article, I will introduce some common concurrency patterns with channel & select in Goalng's blog and compare that to Java. I think that may uncover more differences between these two paradigms.
 
-# Reference
+## Reference
 [GopherCon 2017: Kavya Joshi - Understanding Channels](https://www.youtube.com/watch?v=KBZlN0izeiY)  
 [Seven Concurrency Models in Seven Weeks When Threads Unravel](https://pragprog.com/titles/pb7con/seven-concurrency-models-in-seven-weeks/)

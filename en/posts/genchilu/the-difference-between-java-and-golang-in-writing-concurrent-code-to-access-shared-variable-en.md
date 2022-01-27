@@ -37,7 +37,7 @@ In this article, I will introduce how to protect these share variables in Java a
 
 In the very beginning, three things need to care: **atomicity**, **visibility**, and **ordering**. It’s too hard to understand from words, so let’s see examples directly.
 
-# Atomicity
+## Atomicity
 
 The action to access shared variable must be executed all in once and indivisibly. A line of code may be composed of several cpu instructions, like the codei++ is composed of 3 cpu instructions: `read value`, `add 1 to value` and `save value`. If two threads run i++ simultaneously, all these cpu instructions may be executed interleaved:
 
@@ -79,7 +79,7 @@ public class Atomic {
 
 Line 16 should print 100000, but the value printed is always less than 100000. That’s why we must care about atomicity.
 
-# Visibility
+## Visibility
 
 In Multicore architecture, every CPU has its cache. Thus CPU can load value from cache, which is faster than loading value from main memory. The architecture looks like below:
 
@@ -117,7 +117,7 @@ static class Flag {
 
 Even thread t2 had changed the flag to true in line 12, thread t1 would still live in an infinite loop in line 4~6. That’s because t1 does not see a new value of the flag.
 
-# Ordering
+## Ordering
 
 Sometimes the compile would reordering instructions due to the purpose of optimizations. As a result, the ordering of instructions running in your machine may not as your imagination. See these three codes:
 
@@ -168,9 +168,9 @@ It’s common that implementing singleton pattern with double-checked locking to
 
 So let’s see how Java and Golang solve these issues.
 
-# Java
+## Java
 
-## How Java solve Atomicity
+### How Java solve Atomicity
 
 Java provides **package java.util.concurrent.atomic** to guarantee the atomicity when accessing a shared variable. For example, we could use **AtomicInteger** to fix the first example in the beginning like below:
 
@@ -197,7 +197,7 @@ static class Counter {
 }
 ```
 
-## How Java solve happen-before
+### How Java solve happen-before
 
 Java uses keyword **volatile** to ensure happen-before. Once you declare a variable with volatile, then happen-before is guaranteed in that variable.
 
@@ -258,9 +258,9 @@ public static void main(String[] args) throws Exception {
 }
 ```
 
-# Golang
+## Golang
 
-## How Golang solve Atomicity
+### How Golang solve Atomicity
 
 Golang provides its atomicity tool kit, too.
 
@@ -289,7 +289,7 @@ And below is the profiling of atomicity:
 ![](/img/posts/genchilu/the-difference-between-java-and-golang-in-writing-concurrent-code-to-access-shared-variable/atomic-profiling.png)
 
 
-## How Golang solve happen-before?
+### How Golang solve happen-before?
 
 According to Golang’s official blog, Golang would guarantee happen-before in these conditions:
 

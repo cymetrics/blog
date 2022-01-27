@@ -9,7 +9,7 @@ layout: en/layouts/post.njk
 One of the most important features of Golang is its ability to handle high concurrency. And goroutine is the foundation to support high concurrency. This article will briefly explain how Java’s thread model and Golang’s goroutine work in OS. And I believe you will be impressive in the principle behind goroutine. Let’s go!
 <!-- summary -->
 
-# Java Thread Model
+## Java Thread Model
 
 Java uses native thread in OS. That is every Java thread mapping to one kernel thread. Java can not determine which thread would occupy the core, it is completely dependent on OS’s scheduler.
 
@@ -43,7 +43,7 @@ I run this code in my Linux VM and use ps command to monitor the number of threa
 
 However, with the advent of technology, it becomes more common for people to connect to the internet, we all want our server could support high concurrency to serve our customers. But the thread — ever called lightweight process — becomes too heavy to support high concurrency. Why?
 
-## Problem of Thread
+### Problem of Thread
 
 1.  Memory size  
     Every time Java creates a thread, Java would allocate a fixed memory size as that thread’s stack. The number of threads would be limit by OS’s memory and SWAP size, even if your Java application does not use that much memory.  
@@ -91,7 +91,7 @@ And we increase the number of threads to 9900, the CPU time spent in function **
 
 All of the metrics tell us the cost of the thread makes Java’s thread model suffer in the high concurrency scenario.
 
-# How Goroutine
+## How Goroutine
 
 Compare to Java, Golang does not use OS’s native thread. Instead, Golang implements its scheduler, arrange goroutines to run spread between a fixed number of threads.
 
@@ -129,11 +129,11 @@ It shows up that the number of threads is between 4~6.
 5
 ```
 
-## Goroutine’s Memory
+### Goroutine’s Memory
 
 Golang would allocate 4k memory to goroutine in the very beginning. As Goroutine uses more and more memory, Golang would dynamically scale up the stack size. That’s to say the number of goroutines is also bound by the size of memory, but not as suffer as Java’s thread.
 
-## Blocking System Call
+### Blocking System Call
 
 Since goroutines are run between threads, what if a thread were blocked by a blocking system call, like file IO?
 
@@ -192,7 +192,7 @@ So that if you use lots of goroutine to call blocking system call, the concurren
 
 > If you want to know more about goroutine scheduler，please refer [Go scheduler: Implementing language with lightweight concurrency](https://www.youtube.com/watch?v=-K11rY57K7k&t=316s&ab_channel=Hydra)。
 
-# Conclusion
+## Conclusion
 
 So far we had discussed the challenge Java’s thread model meet in high concurrency scenario and how Golang’ goroutine solve these issue. Does that mean Java is powerless in high concurrency?
 

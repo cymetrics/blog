@@ -34,7 +34,7 @@ profiling 這段程式以後會發現 CPU 時間幾乎都花在 Lock 上面，�
 
 本文就這三個議題，分別探討 Java 和 Golang 提供那些機制來處理，在此之前，我們先介紹一下這三個議題：
 
-## 原子性
+### 原子性
 共用變數的操作需確保不會被中斷。一行程式碼可能由多個 cpu 指令組成，例如說 i++，就是由**從變數取值**，**值加一**，**賦值回變數**三個 cpu 指令。若是兩個 thread 同時執行 i++ 時，cpu 指令執行順序可能是這樣交錯執行：
 
 ```
@@ -77,7 +77,7 @@ public class Atomic {
 
 第 16 行預期應該顯示 100000，但實際執行往往少於 100000。這就是因為共享變數的存取沒有保持一致性導致的。
 
-## 可見性
+### 可見性
 
 在多核環境，每個 CPU 都會有專屬自己的 cache，原本的用意是用來減少直接跟 memory 溝通的次數以提升效能。下圖即為一個簡單的 cpu架構示意圖。
 
@@ -114,7 +114,7 @@ static class Flag {
 
 即使 thread 2 已經將 flag 更新為 false，但 thread 1 仍有一定機率會一直卡在 for loop 無法逃脫，因為 thread 1 沒看到 thread 2 對 flag 的更新。
 
-## 有序性
+### 有序性
 
 編譯器在把程式碼轉成 cpu 指令的時候有時會因為效能因素重排指令，這會導致實際 cpu 執行指令的順序和你想像的不太一樣。例如下面三行 code：
 
@@ -167,9 +167,9 @@ public static void main(String[] args) throws Exception {
 
 接下來看看 Java 和 Golang 怎麼處理這些問題。
 
-# Java
+## Java
 
-## Java 如何處理原子性？
+### Java 如何處理原子性？
 
 Java 在 java.util.concurrent.atomic 裡面提供了原子性操作相關的 tool kit，用來保證變數的操作。例如可以用 **AtomicInteger** 來處理對共享變數的操作，如此即可保證原子性不被破壞，得到正確的結果，修改過如下
 
@@ -196,7 +196,7 @@ static class Counter {
 }
 ```
 
-## Java 如何實作 happen-before？
+### Java 如何實作 happen-before？
 
 Java 提供了 volatile 關鍵字用來處理 happen before，一但變數在宣告時加上 volatile，對該變數的存取即保證可見性和有序性（注意，原子性不在保證內）。以下便是將開頭講的兩個可見性和有序性的例子，使用 volatile 關鍵字宣告共有變數，便可以保證 happen-before。
 
@@ -259,9 +259,9 @@ public static void main(String[] args) throws Exception {
 
 加入 a, b 兩個變數加入 volatile 修飾後，即可確保 a 之前的 code 一定會在 a 之前執行，b 之前的 code 一定會在 b 之前執行，因此 thread t1 的 CPU 指令會保證執行順序一定是 a=2, b=1。而對 main thread 而言，就永遠不會看到 b=1, a=0 這種亂序行為了。
 
-# Golang
+## Golang
 
-## Golang 如何處理原子性？
+### Golang 如何處理原子性？
 
 Golang 也有提供自己的 atomic tool kit，還記得最開頭使用 Lock 的 Golang 範例嗎? 可以改成用 atomic 來處理如下：
 
@@ -291,7 +291,7 @@ BenchmarkAtomic-8 19225 62309 ns/op 8 B/op 1 allocs/op
 
 可以看到 cpu 並沒有花太多時間在處理同步上。
 
-## Golang 如何實作 happen-before？
+### Golang 如何實作 happen-before？
 
 根據 Golang [官方 blog](https://golang.org/ref/mem) 說明了下面幾種情況 Golang 保證 happen before：
 
@@ -428,7 +428,7 @@ func main() {
 }
 ```
 
-# 結論
+## 結論
 
 撰寫 concurrency 的程式最困難的地方是，很多 bug 都是不確定的，無法複製的，這加大了 debug 的難度。
 

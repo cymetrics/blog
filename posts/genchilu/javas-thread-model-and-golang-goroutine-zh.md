@@ -9,7 +9,7 @@ layout: zh-tw/layouts/post.njk
 說到 Golang，總會提到其高併發的特性，而 goroutine 則是撐起 Golang 高併發的基礎。本文試著比較 Java thread 和 Golng goroutine 在 OS 運行的方式，讓大家能理解 goroutine 在設計上的獨到之處。
 <!-- summary -->
 
-# Java Thread
+## Java Thread
 
 Java thread 直接使用 OS 提供的 native thread，即是每一個 Java thread 都是對應 OS 的 thread，完全依賴 OS 去排程調度：
 
@@ -42,7 +42,7 @@ public static void main(String []args) throws InterruptedException {
 
 但隨著時代演進，曾經被稱為 lightweight process 的 thread，也逐漸無法應付高併發的場景。
 
-## 原生 Thread 的問題
+### 原生 Thread 的問題
 
 1.  記憶體  
     Java 每創建一個 thread 都會分配一個固定的 memory 作為 stack 使用。也就是 OS 的記憶體和 SWAP 空間會限制 Java Application 創建 thread 的數量上限，即便 Java Application 實際上沒用到這麼多記憶體。  
@@ -90,7 +90,7 @@ public static void main(String []args) throws InterruptedException {
 
 種種跡象都告訴我們，thread 昂貴的開銷，讓 Java 在高併發的場景是略顯無力的。
 
-# Goroutine 怎麼做？
+## Goroutine 怎麼做？
 
 相較 Java 使用 native thread，依賴 OS 原生的 scheduler 去調度，goroutine 實作自己的 scheduler，自行調度 goroutinue 在固定的 thread 間執行：
 
@@ -128,11 +128,11 @@ func main() {
 5
 ```
 
-## Goroutine 的記憶體
+### Goroutine 的記憶體
 
 一開始創建 goroutine 時會先分配 4k 的記憶體，隨著 goroutine 使用量會動態擴展。相較 Java 的 thread 模型，golang 會比較難被記憶體大小限制著上限。
 
-## Blocking System Call
+### Blocking System Call
 
 目前為止看起來很美好，但如果 thread 被 blocking system call 卡住呢 (ex. 讀大檔案)？例如下圖有三個 goroutine 透過 io system call 讀大檔案，此時會導致全部的 goroutinue 只依賴一個 thread 執行，大幅減少 core 的利用率。
 
@@ -189,7 +189,7 @@ func main() {
 
 > 如果你想更深入了解 goroutine scheduler，可以參考 [Go scheduler: Implementing language with lightweight concurrency](https://www.youtube.com/watch?v=-K11rY57K7k&t=316s&ab_channel=Hydra)。
 
-# 結論
+## 結論
 
 目前為止我們討論了 Java 如何實現併發和面臨的問題，以及 goroutine 如何在解決這些問題。但這不代表 Java 對高併發束手無策。
 
