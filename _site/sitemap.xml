@@ -57,7 +57,7 @@
       <loc>https://tech-blog.cymetrics.io/en/posts/genchilu/the-difference-between-java-and-golang-in-writing-concurrent-code-to-access-shared-variable-en/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-12-29T09:15:35.146Z</lastmod>
+      <lastmod>2022-02-08T07:58:19.337Z</lastmod>
     </url>
   
   
@@ -77,7 +77,7 @@
       <loc>https://tech-blog.cymetrics.io/posts/genchilu/the-difference-between-java-and-golang-in-writing-concurrent-code-to-access-shared-variable-zh/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-12-29T09:15:35.155Z</lastmod>
+      <lastmod>2022-02-08T07:58:19.339Z</lastmod>
     </url>
   
   
@@ -337,7 +337,7 @@
       <loc>https://tech-blog.cymetrics.io/en/posts/genchilu/javas-thread-model-and-golang-goroutine-en/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-12-29T09:15:35.146Z</lastmod>
+      <lastmod>2022-02-08T07:58:19.336Z</lastmod>
     </url>
   
   
@@ -357,7 +357,7 @@
       <loc>https://tech-blog.cymetrics.io/posts/genchilu/javas-thread-model-and-golang-goroutine-zh/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-12-29T09:15:35.155Z</lastmod>
+      <lastmod>2022-02-08T07:58:19.338Z</lastmod>
     </url>
   
   
@@ -705,7 +705,7 @@
       <loc>https://tech-blog.cymetrics.io/en/posts/genchilu/concurrency-paradigms-golang-and-java-en/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-12-29T09:15:35.146Z</lastmod>
+      <lastmod>2022-02-08T07:58:19.336Z</lastmod>
     </url>
   
   
@@ -727,7 +727,7 @@
       <loc>https://tech-blog.cymetrics.io/posts/genchilu/concurrency-paradigms-golang-and-java-zh/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2021-12-29T09:15:35.154Z</lastmod>
+      <lastmod>2022-02-08T07:58:19.338Z</lastmod>
     </url>
   
   
@@ -1246,26 +1246,6 @@
     
     
     <url>
-      <loc>https://tech-blog.cymetrics.io/en/</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-      <lastmod>2021-12-29T09:15:35.145Z</lastmod>
-    </url>
-  
-  
-  
-  
-    
-    
-    
-    
-    
-      
-    
-    
-    
-    
-    <url>
       <loc>https://tech-blog.cymetrics.io/en/page-list/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
@@ -1751,7 +1731,7 @@
       <loc>https://tech-blog.cymetrics.io/en/posts/genchilu/cache-strategy-en/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2022-01-26T08:32:35.416Z</lastmod>
+      <lastmod>2022-02-08T07:58:19.335Z</lastmod>
     </url>
   
   
@@ -1773,7 +1753,71 @@
       <loc>https://tech-blog.cymetrics.io/posts/genchilu/cache-strategy-zh/</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
-      <lastmod>2022-01-26T08:32:35.419Z</lastmod>
+      <lastmod>2022-02-08T07:58:19.337Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/en/posts/huli/how-i-hacked-glints-and-your-resume-en/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2022-02-08T08:25:04.731Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+      
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/posts/huli/how-i-hacked-glints-and-your-resume/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2022-02-08T08:17:40.803Z</lastmod>
+    </url>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <url>
+      <loc>https://tech-blog.cymetrics.io/en/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+      <lastmod>2022-02-08T08:27:14.239Z</lastmod>
     </url>
   
 </urlset>
