@@ -5,3 +5,4 @@ js/min.js.map
 .vscode/
 .netlify/
 export
+_site

@@ -10,7 +10,7 @@ templateClass: tmpl-post
       <div class="post-tags">
       {% for tag in tags %}
         {% if tag !== "posts" %}
-          {% set tagUrl %}/en/tags/{{ tag | slug }}/{% endset %}
+          {% set tagUrl %}/en/tags/{{ tag | slugify }}/{% endset %}
           <a href="{{ tagUrl | url }}" class="post-tag">#{{ tag }}</a>
         {% endif %}
         
@@ -44,7 +44,7 @@ templateClass: tmpl-post
   <div class="post-tags">
     {% for tag in tags %}
       {% if tag !== "posts" %}
-        {% set tagUrl %}/en/tags/{{ tag | slug }}/{% endset %}
+        {% set tagUrl %}/en/tags/{{ tag | slugify }}/{% endset %}
         <a href="{{ tagUrl | url }}" class="post-tag">#{{ tag }}</a>
       {% endif %}
       
