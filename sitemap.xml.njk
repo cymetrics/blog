@@ -28,6 +28,9 @@ siteWideUpdate: 2021-07-12
       <changefreq>{{ "daily" if isHomePage else "weekly" }}</changefreq>
       <priority>{{ "1" if isHomePage else "0.8" }}</priority>
       <lastmod>{{ lastmod }}</lastmod>
+      <siteWide>{{siteWide}}</siteWide>
+      <pageDate>{{pageDate}}</pageDate>
+      <lastModifiedDate>{{lastModifiedDate}}</lastModifiedDate>
     </url>
   {% endif %}
 {%- endfor %}
