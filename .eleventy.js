@@ -106,9 +106,22 @@ module.exports = function (eleventyConfig) {
   });
 
   async function lastModifiedDate(filename) {
-    const stats = await stat(filename);
-    return stats.mtime; // Date
+    try {
+      const { stdout } = await execFile("git", [
+        "log",
+        "-1",
+        "--format=%cd",
+        filename,
+      ]);
+      return new Date(stdout);
+    } catch (e) {
+      console.error(e.message);
+      // Fallback to stat if git isn't working.
+      const stats = await stat(filename);
+      return stats.mtime; // Date
+    }
   }
+  
   // Cache the lastModifiedDate call because shelling out to git is expensive.
   // This means the lastModifiedDate will never change per single eleventy invocation.
   const lastModifiedDateCache = new Map();
