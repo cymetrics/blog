@@ -2,7 +2,7 @@
   {% set allowTags = ['Front-end', 'Back-end', 'Security'] %}
   {% for tag in collections.tagList %}
     {% if tag in allowTags %}
-      {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+      {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
       <a class="tag-list__item {% if tag === currentTag %}tag-list__item--active{% endif %}" href="{{ tagUrl | url }}">{{ tag }}</a>
     {% endif %}
   {% endfor %}

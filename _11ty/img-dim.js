@@ -62,10 +62,13 @@ const processImage = async (img, outputPath) => {
     img.setAttribute("width", dimensions.width);
     img.setAttribute("height", dimensions.height);
   }
-  if (dimensions.type == "svg") {
+  const inputType = dimensions.type;
+
+  if (inputType == "svg") {
     return;
   }
-  if (dimensions.type == "gif") {
+
+  if (inputType == "gif") {
     // note: disable gif2mp4 by huli
     return
     const videoSrc = await gif2mp4(src);
@@ -86,6 +89,12 @@ const processImage = async (img, outputPath) => {
     img.parentElement.replaceChild(video, img);
     return;
   }
+
+  // When the input is a PNG, we keep the fallback image a PNG because JPEG does
+  // not support transparency. However, we still optimize to AVIF/WEBP in a lossy
+  // fashion. It may be worth adding a feature to opt-out of lossy optimization.
+  const fallbackType = inputType == "png" ? "png" : "jpeg";
+
   if (img.tagName == "IMG") {
     img.setAttribute("decoding", "async");
     img.setAttribute("loading", "lazy");
@@ -103,8 +112,8 @@ const processImage = async (img, outputPath) => {
     // avif.setAttribute("type", "image/avif");
     await setSrcset(webp, src, "webp");
     webp.setAttribute("type", "image/webp");
-    const fallback = await setSrcset(jpeg, src, "jpeg");
-    jpeg.setAttribute("type", "image/jpeg");
+    const fallback = await setSrcset(jpeg, src, fallbackType);
+    jpeg.setAttribute("type", `image/${fallbackType}`);
     // picture.appendChild(avif);
     picture.appendChild(webp);
     picture.appendChild(jpeg);
@@ -112,7 +121,7 @@ const processImage = async (img, outputPath) => {
     picture.appendChild(img);
     img.setAttribute("src", fallback);
   } else if (!img.getAttribute("srcset")) {
-    const fallback = await setSrcset(img, src, "jpeg");
+    const fallback = await setSrcset(img, src, fallbackType);
     img.setAttribute("src", fallback);
   }
 };
