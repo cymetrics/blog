@@ -3,34 +3,30 @@ permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 siteWideUpdate: 2021-07-12
 ---
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for page in collections.all %}
   {% set absoluteUrl %}{{ page.url | url | absoluteUrl(metadata.url) }}{% endset %}
   {% set regExp = r/tags/g %}
-  {% if not regExp.test(absoluteUrl) %}
-    {% set pageDate = page.date | sitemapDateTimeString %}
-    {% set lastModifiedDate = page.inputPath | lastModifiedDate  | sitemapDateTimeString %}
-    {% set siteWide = siteWideUpdate| sitemapDateTimeString %}
-    {% set lastmod = siteWide %}
-    {% if pageDate > lastmod %}
-      {% set lastmod = pageDate %}
-    {% endif %}
-    {% if lastModifiedDate > lastmod %}
-      {% set lastmod = lastModifiedDate %}
-    {% endif %}
-    {% set isHomePage = false %}
-    {% if absoluteUrl == metadata.url + '/' %}
-      {% set isHomePage = true %}
-    {% endif %}
+  {% set pageDate = page.date | sitemapDateTimeString %}
+  {% set isHomePage = false %}
+  {% if absoluteUrl == metadata.url + '/' %}
+    {% set isHomePage = true %}
+  {% endif %}
+
+  {% if not regExp.test(absoluteUrl) %}  
     <url>
       <loc>{{ absoluteUrl }}</loc>
-      <changefreq>{{ "daily" if isHomePage else "weekly" }}</changefreq>
+      <changefreq>{{ "daily" if isHomePage else "daily" }}</changefreq>
       <priority>{{ "1" if isHomePage else "0.8" }}</priority>
-      <lastmod>{{ lastmod }}</lastmod>
-      <siteWide>{{siteWide}}</siteWide>
-      <pageDate>{{pageDate}}</pageDate>
-      <lastModifiedDate>{{lastModifiedDate}}</lastModifiedDate>
+      <lastmod>{{ pageDate }}</lastmod>
+    </url>
+  {% else %}
+    <url>
+      <loc>{{ absoluteUrl }}</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.2</priority>
+      <lastmod>{{ pageDate }}</lastmod>
     </url>
   {% endif %}
 {%- endfor %}
