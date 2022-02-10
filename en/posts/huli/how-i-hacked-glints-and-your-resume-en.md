@@ -1,5 +1,5 @@
 ---
-title: How I hacked Glints and your resume
+title: Story of critical security flaws I found in Glints
 date: 2022-02-08
 tags: [Security]
 author: huli
@@ -11,7 +11,9 @@ description: In July 2021, we found 4 vulnerabilities in Glints. If a malicious 
 <!-- In July 2021, we found 4 vulnerabilities in Glints. If a malicious actor exploits the vulnerabilities, they could have stolen your resume. -->
 <!-- summary -->
 
-Disclaimer: I steal nobody's resume. However, if a malicious actor exploits the vulnerabilities I found, they could have stolen your resume. 
+<div data-nosnippet>
+2022-02-10: Update title from "How I hacked Glints and your resume" to "Story of critical security flaws I found in Glints" 
+</div>
 
 Glints is a job search platform based in Singapore, and they just got a [20M investment](https://www.inside.com.tw/article/23099-glints-c-round) last year, they have a team in Taiwan as well.
 
