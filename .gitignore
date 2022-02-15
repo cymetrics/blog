@@ -6,3 +6,4 @@ js/min.js.map
 .netlify/
 export
 _site
+og-image-generator/output.png

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <style>
+
+    body {
+      background: white;
+      color: #000;
+      font-family: HelveticaNeue, 'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
+    }
+
+    /* window BEGIN */
+
+    a {
+      text-decoration: none;
+    }
+
+    span {
+      line-height: 9px;
+      vertical-align: 50%;
+    }
+
+    .window {
+      background: #fff;
+      box-sizing: border-box;
+      width: 1200px;
+      height: 630px;
+      padding: 96px;
+      position: relative;
+    }
+
+    .author-logo {
+      position: absolute;
+      top: 96px;
+      right: 96px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+    }
+
+    .title {
+      font-size: 60px;
+      font-weight: bold;
+      margin-right: 50px;
+      margin-top: 48px;
+    }
+
+    .time {
+      display: flex;
+      align-items: center;
+      margin-top: 48px;
+      font-size: 42px;
+      position: absolute;
+      bottom: 96px;
+    }
+
+    .time img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .time span {
+      font-weight: bold;
+      margin-left: 25px;
+      margin-right: 12px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="window">
+    <img class="author-logo" src="author.png">
+    <div class="cy-logo">
+      <img src="logo.png">
+    </div>
+    <div class="title">
+      {{title}}
+    </div>
+    <div class="time">
+      <img src="author.png"><span>{{authorName}}</span> posted on {{publishedDate}}
+    </div>
+  </div>
+</body>
+</html>

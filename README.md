@@ -13,6 +13,21 @@ npm run watch
 
 只要把 code push 之後就會自動透過 GitHub actions 部署到 GitHub Pages。
 
+## 產生臉書預覽圖
+
+請執行以下指令，第一個參數帶你的作者 id，第二個帶文章檔名
+
+```
+npm run og-image -- "huli" "how-i-hacked-glints-and-your-resume"
+```
+
+英文請在最後面加上 "en"
+```
+npm run og-image -- "huli" "how-i-hacked-glints-and-your-resume" "en"
+```
+
+跑完之後，可以在 `og-image-generator/cover.png` 找到你的圖片
+
 ## 該如何新增作者？
 
 每一個作者都會有個 unique 的 key 來識別，這邊假設 key 是 peter。
