@@ -11,7 +11,8 @@
     "js-build-watch": "rollup -c rollup.config.js -w",
     "debug": "DEBUG=* eleventy && npm run test",
     "test": "echo 'no test for now'",
-    "test-watch": "mocha test/test*.js --watch"
+    "test-watch": "mocha test/test*.js --watch",
+    "og-image": "node og-image-generator/app.js"
   },
   "pre-push": [],
   "pre-commit": [],
@@ -29,7 +30,9 @@
     "@11ty/eleventy-plugin-rss": "^1.0.7",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
     "eleventy-plugin-local-images": "^0.4.0",
+    "express": "^4.17.2",
     "file-type": "^12.0.1",
+    "front-matter": "^4.0.2",
     "fs-extra": "^8.1.0",
     "jsdom": "^15.1.1",
     "luxon": "^1.21.3",
@@ -40,6 +43,7 @@
     "node-fetch": "^2.6.1",
     "pre-commit": "^1.2.2",
     "pre-push": "^0.1.1",
+    "puppeteer": "^13.3.2",
     "rollup-plugin-terser": "^6.1.0",
     "shorthash": "0.0.2"
   },
