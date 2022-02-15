@@ -84,10 +84,10 @@ async function main(){
     deviceScaleFactor: 2,
   });
 
-  await takeScreenshot(page, path.join(__dirname, "output"))
+  await takeScreenshot(page, path.join(__dirname, "cover"))
 
   await browser.close();
-  console.log("Done, you can find image at: og-image-generator/output.png")
+  console.log("Done, you can find image at: og-image-generator/cover.png")
   process.exit(0)
 }
 

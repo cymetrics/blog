@@ -11,3 +11,4 @@ functions
 test
 src
 .oryx_prod_node_modules/
+og-image-generator/

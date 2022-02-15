@@ -26,7 +26,7 @@ npm run og-image -- "huli" "how-i-hacked-glints-and-your-resume"
 npm run og-image -- "huli" "how-i-hacked-glints-and-your-resume" "en"
 ```
 
-跑完之後，可以在 `og-image-generator/output.png` 找到你的圖片
+跑完之後，可以在 `og-image-generator/cover.png` 找到你的圖片
 
 ## 該如何新增作者？
 
