@@ -6888,11 +6888,11 @@ More than a simple DNS lookup this tool will discover those hard to find sub-dom
 		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/data-leakage/dl_1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;!-- summary --&gt;
-&lt;p&gt;駭客從攻擊中收集與整理出有用的資料是很花時間的，如果沒有把這些資料換成錢駭客們可是會餓死的，所以這篇文章以謀利的角度，舉一些常見的例子來說明駭客如何利用外流的資料與對應的影響，但想不在網路上留下任何資料非常困難，所以文章最後也會提供一些防範方式與建議供讀者們參考。&lt;/p&gt;
+&lt;p&gt;駭客從攻擊中收集與整理出有用的資料是很花時間的，如果沒有把這些資料換成錢駭客也是會餓死，所以這篇文章以謀利的角度，舉一些常見的例子來說明駭客如何利用外流的資料與對應的影響，但想不在網路上留下任何資料非常困難，所以文章最後也會提供一些防範方式與建議供大家參考。&lt;/p&gt;
 &lt;!-- summary --&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;%E7%B6%B2%E8%B7%AF%E4%B8%8A%E5%B8%B8%E5%A4%96%E6%B5%81%E7%9A%84%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B6%B2%E8%B7%AF%E4%B8%8A%E5%B8%B8%E5%A4%96%E6%B5%81%E7%9A%84%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 網路上常外流的資料&lt;/h2&gt;
-&lt;p&gt;先假設世界充滿惡意，拿到個人資料都是為了惡意用途，但很多狀況下不得不留下資料，最常見就是申請帳號才能使用的服務，申請帳號有一堆必填的欄位，個人資料就這樣出去了。&lt;/p&gt;
+&lt;p&gt;先假設世界充滿惡意，拿到個人資料都是為了惡意用途，但很多狀況下不得不留下資料，最常見就是申請帳號才能使用的服務，申請帳號有一堆必填的欄位，個人資料就這樣拱手讓人。&lt;/p&gt;
 &lt;p&gt;除了個資之外，還有一些系統資訊常常在不自覺的狀況下外流，最常見的就是 Google 提供的廣告，當你發現網路上跳出的廣告其內容與你越來越相關，甚至在一些外文的網站看到中文廣告時，代表你的資料早已外流，大家都認識你了 ! 而且隨著外流的資訊量越多廣告也會越加精準。&lt;/p&gt;
 &lt;p&gt;綜上所述外流的資料可分為 2 大類，分別是個人資料與系統資訊，下面列出一些常外流需要注意的資料。&lt;/p&gt;
 &lt;h3 id=&quot;1.-%E5%80%8B%E4%BA%BA%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E5%80%8B%E4%BA%BA%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 1. 個人資料&lt;/h3&gt;
