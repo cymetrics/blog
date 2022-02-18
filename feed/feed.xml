@@ -6915,7 +6915,7 @@ More than a simple DNS lookup this tool will discover those hard to find sub-dom
 &lt;h2 id=&quot;%E5%A4%96%E6%B5%81%E5%BE%8C%E6%9C%83%E7%99%BC%E7%94%9F%E7%94%9A%E9%BA%BC&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%A4%96%E6%B5%81%E5%BE%8C%E6%9C%83%E7%99%BC%E7%94%9F%E7%94%9A%E9%BA%BC&quot;&gt;#&lt;/a&gt; 外流後會發生甚麼&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/data-leakage/dl_2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;駭客收集到越多的資訊就能發動強度越高的攻擊，收集到個人資料中的聯絡資訊就能藉由發送廣告或詐騙來獲利，如果要入侵對方的電腦只有聯絡資訊是不夠的，需要更多的系統資訊。&lt;/p&gt;
-&lt;p&gt;資料外流的例子有非常多，根據 IC3(FBI 旗下的組織，美國最大的資安通報系統)提供的報告，在 2020 年造成金額損失最多的網路犯罪是 BEC/EAC(透過電子郵件對匯款或付款資訊進行詐騙)，細節可參考之前整理的另一篇文章(&lt;a href=&quot;https://hackmd.io/UWP4ExofQ7mG3DqrZOSrng&quot;&gt;資安弱點會造成多大損失&lt;/a&gt;)，因此這邊除了說明影響之外也以電子郵件為例來說明資料外流後可能會發生的狀況，並且找一個真實案例的新聞來幫助大家了解在現實生活中這些事情如何發生。&lt;/p&gt;
+&lt;p&gt;資料外流的例子有非常多，根據 IC3(FBI 旗下的組織，美國最大的資安通報系統)提供的報告，在 2020 年造成金額損失最多的網路犯罪是 BEC/EAC(透過電子郵件對匯款或付款資訊進行詐騙)，細節可參考之前整理的另一篇文章(&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/nick/cybersecurity-loss/&quot;&gt;資安弱點會造成多大損失&lt;/a&gt;)，因此這邊除了說明影響之外也以電子郵件為例來說明資料外流後可能會發生的狀況，並且找一個真實案例的新聞來幫助大家了解在現實生活中這些事情如何發生。&lt;/p&gt;
 &lt;h3 id=&quot;%E9%A1%9E%E5%9E%8B-1.-%E5%BB%A3%E5%91%8A%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%A1%9E%E5%9E%8B-1.-%E5%BB%A3%E5%91%8A%3A&quot;&gt;#&lt;/a&gt; 類型 1. 廣告:&lt;/h3&gt;
 &lt;p&gt;不論你今天在任何網站上留下電子郵件訊息，最容易受到影響的就是開始大量收到廣告郵件，因為駭客已經將聯絡資訊賣給電商了。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;實際案例:&lt;/strong&gt; 傳駭客以僅1千美金網上兜售5億筆微博用戶個資&lt;br&gt;
