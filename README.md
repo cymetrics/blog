@@ -53,6 +53,8 @@ date: 2018-09-30 // 發文日期
 tags: [Front-end, JavaScript] // 標籤
 author: huli // 作者 key
 layout: zh-tw/layouts/post.njk // 這固定不變
+image: /img/posts/huli/test/cover.png // 選填，會當作預覽圖
+description: 這是一篇關於 Paged.js 的文章 // 選填
 ```
 
 ## 摘要功能
