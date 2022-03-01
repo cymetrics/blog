@@ -7499,7 +7499,7 @@ More than a simple DNS lookup this tool will discover those hard to find sub-dom
 &lt;p&gt;&lt;strong&gt;藍隊&lt;/strong&gt; 研究偵測手法，從中偵測阻擋，從偵測點串起整個攻擊鏈&lt;/p&gt;
 &lt;p&gt;今天來玩玩 malware 針對端點防護軟體會用的一些手法，做個基於 direct system call 的 uuid shellcode loader&lt;/p&gt;
 &lt;!-- summary --&gt;
-&lt;p&gt;UUID Shellcode 早在 2017 年就有被研究員提出，在 2021 年 NCCGroup 發表了 &lt;a href=&quot;https://research.nccgroup.com/2021/01/23/rift-analysing-a-lazarus-shellcode-execution-method/&quot;&gt;Lazarus APT Group&lt;/a&gt; 使用 UUID Shellcode 的相關技術，之後更衍伸出 ipv4 與 mac address 格式的 shellcode&lt;/p&gt;
+&lt;p&gt;UUID Shellcode 早在 2017 年就有被研究員提出，在 2021 年 NCCGroup 發表了 &lt;a href=&quot;https://research.nccgroup.com/2021/01/23/rift-analysing-a-lazarus-shellcode-execution-method/&quot;&gt;Lazarus APT Group&lt;/a&gt; 使用 UUID Shellcode 的相關技術，之後更衍伸出 ipv6 與 mac address 格式的 shellcode&lt;/p&gt;
 &lt;p&gt;uuid 格式長得像下面這樣，中間為 &lt;code&gt;-&lt;/code&gt; 分隔&lt;/p&gt;
 &lt;pre class=&quot;language-diff&quot;&gt;&lt;code class=&quot;language-diff&quot;&gt;c534401d-b8f0-4880-b4ee-f68bdcaa60c9&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;每個 char 都是 0-f 組成，剛好可以對應到 shellcode 的 hex&lt;/p&gt;
