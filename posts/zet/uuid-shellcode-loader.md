@@ -12,7 +12,7 @@ image: /img/posts/zet/uuid-shellcode/uuid-in-memory.png
 
 **紅隊** 研究新穎攻擊手法，開發新工具，繞過偵測，長期維持權限
 
-**藍隊** 研究偵測手法，從中偵測阻檔，從偵測點串起整個攻擊鏈
+**藍隊** 研究偵測手法，從中偵測阻擋，從偵測點串起整個攻擊鏈
 
 今天來玩玩 malware 針對端點防護軟體會用的一些手法，做個基於 direct system call 的 uuid shellcode loader
 <!-- summary -->
