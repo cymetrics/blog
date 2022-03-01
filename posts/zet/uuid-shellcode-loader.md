@@ -1,7 +1,7 @@
 ---
 title: "跟端點防護軟體玩玩貓捉老鼠的遊戲 - Shellcode loader"
 date: 2022-03-01
-tags: [shellcode,malware]
+tags: [shellcode, malware, yara]
 author: zet
 layout: zh-tw/layouts/post.njk
 image: /img/posts/zet/uuid-shellcode/uuid-in-memory.png
@@ -17,7 +17,7 @@ image: /img/posts/zet/uuid-shellcode/uuid-in-memory.png
 今天來玩玩 malware 針對端點防護軟體會用的一些手法，做個基於 direct system call 的 uuid shellcode loader
 <!-- summary -->
 
-UUID Shellcode 早在 2017 年就有被研究員提出，在 2021 年 NCCGroup 發表了 [Lazarus APT Group](https://research.nccgroup.com/2021/01/23/rift-analysing-a-lazarus-shellcode-execution-method/) 使用 UUID Shellcode 的相關技術，之後更衍伸出 ipv4 與 mac address 格式的 shellcode
+UUID Shellcode 早在 2017 年就有被研究員提出，在 2021 年 NCCGroup 發表了 [Lazarus APT Group](https://research.nccgroup.com/2021/01/23/rift-analysing-a-lazarus-shellcode-execution-method/) 使用 UUID Shellcode 的相關技術，之後更衍伸出 ipv6 與 mac address 格式的 shellcode
 
 uuid 格式長得像下面這樣，中間為 `-` 分隔
 
