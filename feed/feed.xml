@@ -7792,18 +7792,7 @@ More than a simple DNS lookup this tool will discover those hard to find sub-dom
 		  &lt;!-- summary --&gt;
 &lt;p&gt;去年底在 Java 生態系中發現了極為嚴重的 &lt;a href=&quot;https://tech-blog.cymetrics.io/posts/huli/what-is-log4j-and-log4shell/&quot;&gt;Log4Shell&lt;/a&gt; 漏洞，透過非常簡單的攻擊方式就能夠拿到 shell，成功打到 RCE（Remote Code Execution，遠端程式碼執行），而最近又爆出了 Java 知名 Framework Spring 的嚴重漏洞，由於特性與 Log4Shell 相似，被命名為 Spring4shell。&lt;/p&gt;
 &lt;!-- summary --&gt;
-&lt;p&gt;在介紹 Spring4shell 之前，先來簡單看看另一個容易與它搞混的漏洞：CVE-2022-22963。&lt;/p&gt;
-&lt;h2 id=&quot;cve-2022-22963%EF%BC%9Aspring-cloud-function-spel-rce&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#cve-2022-22963%EF%BC%9Aspring-cloud-function-spel-rce&quot;&gt;#&lt;/a&gt; CVE-2022-22963：Spring cloud function SpEL RCE&lt;/h2&gt;
-&lt;p&gt;在 2022 年 3 月 27 號，Spring cloud function 被爆出了一個 0 day 的漏洞，於 3 月 29 號修復，編號為 CVE-2022-22963。&lt;/p&gt;
-&lt;p&gt;此漏洞影響版本為 Spring cloud function 3.1.6 與 3.2.2。&lt;/p&gt;
-&lt;p&gt;攻擊者可以在 HTTP Header 中可以透過 SpEL（Spring Expression Language）注入程式碼，導致遠端程式碼執行（RCE，Remote Code Execution），像是這樣：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;spring.cloud.function.routing-expression: T(java.lang.Runtime).getRuntime().exec(&amp;quot;whoami&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;此漏洞在 GitHub spring-cloud-function 的 &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-function/commit/dc5128b80c6c04232a081458f637c81a64fa9b52&quot;&gt;提交&lt;/a&gt; 中已得到修復。&lt;/p&gt;
-&lt;p&gt;網路上已有公開的攻擊腳本：&lt;a href=&quot;https://github.com/RanDengShiFu/CVE-2022-22963&quot;&gt;RanDengShiFu/CVE-2022-22963&lt;/a&gt; 與 &lt;a href=&quot;https://github.com/dinosn/CVE-2022-22963&quot;&gt;dinosn/CVE-2022-22963&lt;/a&gt;，建議廠商排查是否有使用到 Spring cloud function 後儘速修復，升級至最新版。&lt;/p&gt;
-&lt;p&gt;更多技術細節可參考：&lt;a href=&quot;https://www.cyberkendra.com/2022/03/rce-0-day-exploit-found-in-spring-cloud.html&quot;&gt;RCE 0-day Vulnerability found in Spring Cloud (SPEL)&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;spring4shell%EF%BC%88spring-core-rce%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#spring4shell%EF%BC%88spring-core-rce%EF%BC%89&quot;&gt;#&lt;/a&gt; Spring4shell（Spring Core RCE）&lt;/h2&gt;
-&lt;p&gt;由於此漏洞出現之時間與 CVE-2022-22963 極為相近，又都是 Spring 相關的產品，因此多數人容易將 Spring cloud function SPEL RCE（CVE-2022-22963）與 SpringShell (Spring Core RCE) 搞混，但兩者指的是不同的漏洞。&lt;/p&gt;
 &lt;p&gt;此漏洞在撰文當下（2022 年 3 月 31 日）暫無 CVE 編號，也沒有修補的版本可供更新，是一個嚴重的 0 day。&lt;/p&gt;
 &lt;p&gt;Spring4shell 最早是由中國的資安公司 KnownSec 的員工於推特上揭露部分資訊，但目前帳號已不存在：@80vul. (a.k.a. SuperHei) The Leader of KnownSec 404 Team&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/cymetrics/spring4shell/p1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -7843,6 +7832,17 @@ class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=
 &lt;li&gt;&lt;a href=&quot;https://security.snyk.io/vuln/SNYK-JAVA-ORGSPRINGFRAMEWORK-2436751&quot;&gt;Snyk Vulnerability Database&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.lunasec.io/docs/blog/spring-rce-vulnerabilities/&quot;&gt;Spring4Shell: Security Analysis of the latest Java RCE &#39;0-day&#39; vulnerabilities in Spring&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;h2 id=&quot;cve-2022-22963%EF%BC%9Aspring-cloud-function-spel-rce%EF%BC%88%E5%AE%B9%E6%98%93%E8%88%87-spring4shell-%E6%90%9E%E6%B7%B7%E7%9A%84%E5%8F%A6%E4%B8%80%E5%80%8B%E6%BC%8F%E6%B4%9E%EF%BC%89&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#cve-2022-22963%EF%BC%9Aspring-cloud-function-spel-rce%EF%BC%88%E5%AE%B9%E6%98%93%E8%88%87-spring4shell-%E6%90%9E%E6%B7%B7%E7%9A%84%E5%8F%A6%E4%B8%80%E5%80%8B%E6%BC%8F%E6%B4%9E%EF%BC%89&quot;&gt;#&lt;/a&gt; CVE-2022-22963：Spring cloud function SpEL RCE（容易與 Spring4Shell 搞混的另一個漏洞）&lt;/h2&gt;
+&lt;p&gt;除了上面提的 Spring4Shell 以外，同時間有另一個不同的漏洞 CVE-2022-22963 也被爆出來。&lt;/p&gt;
+&lt;p&gt;由於此漏洞出現之時間與 Spring4Shell 極為相近，又都是 Spring 相關的產品，因此多數人容易將 Spring cloud function SPEL RCE（CVE-2022-22963）與 SpringShell (Spring Core RCE) 搞混，但兩者指的是不同的漏洞，而且發生在不同產品上面。&lt;/p&gt;
+&lt;p&gt;在 2022 年 3 月 27 號，Spring cloud function 被爆出了一個 0 day 的漏洞，於 3 月 29 號修復，編號為 CVE-2022-22963。&lt;/p&gt;
+&lt;p&gt;此漏洞影響版本為 Spring cloud function 3.1.6 與 3.2.2。&lt;/p&gt;
+&lt;p&gt;攻擊者可以在 HTTP Header 中可以透過 SpEL（Spring Expression Language）注入程式碼，導致遠端程式碼執行（RCE，Remote Code Execution），像是這樣：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;spring.cloud.function.routing-expression: T(java.lang.Runtime).getRuntime().exec(&amp;quot;whoami&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此漏洞在 GitHub spring-cloud-function 的 &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-function/commit/dc5128b80c6c04232a081458f637c81a64fa9b52&quot;&gt;提交&lt;/a&gt; 中已得到修復。&lt;/p&gt;
+&lt;p&gt;網路上已有公開的攻擊腳本：&lt;a href=&quot;https://github.com/RanDengShiFu/CVE-2022-22963&quot;&gt;RanDengShiFu/CVE-2022-22963&lt;/a&gt; 與 &lt;a href=&quot;https://github.com/dinosn/CVE-2022-22963&quot;&gt;dinosn/CVE-2022-22963&lt;/a&gt;，建議廠商排查是否有使用到 Spring cloud function 後儘速修復，升級至最新版。&lt;/p&gt;
+&lt;p&gt;更多技術細節可參考：&lt;a href=&quot;https://www.cyberkendra.com/2022/03/rce-0-day-exploit-found-in-spring-cloud.html&quot;&gt;RCE 0-day Vulnerability found in Spring Cloud (SPEL)&lt;/a&gt;&lt;/p&gt;
 
 		</content>
 	</entry>
