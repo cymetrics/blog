@@ -7,8 +7,6 @@ layout: zh-tw/layouts/post.njk
 image: /img/posts/nick/backup/backup_1.jpg
 ---
 
-# 防駭客的基本認知 : 備份與還原
-
 ![](/img/posts/nick/backup/backup_1.jpg)
 
 ## 前言
