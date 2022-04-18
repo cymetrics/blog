@@ -1,18 +1,27 @@
+---
+title: "防駭客的基本認知 : 備份與還原"
+date: 2022-04-18
+tags: [Security,Data leakage,Backup]
+author: nick
+layout: zh-tw/layouts/post.njk
+image: /img/posts/nick/backup/backup_1.jpg
+---
+
 # 防駭客的基本認知 : 備份與還原
 
-![](https://i.imgur.com/qf9aSpw.jpg)
+![](/img/posts/nick/backup/backup_1.jpg)
 
 ## 前言
-
+<!-- summary -->
 假設今天你家裡遭小偷了，身為超能力者的你把時間倒回到昨天，但回到過去卻沒有做出改變，只會一樣的事情再發生一次，你應該要藉此機會換門鎖或把錢藏到別的地方。
 
 所以備份與還原的重點在於賺取時間差與讓系統恢復運作，讓你有機會在下一次攻擊到來前做出修正，讓駭客進不來或把資料轉移到安全的地方。本篇文章會從防範駭客的角度來說明如何有效備份。
-
+<!-- summary -->
 ___
 
 ## 備份的方式
 
-![](https://i.imgur.com/cAWnVeo.jpg)
+![](/img/posts/nick/backup/backup_2.jpg)
 
 備份的方式有非常多種，很多備份方式能幫助你日常維運，但對阻擋駭客沒有太大的幫助，這邊推薦兩種對駭客攻擊比較有效的備份方式，但要注意不論選用哪種方式，備份前都要做好功課，如果太輕率可能會比不備份還慘，下面舉一個很典型的真實案例，類似卻藏在檯面下的問題還可能更多，重要的資料在備份前千萬要注意備份方式。
 
@@ -46,7 +55,7 @@ ___
 
 ## 需要備份的資料
 
-![](https://i.imgur.com/Kc7p7hX.jpg)
+![](/img/posts/nick/backup/backup_3.jpg)
 
 我們從防駭客的角度去看資料備份的話，就要先了解駭客會想要那些資料，可以大致分成 4 類。
 
@@ -70,7 +79,7 @@ ___
 
 ## 總結
 
-![](https://i.imgur.com/adPtM37.jpg)
+![](/img/posts/nick/backup/backup_4.jpg)
 
 總體來說做好備份與還原不能直接檔住駭客的攻擊，但是能夠將攻擊所帶來的影響降到最低，但也因為不能直接擋住攻擊，所以這邊補充一下除了備份本身做好之外，想要進一步降低風險的時候要注意那些地方。
 
