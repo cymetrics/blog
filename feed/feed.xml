@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2022-03-31T00:00:00-00:00</updated>
+	<updated>2022-04-18T09:17:20.292-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -7843,6 +7843,69 @@ class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=
 &lt;p&gt;此漏洞在 GitHub spring-cloud-function 的 &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-function/commit/dc5128b80c6c04232a081458f637c81a64fa9b52&quot;&gt;提交&lt;/a&gt; 中已得到修復。&lt;/p&gt;
 &lt;p&gt;網路上已有公開的攻擊腳本：&lt;a href=&quot;https://github.com/RanDengShiFu/CVE-2022-22963&quot;&gt;RanDengShiFu/CVE-2022-22963&lt;/a&gt; 與 &lt;a href=&quot;https://github.com/dinosn/CVE-2022-22963&quot;&gt;dinosn/CVE-2022-22963&lt;/a&gt;，建議廠商排查是否有使用到 Spring cloud function 後儘速修復，升級至最新版。&lt;/p&gt;
 &lt;p&gt;更多技術細節可參考：&lt;a href=&quot;https://www.cyberkendra.com/2022/03/rce-0-day-exploit-found-in-spring-cloud.html&quot;&gt;RCE 0-day Vulnerability found in Spring Cloud (SPEL)&lt;/a&gt;&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title></title>
+		<link href="https://tech-blog.cymetrics.io/posts/nick/backup/"/>
+		<updated>2022-04-18T09:17:20.292-00:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/nick/backup/</id>
+		<content type="html">
+		  &lt;h1 id=&quot;%E9%98%B2%E9%A7%AD%E5%AE%A2%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AA%8D%E7%9F%A5-%3A-%E5%82%99%E4%BB%BD%E8%88%87%E9%82%84%E5%8E%9F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%98%B2%E9%A7%AD%E5%AE%A2%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AA%8D%E7%9F%A5-%3A-%E5%82%99%E4%BB%BD%E8%88%87%E9%82%84%E5%8E%9F&quot;&gt;#&lt;/a&gt; 防駭客的基本認知 : 備份與還原&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/qf9aSpw.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;假設今天你家裡遭小偷了，身為超能力者的你把時間倒回到昨天，但回到過去卻沒有做出改變，只會一樣的事情再發生一次，你應該要藉此機會換門鎖或把錢藏到別的地方。&lt;/p&gt;
+&lt;p&gt;所以備份與還原的重點在於賺取時間差與讓系統恢復運作，讓你有機會在下一次攻擊到來前做出修正，讓駭客進不來或把資料轉移到安全的地方。本篇文章會從防範駭客的角度來說明如何有效備份。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;%E5%82%99%E4%BB%BD%E7%9A%84%E6%96%B9%E5%BC%8F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%82%99%E4%BB%BD%E7%9A%84%E6%96%B9%E5%BC%8F&quot;&gt;#&lt;/a&gt; 備份的方式&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/cAWnVeo.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;備份的方式有非常多種，很多備份方式能幫助你日常維運，但對阻擋駭客沒有太大的幫助，這邊推薦兩種對駭客攻擊比較有效的備份方式，但要注意不論選用哪種方式，備份前都要做好功課，如果太輕率可能會比不備份還慘，下面舉一個很典型的真實案例，類似卻藏在檯面下的問題還可能更多，重要的資料在備份前千萬要注意備份方式。&lt;/p&gt;
+&lt;p&gt;【全文】廠商執行備份作業出包，公視 5 年新聞片全遭刪除&lt;br&gt;
+&lt;a href=&quot;https://www.mirrormedia.mg/story/20220314inv005/&quot;&gt;https://www.mirrormedia.mg/story/20220314inv005/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;1.-%E7%95%B0%E5%9C%B0%E5%82%99%E4%BB%BD&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E7%95%B0%E5%9C%B0%E5%82%99%E4%BB%BD&quot;&gt;#&lt;/a&gt; 1. 異地備份&lt;/h3&gt;
+&lt;h4 id=&quot;%E7%B0%A1%E4%BB%8B%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B0%A1%E4%BB%8B%3A&quot;&gt;#&lt;/a&gt; 簡介:&lt;/h4&gt;
+&lt;p&gt;異地備份簡單講就是在另一個地點做備份，常見的像是各類雲端儲存空間 (Google Drive、MEGA ...) 或是在原工作區之外架 NAS (註 1) 來存放備份資料，特別強調異地的原因是為了分散分險，如果你只是把檔案從電腦的 C 槽備份到 D 槽，就像把雞蛋放在同一個籃子裡，只是把蛋從籃子的左邊移到右邊，這對防止駭客沒有太大幫助，被駭客一網打盡的機率非常高。比較嚴謹的異地備份會要求備份地點距離原本工作區 30 公里以上。&lt;/p&gt;
+&lt;h4 id=&quot;%E6%8E%A8%E8%96%A6%3A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%8E%A8%E8%96%A6%3A&quot;&gt;#&lt;/a&gt; 推薦:&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;雲端硬碟&lt;/li&gt;
+&lt;li&gt;遠端 NAS&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;2.-%E9%9B%A2%E7%B7%9A%E5%82%99%E4%BB%BD&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-%E9%9B%A2%E7%B7%9A%E5%82%99%E4%BB%BD&quot;&gt;#&lt;/a&gt; 2. 離線備份&lt;/h3&gt;
+&lt;h4 id=&quot;%E7%B0%A1%E4%BB%8B%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B0%A1%E4%BB%8B%3A-2&quot;&gt;#&lt;/a&gt; 簡介:&lt;/h4&gt;
+&lt;p&gt;離線備份指的是，儲存備份資料的設備平常不與有網路的設備連接，只在需要這些備份資料的時候才連接，讓駭客沒有機會連到這些離線的設備，常見的是各種利用外接式硬碟來儲存資料，小量的話也可以放到 USB 隨身碟或光碟，但要注意存好資料之後就要斷開與設備的連結，如果你總是把備份用的設備接在電腦上，駭客還是可以把資料一波帶走。&lt;/p&gt;
+&lt;h4 id=&quot;%E6%8E%A8%E8%96%A6%3A-2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%8E%A8%E8%96%A6%3A-2&quot;&gt;#&lt;/a&gt; 推薦:&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;外接式硬碟&lt;/li&gt;
+&lt;li&gt;大容量隨身碟&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;%E9%9C%80%E8%A6%81%E5%82%99%E4%BB%BD%E7%9A%84%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9C%80%E8%A6%81%E5%82%99%E4%BB%BD%E7%9A%84%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 需要備份的資料&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Kc7p7hX.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我們從防駭客的角度去看資料備份的話，就要先了解駭客會想要那些資料，可以大致分成 4 類。&lt;/p&gt;
+&lt;h3 id=&quot;1.-%E5%B8%B3%E8%99%9F%E5%AF%86%E7%A2%BC&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E5%B8%B3%E8%99%9F%E5%AF%86%E7%A2%BC&quot;&gt;#&lt;/a&gt; 1. 帳號密碼&lt;/h3&gt;
+&lt;p&gt;駭客進到設備後最先找的就是有沒有跟帳號密碼有關的資料，有了這些資料駭客可以進一步攻擊其他與外流帳密有關的系統，或者在當下的環境進行提權或擴散。&lt;/p&gt;
+&lt;h3 id=&quot;2.-%E5%80%8B%E4%BA%BA%E8%B3%87%E8%A8%8A&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-%E5%80%8B%E4%BA%BA%E8%B3%87%E8%A8%8A&quot;&gt;#&lt;/a&gt; 2. 個人資訊&lt;/h3&gt;
+&lt;p&gt;駭客如果拿到你的個資可以進一步進行釣魚或詐騙，或者直接賣給廣告商，還有可能間接猜到你的帳號密碼。&lt;/p&gt;
+&lt;h3 id=&quot;3.-%E6%95%8F%E6%84%9F%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#3.-%E6%95%8F%E6%84%9F%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 3. 敏感資料&lt;/h3&gt;
+&lt;p&gt;所有被駭客偷走後你願意花錢買回來的資料都算是敏感資料，像勒索軟體會把所有文件、圖片、影片等等資料加密逼你買金鑰解鎖，或者是不付錢就公開。&lt;/p&gt;
+&lt;h3 id=&quot;4.-%E9%82%84%E5%8E%9F%E6%AA%94%E8%88%87%E5%AE%89%E8%A3%9D%E5%BA%8F%E8%99%9F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#4.-%E9%82%84%E5%8E%9F%E6%AA%94%E8%88%87%E5%AE%89%E8%A3%9D%E5%BA%8F%E8%99%9F&quot;&gt;#&lt;/a&gt; 4. 還原檔與安裝序號&lt;/h3&gt;
+&lt;p&gt;常見於部分勒索軟體會藉由影響系統運作來逼你付費解鎖，如果平時有定期備份 Windows 還原檔，其他系統也有各自的還原方式，只要對快速恢復系統運作有幫助，都會建議定期備份，備份軟體的安裝序號也是相同的原因。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/adPtM37.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;總體來說做好備份與還原不能直接檔住駭客的攻擊，但是能夠將攻擊所帶來的影響降到最低，但也因為不能直接擋住攻擊，所以這邊補充一下除了備份本身做好之外，想要進一步降低風險的時候要注意那些地方。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;敏感資料除了備份以外還建議加密，否則即使備份仍有資料外洩問題。&lt;/li&gt;
+&lt;li&gt;異地備份要注意平常要斷開與儲存系統的遠端連線。&lt;/li&gt;
+&lt;li&gt;離線備份要注意平常要斷開與儲存設備的連接。&lt;/li&gt;
+&lt;li&gt;避免被駭客知道你備份的方法，尤其是異地備份軟體的帳號密碼千萬不要明文存在電腦裡面。&lt;/li&gt;
+&lt;li&gt;避免備份時間過長，如果要備份的檔案太大或備份頻率太高，導致備份設備需要長時間連接在電腦上，離線備份很可能形同虛設。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;前面為快速說明原理挑了一些簡單易懂的例子，實際上還有更多更進階的用法，如果閱覽數量夠多，之後會再加開一篇分享一些更進階的用法與經典案例，有任何資安方面相關的問題都歡迎留言討論，或者直接到 Cymetrics 尋求協助。&lt;/p&gt;
+&lt;h3 id=&quot;%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%90%8D%E8%A9%9E%E8%A7%A3%E9%87%8B&quot;&gt;#&lt;/a&gt; 名詞解釋&lt;/h3&gt;
+&lt;p&gt;註 1 : NAS 的全名為網路儲存伺服器 Network Attached Storage，是一台可以放在家中或辦公室的私人儲存設備，不論是身處何方，都可以透過瀏覽器或手機應用程式，存取儲存在 NAS 內的重要文件、珍貴相片、影音蒐藏或豐富的應用服務，也可以說是個人的雲端儲存設備。&lt;/p&gt;
 
 		</content>
 	</entry>
