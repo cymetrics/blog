@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2022-04-18T09:17:20.292-00:00</updated>
+	<updated>2022-04-18T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -7848,19 +7848,21 @@ class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=
 	</entry>
 	
 	<entry>
-		<title></title>
+		<title>防駭客的基本認知 : 備份與還原</title>
 		<link href="https://tech-blog.cymetrics.io/posts/nick/backup/"/>
-		<updated>2022-04-18T09:17:20.292-00:00</updated>
+		<updated>2022-04-18T00:00:00-00:00</updated>
 		<id>https://tech-blog.cymetrics.io/posts/nick/backup/</id>
 		<content type="html">
 		  &lt;h1 id=&quot;%E9%98%B2%E9%A7%AD%E5%AE%A2%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AA%8D%E7%9F%A5-%3A-%E5%82%99%E4%BB%BD%E8%88%87%E9%82%84%E5%8E%9F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%98%B2%E9%A7%AD%E5%AE%A2%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AA%8D%E7%9F%A5-%3A-%E5%82%99%E4%BB%BD%E8%88%87%E9%82%84%E5%8E%9F&quot;&gt;#&lt;/a&gt; 防駭客的基本認知 : 備份與還原&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/qf9aSpw.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/backup/backup_1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;!-- summary --&gt;
 &lt;p&gt;假設今天你家裡遭小偷了，身為超能力者的你把時間倒回到昨天，但回到過去卻沒有做出改變，只會一樣的事情再發生一次，你應該要藉此機會換門鎖或把錢藏到別的地方。&lt;/p&gt;
 &lt;p&gt;所以備份與還原的重點在於賺取時間差與讓系統恢復運作，讓你有機會在下一次攻擊到來前做出修正，讓駭客進不來或把資料轉移到安全的地方。本篇文章會從防範駭客的角度來說明如何有效備份。&lt;/p&gt;
+&lt;!-- summary --&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;%E5%82%99%E4%BB%BD%E7%9A%84%E6%96%B9%E5%BC%8F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%82%99%E4%BB%BD%E7%9A%84%E6%96%B9%E5%BC%8F&quot;&gt;#&lt;/a&gt; 備份的方式&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/cAWnVeo.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/backup/backup_2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;備份的方式有非常多種，很多備份方式能幫助你日常維運，但對阻擋駭客沒有太大的幫助，這邊推薦兩種對駭客攻擊比較有效的備份方式，但要注意不論選用哪種方式，備份前都要做好功課，如果太輕率可能會比不備份還慘，下面舉一個很典型的真實案例，類似卻藏在檯面下的問題還可能更多，重要的資料在備份前千萬要注意備份方式。&lt;/p&gt;
 &lt;p&gt;【全文】廠商執行備份作業出包，公視 5 年新聞片全遭刪除&lt;br&gt;
 &lt;a href=&quot;https://www.mirrormedia.mg/story/20220314inv005/&quot;&gt;https://www.mirrormedia.mg/story/20220314inv005/&lt;/a&gt;&lt;/p&gt;
@@ -7882,7 +7884,7 @@ class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;%E9%9C%80%E8%A6%81%E5%82%99%E4%BB%BD%E7%9A%84%E8%B3%87%E6%96%99&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%9C%80%E8%A6%81%E5%82%99%E4%BB%BD%E7%9A%84%E8%B3%87%E6%96%99&quot;&gt;#&lt;/a&gt; 需要備份的資料&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Kc7p7hX.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/backup/backup_3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;我們從防駭客的角度去看資料備份的話，就要先了解駭客會想要那些資料，可以大致分成 4 類。&lt;/p&gt;
 &lt;h3 id=&quot;1.-%E5%B8%B3%E8%99%9F%E5%AF%86%E7%A2%BC&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E5%B8%B3%E8%99%9F%E5%AF%86%E7%A2%BC&quot;&gt;#&lt;/a&gt; 1. 帳號密碼&lt;/h3&gt;
 &lt;p&gt;駭客進到設備後最先找的就是有沒有跟帳號密碼有關的資料，有了這些資料駭客可以進一步攻擊其他與外流帳密有關的系統，或者在當下的環境進行提權或擴散。&lt;/p&gt;
@@ -7894,7 +7896,7 @@ class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=
 &lt;p&gt;常見於部分勒索軟體會藉由影響系統運作來逼你付費解鎖，如果平時有定期備份 Windows 還原檔，其他系統也有各自的還原方式，只要對快速恢復系統運作有幫助，都會建議定期備份，備份軟體的安裝序號也是相同的原因。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/adPtM37.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/backup/backup_4.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;總體來說做好備份與還原不能直接檔住駭客的攻擊，但是能夠將攻擊所帶來的影響降到最低，但也因為不能直接擋住攻擊，所以這邊補充一下除了備份本身做好之外，想要進一步降低風險的時候要注意那些地方。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;敏感資料除了備份以外還建議加密，否則即使備份仍有資料外洩問題。&lt;/li&gt;
