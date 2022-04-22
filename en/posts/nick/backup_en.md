@@ -69,7 +69,7 @@ It is common that some ransomware will force you to pay for unlocking files by a
 
 ## Conclusion
 
-![](/img/posts/nick/backup/backup_3.jpg)
+![](/img/posts/nick/backup/backup_4.jpg)
 
 In general, a good backup and restore cannot directly block the hacker's attacks but can minimize the impact of the attacks. Since it cannot directly block the attacks, so here we provide some key points for you to pay attention to when you want to further reduce the risks, in addition to the backup itself.
 
