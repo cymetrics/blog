@@ -10,9 +10,9 @@ image: /img/posts/nick/backup/backup_1.jpg
 ---
 
 ![](/img/posts/nick/backup/backup_1.jpg)
-
+<!-- summary -->
 Suppose your house is burglarized today, as having superpower, you rewind time to yesterday, but if you didn’t make any changes, the same thing will happen again. You should take the opportunity to change the locks or hide the money somewhere else.
-
+<!-- summary -->
 So the point of backup and restore is to make the time difference and get the system back up and running so that you have a chance to make corrections before the next attack comes. In that case, the hackers can't get in or you have already moved the data to a safe place. This article will explain how to do backup effectively from a hacker-proof perspective.
 
 
