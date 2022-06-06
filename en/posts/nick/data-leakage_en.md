@@ -11,7 +11,9 @@ https://tech-blog.cymetrics.io/posts/nick/data-leakage/
 
 ![](/img/posts/nick/data-leakage_en/dl_1.png)
 
+<!-- summary -->
 It’s very time-consuming for hackers to collect and sort out useful information from the attacks. If they couldn’t turn those data into money, they will probably starve to death. Therefore, this article uses some common examples to illustrate how hackers can take advantage of the data leakage and the corresponding impacts from a profit-making perspective. However, it’s difficult not to leave any information on the Internet; therefore, we will also provide some suggestions in the end of the article.
+<!-- summary -->
 
 ## Information that is often leaked on the Internet
 
