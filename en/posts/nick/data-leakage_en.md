@@ -6,7 +6,6 @@ author: nick
 layout: zh-tw/layouts/post.njk
 image: /img/posts/nick/data-leakage_en/dl_1.png
 ---
-# Basic Awareness of Hacking Prevention: Data Protection
 
 https://tech-blog.cymetrics.io/posts/nick/data-leakage/
 
