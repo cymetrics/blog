@@ -176,7 +176,6 @@ https://chrome.google.com/webstore/detail/disconnect/jeoacafpbcihiomhlakheieifhp
 
     The red forbidden symbols in the figure are the tracking that have been blocked. Basically, it is to remove some return values in the webpage that do not affect the operation.
 
-    ![](https://i.imgur.com/uAp7AvR.png)
 	![](/img/posts/nick/data-leakage_en/dl_13.png)
 
 * Shodan: 
