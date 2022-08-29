@@ -330,6 +330,16 @@ Base64.decode.overload('[B', 'int').implementation = function(a, b) {
 }
 ```
 
+## SSL Pinning
+
+之前看到一篇 [Defeating Android Certificate Pinning with Frida](https://httptoolkit.tech/blog/frida-certificate-pinning/) 裡面有附了一段很讚的腳本，自動去 hook 各種會做 SSL pinning 的 function，讓你繞過這個機制，存一份備份在這裡：https://gist.github.com/aszx87410/f7ae60826d436d8e5bd17deb3e40c249
+
+存檔以後這樣跑起來：
+
+```
+frida -U --no-pause -l ssl.js -f "com.example"
+```
+
 ## 偵測 Frida
 
 既然 Frida 這麼強大，那有些 app 的安全機制自然而然想把它擋下來，一旦偵測到 Frida 的蹤跡，就直接退出 app 或是製造當機，可以參考底下這兩篇：
