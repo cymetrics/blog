@@ -8,8 +8,6 @@ image: /img/posts/nick/exchange/1.jpg
 ---
 
 ![](/img/posts/nick/exchange/ex_1.jpg)
-
-## 前言
 <!-- summary -->
 Exchanges can be seen as the core of Web 3.0 centralized services, but in recent years, more and more cybersecurity incidents are surrounding exchanges. Therefore, it has become very important to find more scientific ways to choose exchanges instead of relying on own instincts.
 <!-- summary -->
