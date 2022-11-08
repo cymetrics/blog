@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2022-09-30T00:00:00-00:00</updated>
+	<updated>2022-11-04T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -8222,6 +8222,176 @@ ServerTokens Prod
 &lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
 &lt;p&gt;ModSecurity 功能非常強大，但優缺點一樣明顯，優點是安全性很高，如果你願意花時間維護，常常更新 CRS 規則，不用花大錢就能擋掉最新的攻擊，缺點就是一些可能被攻擊的正常功能也會被禁用，如果網站必須用到這類功能，就需要學會自己寫規則，來取代掉原本過於嚴格的 CRS 規則，但這就相對考驗資安意識與開發能力了，我們今天介紹重點放在整個架設流程，規則僅說明一小部分，想看詳細規則這裡 (&lt;a href=&quot;http://www.modsecurity.cn/chm/&quot;&gt;http://www.modsecurity.cn/chm/&lt;/a&gt;) 有詳細的中文介紹。&lt;/p&gt;
 &lt;p&gt;另外要注意的是 ModSecurity 雖然可以跨平台使用，但最初是針對 Apache 設計的，雖然還是可以裝在 Nginx 等其他網頁伺服器上，但網路上有不少人回報過一些小 bug，遇到兼容性問題時，還比較建議是用 proxy server 的方式來解決，這樣不管你用哪種網頁伺服器都不受影響，而且在 proxy server 上架 WAF 還有分擔惡意流量的作用，降低攻擊對伺服器的影響。&lt;/p&gt;
+&lt;p&gt;前面為快速說明原理挑了一些簡單易懂的攻擊來示範，實際上還有更多更進階的用法，如果閱覽數量夠多，之後會再加開一篇分享一些更進階的用法與經典案例，有任何資安方面相關的問題都歡迎留言討論，或者直接到 Cymetrics 尋求協助。&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>網站弱點修補: NAXSI</title>
+		<link href="https://tech-blog.cymetrics.io/posts/nick/cyberlab_2/"/>
+		<updated>2022-11-04T00:00:00-00:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/nick/cyberlab_2/</id>
+		<content type="html">
+		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cyberlab_2/1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;!-- summary --&gt;
+&lt;p&gt;假設網站在弱掃或滲透之後找到一堆問題，而且問題數量偏多，想一次性解決大量問題的話，幫網站加一層保護來過濾攻擊是很有效的解決方式，這邊要介紹的就是 NAXSI 這套開源 WAF 的使用方法。&lt;/p&gt;
+&lt;!-- summary --&gt;
+&lt;p&gt;文中除了介紹 WAF 之外還會配合 proxy server 一起使用，讓 WAF 像外掛式的濾水器一樣濾掉流量裡面的雜質。&lt;/p&gt;
+&lt;p&gt;本文同時為 CYBERSEC 2022 臺灣資安大會課程內容的一部分 (Lab 3)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CyberLAB :&lt;/strong&gt;&lt;br&gt;
+問題找到了，然後呢 ? 弱掃與滲透之後如何有效的降低風險&lt;br&gt;
+&lt;a href=&quot;https://cyber.ithome.com.tw/2022/lab-page/810&quot;&gt;https://cyber.ithome.com.tw/2022/lab-page/810&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cyberlab_2/2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;%E7%B0%A1%E4%BB%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B0%A1%E4%BB%8B&quot;&gt;#&lt;/a&gt; 簡介&lt;/h2&gt;
+&lt;h3 id=&quot;1.-naxsi&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-naxsi&quot;&gt;#&lt;/a&gt; 1. NAXSI&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cyberlab_2/3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;NAXSI 名稱是來自 Nginx Anti XSS &amp;amp; SQL Injection，從名稱就能清楚知道這是一款綁定在 Nginx 上的 WAF，或者可以說是 Nginx 第三方模組，主要的功能是在防範惡意的 Payload ，像是 XSS 與 Injection 這類的攻擊，雖然 NAXSI 檢測的範圍比起傳統 WAF 較小，但設定簡單又占用較少的系統資源，使它成為是一款相當受歡迎的開源 WAF 套件。&lt;/p&gt;
+&lt;h3 id=&quot;2.-dvwa&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-dvwa&quot;&gt;#&lt;/a&gt; 2. DVWA&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cyberlab_2/4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;DVWA 是由 PHP/MySQL 架在 Apache 伺服器上的網站，上面有設計好不同的漏洞，還有攻擊的難易度設定可以調整。&lt;/p&gt;
+&lt;p&gt;這邊為驗證 NAXSI 的有效性選了 DVWA 靶站作為我們要保護的網站，當 DVWA 安全性等級調到最低時，就可以從中找出數 10 種設計好的漏洞，可用來快速驗證 WAF 保護有沒有生效，下列的攻擊 payload 就是一個 XSS 的經典攻擊案例。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;script&amp;gt;alert(document.cookie)&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;該攻擊可以把 cookie 用 alert 顯示出來，常見的攻擊會把這段 cookie 傳送到攻擊者的設備，然後攻擊者就有機會登入你曾經進過的網站，該弱點可以在 DVWA 的 XSS (Reflected)頁面實作如下圖，但測試之前需要把安全等級調到最低，DVWA 裡面的高安全等級網頁寫得相當嚴謹，用於示範如何從內部防範攻擊。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cyberlab_2/5.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;%E5%AE%89%E8%A3%9D%E6%B5%81%E7%A8%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AE%89%E8%A3%9D%E6%B5%81%E7%A8%8B&quot;&gt;#&lt;/a&gt; 安裝流程&lt;/h2&gt;
+&lt;p&gt;實作過程中與 LAB 環境有關的資料都可以在這邊找到&lt;br&gt;
+&lt;a href=&quot;https://github.com/cymetrics/cyberlab2022&quot;&gt;https://github.com/cymetrics/cyberlab2022&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;0.-%E6%9E%B6%E8%A8%AD%E7%B6%B2%E7%AB%99-(dvwa)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#0.-%E6%9E%B6%E8%A8%AD%E7%B6%B2%E7%AB%99-(dvwa)&quot;&gt;#&lt;/a&gt; 0. 架設網站 (DVWA)&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;實務上你要保護的是自己的網站，此步驟可以跳過，這邊使用 Docker 來快速建立測試環境，方便測試與練習。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;建立 Docker 環境，該環境是以 Ubuntu 為基底&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -v $(pwd)/mount:/tmp/mount -p 80:80 -it zet235/cyberlab2022:dvwa /bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;執行啟動腳本，腳本中包含建立資料庫與啟動網站伺服器 Apache&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/tmp/start.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;1.-%E5%AE%89%E8%A3%9D-nginx-%2B-naxsi&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E5%AE%89%E8%A3%9D-nginx-%2B-naxsi&quot;&gt;#&lt;/a&gt; 1. 安裝 Nginx + NAXSI&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;這邊列出在 Nginx 上裝 NAXSI 並啟用防護的詳細步驟，兩者需要一起安裝&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;建立安裝目錄，之後要下載比較多檔案&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /tmp/nginx_naxsi &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /tmp/nginx_naxsi&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因為要在安裝時導入 naxsi，所以需要下載安裝檔&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; http://nginx.org/download/nginx-1.21.6.tar.gz&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解壓 nginx&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;tar&lt;/span&gt; -xvzf nginx-1.21.6.tar.gz&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;下載 naxsi&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; https://github.com/nbs-system/naxsi/archive/refs/tags/1.3.zip -O naxsi-1.3.zip&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解壓 naxsi&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;unzip&lt;/span&gt; naxsi-1.3.zip&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安裝 lib 前更新一下&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; update&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安裝需要的 lib&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -y libpcre3-dev libssl-dev &lt;span class=&quot;token function&quot;&gt;unzip&lt;/span&gt; build-essential daemon libxml2-dev libxslt1-dev libgd-dev libgeoip-dev&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;切換到 nginx 目錄&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /tmp/nginx_naxsi/nginx-1.21.6&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安裝設定，指令較長複製時要注意&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;./configure --with-cc-opt&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;-g -O2 -fdebug-prefix-map=/build/nginx-RFWPEB/nginx-1.21.6=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Wdate-time -D_FORTIFY_SOURCE=2&#39;&lt;/span&gt; --with-ld-opt&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fPIC&#39;&lt;/span&gt; --add-module&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;/naxsi-1.3/naxsi_src/ --sbin-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/sbin/nginx --prefix&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/share/nginx --conf-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/etc/nginx/nginx.conf --http-log-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/var/log/nginx/access.log --error-log-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/var/log/nginx/error.log --lock-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/var/lock/nginx.lock --pid-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/run/nginx.pid --modules-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/lib/nginx/modules --http-client-body-temp-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/var/lib/nginx/body --http-fastcgi-temp-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/var/lib/nginx/fastcgi --http-proxy-temp-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/var/lib/nginx/proxy --http-scgi-temp-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/var/lib/nginx/scgi --http-uwsgi-temp-path&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/var/lib/nginx/uwsgi --with-debug --with-pcre-jit --with-http_ssl_module --with-http_stub_status_module --with-http_realip_module --with-http_auth_request_module --with-http_v2_module --with-http_dav_module --with-http_slice_module --with-threads --with-http_addition_module --with-http_geoip_module&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;dynamic --with-http_gunzip_module --with-http_gzip_static_module --with-http_image_filter_module&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;dynamic --with-http_sub_module --with-http_xslt_module&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;dynamic --with-stream&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;dynamic --with-stream_ssl_module --with-stream_ssl_preread_module --with-mail&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;dynamic --with-mail_ssl_module&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;開始安裝&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;缺少這兩個資料夾執行時有機會噴錯，提前建好&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /var/lib/nginx/ &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /var/lib/nginx/body&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2.-%E8%A8%AD%E7%BD%AE%E6%A0%B8%E5%BF%83%E8%A6%8F%E5%89%87&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-%E8%A8%AD%E7%BD%AE%E6%A0%B8%E5%BF%83%E8%A6%8F%E5%89%87&quot;&gt;#&lt;/a&gt; 2. 設置核心規則&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;核心規則用來判斷這次收到的封包可以得幾分，分數越高風險越高&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;複製預設的核心規則到安裝位置&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /tmp/nginx_naxsi/naxsi-1.3/naxsi_config/naxsi_core.rules /etc/nginx/naxsi_core.rules&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;3.-%E8%A8%AD%E7%BD%AE%E5%9F%BA%E6%9C%AC%E8%A6%8F%E5%89%87&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#3.-%E8%A8%AD%E7%BD%AE%E5%9F%BA%E6%9C%AC%E8%A6%8F%E5%89%87&quot;&gt;#&lt;/a&gt; 3. 設置基本規則&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;基本規則用來決定幾分以上算是惡意行為，以及對應的處理方式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;新增基本規則&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;vim&lt;/span&gt; /etc/nginx/naxsi.rules&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;寫入基本規則到 &lt;code&gt;naxsi.rules&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; SecRulesEnabled;
+ DeniedUrl &amp;quot;/error.html&amp;quot;;
+&lt;h2 id=&quot;check-for-all-the-rules&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#check-for-all-the-rules&quot;&gt;#&lt;/a&gt; Check for all the rules&lt;/h2&gt;
+&lt;p&gt;CheckRule &amp;quot;$SQL &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
+CheckRule &amp;quot;$RFI &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
+CheckRule &amp;quot;$TRAVERSAL &amp;gt;= 4&amp;quot; BLOCK;&lt;br&gt;
+CheckRule &amp;quot;$EVADE &amp;gt;= 4&amp;quot; BLOCK;&lt;br&gt;
+CheckRule &amp;quot;$XSS &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
+&lt;/p&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+&lt;h4 id=&quot;3.-%E5%BB%BA%E7%AB%8B%E9%8C%AF%E8%AA%A4%E9%A0%81%E9%9D%A2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#3.-%E5%BB%BA%E7%AB%8B%E9%8C%AF%E8%AA%A4%E9%A0%81%E9%9D%A2&quot;&gt;#&lt;/a&gt; 3. 建立錯誤頁面&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;預設規則中判斷為攻擊時會將當前使用者連到指定頁面，這邊我們寫一個簡單靜態頁面來測試&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;新增錯誤頁 &lt;code&gt;error.html&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /var/www/html/error.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在新增的 &lt;code&gt;error.html&lt;/code&gt; 寫入&lt;/p&gt;
+&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;html&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;head&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;title&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;Blocked By NAXSI&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;title&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;head&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;/span&gt; &lt;span class=&quot;token special-attr&quot;&gt;&lt;span class=&quot;token attr-name&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token value css language-css&quot;&gt;&lt;span class=&quot;token property&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; center&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;h1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;Malicious Request&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;h1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;hr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;p&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;This Request Has Been Blocked By NAXSI.&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;p&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;html&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;4.-%E8%A8%AD%E5%AE%9A-proxy-server-(apache)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#4.-%E8%A8%AD%E5%AE%9A-proxy-server-(apache)&quot;&gt;#&lt;/a&gt; 4. 設定 proxy server (apache)&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;讓 apache 接收來自 Nginx 的封包&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;修改 &lt;code&gt;000-default.conf&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;br&gt;/etc/apache2/sites-available/000-default.conf&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;VirtualHost 改為 8080&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;VirtualHost *:8080
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改 ports.conf&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/apache2/ports.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Listen 改為 &lt;code&gt;8080&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Listen 8080
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;5.-%E8%A8%AD%E5%AE%9A-proxy-server-(nginx)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#5.-%E8%A8%AD%E5%AE%9A-proxy-server-(nginx)&quot;&gt;#&lt;/a&gt; 5. 設定 proxy server (nginx)&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;設定 Nginx 將經過 NAXSI 過濾的封包轉送給 Apache&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/nginx/nginx.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;nginx.conf&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    server {
+        location / {
+            # root   html;
+            # index  index.html index.htm;
+            include /etc/nginx/naxsi.rules;
+            proxy_pass http://127.0.0.1:8080;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+    }}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;6.-%E6%B8%AC%E8%A9%A6%E5%AE%89%E8%A3%9D%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#6.-%E6%B8%AC%E8%A9%A6%E5%AE%89%E8%A3%9D%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F&quot;&gt;#&lt;/a&gt; 6. 測試安裝是否成功&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;先確認 DVWA 網站原本功能是否正常，在測試受到 XSS 攻擊時有沒有出現我們寫好的錯誤頁面&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/6jVOQlY.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;%E8%87%AA%E5%BB%BA%E8%A6%8F%E5%89%87&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%87%AA%E5%BB%BA%E8%A6%8F%E5%89%87&quot;&gt;#&lt;/a&gt; 自建規則&lt;/h2&gt;
+&lt;h3 id=&quot;1.-%E6%A0%B8%E5%BF%83%E8%A6%8F%E5%89%87&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.-%E6%A0%B8%E5%BF%83%E8%A6%8F%E5%89%87&quot;&gt;#&lt;/a&gt; 1. 核心規則&lt;/h3&gt;
+&lt;p&gt;核心規則是來給收到的 request 打分數，先說明規則的寫法，在補充一下如何新增規則&lt;/p&gt;
+&lt;p&gt;下圖是一條簡單的 XSS 規則，簡單講這條規則就是當 request 的內容中有 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 的話，request 在 XSS 項目的分數為 8 分&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/nick/cyberlab_2/6.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;修改 &lt;code&gt;naxsi_core.rules&lt;/code&gt; 規則來新增這條規則&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim /etc/nginx/naxsi_core.rules
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;把上述規則加進去，如果要驗證效果可以先註解掉其他規則&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MainRule &amp;quot;msg:demo&amp;quot; &amp;quot;rx:&amp;lt;script&amp;gt;&amp;quot; &amp;quot;mz:ARGS&amp;quot; &amp;quot;s:$XSS:8&amp;quot; id:00123;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;2.-%E6%AA%A2%E6%9F%A5%E8%A6%8F%E5%89%87&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2.-%E6%AA%A2%E6%9F%A5%E8%A6%8F%E5%89%87&quot;&gt;#&lt;/a&gt; 2. 檢查規則&lt;/h3&gt;
+&lt;p&gt;基本規則是用來決定核心規則的分數達標後要進行的處理，如果在你的網站常常發生誤報，可以到這邊調高達標分數，下方為規則範本&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SecRulesEnabled;
+&lt;p&gt;DeniedUrl &amp;quot;/error.html&amp;quot;;&lt;/p&gt;
+&lt;h2 id=&quot;check-naxsi-rules&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#check-naxsi-rules&quot;&gt;#&lt;/a&gt; Check Naxsi rules&lt;/h2&gt;
+&lt;p&gt;CheckRule &amp;quot;$SQL &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
+CheckRule &amp;quot;$RFI &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
+CheckRule &amp;quot;$TRAVERSAL &amp;gt;= 4&amp;quot; BLOCK;&lt;br&gt;
+CheckRule &amp;quot;$EVADE &amp;gt;= 4&amp;quot; BLOCK;&lt;br&gt;
+CheckRule &amp;quot;$XSS &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
+&lt;/p&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SecRulesEnabled:&lt;/strong&gt; 啟用規則&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DeniedUrl:&lt;/strong&gt; Block 後導到此頁面&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CheckRule:&lt;/strong&gt; 設定分數類型與達標後的行為&lt;/p&gt;
+&lt;p&gt;修改 &lt;code&gt;naxsi.rules&lt;/code&gt; 規則來調整規則&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;vim&lt;/span&gt; /etc/nginx/naxsi.rules&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改 XSS 的分數上限為 90&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CheckRule &amp;quot;$XSS &amp;gt;= 90&amp;quot; BLOCK;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可搭配一條分數為 100 的 XSS 基本規則來驗證是否生效&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MainRule &amp;quot;msg:demo&amp;quot; &amp;quot;rx:&amp;lt;script&amp;gt;&amp;quot; &amp;quot;mz:ARGS&amp;quot; &amp;quot;s:$XSS:100&amp;quot; id:00123;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;%E5%9F%BA%E6%9C%AC%E8%A6%8F%E5%89%87&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%9F%BA%E6%9C%AC%E8%A6%8F%E5%89%87&quot;&gt;#&lt;/a&gt; 基本規則&lt;/h4&gt;
+&lt;p&gt;基本規則通常用作白名單排除功能，讓一些確定安全的功能通過檢查&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;BasicRule wl:1000 &amp;quot;mz:$URL:/search&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;wl:1000&lt;/strong&gt;: wl(White List) 白名單，後面的 1000 是這條規則的編號&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;mz:$URL:/search&lt;/strong&gt;: mz(Match Zone) 規則針對的對象，範例中檢查的是 URL 中有沒有包含 search&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;NAXSI 設定簡單防護力不差，而且簡單這個優點也代表容易配合網站進行調整，如果你用的是常見的架站工具像是 Wordpress 或 Drupal 可以直接參考別人寫好的規則 (&lt;a href=&quot;https://github.com/nbs-system/naxsi-rules&quot;&gt;https://github.com/nbs-system/naxsi-rules&lt;/a&gt;)，雖然有只能裝在 Nginx 上的缺點，但是可以透過 Proxy Server 解決，架另外一台伺服器還可以分擔一些負載。&lt;/p&gt;
 &lt;p&gt;前面為快速說明原理挑了一些簡單易懂的攻擊來示範，實際上還有更多更進階的用法，如果閱覽數量夠多，之後會再加開一篇分享一些更進階的用法與經典案例，有任何資安方面相關的問題都歡迎留言討論，或者直接到 Cymetrics 尋求協助。&lt;/p&gt;
 
 		</content>
