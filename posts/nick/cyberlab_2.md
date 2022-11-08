@@ -179,7 +179,7 @@ vim /var/www/html/error.html
 
 在新增的 `error.html` 寫入
 
-```htmlmixed
+```html
 <html>
 <head>
 <title>Blocked By NAXSI</title>
