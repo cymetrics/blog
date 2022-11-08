@@ -259,7 +259,7 @@ ___
 
 下圖是一條簡單的 XSS 規則，簡單講這條規則就是當 request 的內容中有 `<script>` 的話，request 在 XSS 項目的分數為 8 分
 
-![](/img/posts/nick/cyberlab_2/6.png)
+![](/img/posts/nick/cyberlab_2/7.png)
 
 修改 `naxsi_core.rules` 規則來新增這條規則
 
