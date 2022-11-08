@@ -8303,7 +8303,6 @@ ServerTokens Prod
 &lt;p&gt;寫入基本規則到 &lt;code&gt;naxsi.rules&lt;/code&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt; SecRulesEnabled;
  DeniedUrl &amp;quot;/error.html&amp;quot;;
-&lt;h2 id=&quot;check-for-all-the-rules&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#check-for-all-the-rules&quot;&gt;#&lt;/a&gt; Check for all the rules&lt;/h2&gt;
 &lt;p&gt;CheckRule &amp;quot;$SQL &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
 CheckRule &amp;quot;$RFI &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
 CheckRule &amp;quot;$TRAVERSAL &amp;gt;= 4&amp;quot; BLOCK;&lt;br&gt;
