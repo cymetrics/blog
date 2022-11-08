@@ -161,7 +161,6 @@ vim /etc/nginx/naxsi.rules
  SecRulesEnabled;
  DeniedUrl "/error.html";
 
- ## Check for all the rules
  CheckRule "$SQL >= 8" BLOCK;
  CheckRule "$RFI >= 8" BLOCK;
  CheckRule "$TRAVERSAL >= 4" BLOCK;
