@@ -67,6 +67,41 @@
       "name": "zet",
       "intro": "",
       "avatarUrl": "/img/authors/zet_logo.jpeg"
+    },
+    "fangyu": {
+      "name": "fangyu",
+      "intro": "",
+      "avatarUrl": "/img/authors/cymetrics_logo.jpeg"
+    },
+    "ava": {
+      "name": "ava",
+      "intro": "",
+      "avatarUrl": "/img/authors/cymetrics_logo.jpeg"
+    },
+    "timothy": {
+      "name": "timothy",
+      "intro": "",
+      "avatarUrl": "/img/authors/cymetrics_logo.jpeg"
+    },
+    "lisa": {
+      "name": "lisa",
+      "intro": "",
+      "avatarUrl": "/img/authors/cymetrics_logo.jpeg"
+    },
+    "raywang": {
+      "name": "ray wang",
+      "intro": "",
+      "avatarUrl": "/img/authors/cymetrics_logo.jpeg"
+    },
+    "rayhsieh": {
+      "name": "ray hsieh",
+      "intro": "",
+      "avatarUrl": "/img/authors/cymetrics_logo.jpeg"
+    },
+    "jasper": {
+      "name": "jasper",
+      "intro": "",
+      "avatarUrl": "/img/authors/cymetrics_logo.jpeg"
     }
   },
   "publisher": {
