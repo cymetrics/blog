@@ -11,18 +11,13 @@ description: Cymetrics產品團隊搜集中小企業的心聲，整理了中小�
 
 
 
-# 中小企業做不好資安的5大關鍵因素  
-###### tags: `部落格文章` `產品`
-<br>
-
-
 ![Alt text](/img/posts/fangyu/SME6.jpg)
 
 
 
 ### **前言**
 
-你還覺得駭客只攻擊大企業嗎？你還覺得你的公司規模小，駭客看不上嗎？隨著中小企業開始擁抱數位轉型，缺乏資安資源的數位領域新手 – 中小企業，開始成為駭客的最佳標靶。<!-- summary -->根據 [CISCO 2021 年的中小企業資安報告](https://www.cisco.com/c/dam/global/en_sg/products/security/meet-max-report-2021/assets/data/cybersecurity-for-smbs-asia-pacific-businesses-prepare-for-digital-defense.pdf)
+你還覺得駭客只攻擊大企業嗎？你還覺得你的公司規模小，駭客看不上嗎？<!-- summary -->隨著中小企業開始擁抱數位轉型，缺乏資安資源的數位領域新手 – 中小企業，開始成為駭客的最佳標靶。根據 [CISCO 2021 年的中小企業資安報告](https://www.cisco.com/c/dam/global/en_sg/products/security/meet-max-report-2021/assets/data/cybersecurity-for-smbs-asia-pacific-businesses-prepare-for-digital-defense.pdf)
 ，在亞洲太平洋地區（ APJC ） **56％** 的中小企業在過去 12 個月中曾經歷網路安全事件，其中攻擊手法都是再常見不過的項目，包含： DDoS 攻擊、惡意軟體和社交工程等。<!-- summary -->
 
 <br>
@@ -36,7 +31,6 @@ description: Cymetrics產品團隊搜集中小企業的心聲，整理了中小�
 
 Cymetrics做為中小企業資安的好夥伴，以解決中小企業資安問題為目標，在經過多次的使用者訪談，歸納出五個中小企業在資安上遇到的主要問題，根據問題被提及的次數排序如下：
 
-<br>
 
 #### **TOP 1： 資安預算少**
 **錢**，是我們訪談裡面最多中小企業資安人員提到的關鍵字。預算往往是一個團隊或公司決定資安配置的主要考量。很多 MIS 人員，花了很多時間在精打細算，只希望用有限的預算，換來最有效率的配置。然而資安產品真的大多不便宜，這也成為中小企業在保護公司數位資產時的一大阻力。
