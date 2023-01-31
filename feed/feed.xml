@@ -8487,19 +8487,15 @@ CheckRule &amp;quot;$XSS &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
 		<updated>2023-01-31T00:00:00-00:00</updated>
 		<id>https://tech-blog.cymetrics.io/posts/fangyu/SME%20cybersecurity/</id>
 		<content type="html">
-		  &lt;h1 id=&quot;%E4%B8%AD%E5%B0%8F%E4%BC%81%E6%A5%AD%E5%81%9A%E4%B8%8D%E5%A5%BD%E8%B3%87%E5%AE%89%E7%9A%845%E5%A4%A7%E9%97%9C%E9%8D%B5%E5%9B%A0%E7%B4%A0&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%B8%AD%E5%B0%8F%E4%BC%81%E6%A5%AD%E5%81%9A%E4%B8%8D%E5%A5%BD%E8%B3%87%E5%AE%89%E7%9A%845%E5%A4%A7%E9%97%9C%E9%8D%B5%E5%9B%A0%E7%B4%A0&quot;&gt;#&lt;/a&gt; 中小企業做不好資安的5大關鍵因素&lt;/h1&gt;
-&lt;h6 id=&quot;tags%3A-%E9%83%A8%E8%90%BD%E6%A0%BC%E6%96%87%E7%AB%A0-%E7%94%A2%E5%93%81&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#tags%3A-%E9%83%A8%E8%90%BD%E6%A0%BC%E6%96%87%E7%AB%A0-%E7%94%A2%E5%93%81&quot;&gt;#&lt;/a&gt; tags: &lt;code&gt;部落格文章&lt;/code&gt; &lt;code&gt;產品&lt;/code&gt;&lt;/h6&gt;
-&lt;br&gt;
-&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/fangyu/SME6.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
+		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/fangyu/SME6.jpg&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; &lt;strong&gt;前言&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;你還覺得駭客只攻擊大企業嗎？你還覺得你的公司規模小，駭客看不上嗎？隨著中小企業開始擁抱數位轉型，缺乏資安資源的數位領域新手 – 中小企業，開始成為駭客的最佳標靶。&lt;!-- summary --&gt;根據 &lt;a href=&quot;https://www.cisco.com/c/dam/global/en_sg/products/security/meet-max-report-2021/assets/data/cybersecurity-for-smbs-asia-pacific-businesses-prepare-for-digital-defense.pdf&quot;&gt;CISCO 2021 年的中小企業資安報告&lt;/a&gt;&lt;br&gt;
+&lt;p&gt;你還覺得駭客只攻擊大企業嗎？你還覺得你的公司規模小，駭客看不上嗎？&lt;!-- summary --&gt;隨著中小企業開始擁抱數位轉型，缺乏資安資源的數位領域新手 – 中小企業，開始成為駭客的最佳標靶。根據 &lt;a href=&quot;https://www.cisco.com/c/dam/global/en_sg/products/security/meet-max-report-2021/assets/data/cybersecurity-for-smbs-asia-pacific-businesses-prepare-for-digital-defense.pdf&quot;&gt;CISCO 2021 年的中小企業資安報告&lt;/a&gt;&lt;br&gt;
 ，在亞洲太平洋地區（ APJC ） &lt;strong&gt;56％&lt;/strong&gt; 的中小企業在過去 12 個月中曾經歷網路安全事件，其中攻擊手法都是再常見不過的項目，包含： DDoS 攻擊、惡意軟體和社交工程等。&lt;!-- summary --&gt;&lt;/p&gt;
 &lt;br&gt;
 &lt;hr&gt;
 &lt;br&gt;
 &lt;h3 id=&quot;%E4%B8%AD%E5%B0%8F%E4%BC%81%E6%A5%AD%E8%B3%87%E5%AE%89%E4%BA%94%E5%A4%A7%E5%95%8F%E9%A1%8C%EF%BC%9A%E9%A0%90%E7%AE%97%E3%80%81%E4%BA%BA%E5%8A%9B%E6%98%AF%E9%97%9C%E9%8D%B5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%B8%AD%E5%B0%8F%E4%BC%81%E6%A5%AD%E8%B3%87%E5%AE%89%E4%BA%94%E5%A4%A7%E5%95%8F%E9%A1%8C%EF%BC%9A%E9%A0%90%E7%AE%97%E3%80%81%E4%BA%BA%E5%8A%9B%E6%98%AF%E9%97%9C%E9%8D%B5&quot;&gt;#&lt;/a&gt; &lt;strong&gt;中小企業資安五大問題：預算、人力是關鍵&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;Cymetrics做為中小企業資安的好夥伴，以解決中小企業資安問題為目標，在經過多次的使用者訪談，歸納出五個中小企業在資安上遇到的主要問題，根據問題被提及的次數排序如下：&lt;/p&gt;
-&lt;br&gt;
 &lt;h4 id=&quot;top-1%EF%BC%9A-%E8%B3%87%E5%AE%89%E9%A0%90%E7%AE%97%E5%B0%91&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#top-1%EF%BC%9A-%E8%B3%87%E5%AE%89%E9%A0%90%E7%AE%97%E5%B0%91&quot;&gt;#&lt;/a&gt; &lt;strong&gt;TOP 1： 資安預算少&lt;/strong&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;錢&lt;/strong&gt;，是我們訪談裡面最多中小企業資安人員提到的關鍵字。預算往往是一個團隊或公司決定資安配置的主要考量。很多 MIS 人員，花了很多時間在精打細算，只希望用有限的預算，換來最有效率的配置。然而資安產品真的大多不便宜，這也成為中小企業在保護公司數位資產時的一大阻力。&lt;/p&gt;
 &lt;h4 id=&quot;top-2%EF%BC%9A-%E8%B3%87%E5%AE%89%E4%BA%BA%E5%8A%9B%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#top-2%EF%BC%9A-%E8%B3%87%E5%AE%89%E4%BA%BA%E5%8A%9B%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; &lt;strong&gt;TOP 2： 資安人力不足&lt;/strong&gt;&lt;/h4&gt;
