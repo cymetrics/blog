@@ -17,8 +17,7 @@ description: Cymetrics產品團隊搜集中小企業的心聲，整理了中小�
 
 ### **前言**
 
-你還覺得駭客只攻擊大企業嗎？你還覺得你的公司規模小，駭客看不上嗎？<!-- summary -->隨著中小企業開始擁抱數位轉型，缺乏資安資源的數位領域新手 – 中小企業，開始成為駭客的最佳標靶。根據 [CISCO 2021 年的中小企業數位轉型報告](https://www.cisco.com/c/dam/global/en_sg/products/security/meet-max-report-2021/assets/data/cybersecurity-for-smbs-asia-pacific-businesses-prepare-for-digital-defense.pdf)
-，在亞洲太平洋地區（ APJC ） **56％** 的中小企業在過去 12 個月中曾經歷網路安全事件，其中攻擊手法都是再常見不過的項目，包含： DDoS 攻擊、惡意軟體和社交工程等。<!-- summary -->
+你還覺得駭客只攻擊大企業嗎？你還覺得你的公司規模小，駭客看不上嗎？<!-- summary -->隨著中小企業開始擁抱數位轉型，缺乏資安資源的數位領域新手 – 中小企業，開始成為駭客的最佳標靶。根據 [CISCO 2021 年的中小企業數位轉型報告](https://www.cisco.com/c/dam/global/en_sg/products/security/meet-max-report-2021/assets/data/cybersecurity-for-smbs-asia-pacific-businesses-prepare-for-digital-defense.pdf)，在亞洲太平洋地區（ APJC ） **56％** 的中小企業在過去 12 個月中曾經歷網路安全事件，其中攻擊手法都是再常見不過的項目，包含： DDoS 攻擊、惡意軟體和社交工程等。<!-- summary -->
 
 <br>
 
