@@ -15,7 +15,7 @@ image: /img/posts/fangyu/SME6.png
 
 
 Do you still think hackers only attack big companies? Do you still think your company is too small for hackers? <!-- summary -->As small and medium-sized enterprises (SMEs) begin to embrace digital transformation, the lack of cybersecurity information for SMEs has become the best target for hackers. According to CISCO's [Cybersecurity for SMBs:
-Asia Pacific Businesses Prepare for Digital Defense](https://www.cisco.com/c/dam/global/en_sg/products/security/meet-max-report-2021/assets/data/cybersecurity-for-smbs-asia-pacific-businesses-prepare-for-digital-defense.pdf) report,** 56%** of SMEs in the Asia-Pacific region (APJC) have experienced cyber security incidents in the past 12 months<!-- summary -->, and the attack methods are all-too-common items, including DDoS attacks, malware, and social engineering, etc.
+Asia Pacific Businesses Prepare for Digital Defense](https://www.cisco.com/c/dam/global/en_sg/products/security/meet-max-report-2021/assets/data/cybersecurity-for-smbs-asia-pacific-businesses-prepare-for-digital-defense.pdf) report, **56%** of SMEs in the Asia-Pacific region (APJC) have experienced cyber security incidents in the past 12 months<!-- summary -->, and the attack methods are all-too-common items, including DDoS attacks, malware, and social engineering, etc.
 
 <br>
 
