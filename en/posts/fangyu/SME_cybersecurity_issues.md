@@ -46,10 +46,10 @@ Cybersecurity is a broad and profound field. SMEs often hope that MIS will cover
 There are hundreds of cybersecurity products. Should we attack or defend, and to what extent should we defend? An MIS who is not a cybersecurity expert, can only believe what the system integrator or cybersecurity product provider says without a complete understanding of the company's cybersecurity. Cybersecurity issues are different for companies, and nothing can be fixed without the right medicine.
 
 **TOP 5: The boss lacks cybersecurity awareness**
-Finally, the most critical person is the boss. Most SME owners know that cybersecurity "should" be done, but they don't do much before being attacked. The most common sentence we heard in user interviews is, "We know that cybersecurity is very important, but in the end, it is up to the boss to decide what to use." Before solving the problems above, the boss's cybersecurity awareness is very important. Without the support of the boss, the company's cybersecurity will be unsatisfactory.
+Finally, the most critical person is the boss. Most SME owners know that cybersecurity "should" be done, but they never did much before being attacked. The most common sentence we heard in user interviews is, "We know that cybersecurity is important, but in the end, it is up to the boss to decide what to use." Before solving the problems above, the cybersecurity awareness of the person in charge is crucial. Without the support of the key person, the business's cybersecurity will be unsatisfactory.
 
 
-To sum up the problems above, human resources, cybersecurity ability, and budget are the three keys. When the boss is aware of cybersecurity, we recommend that SMEs conduct a cybersecurity exposure test on the company's digital assets first, to have a comprehensive understanding of the company's cybersecurity loopholes, and repair them. Only by prescribing the right medicine and matching it with basic cybersecurity protection can hackers be kept out of your assets. 
+To conclude the problems above, human resources, cybersecurity ability, and budget are the keys to having excellent cybersecurity for SMEs. When the key person is aware of cybersecurity, we recommend SMEs conduct a cybersecurity exposure test on the digital assets first. This way, the company would have a comprehensive understanding of its cybersecurity loopholes and be able to fix them accordingly.
 
 <br>
 
@@ -60,9 +60,9 @@ To sum up the problems above, human resources, cybersecurity ability, and budget
 
 ### **Wooden bucket theory: water flows out if there is one short wood**
 
-The wooden bucket theory (Cannikin Law) is often cited in the cybersecurity field to explain the situation of cybersecurity defense: Suppose there is a bucket made up of boards of uneven length, as long as one of the boards is too low, no matter how long the other boards are, the water contained in it will flow out. Imagine that the company's digital assets are the water in the bucket, and each board is the status of each cybersecurity risk of the company. While concentrating cybersecurity firepower on several cybersecurity aspects, the company should check on the status of each risk continuously, to effectively protect the company's assets.
+The Wooden Bucket Theory (Cannikin Law) is often cited in the cybersecurity field to explain the situation of cybersecurity defense: Suppose there is a bucket made up of boards of uneven length, as long as one of the boards is too short, no matter how long the others are, the water contained in it will flow out. Imagine that the digital assets are the water in the bucket, and each board is the cybersecurity risk. While concentrating cybersecurity resources on certain aspects, the company should check on the status of each risk to effectively protect the company's assets.
 
 ![Alt text](/img/posts/fangyu/SME3.png)
 
 
-To keep up with hackers, modern cybersecurity strategies should evolve from traditional "compliance-oriented" to "risk-oriented from the perspective of hackers". Security testing improves the gaps between the company’s current cybersecurity status to the ideal ones and turns risks into competitive advantages for enterprises. The best cybersecurity strategy for SMEs is nothing more than a comprehensive grasp of hacker trends, and proactively strengthening defenses in every vulnerable link, to most effectively block hackers from the door.
+To keep up with hackers, modern cybersecurity strategies should evolve from "compliance-oriented" to "risk-oriented with the perspective of hackers". Security testing improves the gaps between the company’s current cybersecurity status to the ideal ones and turns risks into competitive advantages for enterprises. The best cybersecurity strategy for SMEs is nothing but a comprehensive grasp of hacker thoughts and proactively strengthening defenses for every vulnerability. Thus, the business can most effectively block hackers from the door.
