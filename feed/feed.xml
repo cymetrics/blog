@@ -8494,7 +8494,7 @@ CheckRule &amp;quot;$XSS &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
 &lt;hr&gt;
 &lt;br&gt;
 &lt;h3 id=&quot;%E4%B8%AD%E5%B0%8F%E4%BC%81%E6%A5%AD%E8%B3%87%E5%AE%89%E4%BA%94%E5%A4%A7%E5%95%8F%E9%A1%8C%EF%BC%9A%E9%A0%90%E7%AE%97%E3%80%81%E4%BA%BA%E5%8A%9B%E6%98%AF%E9%97%9C%E9%8D%B5&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%B8%AD%E5%B0%8F%E4%BC%81%E6%A5%AD%E8%B3%87%E5%AE%89%E4%BA%94%E5%A4%A7%E5%95%8F%E9%A1%8C%EF%BC%9A%E9%A0%90%E7%AE%97%E3%80%81%E4%BA%BA%E5%8A%9B%E6%98%AF%E9%97%9C%E9%8D%B5&quot;&gt;#&lt;/a&gt; &lt;strong&gt;中小企業資安五大問題：預算、人力是關鍵&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;Cymetrics做為中小企業資安的好夥伴，以解決中小企業資安問題為目標，在經過多次的使用者訪談，歸納出五個中小企業在資安上遇到的主要問題，根據問題被提及的次數排序如下：&lt;/p&gt;
+&lt;p&gt;Cymetrics 做為中小企業資安的好夥伴，以解決中小企業資安問題為目標，在經過多次的使用者訪談，歸納出五個中小企業在資安上遇到的主要問題，根據問題被提及的次數排序如下：&lt;/p&gt;
 &lt;h4 id=&quot;top-1%EF%BC%9A-%E8%B3%87%E5%AE%89%E9%A0%90%E7%AE%97%E5%B0%91&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#top-1%EF%BC%9A-%E8%B3%87%E5%AE%89%E9%A0%90%E7%AE%97%E5%B0%91&quot;&gt;#&lt;/a&gt; &lt;strong&gt;TOP 1： 資安預算少&lt;/strong&gt;&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;錢&lt;/strong&gt;，是我們訪談裡面最多中小企業資安人員提到的關鍵字。預算往往是一個團隊或公司決定資安配置的主要考量。很多 MIS 人員，花了很多時間在精打細算，只希望用有限的預算，換來最有效率的配置。然而資安產品真的大多不便宜，這也成為中小企業在保護公司數位資產時的一大阻力。&lt;/p&gt;
 &lt;h4 id=&quot;top-2%EF%BC%9A-%E8%B3%87%E5%AE%89%E4%BA%BA%E5%8A%9B%E4%B8%8D%E8%B6%B3&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#top-2%EF%BC%9A-%E8%B3%87%E5%AE%89%E4%BA%BA%E5%8A%9B%E4%B8%8D%E8%B6%B3&quot;&gt;#&lt;/a&gt; &lt;strong&gt;TOP 2： 資安人力不足&lt;/strong&gt;&lt;/h4&gt;
@@ -8513,7 +8513,7 @@ CheckRule &amp;quot;$XSS &amp;gt;= 8&amp;quot; BLOCK;&lt;br&gt;
 &lt;h3 id=&quot;%E8%B3%87%E5%AE%89%E7%9F%AD%E6%9D%BF%E7%90%86%E8%AB%96%EF%BC%9A%E5%8F%AA%E8%A6%81%E6%A1%B6%E5%AD%90%E6%9C%89%E4%B8%80%E5%80%8B%E4%BD%8E%E8%99%95%EF%BC%8C%E6%B0%B4%E5%B0%B1%E6%9C%83%E6%B5%81%E5%87%BA&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%B3%87%E5%AE%89%E7%9F%AD%E6%9D%BF%E7%90%86%E8%AB%96%EF%BC%9A%E5%8F%AA%E8%A6%81%E6%A1%B6%E5%AD%90%E6%9C%89%E4%B8%80%E5%80%8B%E4%BD%8E%E8%99%95%EF%BC%8C%E6%B0%B4%E5%B0%B1%E6%9C%83%E6%B5%81%E5%87%BA&quot;&gt;#&lt;/a&gt; &lt;strong&gt;資安短板理論：只要桶子有一個低處，水就會流出&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;資安理論上常引用的&lt;strong&gt;短板理論&lt;/strong&gt;解釋資安防禦的狀況：假設有一個由長度參差不齊的板子拼成的水桶，只要其中一個板子過低，不管其他板子多長，裡面承裝的水都會從最低處流出。想像公司的數位資產就是桶子裡的水，而每一塊板子就是公司每一個資安項目的狀況，比起集中資安火力在幾個資安面向，平均且持續的把關每一項風險的狀態，才能有效保護公司的資產。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/fangyu/SME3.png&quot; alt=&quot;Alt text&quot;&gt;&lt;/p&gt;
-&lt;p&gt;為能跟上駭客腳步，現代化的資訊安全策略應該從傳統的「合規導向」，&lt;strong&gt;演進成「駭客視角的風險導向」&lt;/strong&gt;，重點不在於投入高額的預算，而是從持續性的資安檢測開始，早駭客一步改善可能被突破之缺口，化風險為企業競爭優勢。中小企業的最佳資安策略不外乎全面性掌握駭客動向，主動在每個脆弱的環節，加強防禦，才能最有效地把駭客阻擋在門外。&lt;/p&gt;
+&lt;p&gt;為能跟上駭客腳步，現代化的資訊安全策略應該從傳統的「合規導向」，&lt;strong&gt;演進成「駭客視角的風險導向」&lt;/strong&gt;，重點不在於投入高額的預算，而是從持續性的資安檢測開始，早駭客一步改善可能被突破之缺口，化風險為企業競爭優勢。中小企業的最佳資安策略不外乎全面性掌握駭客動向，主動在每個脆弱的環節，加強防禦，才能最有效地把駭客阻擋在門外。如果對於資安曝險檢測有興趣，也歡迎與 &lt;a href=&quot;https://cymetrics.io/zh-tw/free-rating&quot;&gt;Cymetrics&lt;/a&gt; 聯繫。&lt;/p&gt;
 
 		</content>
 	</entry>
