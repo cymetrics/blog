@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2023-02-14T00:00:00-00:00</updated>
+	<updated>2023-03-01T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -8576,6 +8576,64 @@ pip 這個工具可以自訂所謂的 Index，也就是私有的 Index，抓取�
 &lt;p&gt;如果今天是微軟被駭，利用 Windows 更新推送惡意軟體呢？那影響範圍要如何掌握與控制呢？&lt;/p&gt;
 &lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
 &lt;p&gt;因較有規模的廠商在近幾年已越來越注重自己公司的資安，甚至有資安相關的部門，這也讓直接攻擊廠商變得較難以實行。越來越多的駭客團體逐漸轉向針對廠商的供應鏈發動攻擊。但也有越來越多公司逐漸注意到這類型的弱點，進而逐步加入對軟體供應商的資安限制等。現在也有越來越多的假冒套件，利用套件名稱內容易打錯的字來植入到套件樹中，這些都可以透過定期檢視套件樹或導入 SSDLC 開發流程等方式來降低此類風險。部分類型的供應鏈攻擊問題也可以透過定期曝險與滲透測試來儘早發現並進行修復。有任何資安方面相關的問題都歡迎留言討論，或者直接聯繫 &lt;a href=&quot;https://cymetrics.io/zh-tw/&quot;&gt;Cymetrics&lt;/a&gt; 尋求相關協助。&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>DeFi 穩定幣 Beanstalk 遭受攻擊事件分析</title>
+		<link href="https://tech-blog.cymetrics.io/posts/huli/defi-beanstalk-hacked/"/>
+		<updated>2023-03-01T00:00:00-00:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/huli/defi-beanstalk-hacked/</id>
+		<content type="html">
+		  &lt;h2 id=&quot;%E4%BA%8B%E4%BB%B6%E7%B0%A1%E4%BB%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BA%8B%E4%BB%B6%E7%B0%A1%E4%BB%8B&quot;&gt;#&lt;/a&gt; 事件簡介&lt;/h2&gt;
+&lt;!-- summary --&gt;2022 年 4 月 17 日，一個去中心化的演算法穩定幣協議 Beanstalk 遭受攻擊，駭客偷走了大約 7700 萬美金的資產，也使得原本應該是 1 塊美元的穩定幣 BEAN 一度下跌至 0.063 美元。&lt;!-- summary --&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/huli/defi-beanstalk-hacked/p1.png&quot; alt=&quot;twitter&quot;&gt;&lt;/p&gt;
+&lt;p&gt;來源：&lt;a href=&quot;https://twitter.com/BeanstalkFarms/status/1515700678454390785&quot;&gt;推特&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90&quot;&gt;#&lt;/a&gt; 漏洞分析&lt;/h2&gt;
+&lt;p&gt;Beanstalk 除了是一個去中心化的穩定幣協議以外，也帶有去中心化的治理功能，任何人都可以透過存入 BEAN 或其他相關的 token（例如說 Curve 的 BEAN3CRV-f LP token 等等）來拿到另一個叫做 Stalk 的代幣，這個代幣就等於選票，有足夠的選票（0.1%）就可以提案，提案之後投票表決，拿到一半以上的選票就會通過，然後自動執行提案。&lt;/p&gt;
+&lt;p&gt;這邊的「提案」指的是一個叫做 &lt;a href=&quot;https://github.com/BeanstalkFarms/Beanstalk/blob/e9f49910e287e7a7afaa6db8f536b7194728b0af/protocol/contracts/farm/facets/GovernanceFacet/GovernanceFacet.sol#L35&quot;&gt;propose&lt;/a&gt; 的智慧合約方法，你可以提供智慧合約的地址跟要呼叫的參數，一旦提案通過，就會透過 &lt;code&gt;commit&lt;/code&gt; 方法自動執行這個合約。&lt;/p&gt;
+&lt;p&gt;而這個機制在設計的時候應該就有考慮到被惡意利用的可能性，因此有個門檻是至少要投票七天才能執行結果，所以照理來說如果有惡意提案，應該早在七天之內就被發現了。&lt;/p&gt;
+&lt;p&gt;不過，還有另外一個功能叫做 &lt;code&gt;emergencyCommit&lt;/code&gt;，給一些緊急的狀況使用，只要票數門檻超過 2/3，就可以不用等七天，等一天就好。&lt;/p&gt;
+&lt;p&gt;所以，如果能做到以上兩點：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在一天前先發布惡意提案，而且不被發覺&lt;/li&gt;
+&lt;li&gt;獲得 2/3 以上的選票&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;就可以在 Beanstalk 上執行任何你想要的操作，例如說把池子裡面的錢全都轉走。&lt;/p&gt;
+&lt;h2 id=&quot;%E6%94%BB%E6%93%8A%E5%88%86%E6%9E%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E6%94%BB%E6%93%8A%E5%88%86%E6%9E%90&quot;&gt;#&lt;/a&gt; 攻擊分析&lt;/h2&gt;
+&lt;p&gt;在 2022 年 4 月 16 日早上 8:38，攻擊者從 Uniswap 上換了 20 萬顆的 BEAN：&lt;a href=&quot;https://etherscan.io/tx/0xfdd9acbc3fae083d572a2b178c8ca74a63915841a8af572a10d0055dbe91d219&quot;&gt;https://etherscan.io/tx/0xfdd9acbc3fae083d572a2b178c8ca74a63915841a8af572a10d0055dbe91d219&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;接著他把這 20 萬顆 BEAN 存到合約中，拿到了一定數量的 Stalk，同時也獲得了提案權：&lt;a href=&quot;https://etherscan.io/tx/0xf5a698984485d01e09744e8d7b8ca15cd29aa430a0137349c8c9e19e60c0bb9d&quot;&gt;https://etherscan.io/tx/0xf5a698984485d01e09744e8d7b8ca15cd29aa430a0137349c8c9e19e60c0bb9d&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;獲得提案權以後，他一次提了兩個案子，編號分別為 BIP-18 以及 BIP-19，BIP-18 提供的合約地址為 &lt;a href=&quot;https://etherscan.io/address/0xe5ecf73603d98a0128f05ed30506ac7a663dbb69#code&quot;&gt;0xe5ecf73603d98a0128f05ed30506ac7a663dbb69&lt;/a&gt;，而 BIP-19 提供的合約地址為 &lt;a href=&quot;https://etherscan.io/address/0x259a2795624b8a17bc7eb312a94504ad0f615d1e#code&quot;&gt;0x259a2795624b8a17bc7eb312a94504ad0f615d1e&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;BIP-19 關聯的是一份要援助烏克蘭的合約，會把 25 萬顆 BEAN 轉到烏克蘭的帳戶底下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/huli/defi-beanstalk-hacked/p2.png&quot; alt=&quot;BIP-19&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到攻擊者為了魚目混珠，還特地將合約程式碼的檔名改叫 &lt;code&gt;InitBip18.sol&lt;/code&gt;，試圖想讓其他人把這兩份提案搞混。&lt;/p&gt;
+&lt;p&gt;而 BIP-18 關聯的就是最後攻擊者執行的惡意合約，合約內容就是把錢轉到攻擊者的地址去：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/huli/defi-beanstalk-hacked/p3.png&quot; alt=&quot;BIP-18&quot;&gt;&lt;/p&gt;
+&lt;p&gt;這邊值得關注的點是 BIP-18 中包含的合約地址 &lt;code&gt;0xe5ecf73603d98a0128f05ed30506ac7a663dbb69&lt;/code&gt;，建立時間是在 2022 年 4 月 17，也就是真正的攻擊發起之後。也就是說，在提出 BIP-18 的時候，這個地址是空的，因此也沒有人知道這個裡面會是什麼。&lt;/p&gt;
+&lt;p&gt;因此，攻擊者在一天前就知道自己事後部署的合約地址是什麼，這是怎麼做到的呢？&lt;/p&gt;
+&lt;p&gt;在部署合約的時候有一個 &lt;a href=&quot;https://docs.openzeppelin.com/cli/2.8/deploying-with-create2#create2&quot;&gt;CREATE2&lt;/a&gt; 的操作可以用，可以事先決定好合約要部署到的位置，攻擊者就是利用了這個 opcode 做到的。&lt;/p&gt;
+&lt;p&gt;在萬事俱備以後，真正的攻擊在一天後（因為前面講過的，提案最短要過一天後才能執行）開始，攻擊者在 4 月 17 日 12:24 時建立了攻擊合約 &lt;a href=&quot;https://etherscan.io/address/0x79224bc0bf70ec34f0ef56ed8251619499a59def&quot;&gt;0x79224bC0bf70EC34F0ef56ed8251619499a59dEf&lt;/a&gt;，同時也部署了 BIP-18 惡意合約，接著在交易 &lt;a href=&quot;https://etherscan.io/tx/0xcd314668aaa9bbfebaf1a0bd2b6553d01dd58899c508d4729fa7311dc5d33ad7&quot;&gt;0xcd314668aaa9bbfebaf1a0bd2b6553d01dd58899c508d4729fa7311dc5d33ad7&lt;/a&gt; 中透過閃電貸從 Aave 中借到總價值十億美金的 DAI、USDC 跟 USDT，接著用了這些代幣去各種流動池如 Uniswap 以及 Curve 上面換取 BEAN 或是相關的 LP token，換到足夠的量以後，再拿去換成擁有投票權的 Stalk，最後投票並且執行提案：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/huli/defi-beanstalk-hacked/p4.png&quot; alt=&quot;proposal&quot;&gt;&lt;/p&gt;
+&lt;p&gt;詳細交易過程可以參考：&lt;a href=&quot;https://ethtx.info/mainnet/0xcd314668aaa9bbfebaf1a0bd2b6553d01dd58899c508d4729fa7311dc5d33ad7/&quot;&gt;https://ethtx.info/mainnet/0xcd314668aaa9bbfebaf1a0bd2b6553d01dd58899c508d4729fa7311dc5d33ad7/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;執行提案以後獲得 3600 萬的 BEAN 以及其他 LP token，拿去池子換回原本代幣，經過一系列換來換去以後，最後把閃電貸資金還回去，連帶獲利 24830 顆的 WETH。&lt;/p&gt;
+&lt;h2 id=&quot;%E4%BF%AE%E8%A3%9C%E5%BB%BA%E8%AD%B0&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E4%BF%AE%E8%A3%9C%E5%BB%BA%E8%AD%B0&quot;&gt;#&lt;/a&gt; 修補建議&lt;/h2&gt;
+&lt;p&gt;最安全的方式當然是把「執行提案」這件事放到線下，不再透過智慧合約自動執行。但這樣就失去了原本去中心化的精神，讓執行提案的權力掌握在開發團隊當中。&lt;/p&gt;
+&lt;p&gt;若是依然要在線上執行，對於執行提案這件事情必須要更嚴謹地去做把關，例如說投票通過之後一定要等 3 天或更久才能執行提案之類的，不要讓提案能夠馬上被執行，才能爭取時間，提早發現惡意提案。&lt;/p&gt;
+&lt;h2 id=&quot;%E7%B8%BD%E7%B5%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B8%BD%E7%B5%90&quot;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;在幣圈利用閃電貸獲取大額資金之後，透過操縱價格來套利或是利用漏洞已經是很常見的攻擊手法了，有許多項目方也意識到此類風險，有特別對這一塊做出防護。但除了操縱價格本身，像是 Beanstalk 這種去中心化的治理模型也有可能因為治理代幣被大量操控而出現問題，往後若是要實作這種去中心化的自動治理合約，記得要特別留意此類風險。&lt;/p&gt;
+&lt;p&gt;參考資料：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://tech-blog.cymetrics.io/posts/huli/defi-beanstalk-hacked/259a2795624b8a17bc7eb312a94504ad0f615d1e&quot;&gt;The Beanstalk $BEAN Exploit&lt;/a&gt; 推薦閱讀&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bean.money/blog/beanstalk-governance-exploit&quot;&gt;Beanstalk Governance Exploit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://twitter.com/kelvinfichter/status/1515735674703470595&quot;&gt;Twitter @kelvinfichter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://twitter.com/peckshield/status/1515680335769456640&quot;&gt;Twitter PeckShield Inc.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://twitter.com/FrankResearcher/status/1515693895887294466&quot;&gt;Twitter @FrankResearcher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.defiyield.app/beanstalk-losses-181-million-the-governance-attack-using-a-flash-loan-7459174dfa8e&quot;&gt;Beanstalk losses $181 million: the Governance Attack using a Flash Loan&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-18-exploit.md&quot;&gt;https://github.com/BeanstalkFarms/Beanstalk-Governance-Proposals/blob/master/bip/bip-18-exploit.md&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.defidaonews.com/article/6744030&quot;&gt;慢雾：Beanstalk 攻击事件的主要原因是社区投票和执行提案之间未设置时间间隔&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://foresightnews.pro/article/detail/2339&quot;&gt;简析 DeFi 稳定币协议 Beanstalk 被盗过亿美元过程：闪电贷结合治理的新型攻击方式&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
 		</content>
 	</entry>
