@@ -59,7 +59,7 @@ ChatGPT strives to provide complete answers even if your question is not very sp
 
 Below is the complete code. If you have some knowledge of web development, you may recognize that this is already a standard backdoor program. If an attacker can successfully upload and browse to a page containing this malicious script, they can gain initial control. From there, they can attempt to escalate privileges or perform other attack behaviors.
 
-```html=
+```html
 <!DOCTYPE html>
 <html>
 <head>
