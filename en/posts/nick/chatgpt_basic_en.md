@@ -1,6 +1,6 @@
 ---
 
-title: Basic Awareness of Hacking Prevention：Backup and Restore
+title: ChatGPT Hacking Basics
 date: 2023-03-20
 tags: [Security,ChatGPT,OpenAI]
 author: nick
