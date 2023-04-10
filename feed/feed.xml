@@ -8711,12 +8711,14 @@ pip 這個工具可以自訂所謂的 Index，也就是私有的 Index，抓取�
 		<content type="html">
 		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/ava/workflow.process/workflow.process.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;%E5%89%8D%E8%A8%80%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81%E7%94%A2%E5%93%81%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B%EF%BC%9F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80%EF%BC%9A%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81%E7%94%A2%E5%93%81%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B%EF%BC%9F&quot;&gt;#&lt;/a&gt; 前言：為什麼需要產品開發流程？&lt;/h2&gt;
+&lt;!-- summary --&gt;
 &lt;p&gt;面對快速發展的客戶群體與機會，不斷的尋找甜蜜點是身為產品經理的目標之一，而專案經理的目標更是明確，讓這些產品、專案、功能順利交付到使用者的手上，有效解決他們的需求。在這樣的目標之下，必須建立一套產品開發流程，讓產品的運作從構想、設計、開發到交付的過程都能夠通順並如期推出。具體來說，Cymetrics 會把整體流程拆分成以下3個部分：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;需求流程&lt;/li&gt;
 &lt;li&gt;設計流程&lt;/li&gt;
 &lt;li&gt;開發流程&lt;/li&gt;
 &lt;/ol&gt;
+&lt;!-- summary --&gt;
 &lt;h3 id=&quot;1.%E9%9C%80%E6%B1%82%E6%B5%81%E7%A8%8B&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#1.%E9%9C%80%E6%B1%82%E6%B5%81%E7%A8%8B&quot;&gt;#&lt;/a&gt; 1.需求流程&lt;/h3&gt;
 &lt;p&gt;除了開發自有產品外，Cymetrics也會接一些專案服務（弱點掃描、滲透測試、各方合作等）。不論是這些專案、客戶建議或內部夥伴的回饋，都會需要走這個流程，也是整體流程的第一步。內部透過設置許願池，讓銷售、行銷、產品經理、設計、工程師等遵照規範來提出具體需求。&lt;/p&gt;
 &lt;p&gt;許願池創立的初衷是希望，不論需求者的角色為何，我們都希望能夠看到具體的需求描述、預期時間以及需求目的，這些重要的資訊是能使專案經理更為有效地去理解並提供相對應的幫助，與此同時間可以降低缺少紀錄、工作到一半被打擾的現象發生。&lt;/p&gt;
