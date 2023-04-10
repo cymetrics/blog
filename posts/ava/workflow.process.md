@@ -1,5 +1,5 @@
 ---
-title: # 從頭到尾：深度解析Cymetrics 如何進行產品開發流程的管理
+title: 從頭到尾：深度解析Cymetrics 如何進行產品開發流程的管理
 date: 2023-04-10
 author: ava
 tags: [Project]
