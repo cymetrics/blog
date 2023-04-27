@@ -5,6 +5,7 @@ tags: [Security]
 author: huli
 layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/wordpress-plugin-vikbooking-unauth-rce/cover.png
+canonical: https://blog.huli.tw/2022/05/20/wordpress-plugin-vikbooking-unauth-rce/
 ---
 
 <!-- summary -->

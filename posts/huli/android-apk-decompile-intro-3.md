@@ -5,6 +5,7 @@ tags: [Security, Mobile]
 author: huli
 layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/android-apk-decompile-intro/cover3.png
+canonical: https://blog.huli.tw/2023/04/27/android-apk-decompile-intro-3/
 ---
 
 <!-- summary -->

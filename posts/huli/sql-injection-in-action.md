@@ -4,6 +4,7 @@ date: 2022-01-19
 tags: [Security]
 author: huli
 layout: zh-tw/layouts/post.njk
+canonical: https://blog.huli.tw/2022/01/19/sql-injection-in-action/
 ---
 
 <!-- summary -->

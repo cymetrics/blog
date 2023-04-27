@@ -5,6 +5,7 @@ tags: [Security]
 author: huli
 layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/wordpress-plugin-amelia-sensitive-information-disclosure/cover.png
+canonical: https://blog.huli.tw/2022/03/30/wordpress-plugin-amelia-sensitive-information-disclosure/
 ---
 
 <!-- summary -->
