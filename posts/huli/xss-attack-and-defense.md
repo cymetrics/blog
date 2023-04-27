@@ -5,6 +5,7 @@ tags: [Security, Front-end]
 author: huli
 layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/attack-and-defense/cover.jpeg
+canonical: https://blog.huli.tw/2021/06/19/xss-attack-and-defense/
 ---
 
 ## 前言

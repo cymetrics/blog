@@ -5,6 +5,7 @@ tags: [Security, Front-end]
 author: huli
 description: 這篇文章希望藉由 cdnjs 的漏洞讓前端工程師們認識什麼是供應鏈攻擊
 layout: zh-tw/layouts/post.njk
+canonical: https://blog.huli.tw/2021/08/22/cdnjs-and-supply-chain-attack/
 ---
 
 ## 前言

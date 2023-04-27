@@ -4,6 +4,7 @@ date: 2021-08-26
 tags: [Security, Front-end]
 author: huli
 layout: zh-tw/layouts/post.njk
+canonical: https://blog.huli.tw/2021/09/26/what-is-clickjacking/
 ---
 
 ## 前言

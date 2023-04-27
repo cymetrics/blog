@@ -5,6 +5,7 @@ tags: [Security]
 author: huli
 layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/crest-cpsa-prepare/p1.png
+canonical: https://blog.huli.tw/2021/12/15/crest-cpsa-prepare/
 ---
 
 <!-- summary -->

@@ -4,6 +4,7 @@ date: 2021-09-29
 tags: [Security, Front-end]
 author: huli
 layout: zh-tw/layouts/post.njk
+canonical: https://blog.huli.tw/2021/09/29/prototype-pollution/
 ---
 
 ## 前言

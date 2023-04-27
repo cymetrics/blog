@@ -5,6 +5,7 @@ tags: [Security]
 author: huli
 layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/what-is-log4j-and-log4shell/cover.jpeg
+canonical: https://blog.huli.tw/2021/12/18/what-is-log4j-and-log4shell/
 ---
 
 ![](/img/posts/huli/what-is-log4j-and-log4shell/cover.jpeg)

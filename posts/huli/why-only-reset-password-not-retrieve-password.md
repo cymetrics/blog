@@ -5,6 +5,7 @@ tags: [Security]
 author: huli
 layout: zh-tw/layouts/post.njk
 image: /img/posts/huli/reset-password/cover.jpeg
+canonical: https://medium.com/@hulitw/why-only-reset-password-not-retrieve-password-aa7cfb8699f1
 ---
 
 某天小明在整理他的我的最愛（到底誰的），發現了一個以前很常逛，但已經將近半年多沒去的一個論壇。小明想回去看看那邊變得怎麼樣了，於是點進去那個論壇，輸入了帳號密碼，得到了密碼錯誤的回覆。

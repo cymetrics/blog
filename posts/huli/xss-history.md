@@ -4,6 +4,7 @@ date: 2021-10-11
 tags: [Security, Front-end]
 author: huli
 layout: zh-tw/layouts/post.njk
+canonical: https://blog.huli.tw/2021/10/11/xss-history/
 ---
 
 我以前有寫過一些關於 XSS 的文章，主要在談的是實作面的防範以及防禦的各個細節：

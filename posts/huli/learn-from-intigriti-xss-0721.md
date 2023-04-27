@@ -5,6 +5,7 @@ tags: [Security, Front-end]
 author: huli
 description: 從一題 XSS 的題目中突破層層關卡，學習各種前端相關知識
 layout: zh-tw/layouts/post.njk
+canonical: https://blog.huli.tw/2021/08/06/intigriti-xss-0721/
 ---
 
 ## 前言

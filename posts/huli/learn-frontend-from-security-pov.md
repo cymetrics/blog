@@ -5,6 +5,7 @@ tags: [Security, Front-end]
 author: huli
 layout: zh-tw/layouts/post.njk
 description: 我在一個新的領域（資安）重新學習到了我原本熟悉的領域（前端）的知識，這種感覺十分特別，因此這篇文章想跟大家分享我學到的一些東西
+canonical: https://blog.huli.tw/2021/10/25/learn-frontend-from-security-pov/
 ---
 
 此文章是我在 Modern Web 2021 的分享：《接觸資安才發現前端的水真深》的文字版，當時的演講影片尚未釋出，想看簡報的話在這邊：[slides](https://speakerdeck.com/aszx87410/jie-chu-zi-an-cai-fa-xian-qian-duan-de-shui-zhen-shen-modern-web-2021)

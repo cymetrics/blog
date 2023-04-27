@@ -4,6 +4,7 @@ date: 2021-05-15
 tags: [Security, Front-end]
 author: huli
 layout: zh-tw/layouts/post.njk
+canonical: https://blog.huli.tw/2021/05/25/prevent-xss-is-not-that-easy/
 ---
 
 ## 前言
