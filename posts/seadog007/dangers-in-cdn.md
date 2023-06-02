@@ -1,7 +1,7 @@
 ---
 title: 那些隱藏在 CDN 中的危險：為什麼 CDN 可能沒有你想的那麼安全
 date: 2023-06-02
-tags: [Security]
+tags: [Security, CDN, Cloud, Internet, Network, Networking]
 author: seadog007
 layout: zh-tw/layouts/post.njk
 image: /img/posts/seadog007/dangers-in-cdn/cover.png
