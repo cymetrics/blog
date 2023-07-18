@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2023-06-02T00:00:00-00:00</updated>
+	<updated>2023-07-18T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -9106,6 +9106,188 @@ pip 這個工具可以自訂所謂的 Index，也就是私有的 Index，抓取�
 &lt;p&gt;看完這篇文章，你覺得使用 CDN 很糟糕嗎？當然這場演講、這篇文章並不是要叫大家不要用 CDN，在大多數的時候，使用 CDN 能帶來的好處遠遠大於使用 CDN 的缺點。&lt;/p&gt;
 &lt;p&gt;CDN 提供了網站管理者更多的保護，但 CDN 使用者還是需要確認 CDN 所提供的最佳實作方式（Best Practices Guide），並比較不同的 CDN 廠商。最後，不要過度相信 CDN 所提供的功能，這些功能有可能會導致原始網站運作不正常或出現弱點。&lt;/p&gt;
 &lt;p&gt;有任何資安方面相關的問題都歡迎留言討論，或者直接聯繫 &lt;a href=&quot;https://cymetrics.io/zh-tw/&quot;&gt;Cymetrics&lt;/a&gt; 尋求相關協助。&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>遊走紅隊與藍隊：Purple man 我的超人</title>
+		<link href="https://tech-blog.cymetrics.io/posts/zet/purple-man-my-superman/"/>
+		<updated>2023-07-18T00:00:00-00:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/zet/purple-man-my-superman/</id>
+		<content type="html">
+		  &lt;!-- summary --&gt;
+&lt;p&gt;很高興 2023 年 5 月可以在 &lt;a href=&quot;https://cyber.ithome.com.tw/2023/session-page/1819&quot;&gt;CYBERSEC 2023 臺灣資安大會&lt;/a&gt; 分享一些平常在關注或是有趣的東西。紅藍對抗隨時都在發生，紅隊利用新穎的漏洞與手法進行攻擊，藍隊可以使用各種機制與防護中斷攻擊。本篇將介紹一些好用的技巧與工具。&lt;/p&gt;
+&lt;!-- summary --&gt;
+&lt;h1 id=&quot;%E5%AF%A6%E9%A9%97%E7%92%B0%E5%A2%83%E6%9E%B6%E8%A8%AD&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AF%A6%E9%A9%97%E7%92%B0%E5%A2%83%E6%9E%B6%E8%A8%AD&quot;&gt;#&lt;/a&gt; 實驗環境架設&lt;/h1&gt;
+&lt;p&gt;不管是紅隊或是藍隊，都有架設 Lab 的需求。不僅可以測試攻擊留下的痕跡，亦或是重現威脅來研究並加強偵測。除了對虛擬機器狀態進行快照（Snapshot）外，還沒有其他更好的方式？&lt;/p&gt;
+&lt;h2 id=&quot;automatedlab&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#automatedlab&quot;&gt;#&lt;/a&gt; AutomatedLab&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://automatedlab.org/en/latest/&quot;&gt;AutomatedLab&lt;/a&gt; 是一個可以在 Hyper-V 和 Azure 上使用的工具，並支援多種服務。自動化的建置可以大幅減少我們設置 Lab 的時間。&lt;/p&gt;
+&lt;p&gt;AutomatedLab 支援的服務包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows 7, 2008 R2, 8 / 8.1 and 2012 / 2012 R2, 10 / 2016, 2019, 2022&lt;/li&gt;
+&lt;li&gt;SQL Server 2008, 2008R2, 2012, 2014, 2016, 2017, 2019 more&lt;/li&gt;
+&lt;li&gt;Visual Studio 2012, 2013, 2015, 2017 more&lt;/li&gt;
+&lt;li&gt;Team Foundation Services 2015+&lt;/li&gt;
+&lt;li&gt;Azure DevOps more&lt;/li&gt;
+&lt;li&gt;Exchange 2013, 2016, 2019&lt;/li&gt;
+&lt;li&gt;SharePoint 2013, 2016, 2019&lt;br&gt;
+...&lt;br&gt;
+...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我們可以利用很簡單的 powershell script 來建立 &lt;strong&gt;Windows DC 伺服器&lt;/strong&gt; + &lt;strong&gt;Exchange 伺服器&lt;/strong&gt; + &lt;strong&gt;加入網域的 Endpoint Client&lt;/strong&gt;，並指定虛擬機器的資源&lt;/p&gt;
+&lt;pre class=&quot;language-powershell&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&lt;span class=&quot;token function&quot;&gt;New-LabDefinition&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Name LabEx2013 &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;DefaultVirtualizationEngine HyperV&lt;br&gt;&lt;span class=&quot;token variable&quot;&gt;$PSDefaultParameterValues&lt;/span&gt; = @&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&#39;Add-LabMachineDefinition:DomainName&#39;&lt;/span&gt; = &lt;span class=&quot;token string&quot;&gt;&#39;contoso.com&#39;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&#39;Add-LabMachineDefinition:OperatingSystem&#39;&lt;/span&gt; = &lt;span class=&quot;token string&quot;&gt;&#39;Windows Server 2012 R2 Datacenter (Server with a GUI)&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;Add-LabMachineDefinition&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Name Ex2013DC1 &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Roles RootDC &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Memory 1GB&lt;br&gt;&lt;span class=&quot;token variable&quot;&gt;$role&lt;/span&gt; = &lt;span class=&quot;token function&quot;&gt;Get-LabPostInstallationActivity&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;CustomRole Exchange2013 &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Properties @&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; OrganizationName = &lt;span class=&quot;token string&quot;&gt;&#39;Test1&#39;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;Add-LabMachineDefinition&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Name Ex2013EX1 &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Memory 4GB &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;PostInstallationActivity &lt;span class=&quot;token variable&quot;&gt;$role&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;Add-LabMachineDefinition&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Name Ex2013Client1 &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;OperatingSystem &lt;span class=&quot;token string&quot;&gt;&#39;Windows 10 Pro&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Memory 1GB&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;Install-Lab&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;Show-LabDeploymentSummary&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;Detailed&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;detectionlab&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#detectionlab&quot;&gt;#&lt;/a&gt; DetectionLab&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/clong/DetectionLab&quot;&gt;DetectionLab&lt;/a&gt; 是另一個選項。與 AutomatedLab 不同的是，DetectionLab 並未提供多樣化的服務供客戶進行自定義安裝，而是使用固定的四台機器組成的架構。然而，儘管如此，DetectionLab 安裝了許多實用的工具，這些包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Microsoft Advanced Threat Analytics&lt;/li&gt;
+&lt;li&gt;Splunk&lt;/li&gt;
+&lt;li&gt;Osquery + Fleet&lt;/li&gt;
+&lt;li&gt;Sysmon&lt;/li&gt;
+&lt;li&gt;Zeek&lt;/li&gt;
+&lt;li&gt;Splunk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/detection-lab.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其中一個值得特別提及的工具是 &lt;strong&gt;Microsoft Advanced Threat Analytics (ATA)&lt;/strong&gt;。許多 Microsoft Defender 的內部網路偵測機制先前在 ATA 中有實作。例如 Password spraying（密碼噴射攻擊）、Pass-The-Hash、和 Pass-The-Ticket 這些內網攻擊，我們都可以重現並驗證是否能被偵測。&lt;/p&gt;
+&lt;p&gt;對於紅隊而言，可以先利用 DetectionLab 來觀察，透過 Sysmon、Zeek、ATA 等工具來預先了解可能的攻擊痕跡，並嘗試減少其可見性。另一方面，藍隊可以利用 Splunk 和 Sysmon 等工具進行威脅狩獵（Threat Hunting）的訓練，透過熟悉各種事件發生時的日誌（Log）資料，之後就能快速銜接並調查未來可能發生的相似攻擊。&lt;/p&gt;
+&lt;h1 id=&quot;%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E6%95%B4%E5%90%88&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E6%95%B4%E5%90%88&quot;&gt;#&lt;/a&gt; 資訊安全工具整合&lt;/h1&gt;
+&lt;p&gt;企業內部會使用 SecDevOps 或 DevSecOps 把資安融入到開發流程當中，利用 CI/CD pipeline 去自動化完成。在這裡的概念會比較像是 &lt;a href=&quot;https://github.com/j3ssie/osmedeus&quot;&gt;osmedeus&lt;/a&gt; 工具 &amp;quot;flow Engine for Offensive Security&amp;quot; 其中的 &lt;a href=&quot;https://github.com/osmedeus/osmedeus-workflow&quot;&gt;workflow&lt;/a&gt;。我們可以利用 CI/CD 來達成，從最新掃描工具的安裝部署到各個階段的掃描都可以自己來客製化。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/osmedeus.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;例如流程可以依序如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安裝最新的工具
+&lt;ul&gt;
+&lt;li&gt;利用 Git clone&lt;/li&gt;
+&lt;li&gt;利用 Curl&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;主機與 URL 列舉
+&lt;ul&gt;
+&lt;li&gt;subfinder&lt;/li&gt;
+&lt;li&gt;httpx&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;分析與爬蟲
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/projectdiscovery/katana&quot;&gt;katana&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;掃描
+&lt;ul&gt;
+&lt;li&gt;ZAP Proxy&lt;/li&gt;
+&lt;li&gt;Nessus&lt;/li&gt;
+&lt;li&gt;BurpSuite&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;通知
+&lt;ul&gt;
+&lt;li&gt;Telegram bot&lt;/li&gt;
+&lt;li&gt;Slack bot&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我們可以透過命令安裝最新的工具，然後進行模擬（Emulation）以收集各種資料。情蒐到的資料丟進去爬蟲或是 Filter，再利用簡單粗暴的弱點掃描工具做最基本的檢查。最後可以把掃描的 log 與結果丟到通訊軟體中通知掃描完成。只要設計好 CI 流程，掃描內容跟工具都可以高度客製化。&lt;/p&gt;
+&lt;p&gt;最怕就是在滲透測試進行了長時間後，發現有基本的弱點其實是掃目錄就可以找到的，卻在初期被忽略，進而浪費了大量時間。固定且完整的自動化流程可以幫助我們節省時間並發現更多資訊，提升我們的工作效率和準確性。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/drone.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;這邊是用 Drone CI 當作範例，新增相關環境變數以後就可以開始自動掃描，其中可以保存掃描記錄也可以自動通知掃描完成。&lt;/p&gt;
+&lt;h1 id=&quot;%E7%B4%85%E9%9A%8A%E8%88%87%E8%97%8D%E9%9A%8A%E6%8A%80%E8%A1%93&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B4%85%E9%9A%8A%E8%88%87%E8%97%8D%E9%9A%8A%E6%8A%80%E8%A1%93&quot;&gt;#&lt;/a&gt; 紅隊與藍隊技術&lt;/h1&gt;
+&lt;h2 id=&quot;tunneling-(t1572)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#tunneling-(t1572)&quot;&gt;#&lt;/a&gt; Tunneling (&lt;a href=&quot;https://attack.mitre.org/techniques/T1572/&quot;&gt;T1572&lt;/a&gt;)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以用於隱藏真實 IP ;穿透與橋接內部網路&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在滲透測試過程中，我們通常不希望公開暴露我們的 Public IP，或是某些防護牆阻擋關係，因此可以透過 Ngrok 進行檔案和 Shell 的傳輸。另外在真實的 APT（Advanced Persistent Threat）攻擊行動中，我們也可以看到其他內網穿透的做法，比如使用 SoftEther 服務將受害者的電腦與攻擊者的電腦網路連接起來，這樣攻擊者就能方便地控制並持續管理受害者的電腦。然而，這裡我們主要想要介紹的是兩個較特別的服務，分別是 Cloudflared 和 Tailscale。&lt;/p&gt;
+&lt;p&gt;Cloudflared 是 Cloudflare 提供的跨平台 command-line tunnel client，可用於結合自家的服務 &lt;a href=&quot;https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/&quot;&gt;Zero Trust Tunnels&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/cloudflare-tunnel.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我們可以在受害電腦上面執行 Cloudflared Tunnel agent，讓受害電腦作為&lt;strong&gt;代理&lt;/strong&gt;進而存取內部網路。在 Cloudflare 設定介面中增加想要 pass through 的內網資源，其中網頁設定介面上支援 CIDR 表示。接下來在 Split Tunnels 功能中將預設內部網路的設定拿掉。以上都完成我們就可以透過 &lt;a href=&quot;https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/&quot;&gt;Cloudflare WARP&lt;/a&gt; 直接存取內部網路資源。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/cloudflare-tunnels-setting.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/cloudflare-tunnels-setting-2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;另外 Tailscale 與 Headscale 基於 WireGuard 協定，在上面多加了自己的應用，應用情境比較像是會有一個 VPN Hub，而各個 Client 可以連上來組成一個虛擬內網，通過 &lt;a href=&quot;https://tailscale.com/blog/how-nat-traversal-works/&quot;&gt;NATs (Network Address Translators)&lt;/a&gt; 來互相溝通。類似的服務還有像是 ZeroTier，最終可以組成一個駭客的虛擬大內網，方便駭客控制內網端主機，而不受防火牆的影響。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/tailscale.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;防禦與狩獵：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我們可以利用 &lt;a href=&quot;https://github.com/VirusTotal/yara&quot;&gt;YARA&lt;/a&gt; 和 &lt;a href=&quot;https://github.com/SigmaHQ/sigma&quot;&gt;SIGMA&lt;/a&gt; 這兩種規則語言來掃描進程（Process）和內存（Memory），藉此實現基於特徵（Pattern-based）的檢測機制來強化防禦能力。這些規則的設定可以參考 Mandiant 對於偵測 VPN 的部落格分享：&lt;a href=&quot;https://www.mandiant.com/resources/blog/burrowing-your-way-into-vpns&quot;&gt;Burrowing your way into VPNs, Proxies, and Tunnels&lt;/a&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rule M_Hunting_Linux_VPNEngine_GenericSoftEther_1
+{
+    meta:
+        author = &amp;quot;Mandiant&amp;quot;
+        description = &amp;quot;Rule looks for SoftEther generic terms in samples.&amp;quot;
+    strings:
+        $domain = &amp;quot;update-check.softether-network.net&amp;quot; ascii fullword
+        $keepalive = &amp;quot;keepalive.softether.org&amp;quot;
+        $vpn = &amp;quot;SoftEther Corporation&amp;quot; ascii fullword
+    condition:
+        filesize &amp;lt; 10MB and uint32(0) == 0x464c457f and all of them
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;lateral-movement-(ta0109)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#lateral-movement-(ta0109)&quot;&gt;#&lt;/a&gt; Lateral Movement (&lt;a href=&quot;https://attack.mitre.org/tactics/TA0109/&quot;&gt;TA0109&lt;/a&gt;)&lt;/h2&gt;
+&lt;p&gt;在內網滲透拿到 HASH 或是 Ticket 後想要執行命令控制其他電腦，通常會利用 PsExec, SMBExec, Atexec 但是這些方式很有可能被偵測到。這邊我們可以利用 Impacket 來客製化自己的內網移動工具。&lt;/p&gt;
+&lt;p&gt;觀察 Impacket 官方透過 SMB 的命令執行工具 &lt;a href=&quot;https://github.com/fortra/impacket/blob/b5dab2df5e187b81d481dbbd513ea7fe1978d76a/examples/smbexec.py#L187&quot;&gt;Github: Impacket examples smbexec.py&lt;/a&gt;，其中可以魔改一下 &lt;code&gt;self.__output&lt;/code&gt; 檔案上傳位置，&lt;code&gt;self.__pwsh&lt;/code&gt; powershell 執行的命令 ，這些特徵都是容易被識別與偵測的，因此我們可以利用其他系統 API 或是方式達成一樣的功能，利用改變流程與特徵的方式減少被偵測的機會。&lt;/p&gt;
+&lt;p&gt;以下命令執行的方式就容易被當作規則識別，&lt;strong&gt;固定的系統路徑 + 亂數的 &lt;code&gt;.bat&lt;/code&gt; 檔案 + base64 編碼的內容&lt;/strong&gt;，我們可以修改路徑與執行方式來繞過偵測。&lt;/p&gt;
+&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;execute_remote&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; data&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; shell_type&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;cmd&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; shell_type &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;powershell&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;$ProgressPreference=&quot;SilentlyContinue&quot;;&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; data&lt;br&gt;        data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__pwsh &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; b64encode&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;encode&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;utf-16le&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;decode&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;    batchFile &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;%SYSTEMROOT%\\&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;join&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;random&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;choice&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;string&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ascii_letters&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; _ &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;.bat&#39;&lt;/span&gt;&lt;br&gt;&lt;br&gt;    command &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__shell &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;echo &#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; data &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39; ^&gt; &#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__output &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39; 2^&gt;^&amp;amp;1 &gt; &#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; batchFile &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39; &amp;amp; &#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; \&lt;br&gt;              self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__shell &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; batchFile&lt;br&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__mode &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;SERVER&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        command &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39; &amp;amp; &#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__copyBack&lt;br&gt;    command &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39; &amp;amp; &#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;del &#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; batchFile&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;另外 CrackMapExec 工具支援多種協定, Credentials, Kerberos 可以結合 BloodHound，組成模組化功能並用於列舉、密碼破解、命令執行。底層基於 Impacket 在 Linux 上面進行攻擊十分方便，其中作者成立了 &lt;a href=&quot;https://github.com/Porchetta-Industries&quot;&gt;Porchetta Industries - &lt;em&gt;The&lt;/em&gt; central platform to support the developers of Open Source Infosec tools&lt;/a&gt;，支持開源的安全工具，概念很棒。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;防禦與狩獵：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;建置告警系統，當某些登入事件發生時會進行紀錄並通知，例如重要的 Server 若有登入也可以發送通知到 Slack 等內部通訊軟體。另外在內部網路進行流量與封包 Mirror，再丟入網路分析工具，部分內網攻擊與嘗試的 error code 就有機會被偵測到。&lt;/p&gt;
+&lt;p&gt;還可以建立 HoneyShare, HoneyUser，設置陷阱，誘使攻擊者在進到內網時通常從容易的下手。建立沒有密碼的共享資料夾、偽高權限的帳號並使用弱密碼，假如有人存取資料與登入可以進行紀錄與通知，我們就有機會抓到攻擊行為並即時阻斷。&lt;/p&gt;
+&lt;h2 id=&quot;evasion-(ta0103)-%26-command-and-control-(ta0101)&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#evasion-(ta0103)-%26-command-and-control-(ta0101)&quot;&gt;#&lt;/a&gt; Evasion (&lt;a href=&quot;https://attack.mitre.org/tactics/TA0103/&quot;&gt;TA0103&lt;/a&gt;) &amp;amp; Command-and-Control (&lt;a href=&quot;https://attack.mitre.org/tactics/TA0101/&quot;&gt;TA0101&lt;/a&gt;)&lt;/h2&gt;
+&lt;p&gt;防護軟體主要的偵測可以分為：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pattern-based&lt;/li&gt;
+&lt;li&gt;Behavior-based&lt;/li&gt;
+&lt;li&gt;Indicators of Compromise (IOCs)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pattern-based 利用固定的一些字串、URL、演算法的 Hexadecimal 作為特徵。&lt;/p&gt;
+&lt;p&gt;行為特徵 (Behavior-based) 比較像是 Web server process 開了一個 shell process 其中的命令行包含某些特別字串，這種多種行為組合成有順序性、相依性的奇特行為來作為判斷。&lt;/p&gt;
+&lt;p&gt;最後 IOC 常見的是利用 IP / URL 作為黑名單。其實對於攻擊者來說&lt;strong&gt;只要時間足夠任何防護軟體都可以被繞過&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在控制主機的後門程式中必然包含許多繞過技術，才可以在層層監控的防護機制下隱蔽的工作，其中包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unhook&lt;/li&gt;
+&lt;li&gt;Indirect syscalls&lt;/li&gt;
+&lt;li&gt;Run PowerShell without Powershell.exe&lt;/li&gt;
+&lt;li&gt;Disable AMSI, ETW, Event Log&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;現在擁有多樣化的 Loader 與 Packer，大幅減少繞過防護軟體的時間，甚至有 SaaS 服務。攻擊者也可以利用多種語言來撰寫編譯惡意程式，我們可以用 Offensive 作為開頭加上程式語言名稱去 Github 搜索。例如 &lt;a href=&quot;https://github.com/byt3bl33d3r/OffensiveNim&quot;&gt;OffensiveNim&lt;/a&gt; 其中就包含執行 shellcode、patch process memory、呼叫 syscall 等範例程式碼。&lt;/p&gt;
+&lt;p&gt;Interpreter 的概念也可以結合至惡意程式中，最小化惡意程式 Loader，把模組化的功能切分開，需要的時候再下載載入執行。可以利用像是 Lua 或是 .NET Assemblies 來實作。golang 中的 &lt;a href=&quot;https://github.com/traefik/yaegi&quot;&gt;yaegi&lt;/a&gt; lib 也滿有趣的，可以在 golang 中執行 golang 範例如下：&lt;/p&gt;
+&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;package&lt;/span&gt; main&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;br&gt;	&lt;span class=&quot;token string&quot;&gt;&quot;github.com/traefik/yaegi/interp&quot;&lt;/span&gt;&lt;br&gt;	&lt;span class=&quot;token string&quot;&gt;&quot;github.com/traefik/yaegi/stdlib&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;	i &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; interp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;New&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;interp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Options&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;	i&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;stdlib&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Symbols&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;	&lt;span class=&quot;token boolean&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; err &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; i&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Eval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;`import &quot;fmt&quot;`&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;	&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; err &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;		&lt;span class=&quot;token function&quot;&gt;panic&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;err&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;br&gt;	&lt;span class=&quot;token boolean&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; err &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; i&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Eval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;`fmt.Println(&quot;Hello Yaegi&quot;)`&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;	&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; err &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;		&lt;span class=&quot;token function&quot;&gt;panic&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;err&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其實很多技巧與細節都是想要達到防止分析 (Anti-Forensics) 的概念。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;防禦與狩獵：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;除了先前的 YARA 與 Sigma 外，我們還可以利用各種廠商提供的 Event Query Language。搭配 Timeline Explorer 或是免費的掃描程式來幫我們偵測惡意程式。例如我們可以看 elastic 的 &lt;a href=&quot;https://github.com/elastic/detection-rules/tree/main/rules&quot;&gt;detection-rules&lt;/a&gt;，學習惡意程式的執行行為與特徵。&lt;/p&gt;
+&lt;p&gt;在端點上可以簡單使用 &lt;a href=&quot;https://ericzimmerman.github.io/#!index.md&quot;&gt;Timeline Explorer&lt;/a&gt; + &lt;a href=&quot;https://github.com/Yamato-Security/hayabusa&quot;&gt;Yamato-Security/hayabusa&lt;/a&gt; 來做跨電腦的 Eventlog 分析，利用時間排序來分析彙整各台電腦上的高風險事件。Nextron Systems 也有開源與免費的掃描程式 &lt;a href=&quot;https://github.com/Neo23x0/Loki&quot;&gt;Loki&lt;/a&gt;, &lt;a href=&quot;https://www.nextron-systems.com/thor-lite/&quot;&gt;Thor Lite&lt;/a&gt; 可以幫忙偵測端點上的威脅。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/timeline-explorer.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/thor-lite.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;%E7%B5%A6%E8%97%8D%E9%9A%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E5%BB%BA%E8%AD%B0&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E7%B5%A6%E8%97%8D%E9%9A%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E5%BB%BA%E8%AD%B0&quot;&gt;#&lt;/a&gt; 給藍隊的一些小建議&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;定期資產盤點，了解網路範圍邊界。不要等出事了以後不知道受害主機在哪邊。&lt;/li&gt;
+&lt;li&gt;可以聯網的裝置，盡可能的更新上 patch 包括 Router, Switch, IoT, Printer, Endpoint等。&lt;/li&gt;
+&lt;li&gt;架設 Log Server，Log 盡量搜集完整 包含 Firewall, Endpoint, Server。有 Log 才有調查事件的本錢。&lt;/li&gt;
+&lt;li&gt;定期弱點掃描與滲透測試，並透過 DevSecOps 規劃。將資訊安全標準提升並融入日常操作中。&lt;/li&gt;
+&lt;li&gt;訂閱公司產品的弱點通報以及相關情報資訊，以便了解相關攻擊手法和知識。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;對於&lt;strong&gt;藍隊&lt;/strong&gt;而言，&amp;quot;紅隊&amp;quot;是用來驗證和發現問題的工具。應定期與信任的服務提供商合作，找出並解決問題，進一步提升攻擊的成本。&lt;/p&gt;
+&lt;h1 id=&quot;%E5%AD%B8%E7%BF%92%E8%88%87%E5%A2%9E%E9%80%B2&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%AD%B8%E7%BF%92%E8%88%87%E5%A2%9E%E9%80%B2&quot;&gt;#&lt;/a&gt; 學習與增進&lt;/h1&gt;
+&lt;p&gt;主要可以利用 RSS 訂閱來達成，分類整理訂閱的項目，在閱讀過程中覺得不懂的地方去查資料又或者再找更不錯的資源來訂閱。例如找到 Github 某個專案不錯，可以去訂閱作者與他所在職的公司 Blog 等。這邊分享一些訂閱來源：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;漏洞可以從 TVN, Exploit Database, ZDI 訂閱&lt;/li&gt;
+&lt;li&gt;業界的資訊可以從 ATT&amp;amp;CK Evaluations program 中的廠商 Tech Blog 訂閱&lt;/li&gt;
+&lt;li&gt;加入 Reddit, 論壇, Youtube 社群軟體討論&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;也有很多不錯的線上課程資源，可以參考：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://institute.sektor7.net/&quot;&gt;SEKTOR7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.pentesteracademy.com/&quot;&gt;Pentester Academy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.zeropointsecurity.co.uk/&quot;&gt;Zero-Point Security Courses&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最後附上過程中搜集的一些鏈結跟資源，並利用 &lt;a href=&quot;https://markmap.js.org/&quot;&gt;markmap&lt;/a&gt; 整理成的 &lt;a href=&quot;https://tech-blog.cymetrics.io/posts/zet/purple-man-my-superman/mind-map.html&quot;&gt;Mind map&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/zet/purple-man-my-superman/mind-map.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;reference&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#reference&quot;&gt;#&lt;/a&gt; Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;A blueprint for evading industry leading endpoint protection in 2022 - &lt;a href=&quot;https://vanmieghem.io/blueprint-for-evading-edr-in-2022/&quot;&gt;https://vanmieghem.io/blueprint-for-evading-edr-in-2022/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;MITRE ATT&amp;amp;CK GALLIUM Group - &lt;a href=&quot;https://attack.mitre.org/groups/G0093/&quot;&gt;https://attack.mitre.org/groups/G0093/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;psexec 原理分析和实现 - &lt;a href=&quot;https://paper.seebug.org/2056/&quot;&gt;https://paper.seebug.org/2056/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Anti-Forensics - &lt;a href=&quot;https://github.com/ashemery/Anti-Forensics&quot;&gt;https://github.com/ashemery/Anti-Forensics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;WarCon V - Modern Initial Access and Evasion Tactics&lt;/li&gt;
+&lt;li&gt;bigb0sss/RedTeam-OffensiveSecurity - &lt;a href=&quot;https://github.com/bigb0sss/RedTeam-OffensiveSecurity&quot;&gt;https://github.com/bigb0sss/RedTeam-OffensiveSecurity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;tkmru/awesome-edr-bypass - &lt;a href=&quot;https://github.com/tkmru/awesome-edr-bypass&quot;&gt;https://github.com/tkmru/awesome-edr-bypass&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;snovvcrash Pentester&#39;s Promiscuous Notebook - &lt;a href=&quot;https://ppn.snovvcrash.rocks/&quot;&gt;https://ppn.snovvcrash.rocks/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 		</content>
 	</entry>
