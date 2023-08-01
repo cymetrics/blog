@@ -34,7 +34,7 @@ SharePoint 2013, 2016, 2019
 ...
 ```
 
-We can use a very simple powershell script to set up an Endpoint Client for Windows DC Server + Exchange Server + domain joined endpoint with the specify resources for the VMs.
+We can easily set up an Endpoint Client for a Windows DC Server, Exchange Server, and domain-joined endpoint by utilizing a straightforward PowerShell script. This script allows us to specify the required resources for the Virtual Machines (VMs).
 
 
 ```powershell
@@ -67,13 +67,13 @@ Show-LabDeploymentSummary -Detailed
 ![](/img/posts/zet/purple-man-my-superman/detection-lab.png)
 
 
-One tool that deserves special mention is **Microsoft Advanced Threat Analytics (ATA)**. Many of Microsoft Defender's internal network detection mechanisms were previously implemented in ATA. Intranet attacks such as Password spraying, Pass-The-Hash, and Pass-The-Ticket can be reproduced and verified to be detected.
+One tool worth mentioning is Microsoft Advanced Threat Analytics (ATA). Many of the internal network detection mechanisms of Microsoft Defender were formerly integrated into ATA. It allows for the reproduction and verification of intranet attacks, such as Password Spraying, Pass-The-Hash, and Pass-The-Ticket, to ensure their detection.
 
 For the red team, DetectionLab can be utilized to observe, and tools such as Sysmon, Zeek, and ATA can be used to understand possible attack traces in advance and try to reduce their visibility. On the other hand, the blue team can use tools such as Splunk and Sysmon to conduct Threat Hunting training, and by familiarizing themselves with the log data of various events, they can then quickly connect and investigate similar attacks that may occur in the future.
 
 # Information Security Tools Integration
 
-Enterprises use SecDevOps or DevSecOps to integrate security into the development process and automate it using the CI/CD pipeline. The concept here is more like [osmedeus](https://github.com/j3ssie/osmedeus) tool [workflow](https://github.com/osmedeus/osmedeus-workflow) "flow Engine for Offensive Security". We can use CI/CD to achieve this, from the installation and deployment of the latest scanning tools version to the various stages of scanning that we can customize ourselves.
+Enterprises use SecDevOps or DevSecOps to integrate security into the development process and automate it using the CI/CD pipeline. The concept here is more like [osmedeus](https://github.com/j3ssie/osmedeus) tool [workflow](https://github.com/osmedeus/osmedeus-workflow) "flow Engine for Offensive Security". We can leverage CI/CD to accomplish this, encompassing the installation and deployment of the latest versions of scanning tools, as well as customizing the various stages of scanning according to our requirements.
 
 
 ![](/img/posts/zet/purple-man-my-superman/osmedeus.png)
@@ -97,12 +97,13 @@ For example, the process can be sequenced as follows:
     * Slack bot
 
 
-We can install the latest tools via commands, and then run emulations to gather all kinds of data. The data collected is then thrown into a crawler or filter, and then a simple and brute force vulnerability scanning tool is used to do the basic checking. Finally, the scanning log and results can be thrown into the communication software to notify the scanning is complete. As long as the CI process is well designed, the scanning content and tools can be highly customized.
+We can streamline the process by installing the latest tools through commands and conducting emulations to gather comprehensive data. This data is then fed into a crawler or filter, followed by a straightforward and robust vulnerability scanning tool for basic checks. Finally, the scanning log and results are integrated into communication software to signal the completion of scanning. A well-designed CI process allows for highly customized scanning content and tools.
 
-The worst fear is that after a long period of penetration testing, we find that there are basic weaknesses that can be found by scanning the catalog, which they have been overlooked at the initial stage, and results in wasting a lot of time. A fixed and complete automation process can help us save time and discover more information, improving our efficiency and accuracy.
+The greatest concern is discovering fundamental weaknesses during extended penetration testing that could have been easily identified through catalog scanning but were overlooked at the initial stage, leading to significant time wastage. Implementing a fixed and comprehensive automation process can help us save time, uncover more information, and enhance our efficiency and accuracy.
 
 ![](/img/posts/zet/purple-man-my-superman/drone.png)
 
+Here is an example using Drone CI. After adding the relevant environment variables, the automated scanning process can be initiated. It allows for saving scan logs and automatic notifications upon completion of the scan.
 
 
 # Red and Blue Team Technology
@@ -115,7 +116,7 @@ The worst fear is that after a long period of penetration testing, we find that 
 During penetration testing, we usually don't want to expose our public IP, or firewall blocking mechanism, so we can use Ngrok to transfer files and shells. In real APT (Advanced Persistent Threat) attacks, we can also see other intranet penetration practices, such as using the SoftEther service to connect the victim's computer to the attacker's computer network, so that the attacker can easily take control of the victim's computers and keep them under constant management. However, here we would like to focus on two specific services, Cloudflared and Tailscale.
 
 
-Cloudflared is a cross-platform command-line Tunnel client provided by Cloudflare that can be used in combining with its own service [Zero Trust Tunnels](https://developers.cloudflare.com/cloudflare-one /connections/connect-apps/).
+Cloudflared is a cross-platform command-line Tunnel client offered by Cloudflare, designed to complement, and work in conjunction with its own services, [Zero Trust Tunnels](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/).
 
 
 ![](/img/posts/zet/purple-man-my-superman/cloudflare-tunnel.png)
@@ -127,7 +128,10 @@ We can run the Cloudflared Tunnel agent on the victim's computer to allow the vi
 
 ![](/img/posts/zet/purple-man-my-superman/cloudflare-tunnels-setting-2.png)
 
-In addition, Tailscale and Headscale have implement their own applications based on the WireGuard agreement. The application scenario is like having a VPN Hub where each Client can connect to form a virtual intranet and communicate with each other via [NATs (Network Address Translators)](https ://tailscale.com/blog/how-nat-traversal-works/) to communicate with each other. Similar services, such as ZeroTier, can eventually form a hacker's virtual intranet, allowing the hacker to take control of the intranet hosts without being affected by firewalls.
+
+In addition, Tailscale and Headscale have developed their own applications based on the WireGuard protocol. The application scenario is like having a VPN Hub where each client can connect, creating a virtual intranet that enables communication amongst themselves. This communication is facilitated through Network Address Translators ([NATs](https://tailscale.com/blog/how-nat-traversal-works/)) to establish seamless connectivity.
+
+Similar services, such as ZeroTier, can eventually form a hacker's virtual intranet, allowing the hacker to take control of the intranet hosts without being affected by firewalls.
 
 ![](/img/posts/zet/purple-man-my-superman/tailscale.png)
 
@@ -178,8 +182,7 @@ def execute_remote(self, data, shell_type='cmd'):
     command += ' & ' + 'del ' + batchFile
 ```
 
-In addition, the CrackMapExec tool supports multiple protocols, Credentials, Kerberos can be combined with BloodHound to form modular functionality and used for listing, password cracking, command execution. The underlying Impacket-based attack on Linux is very easy to use, and the authors have set up [Porchetta Industries - *The* central platform to support the developers of Open Source Infosec tools](https://github.com/Porchetta-Industries) to support the developers of Open Source Infosec tools, a great concept.
-
+In addition, the CrackMapExec tool supports multiple protocols, Credentials, Kerberos can be combined with BloodHound to form modular functionality and used for listing, password cracking, command execution. The Impacket-based attack on Linux, at its core, is remarkably user-friendly. Furthermore, the authors have established [Porchetta Industries](https://github.com/Porchetta-Industries), a central platform aimed at supporting developers of Open Source Infosec tools—a commendable and valuable initiative.
 
 **Defense & Hunting:**
 
@@ -200,7 +203,7 @@ Pattern-based uses fixed strings, URLs, and Hexadecimal as features.
 
 Behavior-based is like a web server process that opens a shell process in which the command line contains some special strings, and this kind of multiple behaviors are combined to form a peculiar behavior that is sequential and dependent to be used as a judgment.
 
-The last IOC commonly uses IP/URL as a blacklist. In fact, for an attacker **any protection software can be bypassed with enough time**.
+Lastly, Indicator of Compromise (IOC) often involves utilizing IP/URL blacklists. In reality, **given enough time, attackers can bypass any protective software**.
 
 There are many bypass techniques that must be included in the backdoor program of the controlling host in order to work covertly under the layers of surveillance and protection mechanisms, including:
 * Unhook
@@ -256,14 +259,14 @@ On the endpoint, we can simply use [Timeline Explorer](https://ericzimmerman.git
 # A few tips for the blue team
 
 
-1. Regularly take inventory of your assets and know the boundaries of your network. Don't wait until something goes wrong and you don't know where the victims' hosts locate.
-2. Update the patch on the devices that can be connected to the network as much as possible, including Router, Switch, IoT, Printer, Endpoint, etc.
-3. Set up a Log Server, Log as far as possible, including Firewall, Endpoint, Server. With Log, you then can investigate the incident.
-4. Regular vulnerability scanning, penetration testing, and DevSecOps planning. Raise information security standards and integrate them into daily operations.
-5. Subscribe to the company's product vulnerability notification and related intelligence information, in order to understand the relevant attack techniques and knowledge.
+1. Regularly conduct asset inventory and familiarize yourself with the network boundaries. Avoid waiting for incidents to occur without knowing the locations of the affected hosts.
+2. Keep all devices connected to the network up to date with the latest patches, including routers, switches, IoT devices, printers, and endpoints.
+3. Establish a Log Server to record as much data as possible, including logs from firewalls, endpoints, and servers. Utilize these logs for incident investigation.
+4. Implement regular vulnerability scanning, penetration testing, and DevSecOps planning. Elevate information security standards and integrate them into daily operations.
+5. Stay subscribed to product vulnerability notifications and related intelligence to stay informed about relevant attack techniques and knowledge.
 
-For **Team Blue**, "Red Team" is the tool used to validate and identify issues. Regularly work with a trusted service provider to identify and resolve issues to further increase the cost of an attack.
 
+For the Blue Team, use a "Red Team" to validate and identify vulnerabilities. Collaborate with a trusted service provider regularly to identify and resolve issues, thus increasing the cost of potential attacks.
 
 # Learning and Improvement
 
