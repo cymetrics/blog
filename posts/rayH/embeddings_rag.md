@@ -7,9 +7,9 @@ layout: zh-tw/layouts/post.njk
 ---
 
 <!-- summary -->
-想了解開發OpenAI會遇到哪一些坑嗎？
-想了解如何解鎖Embeddings和Retrieval-Augmented Generation讓GPT的模型就算沒有企業獨有的knowhow，
-也能產生出有意義的內容嗎？那就快點手刀點進來吧，讓您滿載而歸！
+<!-- 想了解開發OpenAI會遇到哪一些坑嗎？ -->
+<!-- 想了解如何解鎖Embeddings和Retrieval-Augmented Generation讓GPT的模型就算沒有企業獨有的knowhow， -->
+<!-- 也能產生出有意義的內容嗎？那就快點手刀點進來吧，讓您滿載而歸！ -->
 <!-- summary -->
 
 ## 前言
