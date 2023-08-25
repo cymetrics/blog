@@ -23,6 +23,11 @@
     "twitterHandle": ""
   },
   "authors": {
+    "rayH": {
+      "name": "rayH",
+      "intro": "Software Engineer",
+      "avatarUrl": "/img/authors/ray_logo.jpeg"
+    },
     "huli": {
       "name": "huli",
       "intro": "Act as a bridge between Front-end and Security world",

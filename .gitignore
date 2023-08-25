@@ -4,6 +4,7 @@ js/min.js
 js/min.js.map
 .vscode/
 .netlify/
+.idea/
 export
 _site
 og-image-generator/output.png
