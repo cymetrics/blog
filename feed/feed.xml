@@ -9299,9 +9299,9 @@ pip 這個工具可以自訂所謂的 Index，也就是私有的 Index，抓取�
 		<id>https://tech-blog.cymetrics.io/posts/rayH/embeddings_rag/</id>
 		<content type="html">
 		  &lt;!-- summary --&gt;
-&lt;p&gt;想了解開發OpenAI會遇到哪一些坑嗎？&lt;br&gt;
-想了解如何解鎖Embeddings和Retrieval-Augmented Generation讓GPT的模型就算沒有企業獨有的knowhow，&lt;br&gt;
-也能產生出有意義的內容嗎？那就快點手刀點進來吧，讓您滿載而歸！&lt;/p&gt;
+&lt;!-- 想了解開發OpenAI會遇到哪一些坑嗎？ --&gt;
+&lt;!-- 想了解如何解鎖Embeddings和Retrieval-Augmented Generation讓GPT的模型就算沒有企業獨有的knowhow， --&gt;
+&lt;!-- 也能產生出有意義的內容嗎？那就快點手刀點進來吧，讓您滿載而歸！ --&gt;
 &lt;!-- summary --&gt;
 &lt;h2 id=&quot;%E5%89%8D%E8%A8%80&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;p&gt;由OpenAI開發的ChatBot在2022年11月推出，後續對各行各業造成的影響和轟動。筆者從一個觀望的態度，開始嘗試使用一陣子，最後決定加入ChatGPT Plus。作為一個每日離不開GPT的使用者，親身體驗到其帶來的好處，不僅可以大量的加速在個人技術知識上的學習速度，工作效率，亦可以幫助在生活其他面向帶來助益，算是這幾年，經過了3D printer, VR/AR, Web3 筆者認為最直接有幫助且進入摩擦力相對小的新技術。&lt;/p&gt;
