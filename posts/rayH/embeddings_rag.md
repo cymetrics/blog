@@ -3,6 +3,7 @@ title: OpenAI Embeddings 與 Retrieval-Augmented Generation在實務中的應用
 date: 2023-08-25
 tags: [OpenAI,ChatGPT,Embeddings,RAG]
 author: rayH
+image: /img/posts/rayH/embeddings_rag/cover.png
 layout: zh-tw/layouts/post.njk
 ---
 
