@@ -10,18 +10,16 @@ layout: zh-tw/layouts/post.njk
 <!-- summary -->
 Would you like to understand the pitfalls encountered in developing OpenAI?
 Would you like to understand how to unlock Embeddings and Retrieval-Augmented Generation to enable GPT models to generate meaningful content, even without the unique know-how of enterprises? Then hurry up and click in, and leave with a wealth of knowledge!
-
-The ChatBot developed by OpenAI was launched in November 2022 and subsequently caused a sensation and had a profound impact on various industries. The author started with a wait-and-see attitude, tried using it for a while, and eventually decided to join ChatGPT Plus. As a daily user of GPT, experiencing its benefits first-hand, it not only significantly accelerates the learning speed of individual technical knowledge and work efficiency but also brings benefits in other aspects of life. It is considered by the author to be the most directly helpful and least resistant new technology in recent years, after 3D printers, VR/AR, and Web3.
 <!-- summary -->
 
 ## Preface
 
-The ChatBot developed by OpenAI was launched in November 2022, and it has had a profound impact and caused a sensation across various industries. The author began with a wait-and-see attitude, experimented with it for a while, and finally decided to join ChatGPT Plus. As someone who uses GPT daily, the author has personally experienced its advantages. It can substantially accelerate learning in personal technical knowledge and improve work efficiency and can also assist in other aspects of life. It is considered one of the most directly helpful and frictionless new technologies in recent years, following 3D printers, VR/AR, and Web3.
+The ChatBot developed by OpenAI was launched in November 2022, and it has had a profound impact and caused a sensation across various industries. The author of this article began with a wait-and-see attitude, experimented with it for a while, and finally decided to join ChatGPT Plus. As someone who uses GPT daily, the author has personally experienced its advantages. It can substantially accelerate learning in personal technical knowledge and improve work efficiency and can also assist in other aspects of life. It is considered one of the most directly helpful and frictionless new technologies in recent years, following 3D printers, VR/AR, and Web3.
 
-Cymetrics is also aiming to leverage the trend of AI to provide better services and values to clients with their cybersecurity products. Hence, the author had this opportunity to implement AI products. The first version MVP of our AI service has been released, so the author has time to write articles and make a summary. Since the author does not have a background in AI, any inaccuracies in wording are open for correction and discussion.
+Cymetrics is also aiming to leverage the trend of AI to provide better services and values to clients with their cybersecurity products. Hence, the author had this opportunity to implement AI products. The first MVP version of our AI service has been released, so the author has time to write articles and make a summary. Since the author does not have a background in AI, any inaccuracies in wording are open for correction and discussion.
 
 
-## What Have We Learned?
+## What Will We Learn
 
 In this article, a straightforward introduction will mainly be given to the following topics:
 
@@ -52,13 +50,13 @@ Embeddings are a means of vectorizing text, as shown in the following diagram.
 
 ![](/img/posts/rayH/embeddings_rag/embedding_vector.png)
 
-In life, sometimes, we need to clarify the similarity between objects, for example: Are apples and bananas similar? Generally, this kind of question can be answered in less than a second. But when the question becomes, please compare the similarity of these two paragraphs of text? If both paragraphs are unseen, the likely answer will be, "Let me take a quick look before I can distinguish," and an answer might be available five minutes later.
+In life, sometimes, we need to clarify the similarity between objects, for example, "Are apples and bananas similar?"    Generally, this kind of question can be answered in less than a second. But when the question becomes more complex, like “Could you compare the similarity of these two paragraphs?”  If both paragraphs are unseen, the answer will likely be, "Let me take a quick look before I can distinguish," and an answer might be available five minutes later.
 
 But what if the condition becomes "Regardless of the amount of text, the similarity of this text needs to be informed within one second?"
 
 ![](/img/posts/rayH/embeddings_rag/question.png)
 
-Vectors can easily accomplish comparisons of similarity. Whether a vector is similar depends on the direction and magnitude of the vector. Therefore, one can easily discern the degree of similarity between vectors based on their direction. For instance, as shown in the following diagram, most people can tell within a second that vector A and vector B are not the same.
+Vectors can easily accomplish comparisons of similarity. The similarity of two vectors depends on both their direction and magnitude. Therefore, one can easily discern the degree of similarity between vectors based on their direction. For instance, as shown in the following diagram, most people can tell within a second that vector A and vector B are not the same.
 
 ![](/img/posts/rayH/embeddings_rag/vectorr.png)
 
@@ -86,14 +84,15 @@ The concept of RAG originated from a paper (https://arxiv.org/abs/2005.11401). W
 
 The image above is from the azure-search-openai-demo repository. This repository utilizes the spirit of RAG in conjunction with OpenAI's generative AI to solve the problems mentioned above. Before explaining this image, let’s clarify our business objective again: “GPT can answer based on our company’s proprietary industry knowledge and data post-September 2021.” To achieve this, if we do not use model training, we inevitably have to add possible answers before the client’s prompt and then send this content into OpenAI, hoping GPT can give us an answer with high precision.
 
-Mapping the above process to the image, first, users will ask questions through a terminal device. Then we will take the path above. We will try to find possible answers in our enterprise database based on user questions or search for solutions using a search engine. Next, we will take the path below. We will send the user's question and the possible answers found to OpenAI. Thus, the data GPT relies on when answering user questions will not only be the unique knowhow of the enterprise and the latest information but also can effectively reduce the degree of GPT hallucination.
+Mapping the above process to the image, first, users will ask questions through a terminal device. Then we will take the path above. We will try to find possible answers in our enterprise database based on user questions or search for solutions using a search engine. Next, we will take the path below. We will send the user's question and the possible answers found to OpenAI.
+Thus, the data that GPT relies on to answer user questions includes not only the enterprise's unique knowledge and the latest information but also serves to effectively reduce the degree of GPT hallucination.
 
 # How
 
 From the above discussion, we can now understand the preliminary concepts of RAG and embeddings. Next, we will discuss how to implement the detailed parts using the ideas above. Details are as follows:
 
 1. Vectorize the company's industry knowledge and the latest relevant online information using OpenAI's embeddings API and upload the vector results to a vector database (e.g., Pinecone).
-2. Obtain a set of vectors for the user's question using OpenAI's embeddings API. Remember, this set of vectors is essentially approximate to the question asked by the user. It's just expressed in another form.
+2. Obtain a set of vectors for the user's question using OpenAI's embeddings API. Remember, this set of vectors is similar approximate to the question asked by the user. It's just presented in another form.
 3. Then, use the vector obtained in step two to query the vector database.
 4. The vector database will, based on the initially set matching rules, give the texts inside the vectors "closest" to the user's question vector (this text content will be from the industry knowhow vectorized by the enterprise initially).
 5. This text content will be combined with the user's question into one prompt, sent into OpenAI GPT, and we will wait for GPT's answer.
