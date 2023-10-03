@@ -92,7 +92,7 @@ Thus, the data that GPT relies on to answer user questions includes not only the
 From the above discussion, we can now understand the preliminary concepts of RAG and embeddings. Next, we will discuss how to implement the detailed parts using the ideas above. Details are as follows:
 
 1. Vectorize the company's industry knowledge and the latest relevant online information using OpenAI's embeddings API and upload the vector results to a vector database (e.g., Pinecone).
-2. Obtain a set of vectors for the user's question using OpenAI's embeddings API. Remember, this set of vectors is similar approximate to the question asked by the user. It's just presented in another form.
+2. Obtain a set of vectors for the user's question using OpenAI's embeddings API. Remember, this set of vectors is similar to the question asked by the user. It's just presented in another form.
 3. Then, use the vector obtained in step two to query the vector database.
 4. The vector database will, based on the initially set matching rules, give the texts inside the vectors "closest" to the user's question vector (this text content will be from the industry knowhow vectorized by the enterprise initially).
 5. This text content will be combined with the user's question into one prompt, sent into OpenAI GPT, and we will wait for GPT's answer.
