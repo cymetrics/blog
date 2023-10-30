@@ -6,9 +6,6 @@ tags: [Product]
 layout: zh-tw/layouts/post.njk
 ---
 
-...
-# 政府投標必備：如何有效運用資安報告
-
 ![](/img/posts/ava/workflow.process/procurment.jpg)
 
 ## 前言：
