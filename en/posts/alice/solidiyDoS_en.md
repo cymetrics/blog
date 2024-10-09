@@ -2,7 +2,7 @@
 title: "Decoding DoS Attacks in Solidity: Security Vulnerabilities and Prevention Strategies."
 author: alice
 date: 2024-10-17
-tags: [Blockchain, solidity]
+tags: [Blockchain, Solidity]
 layout: en/layouts/post.njk
 ---
 
@@ -16,7 +16,7 @@ In Solidity, Denial of Service (DoS) is a common vulnerability type that disrupt
 This article will introduce several common DoS scenarios:
 1. Unbounded loop
 2. Integration/Logical error
-3. Refund failed  
+3. Refund failed
 <!-- summary -->
 
 ## Unbounded loop
@@ -25,35 +25,33 @@ This means that a loop without a clear termination condition could cause the loo
 ### Unbounded loop 漏洞範例
 The contract contains a function used to withdraw funds from the deposit array.
 ``` solidity
- struct Deposit {
-        address depositor;
-        uint256 amount;
+struct Deposit {
+  address depositor;
+  uint256 amount;
+}
+
+Deposit[] public deposits;
+
+function deposit() public payable {
+  deposits.push(Deposit(msg.sender, msg.value));
+}
+
+function withdraw() public {
+  uint256 totalAmount = 0;
+  uint256 length = deposits.length;
+
+  for (uint256 i = 0; i < length; i++) {
+    if (deposits[i].depositor == msg.sender && deposits[i].amount > 0) {
+      uint256 amountToTransfer = deposits[i].amount;
+      deposits[i].amount = 0;
+
+      (bool success, ) = msg.sender.call {
+        value: amountToTransfer
+      }("");
+      require(success, "Transfer failed");
     }
-
-    Deposit[] public deposits;
-
-
-    function deposit() public payable {
-        deposits.push(Deposit(msg.sender, msg.value));
-    }
-
-    
-    function withdraw() public {
-        uint256 totalAmount = 0;
-        uint256 length = deposits.length;
-
-       
-        for (uint256 i = 0; i < length; i++) {
-            if (deposits[i].depositor == msg.sender && deposits[i].amount > 0) {
-                uint256 amountToTransfer = deposits[i].amount;
-                deposits[i].amount = 0; 
-
-              
-                (bool success, ) = msg.sender.call{value: amountToTransfer}("");
-                require(success, "Transfer failed");
-            }
-        }
-    }
+  }
+}
 ```
 
 
@@ -78,17 +76,17 @@ This often occurs when incorrect conditions or improper handling of external int
 The contract contains a function that allows setting a number.
 ``` solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^ 0.8 .0;
 
-contract setNumber {   
-    uint256 returnValue;
+contract setNumber {
+  uint256 returnValue;
 
-    function setValue(uint256 _value) public {       
-        require(address(this).balance <= 1 ether, "Function cannot be used anymore due to high contract balance");      
-        returnValue = _value;
-    }
+  function setValue(uint256 _value) public {
+    require(address(this).balance <= 1 ether, "Function cannot be used anymore due to high contract balance");
+    returnValue = _value;
+  }
 
-    receive() external payable {}
+  receive() external payable {}
 }
 ```
 
@@ -101,34 +99,34 @@ The contract contains a function for cross-chain settlement.
 
 ``` solidity
 /**
-   * @notice Settles claimed tokens to any valid Connext domain.
-   * @dev permissions are not checked: call only after a valid claim is executed
-   * @param _recipient: the address that will receive tokens
-   * @param _recipientDomain: the domain of the address that will receive tokens
-   * @param _amount: the amount of claims to settle
-   */
-  function _settleClaim(
-    address _beneficiary,
-    address _recipient,
-    uint32 _recipientDomain,
-    uint256 _amount
-  ) internal virtual {
-    bytes32 id;
-    if (_recipientDomain == 0 || _recipientDomain == domain) {
-      token.safeTransfer(_recipient, _amount);
-    } else {
-      id = connext.xcall(
-        _recipientDomain, // destination domain
-        _recipient, // to
-        address(token), // asset
-        _recipient, // delegate, only required for self-execution + slippage
-        _amount, // amount
-        0, // slippage -- assumes no pools on connext
-        bytes('') // calldata
-      );
-    }
-    emit CrosschainClaim(id, _beneficiary, _recipient, _recipientDomain, _amount);
+ * @notice Settles claimed tokens to any valid Connext domain.
+ * @dev permissions are not checked: call only after a valid claim is executed
+ * @param _recipient: the address that will receive tokens
+ * @param _recipientDomain: the domain of the address that will receive tokens
+ * @param _amount: the amount of claims to settle
+ */
+function _settleClaim(
+  address _beneficiary,
+  address _recipient,
+  uint32 _recipientDomain,
+  uint256 _amount
+) internal virtual {
+  bytes32 id;
+  if (_recipientDomain == 0 || _recipientDomain == domain) {
+    token.safeTransfer(_recipient, _amount);
+  } else {
+    id = connext.xcall(
+      _recipientDomain, // destination domain
+      _recipient, // to
+      address(token), // asset
+      _recipient, // delegate, only required for self-execution + slippage
+      _amount, // amount
+      0, // slippage -- assumes no pools on connext
+      bytes('') // calldata
+    );
   }
+  emit CrosschainClaim(id, _beneficiary, _recipient, _recipientDomain, _amount);
+}
 ```
 
 ### Background knowledge of Integration Error Vulnerability Example
@@ -156,16 +154,16 @@ The contract contains a withdrawal function that distributes specified funds pro
 
 ``` solidity
 function withdraw(uint256 amount, address[] memory recipients) external {
-    require(recipients.length > 0, "No recipients provided");
-    require(recipients.length <= 3, "Too many recipients");
+  require(recipients.length > 0, "No recipients provided");
+  require(recipients.length <= 3, "Too many recipients");
 
-    uint256 recipientAmount = amount / recipients.length;
-    require(recipientAmount > 0, "Amount too small to split");
+  uint256 recipientAmount = amount / recipients.length;
+  require(recipientAmount > 0, "Amount too small to split");
 
-    for (uint256 i = 0; i < recipients.length; ++i) {
-        require(recipients[i] != address(0), "Invalid recipient address");
-        token.safeTransfer(recipients[i], recipientAmount);
-    }
+  for (uint256 i = 0; i < recipients.length; ++i) {
+    require(recipients[i] != address(0), "Invalid recipient address");
+    token.safeTransfer(recipients[i], recipientAmount);
+  }
 }
 ```
 
@@ -173,7 +171,7 @@ function withdraw(uint256 amount, address[] memory recipients) external {
 
 
 ### Weird ERC20 tokens
-It is quite common to implement blacklisted tokens. Some tokens (such as USDC, USDT) have contract-level administrator-controlled address blacklists. If an address is blacklisted, it is prohibited from sending tokens to or transferring tokens out of that address. 
+It is quite common to implement blacklisted tokens. Some tokens (such as USDC, USDT) have contract-level administrator-controlled address blacklists. If an address is blacklisted, it is prohibited from sending tokens to or transferring tokens out of that address.
 
 Malicious or compromised token owners can trap funds in a contract by adding the contract address to the blacklist.
 
