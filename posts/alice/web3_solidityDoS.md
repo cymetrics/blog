@@ -6,7 +6,7 @@ tags: [Blockchain, Solidity]
 layout: zh-tw/layouts/post.njk
 ---
 
-![](/img/posts/alice/solidityDoS/solidityDoS.png)
+![](/img/posts/alice/solidityDoS/solidityDos.png)
 
 ## 什麼是 DoS
 <!-- summary -->
