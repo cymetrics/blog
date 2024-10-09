@@ -107,6 +107,11 @@
       "name": "seadog007",
       "intro": "",
       "avatarUrl": "/img/authors/seadog007_logo.png"
+    },
+    "alice": {
+      "name": "AliceHsu",
+      "intro": "OP and white hat @DeFiHackLabs",
+      "avatarUrl": "/img/authors/alice_logo.jpg"
     }
   },
   "publisher": {
