@@ -6,7 +6,7 @@ tags: [Blockchain, Solidity]
 layout: en/layouts/post.njk
 ---
 
-![](/img/posts/alice/solidityDoS/solidityDoS.png)
+![](/img/posts/alice/solidityDoS/solidityDos.png)
 
 
 <!-- summary -->
