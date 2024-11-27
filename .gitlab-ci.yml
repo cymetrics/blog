@@ -1,0 +1,18 @@
+stages:
+  - job
+
+sync_gitlab_to_github:
+  stage: job
+  image: alpine:latest
+  script:
+    - apk add --no-cache git
+    - git config --global user.name "gitlab-ci"
+    - git config --global user.email "gitlab-ci@example.com"
+    - if git remote | grep -q github; then git remote set-url github https://oauth2:$GITHUB_TOKEN@github.com/cymetrics/blog.git; else git remote add github https://oauth2:$GITHUB_TOKEN@github.com/cymetrics/blog.git; fi
+    - git fetch origin && git fetch github main
+    - git merge github/main --no-ff --no-edit || true
+    - git push -u github HEAD:main
+  only:
+    - main
+    - /^develop-.*$/
+  when: always
