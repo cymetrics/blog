@@ -5,7 +5,7 @@
 	
 	<link href="https://tech-blog.cymetrics.io/feed/feed.xml" rel="self"/>
 	<link href="https://tech-blog.cymetrics.io"/>
-	<updated>2024-10-31T00:00:00-00:00</updated>
+	<updated>2024-12-30T00:00:00-00:00</updated>
 	<id>https://tech-blog.cymetrics.io</id>
 	<author>
 		<name>Cymetrics Tech Blog</name>
@@ -9594,6 +9594,67 @@ Ownable 使合約擁有者掌握控制權，適合較簡單的應用，但當涉
 &lt;a href=&quot;https://github.com/code-423n4/2022-10-holograph-findings/issues/427&quot;&gt;1&lt;/a&gt;,&lt;a href=&quot;https://github.com/code-423n4/2021-05-nftx-findings/issues/78&quot;&gt;2&lt;/a&gt;,&lt;a href=&quot;https://github.com/trailofbits/publications/blob/master/reviews/zecwallet.pdf&quot;&gt;3&lt;/a&gt;,&lt;a href=&quot;https://github.com/code-423n4/2021-04-meebits-findings/issues/30&quot;&gt;4&lt;/a&gt;,&lt;a href=&quot;https://github.com/code-423n4/2022-03-joyn-findings/issues/50&quot;&gt;5&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;%E5%A6%82%E4%BD%95%E5%AF%A6%E7%8F%BE%E7%9C%9F%E6%AD%A3%E7%9A%84%E9%9A%A8%E6%A9%9F%E6%80%A7&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E5%A6%82%E4%BD%95%E5%AF%A6%E7%8F%BE%E7%9C%9F%E6%AD%A3%E7%9A%84%E9%9A%A8%E6%A9%9F%E6%80%A7&quot;&gt;#&lt;/a&gt; 如何實現真正的隨機性&lt;/h2&gt;
 &lt;p&gt;透過整合 &lt;a href=&quot;https://docs.chain.link/vrf/v2/subscription/examples/get-a-random-number#request-random-values&quot;&gt;Chainlink VRF V2&lt;/a&gt; 來獲取隨機數字，合約可以藉由 requestRandomWords() 發送隨機數的請求。Chainlink VRF 會處理該請求，並使用 fulfillRandomWords() 將隨機值回傳至合約，隨機值會與對應的 requestId 關聯並存儲在合約中。&lt;/p&gt;
+
+		</content>
+	</entry>
+	
+	<entry>
+		<title>2024 DeFi 智慧合約駭客事件回顧</title>
+		<link href="https://tech-blog.cymetrics.io/posts/alice/2024_defi_hack/"/>
+		<updated>2024-12-30T00:00:00-00:00</updated>
+		<id>https://tech-blog.cymetrics.io/posts/alice/2024_defi_hack/</id>
+		<content type="html">
+		  &lt;p&gt;&lt;img src=&quot;https://tech-blog.cymetrics.io/img/posts/alice/2024_defi_hack/2024_defi_hack.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;%E8%83%8C%E6%99%AF&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E8%83%8C%E6%99%AF&quot;&gt;#&lt;/a&gt; 背景&lt;/h2&gt;
+&lt;p&gt;在2024年上半年，加密貨幣領域取得了重大進展，美國證券交易委員會（SEC）於1月批准了比特幣現貨ETF，隨後在7月批准了以太坊現貨ETF。&lt;br&gt;
+與此同時，香港證券及期貨事務監察委員會（SFC）也於4月23日批准了三家資產管理公司(博時國際、華夏基金、嘉實國際)發行比特幣和以太坊現貨ETF，這些產品於4月30日正式在交易所上市。&lt;br&gt;
+DeFi  項目隨之多元及活躍發展，隨著市場對政策的期待，比特幣甚至突破十萬美元大關，於2024 年 1 月 1 日的 DeFi 鎖倉價值為 541.62 億美元，截至當前DeFi 鎖倉價值也隨之水漲船高，於目前(2024.12) 已超過1000億美元。&lt;br&gt;
+這些新變化象徵加密資產融入傳統金融市場，帶來更多元化的服務、投資機會以及潛在收益。&lt;br&gt;
+然而與此同時，去中心化金融也面臨嚴峻挑戰，截至目前(2024.12) ，因駭客事件造成的損失累計資金已超過 91.1億美元，在快速發展中仍存巨大安全隱患。&lt;br&gt;
+市場熱度仍未完全消減，投資者以及機構仍須留意對應的監管政策、市場的高度波動以及各項安全風險，安全風險方面包含合約漏洞、釣魚攻擊、私鑰管理不當等等。&lt;br&gt;
+在這樣的背景下，我們根據DeFiHackLabs 的漏洞PoC資料庫，統計並且分析關於合約漏洞造成的駭客事件的資料，旨在提供DeFi 合約安全相關議題的深入探討，使得從業人員以及投資者理解並且預防常見安全風險，提升整體產業生態的發展。&lt;/p&gt;
+&lt;p&gt;DeFiHackLabs 的漏洞PoC資料庫由來自全球的超過116位的貢獻者撰寫PoC，復現由2017至今超過550起的駭客攻擊事件，是目前具參考性且齊全的漏洞復現資料庫。&lt;/p&gt;
+&lt;h2 id=&quot;2024-%E5%B9%B4defi%E6%99%BA%E6%85%A7%E5%90%88%E7%B4%84%E5%B8%B8%E8%A6%8B%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2024-%E5%B9%B4defi%E6%99%BA%E6%85%A7%E5%90%88%E7%B4%84%E5%B8%B8%E8%A6%8B%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90&quot;&gt;#&lt;/a&gt; 2024 年DeFi智慧合約常見漏洞分析&lt;/h2&gt;
+&lt;h2 id=&quot;analysis-of-common-vulnerabilities-in-defi-smart-contracts-in-2024&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#analysis-of-common-vulnerabilities-in-defi-smart-contracts-in-2024&quot;&gt;#&lt;/a&gt; Analysis of Common Vulnerabilities in DeFi Smart Contracts in 2024&lt;/h2&gt;
+&lt;h3 id=&quot;2024%E5%B9%B4%E5%90%84%E9%A1%9E%E5%9E%8B%E6%BC%8F%E6%B4%9E%E6%95%B8%E9%87%8F&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2024%E5%B9%B4%E5%90%84%E9%A1%9E%E5%9E%8B%E6%BC%8F%E6%B4%9E%E6%95%B8%E9%87%8F&quot;&gt;#&lt;/a&gt; 2024年各類型漏洞數量&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://hackmd.io/_uploads/S1ujK1cVyx.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2024%E5%B9%B4%E5%90%84%E9%A1%9E%E5%9E%8B%E6%BC%8F%E6%B4%9E%E4%BD%94%E6%AF%94&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2024%E5%B9%B4%E5%90%84%E9%A1%9E%E5%9E%8B%E6%BC%8F%E6%B4%9E%E4%BD%94%E6%AF%94&quot;&gt;#&lt;/a&gt; 2024年各類型漏洞佔比&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://hackmd.io/_uploads/rk6fukcVJg.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;p&gt;截至目前(2024.12)為止來自DeFi Hacks Reproduce Repo 統計，2024年共有超過150起合約攻擊事件，造成的損失超過3.28 億美元，並且漏洞根因相當多元，經分析統整幾類漏洞，其中安全事件發生的根因為邏輯錯誤是最大宗的，高達50起，這意味著在合約系統層面的設計需要更加嚴謹。&lt;br&gt;
+其次分別為輸入驗證(20起)以及價格操縱(18起)，輸入驗證缺失或不正確亦是審計時常見的智慧合約漏洞，當合約在處理使用者或外部來源提供的資料和參數之前未能充分檢查和驗證這些資料和參數時，就會發生這種漏洞，攻擊者可以操縱合約邏輯、注入惡意資料或導致意外行為。而價格操縱則反映了在使用預言機和市場數據時的風險，幾起事件包含&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs#20240816-zenterest---price-out-of-date&quot;&gt;利用過時的數據套利&lt;/a&gt;、&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs#20240305-woofi---price-manipulation&quot;&gt;價格設計流程存在缺陷&lt;/a&gt;、&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs?tab=readme-ov-file#20240806-novax---price-manipulation&quot;&gt;預言機取回的數值可被操縱&lt;/a&gt;等等。&lt;br&gt;
+其他值得關注的漏洞還包括存取控制（Access Control） 和重入攻擊（Reentrancy），分別記錄了 17 和 12 起事件，存取控制的漏洞利用事件包含&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs#20240323-cgt---incorrect-access-control&quot;&gt;權限控制機制存在缺陷&lt;/a&gt;、&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs#20241022-erc20transfer---access-control&quot;&gt;關鍵函數未受保護&lt;/a&gt;、&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs#20240320-paraswap---incorrect-access-control&quot;&gt;處理資金轉移的回調函數未受限制&lt;/a&gt;等。&lt;br&gt;
+此外仍有幾例精度損失（Precision Loss）和任意調用（Arbitrary Call）的安全事件，這類問題雖然發生頻率較低，但仍對協議安全構成威脅。在合約的安全生命周期管理方面，除定期的安全審計外，應著重提升安全研究人員的參與度，可以透過引入專業的白帽參與項目的開發，在開發期間便能快速識別並解決潛在風險，確保合約在每個階段都能大幅避免整合風險，另外合約上鏈後亦需要藉由實時監控，可以及時發現異常操作或潛在攻擊，並迅速採取應對措施，將損失降至最低，可以部署安全監控工具來監測交易、用戶行為以及系統運行狀態，並結合告警機制自動通知安全團隊進行處置。&lt;br&gt;
+此外，除安全人員及工具的配置，在分散潛在的經濟風險的方面，可以採用更全面的曝險管理策略，透過選擇對應的保險方案，在發生安全事件時能為用戶及協議本身獲得更多實質保障，藉由多方考慮不同的風險配置，方能確保協議中資產的安全。&lt;/p&gt;
+&lt;h3 id=&quot;2024%E5%B9%B4%E5%90%84%E9%A1%9E%E5%9E%8B%E6%BC%8F%E6%B4%9E%E6%90%8D%E5%A4%B1%E9%87%91%E9%A1%8D%E7%B5%B1%E8%A8%88&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2024%E5%B9%B4%E5%90%84%E9%A1%9E%E5%9E%8B%E6%BC%8F%E6%B4%9E%E6%90%8D%E5%A4%B1%E9%87%91%E9%A1%8D%E7%B5%B1%E8%A8%88&quot;&gt;#&lt;/a&gt; 2024年各類型漏洞損失金額統計&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://hackmd.io/_uploads/BJUgty54yx.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2024%E5%B9%B4%E5%90%84%E9%A1%9E%E5%9E%8B%E6%BC%8F%E6%B4%9E%E6%90%8D%E5%A4%B1%E9%87%91%E9%A1%8D%E4%BD%94%E6%AF%94&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#2024%E5%B9%B4%E5%90%84%E9%A1%9E%E5%9E%8B%E6%BC%8F%E6%B4%9E%E6%90%8D%E5%A4%B1%E9%87%91%E9%A1%8D%E4%BD%94%E6%AF%94&quot;&gt;#&lt;/a&gt; 2024年各類型漏洞損失金額佔比&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://hackmd.io/_uploads/HJX-iyq4kl.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+&lt;p&gt;漏洞類型的多樣性造成了巨大的經濟損失，經統計顯示，整體損失由少數高風險漏洞主導，損失排名前三大的漏洞類型佔總損失的金額接近 7成（69.15%）。&lt;br&gt;
+損失金額前三大的漏洞類型中，輸入驗證漏洞以 115,815,175 美元 的損失位居首位，邏輯錯誤漏洞損失 57,084,013 美元 排名第二，存取控制漏洞（Access Control） 則以 48,612,091.85 美元 位列第三。&lt;br&gt;
+值得注意的是，在前段漏洞數量統計中，權限控制類型的漏洞排名第四，顯示漏洞數量與其造成的損失金額具有一定程度的正相關性，而價格操縱類型的漏洞相當仰賴特定條件，深受交易深度、價格波動等要素的影響，因此此類漏洞的獲利能力相對有限。&lt;/p&gt;
+&lt;p&gt;根據上述背景資訊，我們將深入分析並統整 Input Validation、Logic Error及 Access Control三大類型的漏洞，並詳細介紹今年發生之案例多數漏洞根因以及對應的防範措施。&lt;/p&gt;
+&lt;h2 id=&quot;input-validation&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#input-validation&quot;&gt;#&lt;/a&gt; Input Validation&lt;/h2&gt;
+&lt;p&gt;缺乏對輸入資料的驗證，會導致可以藉由任意傳入的值操縱合約邏輯而造成漏洞。經分析，在今年此類的漏洞多數案例發生在未對calldata進行驗證，使得攻擊者可以利用構建惡意的calldata來轉出或是破壞合約中的資產，另有幾例是合約未檢查資產轉移操作之地址是否獲得批准，攻擊者利用以大量轉出竊取合約中的多種資產。&lt;br&gt;
+傳入合約中的任何資料都需要經過驗證，若是地址需要考慮是否是白名單、是否可能被任意操縱合約中的資產、若是數值需要考慮輸入後進入計算是否有邊緣的用例、是否潛在能操縱合約中資產輸出、若是calldaa是否有限制禁用的函數選擇器清單，確保合約按開發者預期流程執行。&lt;br&gt;
+為有效降低這類風險，合約開發以及審核階段可藉由提高程式碼測試覆蓋率、使用者情境測試以及模糊測試可以大幅提升非預期操作的可能性，亦需考量整合其他協議或部署在多個環境的參數變化，合約及系統設計上需要對任何輸入的值進行對應的校驗或是錯誤處理。&lt;/p&gt;
+&lt;h2 id=&quot;logic-error&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#logic-error&quot;&gt;#&lt;/a&gt; Logic Error&lt;/h2&gt;
+&lt;p&gt;邏輯錯誤是指合約在設計或實作過程中，未正確處理程式邏輯，導致程式行為與預期不符，進而影響系統安全、資產風險或功能性。&lt;br&gt;
+經分析統整邏輯錯誤的案例漏洞根因，大多可分為幾類錯誤：狀態更新、數值計算、功能實作。&lt;br&gt;
+狀態更新錯誤多數的案例為合約內執行特定功能後未正確紀錄，攻擊者可以質押或完成特定操作後可以重複觸發提領，耗盡協議中的資產，例如OTSeaStaking 和JokInTheBox 質押後無正確紀錄狀態，攻擊者不斷提領 。&lt;br&gt;
+數值計算錯誤多數案例為數值計算設計不良，攻擊者可以利用可被操控的數值（如大量增加池中流動性或耗減代幣對等），使得系統內部的價格、資產或負債數值出現異常變動，進而實現套利或繞過健康度檢查等限制。例如 &lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs?tab=readme-ov-file#20240606-minestm---business-logic-flaw&quot;&gt;STM&lt;/a&gt; 與 &lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs?tab=readme-ov-file#20240608-yystoken---business-logic-flaw&quot;&gt;YYStoken&lt;/a&gt; 中，攻擊者通過大量交換代幣操控流動性池的儲備數量，使目標代幣價格失衡後獲取套利;&lt;br&gt;
+&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs?tab=readme-ov-file#20240528-tradeonorion---business-logic-flaw&quot;&gt;Tradeonorion&lt;/a&gt; 計算錯誤導致操縱負債資產數值，使得用戶抵押的資產翻倍，攻擊者藉此繞過健康度檢查。此外，&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs?tab=readme-ov-file#20240409-ups---business-logic-flaw&quot;&gt;UPS Token&lt;/a&gt; 中的數值更新錯誤允許攻擊者利用極小的操作比例銷毀其他資產，進一步耗減系統內的資產總量，造成不可逆的損失。&lt;/p&gt;
+&lt;p&gt;功能實作方面的錯誤意指程式碼流程設計不良導致可以使用各種方式損害協議，&lt;br&gt;
+包括錯誤的&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs?tab=readme-ov-file#20240401-atm---business-logic-flaw&quot;&gt;代幣兌換邏輯&lt;/a&gt;、&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs?tab=readme-ov-file#20240306-tgbs---business-logic-flaw&quot;&gt;轉帳功能可以耗盡資產&lt;/a&gt;、&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs?tab=readme-ov-file#20241002-lavalending---price-manipulation&quot;&gt;清算功能實作錯誤&lt;/a&gt;、&lt;a href=&quot;https://github.com/SunWeb3Sec/DeFiHackLabs?tab=readme-ov-file#20240312-bbt---business-logic-flaw&quot;&gt;攻擊者可以自由繞過權限控制註冊成為合法角色&lt;/a&gt;等等。&lt;/p&gt;
+&lt;p&gt;邏輯錯誤造成的根因各式各樣，藉由增加安全人員在專案的參與度能緩解多數系統性風險，上鏈後輔以即時監控、異常交易檢測及自動化警報系統，並且設計對應的應對措施如事後資產救援計畫、規劃事件通報流程及應急演練機制，以確保在問題發生時能迅速響應，同時也在資產管理面引入更多曝險策略，以確保在事件發生時能迅速響應外，還有資產賠付保障將損失降至最低。&lt;/p&gt;
+&lt;h2 id=&quot;access-control&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#access-control&quot;&gt;#&lt;/a&gt; Access Control&lt;/h2&gt;
+&lt;p&gt;意即「誰可以做這件事」，這在智慧合約的世界中非常重要。&lt;br&gt;
+合約的存取控制可能會影響哪些角色可以鑄造代幣、對提案進行投票、凍結轉帳以及許多其他關鍵的函數。&lt;br&gt;
+如何正確的實行權限控制非常重要，方能避免未經授權的行為者進行操作。&lt;br&gt;
+在今年發生的案例當中，多數漏洞根因圍繞合約可見性設置不當以及權限設計存在缺失，可見性設置不當包含資產轉移函數直接設置為公開，使得任意合約或使用者都能轉移資產，另外還有關鍵函數設置為公開，使得攻擊者能藉由任意燒毀獲或修改資金池參數的方式竊取或消耗合約中的資產，權限控制缺失部分，因升級權限函數未受保護，攻擊者藉此提升權限並提案後批准將協議中的資產鑄造給自己。&lt;/p&gt;
+&lt;p&gt;此類問題多數經安全人員審查後可以有效避免，部署上鏈的合約可以搭配建置監控合約中的關鍵角色地址以及資金流動狀況來減緩對應的風險。&lt;/p&gt;
+&lt;h2 id=&quot;%E9%97%9C%E6%96%BCcymetrics&quot;&gt;&lt;a class=&quot;direct-link&quot; href=&quot;#%E9%97%9C%E6%96%BCcymetrics&quot;&gt;#&lt;/a&gt; 關於Cymetrics&lt;/h2&gt;
+&lt;p&gt;自 2021 年以來，Cymetrics 已為橫跨亞洲 100 多家來自不同領域的客戶提供服務，包括公部門、金融服務、Web3、科技、製造業、零售、電子商務、醫療保健等等。&lt;br&gt;
+我們擁有 ISO27001 和 ISO27017 認證，並且是微軟金牌合作夥伴。&lt;/p&gt;
 
 		</content>
 	</entry>
