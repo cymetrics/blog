@@ -9,7 +9,7 @@ layout: en/layouts/post.njk
 ![](/img/posts/alice/2024_defi_hack/2024_defi_hack.jpg)
 
 ## Background
-
+<!-- summary -->
 In the first half of 2024, significant progress was made in the cryptocurrency space. The U.S. Securities and Exchange Commission (SEC) approved a spot Bitcoin ETF in January, followed by the approval of a spot Ethereum ETF in July. 
 
 Meanwhile, on April 23, the Hong Kong Securities and Futures Commission (SFC) approved three asset management companies—Bosera International, China Asset Management, and Harvest Global Investments—to issue spot Bitcoin and Ethereum ETFs. These products were officially listed on exchanges on April 30. 
@@ -17,7 +17,7 @@ Meanwhile, on April 23, the Hong Kong Securities and Futures Commission (SFC) ap
 The DeFi sector subsequently experienced diversified and vibrant development. Driven by market anticipation of regulatory policies, Bitcoin surpassed the $100,000 mark. According to statistics from DeFiLlama, on January 1, 2024, the total value locked (TVL) in DeFi stood at $54.162 billion. As of now (December 2024), the TVL has risen significantly, exceeding $100 billion. 
 
 These changes symbolize the integration of crypto assets into traditional financial markets, bringing more diversified services, investment opportunities, and potential returns. 
-
+<!-- summary -->
 However, decentralized finance also faces significant challenges. As of now (December 2024), according to statistics from DeFiLlama losses due to hacking incidents have accumulated to over $9.11 billion, highlighting substantial security vulnerabilities amidst rapid development.
 
 While market enthusiasm remains high, investors and institutions must remain vigilant regarding regulatory policies, extreme market volatility, and various security risks. Security concerns include smart contract vulnerabilities, phishing attacks, and improper private key management.
