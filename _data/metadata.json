@@ -117,6 +117,11 @@
       "name": "ken",
       "intro": "",
       "avatarUrl":"/img/authors/ken_logo.jpg"
+    },
+    "michellenovenda": {
+      "name": "Michelle Novenda Hartono",
+      "intro": "Security Research Engineer",
+      "avatarUrl": "/img/authors/michellenovenda_logo.jpg"
     }
   },
   "publisher": {
